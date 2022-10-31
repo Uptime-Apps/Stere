@@ -54,15 +54,10 @@ class AppTheme {
   late ThemeData theme;
   ThemeData light(ColorScheme? colorScheme) {
     ColorScheme scheme =
-        colorScheme ?? ColorScheme.fromSeed(seedColor: const Color(0x0087BBA2));
+        colorScheme ?? ColorScheme.fromSeed(seedColor: const Color(0x004B6674));
     return theme.copyWith(
+      useMaterial3: true,
       colorScheme: scheme,
-      appBarTheme: AppBarTheme(
-        elevation: 0,
-        scrolledUnderElevation: 2,
-        foregroundColor: scheme.onSurface,
-        backgroundColor: scheme.surface,
-      ),
     );
   }
 

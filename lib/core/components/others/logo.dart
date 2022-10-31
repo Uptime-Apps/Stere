@@ -20,7 +20,7 @@ class AppBarLogo extends ConsumerWidget {
       icon: Image.asset(
         assetLogo,
         fit: BoxFit.contain,
-        color: color ?? Theme.of(context).colorScheme.onBackground,
+        color: color ?? Theme.of(context).colorScheme.onSurface,
         height: 32,
       ),
     );

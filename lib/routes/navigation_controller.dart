@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/constants/screen_routes.dart';
 import '../l10n/generated/l10n.dart';
 import '../views/authentication.dart';
+import '../views/home.dart';
 import 'navigation_item.dart';
 import 'navigation_state.dart';
 
@@ -17,7 +18,8 @@ final navigationControllerProvider =
       navigationItems: [
         NavigationItem('assets',
             icon: Icons.now_widgets_rounded, label: S.current.lblAssets),
-        NavigationItem('Home', icon: Icons.home, label: S.current.lblHome),
+        NavigationItem(HomeScreen.route,
+            icon: Icons.home, label: S.current.lblHome),
         NavigationItem('rentals',
             icon: Icons.event_note_rounded, label: S.current.lblRentals),
       ],
