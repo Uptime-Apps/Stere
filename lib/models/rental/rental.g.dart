@@ -28,7 +28,7 @@ _$_Rental _$$_RentalFromJson(Map<String, dynamic> json) => _$_Rental(
       creationDate: DateTime.parse(json['creationDate'] as String),
       hoursRented: json['hoursRented'] as int,
       rentalPrice: (json['rentalPrice'] as num).toDouble(),
-      status: json['status'],
+      status: $enumDecode(_$RentalStatusEnumMap, json['status']),
     );
 
 Map<String, dynamic> _$$_RentalToJson(_$_Rental instance) => <String, dynamic>{
@@ -53,5 +53,12 @@ Map<String, dynamic> _$$_RentalToJson(_$_Rental instance) => <String, dynamic>{
       'creationDate': instance.creationDate.toIso8601String(),
       'hoursRented': instance.hoursRented,
       'rentalPrice': instance.rentalPrice,
-      'status': instance.status,
+      'status': _$RentalStatusEnumMap[instance.status]!,
     };
+
+const _$RentalStatusEnumMap = {
+  RentalStatus.active: 'active',
+  RentalStatus.completed: 'completed',
+  RentalStatus.canceled: 'canceled',
+  RentalStatus.overdue: 'overdue',
+};

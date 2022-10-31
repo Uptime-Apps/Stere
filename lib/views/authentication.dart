@@ -35,11 +35,11 @@ class LoginScreen extends StatelessWidget {
     return FirebaseUIActions(
       actions: [
         AuthStateChangeAction<SignedIn>((context, state) {
-          if (!state.user!.emailVerified) {
-            Navigator.pushNamed(context, '/verify-email');
-          } else {
-            Navigator.pushReplacementNamed(context, '/home');
-          }
+          // if (!state.user!.emailVerified) {
+          //   Navigator.pushNamed(context, '/verify-email');
+          // } else {
+          Navigator.pushReplacementNamed(context, HomeScreen.route);
+          // }
         }),
       ],
       child: SignInScreen(

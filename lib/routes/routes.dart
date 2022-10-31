@@ -9,16 +9,19 @@ import '../views/home.dart';
 class RouteGenerator {
   static Route<dynamic> generate(RouteSettings settings) {
     switch (settings.name) {
-      case '/':
+      case AuthGate.route:
         return MaterialPageRoute(builder: (context) {
           if (FirebaseAuth.instance.currentUser != null) {
             return const HomeScreen();
           }
           return const AuthGate();
         });
+      case HomeScreen.route:
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
       default:
         return MaterialPageRoute(
-            builder: (context) => ErrorScreen(errorMsg: S.of(context).appName));
+            builder: (context) =>
+                ErrorScreen(errorMsg: S.of(context).emPageNotFound));
     }
   }
 }

@@ -69,6 +69,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Error [{code}]: {message}`
+  String emDebug(Object code, Object message) {
+    return Intl.message(
+      'Error [$code]: $message',
+      name: 'emDebug',
+      desc: '',
+      args: [code, message],
+    );
+  }
+
+  /// `Assets`
+  String get lblAssets {
+    return Intl.message(
+      'Assets',
+      name: 'lblAssets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rentals`
+  String get lblRentals {
+    return Intl.message(
+      'Rentals',
+      name: 'lblRentals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get lblSettings {
+    return Intl.message(
+      'Settings',
+      name: 'lblSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get lblHome {
+    return Intl.message(
+      'Home',
+      name: 'lblHome',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

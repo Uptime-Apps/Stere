@@ -2,10 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'firebase_options.dart';
 import 'l10n/generated/l10n.dart';
-import 'views/authentication.dart';
+import 'routes/routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +17,7 @@ Future<void> main() async {
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),
   ]);
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
-      home: const AuthGate(),
+      onGenerateRoute: RouteGenerator.generate,
       localizationsDelegates: const [
         S.delegate,
         GlobalCupertinoLocalizations.delegate,

@@ -1,4 +1,9 @@
 {
-    "appName": "Stere",
-    "emPageNotFound": "Page Not Found"
+  "appName": "Stere",
+  "emPageNotFound": "Page Not Found",
+  "emDebug": "Error [{code}]: {message}",
+  "lblAssets": "Assets",
+  "lblRentals": "Rentals",
+  "lblSettings": "Settings",
+  "lblHome": "Home"
 }

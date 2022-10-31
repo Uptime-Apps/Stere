@@ -488,7 +488,7 @@ class _$_Rental implements _Rental {
                 other.hoursRented == hoursRented) &&
             (identical(other.rentalPrice, rentalPrice) ||
                 other.rentalPrice == rentalPrice) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
@@ -516,7 +516,7 @@ class _$_Rental implements _Rental {
         creationDate,
         hoursRented,
         rentalPrice,
-        const DeepCollectionEquality().hash(status)
+        status
       ]);
 
   @JsonKey(ignore: true)

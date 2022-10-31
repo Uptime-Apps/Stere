@@ -18,6 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$NavigationState {
   List<String> get navItems => throw _privateConstructorUsedError;
   String get currentRoute => throw _privateConstructorUsedError;
+  List<NavigationItem> get navigationItems =>
+      throw _privateConstructorUsedError;
+  int get currentIndex => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NavigationStateCopyWith<NavigationState> get copyWith =>
@@ -30,7 +33,11 @@ abstract class $NavigationStateCopyWith<$Res> {
           NavigationState value, $Res Function(NavigationState) then) =
       _$NavigationStateCopyWithImpl<$Res, NavigationState>;
   @useResult
-  $Res call({List<String> navItems, String currentRoute});
+  $Res call(
+      {List<String> navItems,
+      String currentRoute,
+      List<NavigationItem> navigationItems,
+      int currentIndex});
 }
 
 /// @nodoc
@@ -48,6 +55,8 @@ class _$NavigationStateCopyWithImpl<$Res, $Val extends NavigationState>
   $Res call({
     Object? navItems = null,
     Object? currentRoute = null,
+    Object? navigationItems = null,
+    Object? currentIndex = null,
   }) {
     return _then(_value.copyWith(
       navItems: null == navItems
@@ -58,6 +67,14 @@ class _$NavigationStateCopyWithImpl<$Res, $Val extends NavigationState>
           ? _value.currentRoute
           : currentRoute // ignore: cast_nullable_to_non_nullable
               as String,
+      navigationItems: null == navigationItems
+          ? _value.navigationItems
+          : navigationItems // ignore: cast_nullable_to_non_nullable
+              as List<NavigationItem>,
+      currentIndex: null == currentIndex
+          ? _value.currentIndex
+          : currentIndex // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -70,7 +87,11 @@ abstract class _$$_NavigationStateCopyWith<$Res>
       __$$_NavigationStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<String> navItems, String currentRoute});
+  $Res call(
+      {List<String> navItems,
+      String currentRoute,
+      List<NavigationItem> navigationItems,
+      int currentIndex});
 }
 
 /// @nodoc
@@ -86,6 +107,8 @@ class __$$_NavigationStateCopyWithImpl<$Res>
   $Res call({
     Object? navItems = null,
     Object? currentRoute = null,
+    Object? navigationItems = null,
+    Object? currentIndex = null,
   }) {
     return _then(_$_NavigationState(
       navItems: null == navItems
@@ -96,6 +119,14 @@ class __$$_NavigationStateCopyWithImpl<$Res>
           ? _value.currentRoute
           : currentRoute // ignore: cast_nullable_to_non_nullable
               as String,
+      navigationItems: null == navigationItems
+          ? _value._navigationItems
+          : navigationItems // ignore: cast_nullable_to_non_nullable
+              as List<NavigationItem>,
+      currentIndex: null == currentIndex
+          ? _value.currentIndex
+          : currentIndex // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -104,8 +135,12 @@ class __$$_NavigationStateCopyWithImpl<$Res>
 
 class _$_NavigationState implements _NavigationState {
   _$_NavigationState(
-      {required final List<String> navItems, required this.currentRoute})
-      : _navItems = navItems;
+      {required final List<String> navItems,
+      required this.currentRoute,
+      required final List<NavigationItem> navigationItems,
+      this.currentIndex = 1})
+      : _navItems = navItems,
+        _navigationItems = navigationItems;
 
   final List<String> _navItems;
   @override
@@ -116,10 +151,20 @@ class _$_NavigationState implements _NavigationState {
 
   @override
   final String currentRoute;
+  final List<NavigationItem> _navigationItems;
+  @override
+  List<NavigationItem> get navigationItems {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_navigationItems);
+  }
+
+  @override
+  @JsonKey()
+  final int currentIndex;
 
   @override
   String toString() {
-    return 'NavigationState(navItems: $navItems, currentRoute: $currentRoute)';
+    return 'NavigationState(navItems: $navItems, currentRoute: $currentRoute, navigationItems: $navigationItems, currentIndex: $currentIndex)';
   }
 
   @override
@@ -129,12 +174,20 @@ class _$_NavigationState implements _NavigationState {
             other is _$_NavigationState &&
             const DeepCollectionEquality().equals(other._navItems, _navItems) &&
             (identical(other.currentRoute, currentRoute) ||
-                other.currentRoute == currentRoute));
+                other.currentRoute == currentRoute) &&
+            const DeepCollectionEquality()
+                .equals(other._navigationItems, _navigationItems) &&
+            (identical(other.currentIndex, currentIndex) ||
+                other.currentIndex == currentIndex));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_navItems), currentRoute);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_navItems),
+      currentRoute,
+      const DeepCollectionEquality().hash(_navigationItems),
+      currentIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -146,12 +199,18 @@ class _$_NavigationState implements _NavigationState {
 abstract class _NavigationState implements NavigationState {
   factory _NavigationState(
       {required final List<String> navItems,
-      required final String currentRoute}) = _$_NavigationState;
+      required final String currentRoute,
+      required final List<NavigationItem> navigationItems,
+      final int currentIndex}) = _$_NavigationState;
 
   @override
   List<String> get navItems;
   @override
   String get currentRoute;
+  @override
+  List<NavigationItem> get navigationItems;
+  @override
+  int get currentIndex;
   @override
   @JsonKey(ignore: true)
   _$$_NavigationStateCopyWith<_$_NavigationState> get copyWith =>
