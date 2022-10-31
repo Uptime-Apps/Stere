@@ -80,23 +80,49 @@ class S {
     );
   }
 
-  /// `Assets`
-  String get lblAssets {
-    return Intl.message(
-      'Assets',
+  /// `{isPlural, plural, one{Asset} other{Assets}}`
+  String lblAssets(num isPlural) {
+    return Intl.plural(
+      isPlural,
+      one: 'Asset',
+      other: 'Assets',
       name: 'lblAssets',
       desc: '',
-      args: [],
+      args: [isPlural],
     );
   }
 
-  /// `Rentals`
-  String get lblRentals {
-    return Intl.message(
-      'Rentals',
+  /// `{isPlural, plural, one{Rental} other{Rentals}}`
+  String lblRentals(num isPlural) {
+    return Intl.plural(
+      isPlural,
+      one: 'Rental',
+      other: 'Rentals',
       name: 'lblRentals',
       desc: '',
-      args: [],
+      args: [isPlural],
+    );
+  }
+
+  /// `{isPlural, plural, one{Category} other{Categories}}`
+  String lblCategories(num isPlural) {
+    return Intl.plural(
+      isPlural,
+      one: 'Category',
+      other: 'Categories',
+      name: 'lblCategories',
+      desc: '',
+      args: [isPlural],
+    );
+  }
+
+  /// `New {object}`
+  String lblCreateObject(Object object) {
+    return Intl.message(
+      'New $object',
+      name: 'lblCreateObject',
+      desc: '',
+      args: [object],
     );
   }
 
@@ -115,6 +141,26 @@ class S {
     return Intl.message(
       'Home',
       name: 'lblHome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `More`
+  String get lblMore {
+    return Intl.message(
+      'More',
+      name: 'lblMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out`
+  String get lblLogout {
+    return Intl.message(
+      'Log out',
+      name: 'lblLogout',
       desc: '',
       args: [],
     );

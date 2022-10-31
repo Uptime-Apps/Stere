@@ -22,15 +22,30 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(code, message) => "Error [${code}]: ${message}";
 
+  static String m1(isPlural) =>
+      "${Intl.plural(isPlural, one: 'Asset', other: 'Assets')}";
+
+  static String m2(isPlural) =>
+      "${Intl.plural(isPlural, one: 'Category', other: 'Categories')}";
+
+  static String m3(object) => "New ${object}";
+
+  static String m4(isPlural) =>
+      "${Intl.plural(isPlural, one: 'Rental', other: 'Rentals')}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("Stere"),
         "emDebug": m0,
         "emPageNotFound":
             MessageLookupByLibrary.simpleMessage("Page Not Found"),
-        "lblAssets": MessageLookupByLibrary.simpleMessage("Assets"),
+        "lblAssets": m1,
+        "lblCategories": m2,
+        "lblCreateObject": m3,
         "lblHome": MessageLookupByLibrary.simpleMessage("Home"),
-        "lblRentals": MessageLookupByLibrary.simpleMessage("Rentals"),
+        "lblLogout": MessageLookupByLibrary.simpleMessage("Log out"),
+        "lblMore": MessageLookupByLibrary.simpleMessage("More"),
+        "lblRentals": m4,
         "lblSettings": MessageLookupByLibrary.simpleMessage("Settings")
       };
 }

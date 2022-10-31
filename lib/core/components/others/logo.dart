@@ -13,10 +13,15 @@ class AppBarLogo extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var route = HomeScreen.route;
     return IconButton(
-      onPressed: () => ref
-          .read(navigationControllerProvider.notifier)
-          .pushNamed(context, HomeScreen.route),
+      onPressed: (ref.watch(navigationControllerProvider).currentRoute != route)
+          ? () {
+              ref
+                  .read(navigationControllerProvider.notifier)
+                  .pushReplacement(context, route);
+            }
+          : null,
       icon: Image.asset(
         assetLogo,
         fit: BoxFit.contain,

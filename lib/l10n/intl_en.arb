@@ -2,8 +2,12 @@
   "appName": "Stere",
   "emPageNotFound": "Page Not Found",
   "emDebug": "Error [{code}]: {message}",
-  "lblAssets": "Assets",
-  "lblRentals": "Rentals",
+  "lblAssets": "{isPlural, plural, one{Asset} other{Assets}}",
+  "lblRentals": "{isPlural, plural, one{Rental} other{Rentals}}",
+  "lblCategories": "{isPlural, plural, one{Category} other{Categories}}",
+  "lblCreateObject": "New {object}",
   "lblSettings": "Settings",
-  "lblHome": "Home"
+  "lblHome": "Home",
+  "lblMore": "More",
+  "lblLogout": "Log out"
 }

@@ -17,11 +17,11 @@ final navigationControllerProvider =
       navItems: screenRoutes,
       navigationItems: [
         NavigationItem('assets',
-            icon: Icons.now_widgets_rounded, label: S.current.lblAssets),
+            icon: Icons.now_widgets_rounded, label: S.current.lblAssets(2)),
         NavigationItem(HomeScreen.route,
             icon: Icons.home, label: S.current.lblHome),
         NavigationItem('rentals',
-            icon: Icons.event_note_rounded, label: S.current.lblRentals),
+            icon: Icons.event_note_rounded, label: S.current.lblRentals(2)),
       ],
     ),
   ),
@@ -45,9 +45,9 @@ class NavigationController extends StateNotifier<NavigationState> {
     pushReplacement(context, state.navigationItems.elementAt(index).route);
   }
 
-  Future<void> signOut(BuildContext context) async {
+  void signOut(BuildContext context) {
+    FirebaseAuth.instance.signOut();
     Navigator.of(context).pushReplacementNamed(AuthGate.route);
-    await FirebaseAuth.instance.signOut();
   }
 
   @override
