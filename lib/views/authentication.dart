@@ -47,7 +47,7 @@ class LoginScreen extends StatelessWidget {
           aspectRatio: 1,
           child: Image(
             image: const AssetImage(assetLogo),
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).colorScheme.tertiary,
           ),
         ),
       ),

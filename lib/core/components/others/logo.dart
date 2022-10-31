@@ -16,11 +16,11 @@ class AppBarLogo extends ConsumerWidget {
     return IconButton(
       onPressed: () => ref
           .read(navigationControllerProvider.notifier)
-          .go(context, HomeScreen.route),
+          .pushNamed(context, HomeScreen.route),
       icon: Image.asset(
         assetLogo,
         fit: BoxFit.contain,
-        color: color,
+        color: color ?? Theme.of(context).colorScheme.onBackground,
         height: 32,
       ),
     );

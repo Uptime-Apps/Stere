@@ -8,7 +8,7 @@ class ErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StereScaffold(
+    return StereMainScreenScaffold(
       body: Center(
         child: Text(errorMsg),
       ),
