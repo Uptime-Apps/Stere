@@ -59,6 +59,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Page Not Found`
+  String get emPageNotFound {
+    return Intl.message(
+      'Page Not Found',
+      name: 'emPageNotFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

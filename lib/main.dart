@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_ui_auth/firebase_ui_auth.dart' as fuiAuth;
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:stere/core/constants/local_files.dart';
-import 'package:stere/generated/l10n.dart';
 
 import 'firebase_options.dart';
+import 'l10n/generated/l10n.dart';
+import 'views/authentication.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,8 +13,8 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  fuiAuth.FirebaseUIAuth.configureProviders([
-    fuiAuth.EmailAuthProvider(),
+  FirebaseUIAuth.configureProviders([
+    EmailAuthProvider(),
   ]);
   runApp(const MyApp());
 }
@@ -36,36 +36,6 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-    );
-  }
-}
-
-class AuthGate extends StatelessWidget {
-  const AuthGate({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: fuiAuth.FirebaseUIActions(
-        actions: [
-          fuiAuth.AuthStateChangeAction<fuiAuth.SignedIn>((context, state) {
-            if (!state.user!.emailVerified) {
-              Navigator.pushNamed(context, '/verify-email');
-            } else {
-              Navigator.pushReplacementNamed(context, '/profile');
-            }
-          }),
-        ],
-        child: fuiAuth.SignInScreen(
-          headerBuilder: (context, constraints, _) => AspectRatio(
-            aspectRatio: 1,
-            child: Image(
-              image: const AssetImage(assetLogo),
-              color: Theme.of(context).primaryColor,
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

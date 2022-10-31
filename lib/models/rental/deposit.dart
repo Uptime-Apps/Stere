@@ -1,0 +1,4 @@
+enum DepositEnum {
+  identification,
+  passport,
+}
