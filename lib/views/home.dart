@@ -25,10 +25,6 @@ class HomeScreen extends ConsumerWidget {
           ),
         ],
       ),
-      fab: FloatingActionButton.large(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
     );
   }
 }
