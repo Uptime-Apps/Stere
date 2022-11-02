@@ -9,5 +9,6 @@
   "lblSettings": "Settings",
   "lblHome": "Home",
   "lblMore": "More",
-  "lblLogout": "Log out"
+  "lblLogout": "Log out",
+  "stActiveRentals": "Active Rentals"
 }

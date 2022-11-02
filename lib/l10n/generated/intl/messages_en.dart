@@ -46,6 +46,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblLogout": MessageLookupByLibrary.simpleMessage("Log out"),
         "lblMore": MessageLookupByLibrary.simpleMessage("More"),
         "lblRentals": m4,
-        "lblSettings": MessageLookupByLibrary.simpleMessage("Settings")
+        "lblSettings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "stActiveRentals":
+            MessageLookupByLibrary.simpleMessage("Active Rentals")
       };
 }

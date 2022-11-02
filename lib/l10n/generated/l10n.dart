@@ -165,6 +165,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Active Rentals`
+  String get stActiveRentals {
+    return Intl.message(
+      'Active Rentals',
+      name: 'stActiveRentals',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

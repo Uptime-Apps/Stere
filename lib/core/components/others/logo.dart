@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../routes/navigation_controller.dart';
-import '../../../views/home.dart';
 import '../../constants/local_files.dart';
 
 class AppBarLogo extends ConsumerWidget {
@@ -13,14 +12,10 @@ class AppBarLogo extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var route = HomeScreen.route;
     return IconButton(
-      onPressed: (ref.watch(navigationControllerProvider).currentRoute != route)
-          ? () {
-              ref
-                  .read(navigationControllerProvider.notifier)
-                  .pushReplacement(context, route);
-            }
+      onPressed: !ref.read(navigationControllerProvider.notifier).viewIsHome()
+          ? () =>
+              ref.read(navigationControllerProvider.notifier).setCurrentIndex(1)
           : null,
       icon: Image.asset(
         assetLogo,

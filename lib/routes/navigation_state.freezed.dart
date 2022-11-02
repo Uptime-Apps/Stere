@@ -16,8 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$NavigationState {
-  List<String> get navItems => throw _privateConstructorUsedError;
-  String get currentRoute => throw _privateConstructorUsedError;
   List<NavigationItem> get navigationItems =>
       throw _privateConstructorUsedError;
   int get currentIndex => throw _privateConstructorUsedError;
@@ -33,11 +31,7 @@ abstract class $NavigationStateCopyWith<$Res> {
           NavigationState value, $Res Function(NavigationState) then) =
       _$NavigationStateCopyWithImpl<$Res, NavigationState>;
   @useResult
-  $Res call(
-      {List<String> navItems,
-      String currentRoute,
-      List<NavigationItem> navigationItems,
-      int currentIndex});
+  $Res call({List<NavigationItem> navigationItems, int currentIndex});
 }
 
 /// @nodoc
@@ -53,20 +47,10 @@ class _$NavigationStateCopyWithImpl<$Res, $Val extends NavigationState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? navItems = null,
-    Object? currentRoute = null,
     Object? navigationItems = null,
     Object? currentIndex = null,
   }) {
     return _then(_value.copyWith(
-      navItems: null == navItems
-          ? _value.navItems
-          : navItems // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      currentRoute: null == currentRoute
-          ? _value.currentRoute
-          : currentRoute // ignore: cast_nullable_to_non_nullable
-              as String,
       navigationItems: null == navigationItems
           ? _value.navigationItems
           : navigationItems // ignore: cast_nullable_to_non_nullable
@@ -87,11 +71,7 @@ abstract class _$$_NavigationStateCopyWith<$Res>
       __$$_NavigationStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<String> navItems,
-      String currentRoute,
-      List<NavigationItem> navigationItems,
-      int currentIndex});
+  $Res call({List<NavigationItem> navigationItems, int currentIndex});
 }
 
 /// @nodoc
@@ -105,20 +85,10 @@ class __$$_NavigationStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? navItems = null,
-    Object? currentRoute = null,
     Object? navigationItems = null,
     Object? currentIndex = null,
   }) {
     return _then(_$_NavigationState(
-      navItems: null == navItems
-          ? _value._navItems
-          : navItems // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      currentRoute: null == currentRoute
-          ? _value.currentRoute
-          : currentRoute // ignore: cast_nullable_to_non_nullable
-              as String,
       navigationItems: null == navigationItems
           ? _value._navigationItems
           : navigationItems // ignore: cast_nullable_to_non_nullable
@@ -135,22 +105,10 @@ class __$$_NavigationStateCopyWithImpl<$Res>
 
 class _$_NavigationState implements _NavigationState {
   _$_NavigationState(
-      {required final List<String> navItems,
-      required this.currentRoute,
-      required final List<NavigationItem> navigationItems,
+      {required final List<NavigationItem> navigationItems,
       this.currentIndex = 1})
-      : _navItems = navItems,
-        _navigationItems = navigationItems;
+      : _navigationItems = navigationItems;
 
-  final List<String> _navItems;
-  @override
-  List<String> get navItems {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_navItems);
-  }
-
-  @override
-  final String currentRoute;
   final List<NavigationItem> _navigationItems;
   @override
   List<NavigationItem> get navigationItems {
@@ -164,7 +122,7 @@ class _$_NavigationState implements _NavigationState {
 
   @override
   String toString() {
-    return 'NavigationState(navItems: $navItems, currentRoute: $currentRoute, navigationItems: $navigationItems, currentIndex: $currentIndex)';
+    return 'NavigationState(navigationItems: $navigationItems, currentIndex: $currentIndex)';
   }
 
   @override
@@ -172,9 +130,6 @@ class _$_NavigationState implements _NavigationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NavigationState &&
-            const DeepCollectionEquality().equals(other._navItems, _navItems) &&
-            (identical(other.currentRoute, currentRoute) ||
-                other.currentRoute == currentRoute) &&
             const DeepCollectionEquality()
                 .equals(other._navigationItems, _navigationItems) &&
             (identical(other.currentIndex, currentIndex) ||
@@ -182,12 +137,8 @@ class _$_NavigationState implements _NavigationState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_navItems),
-      currentRoute,
-      const DeepCollectionEquality().hash(_navigationItems),
-      currentIndex);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_navigationItems), currentIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -198,15 +149,9 @@ class _$_NavigationState implements _NavigationState {
 
 abstract class _NavigationState implements NavigationState {
   factory _NavigationState(
-      {required final List<String> navItems,
-      required final String currentRoute,
-      required final List<NavigationItem> navigationItems,
+      {required final List<NavigationItem> navigationItems,
       final int currentIndex}) = _$_NavigationState;
 
-  @override
-  List<String> get navItems;
-  @override
-  String get currentRoute;
   @override
   List<NavigationItem> get navigationItems;
   @override

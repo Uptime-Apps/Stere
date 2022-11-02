@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../core/constants/local_files.dart';
 import 'error.dart';
-import 'home.dart';
+import 'home/home.dart';
 
 class AuthGate extends StatelessWidget {
   static const route = 'auth-gate';
@@ -29,6 +29,7 @@ class AuthGate extends StatelessWidget {
 }
 
 class LoginScreen extends StatelessWidget {
+  static const route = 'login';
   const LoginScreen({Key? key}) : super(key: key);
 
   @override

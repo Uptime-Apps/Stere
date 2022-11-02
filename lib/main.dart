@@ -9,7 +9,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'firebase_options.dart';
 import 'l10n/generated/l10n.dart';
 import 'routes/routes.dart';
-import 'views/authentication.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +34,6 @@ class StereApp extends StatelessWidget {
         onGenerateTitle: (context) => S.of(context).appName,
         theme: appTheme.light(lightColorScheme),
         onGenerateRoute: RouteGenerator.generate,
-        initialRoute: AuthGate.route,
         localizationsDelegates: const [
           S.delegate,
           GlobalCupertinoLocalizations.delegate,

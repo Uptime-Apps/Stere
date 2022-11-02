@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class NavigationItem {
   IconData icon;
   String label;
-  String route;
+  Widget view;
 
-  NavigationItem(this.route, {required this.icon, required this.label});
+  NavigationItem(this.view, {required this.icon, required this.label});
 }

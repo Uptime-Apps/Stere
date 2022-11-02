@@ -1,1 +1,2 @@
-const kCarouselPadding = 4.0;
+const kCarouselPadding = 8.0;
+const kContainerPadding = 16.0;
