@@ -1,7 +1,11 @@
 import 'dart:io';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/failure.dart';
+import '../../l10n/generated/l10n.dart';
+import '../firebase_references.dart';
 import '../models/category/category.dart';
 
 abstract class CategoryRepository {
@@ -15,13 +19,10 @@ abstract class CategoryRepository {
 }
 
 class FirebaseCategoryRepository implements CategoryRepository {
-  final _firestore = FirebaseFirestore.instance.collection(stCategories);
-  final _ref = FirebaseFirestore.instance
-      .collection(stCategories)
-      .withConverter<Category>(
-        fromFirestore: (snapshot, _) => Category.fromJson(snapshot.data()!),
-        toFirestore: (category, _) => category.toJson(),
-      );
+  final _ref = categoriesRF.withConverter<Category>(
+    fromFirestore: (snapshot, _) => Category.fromJson(snapshot.data()!),
+    toFirestore: (category, _) => category.toJson(),
+  );
 
   @override
   Future<String> createCategory(Category category) async {
@@ -47,7 +48,7 @@ class FirebaseCategoryRepository implements CategoryRepository {
   @override
   Future<void> deleteCategory(String id) async {
     try {
-      _firestore.doc(id).delete();
+      categoriesRF.doc(id).delete();
     } on Exception catch (e) {
       throw Failure(message: 'Could not delete category', exception: e);
     }
@@ -65,7 +66,7 @@ class FirebaseCategoryRepository implements CategoryRepository {
   @override
   Stream<List<Map<String, dynamic>>> getCategories() {
     try {
-      return _firestore.snapshots().asyncMap(
+      return categoriesRF.snapshots().asyncMap(
             (event) => event.docs.map(
               (e) {
                 final doc = e.data();
@@ -82,7 +83,7 @@ class FirebaseCategoryRepository implements CategoryRepository {
   @override
   Future<List<Map<String, dynamic>>> getCategoriesOrderedByName() async {
     try {
-      final result = await _firestore.orderBy('name').get();
+      final result = await categoriesRF.orderBy('name').get();
       return result.docs.map((e) {
         final doc = e.data();
         doc['id'] = e.id;
