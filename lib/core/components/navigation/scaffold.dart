@@ -23,7 +23,7 @@ class StereMainScreenScaffold extends ConsumerWidget {
         .view;
     return Scaffold(
       appBar: AppBar(
-        title: const AppBarLogo(),
+        title: AppBarLogo(isHome: view is HomeScreen),
         actions: [
           PopupMenuButton<int>(
             offset: const Offset(0, -380),

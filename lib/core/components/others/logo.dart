@@ -5,15 +5,17 @@ import '../../constants/local_files.dart';
 
 class AppBarLogo extends ConsumerWidget {
   const AppBarLogo({
+    this.isHome = false,
     this.color,
     Key? key,
   }) : super(key: key);
   final Color? color;
+  final bool isHome;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return IconButton(
-      onPressed: !ref.read(navigationControllerProvider.notifier).viewIsHome()
+      onPressed: !isHome
           ? () =>
               ref.read(navigationControllerProvider.notifier).setCurrentIndex(1)
           : null,

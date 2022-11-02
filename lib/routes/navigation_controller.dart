@@ -31,8 +31,6 @@ class NavigationController extends StateNotifier<NavigationState> {
 
   void setCurrentIndex(int index) {
     state = state.copyWith(currentIndex: index);
-    print('current index: ${state.currentIndex.toString()}');
-    print('current view: ${state.navigationItems[index].view.toString()}');
   }
 
   bool viewIsHome() =>

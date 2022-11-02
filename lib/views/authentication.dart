@@ -15,7 +15,6 @@ class AuthGate extends StatelessWidget {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        print(snapshot);
         if (snapshot.hasError) {
           return ErrorScreen(errorMsg: snapshot.error.toString());
         }
