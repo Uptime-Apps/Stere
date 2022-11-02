@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../core/components/navigation/scaffold.dart';
+import '../core/components/navigation/main_scaffold.dart';
 import '../l10n/generated/l10n.dart';
 import '../views/authentication.dart';
+import '../views/categories/category_form.dart';
 import '../views/error.dart';
 
 class RouteGenerator {
@@ -16,6 +17,8 @@ class RouteGenerator {
           }
           return const AuthGate();
         });
+      case CategoryForm.route:
+        return MaterialPageRoute(builder: (context) => const CategoryForm());
       default:
         return MaterialPageRoute(
             builder: (context) =>

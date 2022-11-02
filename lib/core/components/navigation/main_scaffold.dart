@@ -4,12 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../l10n/generated/l10n.dart';
 import '../../../routes/navigation_controller.dart';
 import '../../../views/assets/assets.dart';
+import '../../../views/categories/category_form.dart';
 import '../../../views/home/home.dart';
 import '../../../views/rentals/rentals.dart';
 import '../others/logo.dart';
 
 class StereMainScreenScaffold extends ConsumerWidget {
-  const StereMainScreenScaffold({this.fab, Key? key}) : super(key: key);
+  const StereMainScreenScaffold({this.fab, super.key});
   final Widget? fab;
 
   @override
@@ -31,6 +32,7 @@ class StereMainScreenScaffold extends ConsumerWidget {
             onSelected: (item) async {
               switch (item) {
                 case 0:
+                  Navigator.of(context).pushNamed(CategoryForm.route);
                   break;
                 case 1:
                   Navigator.of(context).pushReplacementNamed('/');
@@ -43,15 +45,19 @@ class StereMainScreenScaffold extends ConsumerWidget {
               }
             },
             itemBuilder: (context) => [
-              PopupMenuItem<int>(
+              if (view is HomeScreen)
+                PopupMenuItem<int>(
                   value: 0,
-                  child: Text(lang.lblCreateObject(lang.lblCategories(1)))),
+                  child: Text(
+                    lang.lblCreateObject(lang.lblCategories(1)),
+                  ),
+                ),
               PopupMenuItem<int>(value: 1, child: Text(lang.lblLogout)),
             ],
             child: const Icon(
               Icons.more_vert,
             ),
-          )
+          ),
         ],
       ),
       bottomNavigationBar: NavigationBar(
