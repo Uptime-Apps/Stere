@@ -60,16 +60,6 @@ class S {
     );
   }
 
-  /// `Page Not Found`
-  String get emPageNotFound {
-    return Intl.message(
-      'Page Not Found',
-      name: 'emPageNotFound',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Error [{code}]: {message}`
   String emDebug(Object code, Object message) {
     return Intl.message(
@@ -80,6 +70,16 @@ class S {
     );
   }
 
+  /// `Page Not Found`
+  String get emPageNotFound {
+    return Intl.message(
+      'Page Not Found',
+      name: 'emPageNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{isPlural, plural, one{Asset} other{Assets}}`
   String lblAssets(num isPlural) {
     return Intl.plural(
@@ -87,18 +87,6 @@ class S {
       one: 'Asset',
       other: 'Assets',
       name: 'lblAssets',
-      desc: '',
-      args: [isPlural],
-    );
-  }
-
-  /// `{isPlural, plural, one{Rental} other{Rentals}}`
-  String lblRentals(num isPlural) {
-    return Intl.plural(
-      isPlural,
-      one: 'Rental',
-      other: 'Rentals',
-      name: 'lblRentals',
       desc: '',
       args: [isPlural],
     );
@@ -126,21 +114,21 @@ class S {
     );
   }
 
-  /// `Settings`
-  String get lblSettings {
-    return Intl.message(
-      'Settings',
-      name: 'lblSettings',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Home`
   String get lblHome {
     return Intl.message(
       'Home',
       name: 'lblHome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out`
+  String get lblLogout {
+    return Intl.message(
+      'Log out',
+      name: 'lblLogout',
       desc: '',
       args: [],
     );
@@ -156,13 +144,55 @@ class S {
     );
   }
 
-  /// `Log out`
-  String get lblLogout {
+  /// `{isPlural, plural, one{Rental} other{Rentals}}`
+  String lblRentals(num isPlural) {
+    return Intl.plural(
+      isPlural,
+      one: 'Rental',
+      other: 'Rentals',
+      name: 'lblRentals',
+      desc: '',
+      args: [isPlural],
+    );
+  }
+
+  /// `Settings`
+  String get lblSettings {
     return Intl.message(
-      'Log out',
-      name: 'lblLogout',
+      'Settings',
+      name: 'lblSettings',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `An error occurred while creating {itemName}`
+  String resultCreateFailure(Object itemName) {
+    return Intl.message(
+      'An error occurred while creating $itemName',
+      name: 'resultCreateFailure',
+      desc: '',
+      args: [itemName],
+    );
+  }
+
+  /// `{itemName} was created`
+  String resultCreateSuccess(Object itemName) {
+    return Intl.message(
+      '$itemName was created',
+      name: 'resultCreateSuccess',
+      desc: '',
+      args: [itemName],
+    );
+  }
+
+  /// `All data from category {itemName} was removed`
+  String resultDeleteSuccess(Object itemName) {
+    return Intl.message(
+      'All data from category $itemName was removed',
+      name: 'resultDeleteSuccess',
+      desc: '',
+      args: [itemName],
     );
   }
 

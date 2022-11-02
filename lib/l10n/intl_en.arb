@@ -1,14 +1,17 @@
 {
   "appName": "Stere",
-  "emPageNotFound": "Page Not Found",
   "emDebug": "Error [{code}]: {message}",
+  "emPageNotFound": "Page Not Found",
   "lblAssets": "{isPlural, plural, one{Asset} other{Assets}}",
-  "lblRentals": "{isPlural, plural, one{Rental} other{Rentals}}",
   "lblCategories": "{isPlural, plural, one{Category} other{Categories}}",
   "lblCreateObject": "New {object}",
-  "lblSettings": "Settings",
   "lblHome": "Home",
-  "lblMore": "More",
   "lblLogout": "Log out",
+  "lblMore": "More",
+  "lblRentals": "{isPlural, plural, one{Rental} other{Rentals}}",
+  "lblSettings": "Settings",
+  "resultCreateFailure": "An error occurred while creating {itemName}",
+  "resultCreateSuccess": "{itemName} was created",
+  "resultDeleteSuccess": "All data from category {itemName} was removed",
   "stActiveRentals": "Active Rentals"
 }

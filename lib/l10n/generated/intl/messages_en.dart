@@ -33,6 +33,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m4(isPlural) =>
       "${Intl.plural(isPlural, one: 'Rental', other: 'Rentals')}";
 
+  static String m5(itemName) => "An error occurred while creating ${itemName}";
+
+  static String m6(itemName) => "${itemName} was created";
+
+  static String m7(itemName) =>
+      "All data from category ${itemName} was removed";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("Stere"),
@@ -47,6 +54,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblMore": MessageLookupByLibrary.simpleMessage("More"),
         "lblRentals": m4,
         "lblSettings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "resultCreateFailure": m5,
+        "resultCreateSuccess": m6,
+        "resultDeleteSuccess": m7,
         "stActiveRentals":
             MessageLookupByLibrary.simpleMessage("Active Rentals")
       };
