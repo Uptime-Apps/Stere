@@ -2,6 +2,7 @@
   "appName": "Stere",
   "emDebug": "Error [{code}]: {message}",
   "emPageNotFound": "Page Not Found",
+  "emNoObjectsRegistered": "No {object} Registered",
   "lblAssets": "{isPlural, plural, one{Asset} other{Assets}}",
   "lblCategories": "{isPlural, plural, one{Category} other{Categories}}",
   "lblCreateObject": "New {object}",

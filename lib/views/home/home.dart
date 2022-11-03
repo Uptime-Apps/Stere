@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/constants/icons.dart';
 import '../../core/constants/spacing_values.dart';
 import '../../l10n/generated/l10n.dart';
+import 'category_carousel/carousel.dart';
 
 class HomeScreen extends ConsumerWidget {
   static const route = '/';
@@ -13,33 +14,18 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
-        Flexible(
+        ListTile(
+          title: Text(S.of(context).lblCategories(2)),
+          leading: Icon(icCategories),
+        ),
+        const Flexible(
           flex: 1,
-          child: ListView(
-            padding: const EdgeInsets.all(kCarouselPadding),
-            scrollDirection: Axis.horizontal,
-            itemExtent: MediaQuery.of(context).size.width / 2.7,
-            clipBehavior: Clip.none,
-            children: const [
-              Card(
-                child: Text('demo'),
-              ),
-              Card(
-                child: Text('demo'),
-              ),
-              Card(
-                child: Text('demo'),
-              ),
-              Card(
-                child: Text('demo'),
-              ),
-            ],
-          ),
+          child: CategoryCarousel(),
         ),
         Expanded(
           flex: 3,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: kContainerPadding),
+          child: SizedBox(
+            // padding: const EdgeInsets.symmetric(horizontal: kContainerPadding),
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

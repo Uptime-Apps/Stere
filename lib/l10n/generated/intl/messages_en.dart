@@ -22,41 +22,44 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(code, message) => "Error [${code}]: ${message}";
 
-  static String m1(isPlural) =>
-      "${Intl.plural(isPlural, one: 'Asset', other: 'Assets')}";
+  static String m1(object) => "No ${object} Registered";
 
   static String m2(isPlural) =>
+      "${Intl.plural(isPlural, one: 'Asset', other: 'Assets')}";
+
+  static String m3(isPlural) =>
       "${Intl.plural(isPlural, one: 'Category', other: 'Categories')}";
 
-  static String m3(object) => "New ${object}";
+  static String m4(object) => "New ${object}";
 
-  static String m4(isPlural) =>
+  static String m5(isPlural) =>
       "${Intl.plural(isPlural, one: 'Rental', other: 'Rentals')}";
 
-  static String m5(itemName) => "An error occurred while creating ${itemName}";
+  static String m6(itemName) => "An error occurred while creating ${itemName}";
 
-  static String m6(itemName) => "${itemName} was created";
+  static String m7(itemName) => "${itemName} was created";
 
-  static String m7(itemName) =>
+  static String m8(itemName) =>
       "All data from category ${itemName} was removed";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("Stere"),
         "emDebug": m0,
+        "emNoObjectsRegistered": m1,
         "emPageNotFound":
             MessageLookupByLibrary.simpleMessage("Page Not Found"),
-        "lblAssets": m1,
-        "lblCategories": m2,
-        "lblCreateObject": m3,
+        "lblAssets": m2,
+        "lblCategories": m3,
+        "lblCreateObject": m4,
         "lblHome": MessageLookupByLibrary.simpleMessage("Home"),
         "lblLogout": MessageLookupByLibrary.simpleMessage("Log out"),
         "lblMore": MessageLookupByLibrary.simpleMessage("More"),
-        "lblRentals": m4,
+        "lblRentals": m5,
         "lblSettings": MessageLookupByLibrary.simpleMessage("Settings"),
-        "resultCreateFailure": m5,
-        "resultCreateSuccess": m6,
-        "resultDeleteSuccess": m7,
+        "resultCreateFailure": m6,
+        "resultCreateSuccess": m7,
+        "resultDeleteSuccess": m8,
         "stActiveRentals":
             MessageLookupByLibrary.simpleMessage("Active Rentals")
       };

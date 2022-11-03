@@ -80,6 +80,16 @@ class S {
     );
   }
 
+  /// `No {object} Registered`
+  String emNoObjectsRegistered(Object object) {
+    return Intl.message(
+      'No $object Registered',
+      name: 'emNoObjectsRegistered',
+      desc: '',
+      args: [object],
+    );
+  }
+
   /// `{isPlural, plural, one{Asset} other{Assets}}`
   String lblAssets(num isPlural) {
     return Intl.plural(
