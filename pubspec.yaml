@@ -28,6 +28,7 @@ dependencies:
   dynamic_color: ^1.5.4
   cloud_firestore: ^4.0.3
   firebase_storage: ^11.0.3
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:
