@@ -15,7 +15,7 @@ class CallToActionCard extends StatelessWidget {
     return Card(
       child: Container(
         alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(vertical: kContainerPadding),
+        padding: const EdgeInsets.symmetric(vertical: kSpacing),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

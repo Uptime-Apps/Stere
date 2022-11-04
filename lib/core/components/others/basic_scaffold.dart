@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/spacing_values.dart';
+
 class StereBasicScaffold extends StatelessWidget {
   const StereBasicScaffold(
       {required this.title, required this.body, this.fab, super.key});
@@ -12,7 +14,10 @@ class StereBasicScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(title)),
-      body: body,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: kSpacing),
+        child: body,
+      ),
       floatingActionButton: fab,
     );
   }

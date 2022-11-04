@@ -134,6 +134,66 @@ class S {
     );
   }
 
+  /// `Tags`
+  String get lblTags {
+    return Intl.message(
+      'Tags',
+      name: 'lblTags',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `emTagRequired`
+  String get emTagRequired {
+    return Intl.message(
+      'A tag is required',
+      name: 'emTagRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `emFieldRequired`
+  String get emFieldRequired {
+    return Intl.message(
+      'This field is required',
+      name: 'emFieldRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `msgAutomotive`
+  String get msgAutomotive {
+    return Intl.message(
+      'Click if the category contains automotive items',
+      name: 'lblmsgAutomotive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get lblSave {
+    return Intl.message(
+      'Save',
+      name: 'lblSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get lblName {
+    return Intl.message(
+      'Name',
+      name: 'lblName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Log out`
   String get lblLogout {
     return Intl.message(

@@ -16,7 +16,7 @@ class AssetScreen extends ConsumerWidget {
         Expanded(
           flex: 3,
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: kContainerPadding),
+            padding: const EdgeInsets.symmetric(horizontal: kSpacing),
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

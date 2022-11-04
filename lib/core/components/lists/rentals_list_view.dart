@@ -18,7 +18,7 @@ class RentalsListView extends StatelessWidget {
       width: double.infinity,
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(kContainerPadding),
+          padding: const EdgeInsets.all(kSpacing),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
