@@ -17,7 +17,7 @@ class AppBarLogo extends ConsumerWidget {
     return IconButton(
       onPressed: !isHome
           ? () =>
-              ref.read(navigationControllerProvider.notifier).setCurrentIndex(1)
+              ref.read(navigationControllerProvider.notifier).setCurrentIndex(0)
           : null,
       icon: Image.asset(
         assetLogo,

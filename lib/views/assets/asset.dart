@@ -5,9 +5,9 @@ import '../../core/constants/icons.dart';
 import '../../core/constants/spacing_values.dart';
 import '../../l10n/generated/l10n.dart';
 
-class RentalScreen extends ConsumerWidget {
+class AssetScreen extends ConsumerWidget {
   static const route = 'rentals';
-  const RentalScreen({Key? key}) : super(key: key);
+  const AssetScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

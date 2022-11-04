@@ -8,6 +8,6 @@ part 'navigation_state.freezed.dart';
 class NavigationState with _$NavigationState {
   factory NavigationState({
     required List<NavigationItem> navigationItems,
-    @Default(1) int currentIndex,
+    @Default(0) int currentIndex,
   }) = _NavigationState;
 }

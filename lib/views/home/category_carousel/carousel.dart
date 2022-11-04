@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../backend/models/category/category.dart';
+import '../../../core/components/cards/call_to_action_card.dart';
 import '../../../core/components/cards/category_card.dart';
 import '../../../core/constants/spacing_values.dart';
 import '../../../l10n/generated/l10n.dart';
@@ -15,6 +16,8 @@ class CategoryCarousel extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<Stream<List<Category>>>? categories =
         ref.watch(homeControllerProvider).categories;
+    final String Function(num isPlural) categoriesText =
+        S.of(context).lblCategories;
     return Padding(
       padding: const EdgeInsets.all(kCarouselPadding),
       child: (categories != null)
@@ -24,7 +27,15 @@ class CategoryCarousel extends ConsumerWidget {
                   stream: stream,
                   builder: (context, snapshot) {
                     if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return const NoCategoriesFound();
+                      return CallToActionCard(
+                        msg: S
+                            .of(context)
+                            .emNoObjectsRegistered(categoriesText(2)),
+                        actionLabel:
+                            S.of(context).lblCreateObject(categoriesText(1)),
+                        onPressed: () =>
+                            Navigator.of(context).pushNamed(CategoryForm.route),
+                      );
                     }
                     return const Text('showing categories');
                   },
@@ -32,28 +43,6 @@ class CategoryCarousel extends ConsumerWidget {
               },
               orElse: () => const CategoryCarouselLoading())
           : const CategoryCarouselLoading(),
-    );
-  }
-}
-
-class NoCategoriesFound extends StatelessWidget {
-  const NoCategoriesFound({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(S
-            .of(context)
-            .emNoObjectsRegistered(S.of(context).lblCategories(2))),
-        const SizedBox(height: kCarouselPadding),
-        ElevatedButton(
-            onPressed: () =>
-                Navigator.of(context).pushNamed(CategoryForm.route),
-            child: Text(
-                S.of(context).lblCreateObject(S.of(context).lblCategories(1))))
-      ],
     );
   }
 }

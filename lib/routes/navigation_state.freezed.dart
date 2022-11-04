@@ -106,7 +106,7 @@ class __$$_NavigationStateCopyWithImpl<$Res>
 class _$_NavigationState implements _NavigationState {
   _$_NavigationState(
       {required final List<NavigationItem> navigationItems,
-      this.currentIndex = 1})
+      this.currentIndex = 0})
       : _navigationItems = navigationItems;
 
   final List<NavigationItem> _navigationItems;
