@@ -59,9 +59,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "emTagRequired":
             MessageLookupByLibrary.simpleMessage("A tag is required"),
         "lblAssets": m2,
+        "lblCancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "lblCategories": m3,
+        "lblConfirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "lblCreateObject": m4,
+        "lblDelete": MessageLookupByLibrary.simpleMessage("Delete"),
         "lblDone": MessageLookupByLibrary.simpleMessage("Done"),
+        "lblEdit": MessageLookupByLibrary.simpleMessage("Edit"),
         "lblHome": MessageLookupByLibrary.simpleMessage("Home"),
         "lblLogout": MessageLookupByLibrary.simpleMessage("Log out"),
         "lblMore": MessageLookupByLibrary.simpleMessage("More"),
@@ -82,6 +86,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "msgRegisteredSuccessfully":
             MessageLookupByLibrary.simpleMessage("Registered successfully"),
         "msgVerifyEmail": m7,
+        "msgWarningDeleteCategory": MessageLookupByLibrary.simpleMessage(
+            "This will delete the category and all its assets. You won\'t be able to undo this action."),
         "msgWelcome": MessageLookupByLibrary.simpleMessage("Welcome to Stere"),
         "msgYouHaveInformation": MessageLookupByLibrary.simpleMessage(
             "You have information in the form, are you sure you want to discard your changes?"),

@@ -306,6 +306,56 @@ class S {
     );
   }
 
+  /// `Delete`
+  String get lblDelete {
+    return Intl.message(
+      'Delete',
+      name: 'lblDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get lblEdit {
+    return Intl.message(
+      'Edit',
+      name: 'lblEdit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get lblCancel {
+    return Intl.message(
+      'Cancel',
+      name: 'lblCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get lblConfirm {
+    return Intl.message(
+      'Confirm',
+      name: 'lblConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This will delete the category and all its assets. You won't be able to undo this action.`
+  String get msgWarningDeleteCategory {
+    return Intl.message(
+      'This will delete the category and all its assets. You won\'t be able to undo this action.',
+      name: 'msgWarningDeleteCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Done`
   String get lblDone {
     return Intl.message(

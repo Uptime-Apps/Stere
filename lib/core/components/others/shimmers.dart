@@ -22,10 +22,7 @@ class ShimmeringBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    final mainColor = (Theme.of(context).brightness == Brightness.light)
-        ? colorScheme.surfaceVariant
-        : colorScheme.onSurfaceVariant;
+    var mainColor = Theme.of(context).colorScheme.surfaceVariant;
     return Shimmer.fromColors(
       baseColor: mainColor,
       highlightColor: mainColor.withOpacity(0.6),
@@ -34,6 +31,24 @@ class ShimmeringBox extends StatelessWidget {
         height: height ?? double.infinity,
         width: width ?? double.infinity,
       ),
+    );
+  }
+}
+
+class ShimmeringCard extends StatelessWidget {
+  const ShimmeringCard({
+    this.margin,
+    Key? key,
+  }) : super(key: key);
+
+  final EdgeInsets? margin;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: margin,
+      clipBehavior: Clip.hardEdge,
+      child: const ShimmeringBox(),
     );
   }
 }
