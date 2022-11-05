@@ -1,63 +1,118 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../backend/models/category/category.dart';
 import '../../../views/home/home_controller.dart';
+import '../../constants/image_assets.dart';
+import '../../constants/spacing_values.dart';
+import '../others/shimmers.dart';
+import '../others/utilities.dart';
 
 class CategoryCard extends ConsumerWidget {
   const CategoryCard(this.category, {Key? key, this.width}) : super(key: key);
-  final Category? category;
+  final Category category;
   final double? width;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return (category != null) ? card(ref) : skeleton();
+    final colorScheme = Theme.of(context).colorScheme;
+    if (category.imagePath != null) {
+      final imagePath = ref.watch(homeCategoryImageProvider(category));
+      return imagePath.when(
+        data: (data) => Image(
+          image: NetworkImage(data!),
+          fit: BoxFit.cover,
+          frameBuilder: ((context, child, frame, wasSynchronouslyLoaded) {
+            return Stack(
+              fit: StackFit.expand,
+              children: [
+                child,
+                Padding(
+                  padding: const EdgeInsets.only(
+                      right: kSpacing / 2, bottom: kSpacing / 3),
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: FittedBox(
+                      child: Text(category.name,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineSmall
+                              ?.copyWith(color: colorScheme.onPrimary)),
+                    ),
+                  ),
+                )
+              ],
+            );
+          }),
+          loadingBuilder: ((context, child, loadingProgress) {
+            return Card(
+              clipBehavior: Clip.hardEdge,
+              child: LayoutBuilder(builder: (context, constraints) {
+                return (loadingProgress != null)
+                    ? Column(
+                        children: [
+                          ShimmeringBox(
+                            height: constraints.maxHeight - kProgressBarHeight,
+                          ),
+                          LinearProgressBar(
+                              value:
+                                  (loadingProgress.expectedTotalBytes != null)
+                                      ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                      : null),
+                        ],
+                      )
+                    : child;
+              }),
+            );
+          }),
+        ),
+        loading: () => const ShimmeringCard(),
+        error: (_, stackTrace) => Container(color: Colors.red),
+      );
+    } else {
+      // If there's no image from firebase
+      return DefaultImageCategoryCard(category: category);
+    }
   }
+}
 
-  Widget skeleton() {
+class DefaultImageCategoryCard extends StatelessWidget {
+  const DefaultImageCategoryCard({
+    Key? key,
+    required this.category,
+  }) : super(key: key);
+
+  final Category category;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Card(
-      margin: EdgeInsets.zero,
-      child: ShimmeringBox(height: width, width: width),
-    );
-  }
-
-  Widget card(WidgetRef ref) {
-    final imagePath = ref.watch(homeCategoryImageProvider(category!));
-    return imagePath.when(
-      data: (data) => Container(),
-      loading: () => ShimmeringBox(width: width),
-      error: (_, stackTrace) => ShimmeringBox(width: width),
-    );
-  }
-}
-
-class DefaultImageCard extends StatelessWidget {
-  const DefaultImageCard({this.width, this.height, super.key});
-  final double? width;
-  final double? height;
-
-  @override
-  Widget build(BuildContext context) {
-    return const Card(child: Text('dfimgc'));
-  }
-}
-
-class ShimmeringBox extends StatelessWidget {
-  const ShimmeringBox({Key? key, this.height, this.width}) : super(key: key);
-  final double? height;
-  final double? width;
-
-  @override
-  Widget build(BuildContext context) {
-    var mainColor = Theme.of(context).colorScheme.surfaceVariant;
-    return Shimmer.fromColors(
-      baseColor: mainColor,
-      highlightColor: mainColor.withOpacity(0.6),
-      child: Container(
-        color: Colors.white,
-        height: height ?? double.infinity,
-        width: width ?? double.infinity,
+      clipBehavior: Clip.hardEdge,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          const Image(
+            image: AssetImage(
+              iaDefaultCategoryImage,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+                right: kSpacing / 2, bottom: kSpacing / 3),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: FittedBox(
+                child: Text(category.name,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall
+                        ?.copyWith(color: colorScheme.onPrimary)),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

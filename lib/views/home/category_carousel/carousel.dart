@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../backend/models/category/category.dart';
 import '../../../core/components/cards/call_to_action_card.dart';
 import '../../../core/components/cards/category_card.dart';
+import '../../../core/components/others/shimmers.dart';
+import '../../../core/components/others/utilities.dart';
 import '../../../core/constants/spacing_values.dart';
 import '../../../l10n/generated/l10n.dart';
 import '../../categories/category_form.dart';
@@ -42,7 +44,7 @@ class CategoryCarousel extends ConsumerWidget {
                       itemExtent: MediaQuery.of(context).size.width / 2.5,
                       clipBehavior: Clip.none,
                       children: snapshot.data!
-                          .map((e) => Card(child: Center(child: Text(e.name))))
+                          .map((e) => ClickableCategoryCard(e))
                           .toList(),
                     );
                   },
@@ -64,12 +66,84 @@ class CategoryCarouselLoading extends StatelessWidget {
       clipBehavior: Clip.none,
       shrinkWrap: false,
       itemExtent: MediaQuery.of(context).size.width / 2.7,
-      children: List<Widget>.generate(
-          4,
-          (_) => const Card(
-                clipBehavior: Clip.hardEdge,
-                child: ShimmeringBox(),
-              )),
+      children: List<Widget>.generate(4, (_) => const ShimmeringCard()),
     );
+  }
+}
+
+class ClickableCategoryCard extends StatefulWidget {
+  const ClickableCategoryCard(this.category, {super.key});
+  final Category category;
+
+  @override
+  State<ClickableCategoryCard> createState() => _ClickableCategoryCard();
+}
+
+class _ClickableCategoryCard extends State<ClickableCategoryCard> {
+  late Offset tapXY;
+  late RenderBox overlay;
+  @override
+  Widget build(BuildContext context) {
+    overlay = (Overlay.of(context)!.context.findRenderObject() as RenderBox?)!;
+    return GestureDetector(
+      onTapDown: getPosition,
+      onLongPress: () => showMenu(
+        context: context,
+        items: <PopupMenuEntry<int>>[
+          PopupMenuItem(
+            value: 0,
+            child: ListTile(
+              leading: const Icon(Icons.edit),
+              title: Text(S.of(context).lblEdit),
+            ),
+          ),
+          PopupMenuItem(
+            value: 1,
+            child: ListTile(
+              leading: const Icon(Icons.delete),
+              title: Text(S.of(context).lblDelete),
+            ),
+          )
+        ],
+        position: relRectSize,
+      ).then((value) {
+        switch (value) {
+          case 0:
+            print('will edit ${widget.category.id}');
+            break;
+          case 1:
+            showDialog(
+                context: context,
+                builder: (context) => ConfirmationDialog(
+                      // onSuccess: () async {
+                      // final result = await .deleteCategory(category);
+                      // result.when(
+                      //     (error) => showSimpleSnackbar(context, error.message),
+                      //     (success) {
+                      //   showSimpleSnackbar(context, success);
+                      //   Navigator.of(context).pop();
+                      //   });
+                      // },
+                      icon: Icons.delete,
+                      content: S.of(context).msgWarningDeleteCategory,
+                      onSuccess: () {},
+                    ));
+            print('will delete ${widget.category.id}');
+            break;
+          default:
+            break;
+        }
+      }),
+      child: CategoryCard(widget.category),
+    );
+  }
+
+  // ↓ create the RelativeRect from size of screen and where you tapped
+  RelativeRect get relRectSize =>
+      RelativeRect.fromSize(tapXY & const Size(40, 40), overlay.size);
+
+  // ↓ get the tap position Offset
+  void getPosition(TapDownDetails detail) {
+    tapXY = detail.globalPosition;
   }
 }
