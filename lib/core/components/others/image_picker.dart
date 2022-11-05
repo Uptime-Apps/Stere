@@ -29,6 +29,7 @@ class _StereImagePickerState extends State<StereImagePicker> {
 
   Future<void> _pickImage(ImageSource source) async {
     XFile? selected = await ImagePicker().pickImage(
+      requestFullMetadata: false,
       source: source,
       imageQuality: kImageQuality,
       maxHeight: kImageMaxHeight,

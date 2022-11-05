@@ -35,34 +35,61 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m5(isPlural) =>
       "${Intl.plural(isPlural, one: 'Rental', other: 'Rentals')}";
 
-  static String m6(itemName) => "An error occurred while creating ${itemName}";
+  static String m6(itemLabel) => "You have no ${itemLabel} registered";
 
-  static String m7(itemName) => "${itemName} was created";
+  static String m7(email) =>
+      "Before you begin, please verify your account. Send verification email to ${email}";
 
-  static String m8(itemName) =>
+  static String m8(itemName) => "An error occurred while creating ${itemName}";
+
+  static String m9(itemName) => "${itemName} was created";
+
+  static String m10(itemName) =>
       "All data from category ${itemName} was removed";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("Stere"),
         "emDebug": m0,
+        "emFieldRequired":
+            MessageLookupByLibrary.simpleMessage("This field is required"),
         "emNoObjectsRegistered": m1,
         "emPageNotFound":
             MessageLookupByLibrary.simpleMessage("Page Not Found"),
+        "emTagRequired":
+            MessageLookupByLibrary.simpleMessage("A tag is required"),
         "lblAssets": m2,
         "lblCategories": m3,
         "lblCreateObject": m4,
+        "lblDone": MessageLookupByLibrary.simpleMessage("Done"),
         "lblHome": MessageLookupByLibrary.simpleMessage("Home"),
         "lblLogout": MessageLookupByLibrary.simpleMessage("Log out"),
         "lblMore": MessageLookupByLibrary.simpleMessage("More"),
         "lblName": MessageLookupByLibrary.simpleMessage("Name"),
         "lblRentals": m5,
+        "lblSave": MessageLookupByLibrary.simpleMessage("Save"),
+        "lblSend": MessageLookupByLibrary.simpleMessage("Send"),
         "lblSettings": MessageLookupByLibrary.simpleMessage("Settings"),
         "lblTags": MessageLookupByLibrary.simpleMessage("Tags"),
-        "resultCreateFailure": m6,
-        "resultCreateSuccess": m7,
-        "resultDeleteSuccess": m8,
+        "msgAreYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
+        "msgAutomotive": MessageLookupByLibrary.simpleMessage(
+            "Click if the category contains automotive items"),
+        "msgMissingCategory": MessageLookupByLibrary.simpleMessage(
+            "To select a tag, pick a category"),
+        "msgNoRegisters": m6,
+        "msgPageNotFound":
+            MessageLookupByLibrary.simpleMessage("Page not found"),
+        "msgRegisteredSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Registered successfully"),
+        "msgVerifyEmail": m7,
+        "msgWelcome": MessageLookupByLibrary.simpleMessage("Welcome to Stere"),
+        "msgYouHaveInformation": MessageLookupByLibrary.simpleMessage(
+            "You have information in the form, are you sure you want to discard your changes?"),
+        "resultCreateFailure": m8,
+        "resultCreateSuccess": m9,
+        "resultDeleteSuccess": m10,
         "stActiveRentals":
-            MessageLookupByLibrary.simpleMessage("Active Rentals")
+            MessageLookupByLibrary.simpleMessage("Active Rentals"),
+        "stVerifyEmail": MessageLookupByLibrary.simpleMessage("Verify Email")
       };
 }

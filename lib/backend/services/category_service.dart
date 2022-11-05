@@ -51,24 +51,19 @@ class FirebaseCategoryService implements CategoryService {
 
   @override
   Future<String?> createCategory(Category category, File? image) async {
-    try {
-      if (image != null) {
-        final uid = FirebaseAuth.instance.currentUser?.uid;
-        final extension = image.path.split('.').last;
-        final fileName = category.name.toLowerCase().replaceAll(' ', '_');
-        final imagePath = '$rentalsFB/${uid}_$fileName.$extension';
-        await _categoryRepository.uploadImage(
-          imagePath,
-          image,
-        );
-        category = category.copyWith(imagePath: imagePath);
-      }
-      final newId = await _categoryRepository.createCategory(category);
-      return newId;
-    } on Failure catch (e) {
-      log(e.message, name: logName);
-      return null;
+    if (image != null) {
+      final uid = FirebaseAuth.instance.currentUser?.uid;
+      final extension = image.path.split('.').last;
+      final fileName = category.name.toLowerCase().replaceAll(' ', '_');
+      final imagePath = '$rentalsFB/${uid}_$fileName.$extension';
+      await _categoryRepository.uploadImage(
+        imagePath,
+        image,
+      );
+      category = category.copyWith(imagePath: imagePath);
     }
+    final newId = await _categoryRepository.createCategory(category);
+    return newId;
   }
 
   @override

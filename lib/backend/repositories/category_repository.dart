@@ -27,8 +27,14 @@ class FirebaseCategoryRepository implements CategoryRepository {
   @override
   Future<String> createCategory(Category category) async {
     try {
-      final res = await _ref.add(category);
-      return res.id;
+      await _ref.add(category).then((value) {
+        print(value.toString());
+        return value.id;
+      }).onError((error, stackTrace) {
+        print(error);
+        return 'failed';
+      });
+      return 'normal';
     } on Exception catch (e) {
       throw Failure(
           message: S.current.resultCreateFailure(category.name), exception: e);

@@ -28,6 +28,7 @@ class _TagInputFieldState extends State<TagInputField> {
         TextFormField(
           controller: widget.tagController,
           decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(horizontal: kSpacing),
             errorText: widget.errorText,
             label: Text(S.of(context).lblTags),
             prefixIcon: const Icon(Icons.label),

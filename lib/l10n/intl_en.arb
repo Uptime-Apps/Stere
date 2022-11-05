@@ -1,7 +1,3 @@
-# il = input label
-# em = error message
-# st = screen title
-# 
 {
   "appName": "Stere",
   "emFieldRequired": "This field is required",
@@ -27,9 +23,13 @@
   "msgPageNotFound": "Page not found",
   "msgRegisteredSuccessfully": "Registered successfully",
   "msgWelcome": "Welcome to Stere",
+  "msgVerifyEmail": "Before you begin, please verify your account. Send verification email to {email}",
+  "lblDone": "Done",
+  "lblSend": "Send",
   "msgYouHaveInformation": "You have information in the form, are you sure you want to discard your changes?",
   "resultCreateFailure": "An error occurred while creating {itemName}",
   "resultCreateSuccess": "{itemName} was created",
   "resultDeleteSuccess": "All data from category {itemName} was removed",
   "stActiveRentals": "Active Rentals",
+  "stVerifyEmail": "Verify Email"
 }

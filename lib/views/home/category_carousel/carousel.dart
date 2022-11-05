@@ -37,7 +37,14 @@ class CategoryCarousel extends ConsumerWidget {
                             Navigator.of(context).pushNamed(CategoryForm.route),
                       );
                     }
-                    return const Text('showing categories');
+                    return ListView(
+                      scrollDirection: Axis.horizontal,
+                      itemExtent: MediaQuery.of(context).size.width / 2.5,
+                      clipBehavior: Clip.none,
+                      children: snapshot.data!
+                          .map((e) => Card(child: Center(child: Text(e.name))))
+                          .toList(),
+                    );
                   },
                 );
               },

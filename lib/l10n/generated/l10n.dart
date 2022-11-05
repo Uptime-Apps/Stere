@@ -60,6 +60,26 @@ class S {
     );
   }
 
+  /// `This field is required`
+  String get emFieldRequired {
+    return Intl.message(
+      'This field is required',
+      name: 'emFieldRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A tag is required`
+  String get emTagRequired {
+    return Intl.message(
+      'A tag is required',
+      name: 'emTagRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Error [{code}]: {message}`
   String emDebug(Object code, Object message) {
     return Intl.message(
@@ -70,16 +90,6 @@ class S {
     );
   }
 
-  /// `Page Not Found`
-  String get emPageNotFound {
-    return Intl.message(
-      'Page Not Found',
-      name: 'emPageNotFound',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `No {object} Registered`
   String emNoObjectsRegistered(Object object) {
     return Intl.message(
@@ -87,6 +97,16 @@ class S {
       name: 'emNoObjectsRegistered',
       desc: '',
       args: [object],
+    );
+  }
+
+  /// `Page Not Found`
+  String get emPageNotFound {
+    return Intl.message(
+      'Page Not Found',
+      name: 'emPageNotFound',
+      desc: '',
+      args: [],
     );
   }
 
@@ -134,66 +154,6 @@ class S {
     );
   }
 
-  /// `Tags`
-  String get lblTags {
-    return Intl.message(
-      'Tags',
-      name: 'lblTags',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `emTagRequired`
-  String get emTagRequired {
-    return Intl.message(
-      'A tag is required',
-      name: 'emTagRequired',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `emFieldRequired`
-  String get emFieldRequired {
-    return Intl.message(
-      'This field is required',
-      name: 'emFieldRequired',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `msgAutomotive`
-  String get msgAutomotive {
-    return Intl.message(
-      'Click if the category contains automotive items',
-      name: 'lblmsgAutomotive',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Save`
-  String get lblSave {
-    return Intl.message(
-      'Save',
-      name: 'lblSave',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Name`
-  String get lblName {
-    return Intl.message(
-      'Name',
-      name: 'lblName',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Log out`
   String get lblLogout {
     return Intl.message(
@@ -209,6 +169,16 @@ class S {
     return Intl.message(
       'More',
       name: 'lblMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get lblName {
+    return Intl.message(
+      'Name',
+      name: 'lblName',
       desc: '',
       args: [],
     );
@@ -231,6 +201,136 @@ class S {
     return Intl.message(
       'Settings',
       name: 'lblSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get lblSave {
+    return Intl.message(
+      'Save',
+      name: 'lblSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tags`
+  String get lblTags {
+    return Intl.message(
+      'Tags',
+      name: 'lblTags',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure?`
+  String get msgAreYouSure {
+    return Intl.message(
+      'Are you sure?',
+      name: 'msgAreYouSure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click if the category contains automotive items`
+  String get msgAutomotive {
+    return Intl.message(
+      'Click if the category contains automotive items',
+      name: 'msgAutomotive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To select a tag, pick a category`
+  String get msgMissingCategory {
+    return Intl.message(
+      'To select a tag, pick a category',
+      name: 'msgMissingCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have no {itemLabel} registered`
+  String msgNoRegisters(Object itemLabel) {
+    return Intl.message(
+      'You have no $itemLabel registered',
+      name: 'msgNoRegisters',
+      desc: '',
+      args: [itemLabel],
+    );
+  }
+
+  /// `Page not found`
+  String get msgPageNotFound {
+    return Intl.message(
+      'Page not found',
+      name: 'msgPageNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registered successfully`
+  String get msgRegisteredSuccessfully {
+    return Intl.message(
+      'Registered successfully',
+      name: 'msgRegisteredSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to Stere`
+  String get msgWelcome {
+    return Intl.message(
+      'Welcome to Stere',
+      name: 'msgWelcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Before you begin, please verify your account. Send verification email to {email}`
+  String msgVerifyEmail(Object email) {
+    return Intl.message(
+      'Before you begin, please verify your account. Send verification email to $email',
+      name: 'msgVerifyEmail',
+      desc: '',
+      args: [email],
+    );
+  }
+
+  /// `Done`
+  String get lblDone {
+    return Intl.message(
+      'Done',
+      name: 'lblDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get lblSend {
+    return Intl.message(
+      'Send',
+      name: 'lblSend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have information in the form, are you sure you want to discard your changes?`
+  String get msgYouHaveInformation {
+    return Intl.message(
+      'You have information in the form, are you sure you want to discard your changes?',
+      name: 'msgYouHaveInformation',
       desc: '',
       args: [],
     );
@@ -271,6 +371,16 @@ class S {
     return Intl.message(
       'Active Rentals',
       name: 'stActiveRentals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify Email`
+  String get stVerifyEmail {
+    return Intl.message(
+      'Verify Email',
+      name: 'stVerifyEmail',
       desc: '',
       args: [],
     );

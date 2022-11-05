@@ -18,9 +18,6 @@ class AuthGate extends StatelessWidget {
         if (snapshot.hasError) {
           return ErrorScreen(errorMsg: snapshot.error.toString());
         }
-        if (snapshot.hasData) {
-          return const HomeScreen();
-        }
         return const LoginScreen();
       },
     );

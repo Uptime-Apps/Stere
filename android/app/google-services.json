@@ -1,37 +1,37 @@
 {
   "project_info": {
-    "project_number": "1055072958301",
-    "project_id": "uptime-stere",
-    "storage_bucket": "uptime-stere.appspot.com"
+    "project_number": "702498511279",
+    "project_id": "stere-cbe81",
+    "storage_bucket": "stere-cbe81.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1055072958301:android:37e559b65c1a0059655ab4",
+        "mobilesdk_app_id": "1:702498511279:android:010f373be62b21157cb75a",
         "android_client_info": {
           "package_name": "com.example.stere"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1055072958301-2noa5n003e7hsiv7de3vgh07i1s5g1vb.apps.googleusercontent.com",
+          "client_id": "702498511279-tprmhbkg77uqtucn1ekhgl9c7pcaf2oi.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDLxEwBWHCqTUgvnYM_O7ht9P1jkEc9pC0"
+          "current_key": "AIzaSyAVQ1pavdngXqj5-PCkJOyHMaZU7redvvY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1055072958301-2noa5n003e7hsiv7de3vgh07i1s5g1vb.apps.googleusercontent.com",
+              "client_id": "702498511279-tprmhbkg77uqtucn1ekhgl9c7pcaf2oi.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "1055072958301-9nms4m72a6p8bvmbfl73kgnduukn6vue.apps.googleusercontent.com",
+              "client_id": "702498511279-aootl4lfeeg2uchgi4fm4er1rsebs580.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.example.stere"

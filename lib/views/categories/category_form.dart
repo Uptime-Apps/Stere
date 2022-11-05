@@ -6,6 +6,7 @@ import '../../core/components/others/filled_button.dart';
 import '../../core/components/others/image_picker.dart';
 import '../../core/components/others/inputs.dart';
 import '../../core/components/others/utilities.dart';
+import '../../core/constants/spacing_values.dart';
 import '../../l10n/generated/l10n.dart';
 import '../../utils/validators.dart';
 import 'category_form_controller.dart';
@@ -38,13 +39,16 @@ class CategoryForm extends ConsumerWidget {
           )
         ],
         header: TextFormField(
+          maxLines: 1,
+          textAlignVertical: TextAlignVertical.center,
           controller: prov.nameController,
           textCapitalization: TextCapitalization.words,
-          style: Theme.of(context).textTheme.headline4,
+          style: Theme.of(context).textTheme.headline5,
           autofocus: true,
           validator: requiredFieldValidation,
           decoration: InputDecoration(
             prefixIcon: const Icon(Icons.text_format),
+            contentPadding: const EdgeInsets.only(left: kSpacing),
             hintText: S.current.lblName,
             border: InputBorder.none,
           ),
@@ -70,7 +74,8 @@ class CategoryForm extends ConsumerWidget {
                 separatorBuilder: (_, __) => const DefaultSpacer(),
               ),
             ),
-            SizedBox(
+            Container(
+              margin: const EdgeInsets.only(bottom: kSpacing),
               width: double.infinity,
               child: FilledButton(
                 onPressed: () => notifier.submit(context),

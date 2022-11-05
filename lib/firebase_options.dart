@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDLxEwBWHCqTUgvnYM_O7ht9P1jkEc9pC0',
-    appId: '1:1055072958301:android:37e559b65c1a0059655ab4',
-    messagingSenderId: '1055072958301',
-    projectId: 'uptime-stere',
-    storageBucket: 'uptime-stere.appspot.com',
+    apiKey: 'AIzaSyAVQ1pavdngXqj5-PCkJOyHMaZU7redvvY',
+    appId: '1:702498511279:android:010f373be62b21157cb75a',
+    messagingSenderId: '702498511279',
+    projectId: 'stere-cbe81',
+    storageBucket: 'stere-cbe81.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBLSsSubFpblqdQft7gtCu4-YiBeCNvOTk',
-    appId: '1:1055072958301:ios:c2c6c1139e0380fe655ab4',
-    messagingSenderId: '1055072958301',
-    projectId: 'uptime-stere',
-    storageBucket: 'uptime-stere.appspot.com',
-    iosClientId: '1055072958301-9nms4m72a6p8bvmbfl73kgnduukn6vue.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCFPASEcd-TarDa68I0lD88ZNv6HFN0znc',
+    appId: '1:702498511279:ios:118f281f9426069c7cb75a',
+    messagingSenderId: '702498511279',
+    projectId: 'stere-cbe81',
+    storageBucket: 'stere-cbe81.appspot.com',
+    iosClientId: '702498511279-aootl4lfeeg2uchgi4fm4er1rsebs580.apps.googleusercontent.com',
     iosBundleId: 'com.example.stere',
   );
 }
