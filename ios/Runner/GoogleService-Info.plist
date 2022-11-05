@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1055072958301-9nms4m72a6p8bvmbfl73kgnduukn6vue.apps.googleusercontent.com</string>
+	<string>702498511279-aootl4lfeeg2uchgi4fm4er1rsebs580.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1055072958301-9nms4m72a6p8bvmbfl73kgnduukn6vue</string>
+	<string>com.googleusercontent.apps.702498511279-aootl4lfeeg2uchgi4fm4er1rsebs580</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBLSsSubFpblqdQft7gtCu4-YiBeCNvOTk</string>
+	<string>AIzaSyCFPASEcd-TarDa68I0lD88ZNv6HFN0znc</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1055072958301</string>
+	<string>702498511279</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.stere</string>
 	<key>PROJECT_ID</key>
-	<string>uptime-stere</string>
+	<string>stere-cbe81</string>
 	<key>STORAGE_BUCKET</key>
-	<string>uptime-stere.appspot.com</string>
+	<string>stere-cbe81.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1055072958301:ios:c2c6c1139e0380fe655ab4</string>
+	<string>1:702498511279:ios:118f281f9426069c7cb75a</string>
 </dict>
 </plist>
