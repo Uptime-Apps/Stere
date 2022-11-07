@@ -35,16 +35,24 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m5(isPlural) =>
       "${Intl.plural(isPlural, one: 'Rental', other: 'Rentals')}";
 
-  static String m6(itemLabel) => "You have no ${itemLabel} registered";
+  static String m6(object) => "Failed to create \"${object}\"";
 
-  static String m7(email) =>
+  static String m7(object) => "Failed to delete \"${object}\"";
+
+  static String m8(itemLabel) => "You have no ${itemLabel} registered";
+
+  static String m9(object) => "Created \"${object}\" successfully";
+
+  static String m10(object) => "Deleted \"${object}\" successfully";
+
+  static String m11(email) =>
       "Before you begin, please verify your account. Send verification email to ${email}";
 
-  static String m8(itemName) => "An error occurred while creating ${itemName}";
+  static String m12(itemName) => "An error occurred while creating ${itemName}";
 
-  static String m9(itemName) => "${itemName} was created";
+  static String m13(itemName) => "${itemName} was created";
 
-  static String m10(itemName) =>
+  static String m14(itemName) =>
       "All data from category ${itemName} was removed";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -78,22 +86,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "msgAreYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "msgAutomotive": MessageLookupByLibrary.simpleMessage(
             "Click if the category contains automotive items"),
+        "msgFailedCreateObject": m6,
+        "msgFailedDeleteObject": m7,
         "msgMissingCategory": MessageLookupByLibrary.simpleMessage(
             "To select a tag, pick a category"),
-        "msgNoRegisters": m6,
+        "msgNoRegisters": m8,
         "msgPageNotFound":
             MessageLookupByLibrary.simpleMessage("Page not found"),
         "msgRegisteredSuccessfully":
             MessageLookupByLibrary.simpleMessage("Registered successfully"),
-        "msgVerifyEmail": m7,
+        "msgSuccessCreateObject": m9,
+        "msgSuccessDeleteObject": m10,
+        "msgVerifyEmail": m11,
         "msgWarningDeleteCategory": MessageLookupByLibrary.simpleMessage(
             "This will delete the category and all its assets. You won\'t be able to undo this action."),
         "msgWelcome": MessageLookupByLibrary.simpleMessage("Welcome to Stere"),
         "msgYouHaveInformation": MessageLookupByLibrary.simpleMessage(
             "You have information in the form, are you sure you want to discard your changes?"),
-        "resultCreateFailure": m8,
-        "resultCreateSuccess": m9,
-        "resultDeleteSuccess": m10,
+        "resultCreateFailure": m12,
+        "resultCreateSuccess": m13,
+        "resultDeleteSuccess": m14,
         "stActiveRentals":
             MessageLookupByLibrary.simpleMessage("Active Rentals"),
         "stVerifyEmail": MessageLookupByLibrary.simpleMessage("Verify Email")

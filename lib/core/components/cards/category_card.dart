@@ -28,8 +28,8 @@ class CategoryCard extends ConsumerWidget {
               children: [
                 child,
                 Padding(
-                  padding: const EdgeInsets.only(
-                      right: kSpacing / 2, bottom: kSpacing / 3),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: kSpacing / 2, vertical: kSpacing / 3),
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: FittedBox(

@@ -356,6 +356,46 @@ class S {
     );
   }
 
+  /// `Failed to delete "{object}"`
+  String msgFailedDeleteObject(Object object) {
+    return Intl.message(
+      'Failed to delete "$object"',
+      name: 'msgFailedDeleteObject',
+      desc: '',
+      args: [object],
+    );
+  }
+
+  /// `Failed to create "{object}"`
+  String msgFailedCreateObject(Object object) {
+    return Intl.message(
+      'Failed to create "$object"',
+      name: 'msgFailedCreateObject',
+      desc: '',
+      args: [object],
+    );
+  }
+
+  /// `Deleted "{object}" successfully`
+  String msgSuccessDeleteObject(Object object) {
+    return Intl.message(
+      'Deleted "$object" successfully',
+      name: 'msgSuccessDeleteObject',
+      desc: '',
+      args: [object],
+    );
+  }
+
+  /// `Created "{object}" successfully`
+  String msgSuccessCreateObject(Object object) {
+    return Intl.message(
+      'Created "$object" successfully',
+      name: 'msgSuccessCreateObject',
+      desc: '',
+      args: [object],
+    );
+  }
+
   /// `Done`
   String get lblDone {
     return Intl.message(

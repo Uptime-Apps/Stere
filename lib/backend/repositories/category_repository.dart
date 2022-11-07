@@ -27,14 +27,8 @@ class FirebaseCategoryRepository implements CategoryRepository {
   @override
   Future<String> createCategory(Category category) async {
     try {
-      await _ref.add(category).then((value) {
-        print(value.toString());
-        return value.id;
-      }).onError((error, stackTrace) {
-        print(error);
-        return 'failed';
-      });
-      return 'normal';
+      final res = await _ref.add(category);
+      return res.id;
     } on Exception catch (e) {
       throw Failure(
           message: S.current.resultCreateFailure(category.name), exception: e);
@@ -63,7 +57,7 @@ class FirebaseCategoryRepository implements CategoryRepository {
   @override
   Future<void> deleteCategoryImage(String imagePath) async {
     try {
-      await FirebaseStorage.instance.ref(imagePath).delete();
+      await FirebaseStorage.instance.ref('categories/$imagePath').delete();
     } on Exception catch (e) {
       throw Failure(message: 'Could not delete image', exception: e);
     }

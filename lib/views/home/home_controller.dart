@@ -17,6 +17,10 @@ class HomeController extends StateNotifier<HomeState> {
       state = state.copyWith(categories: AsyncValue.data(result));
     }
   }
+
+  Future<String?> deleteCategory(Category category) {
+    return _categoryService.deleteCategory(category);
+  }
 }
 
 final homeControllerProvider = StateNotifierProvider<HomeController, HomeState>(

@@ -45,16 +45,15 @@ class CategoryFormController extends StateNotifier<CategoryFormState> {
         ),
         state.imageFile,
       );
+      if (!mounted) return;
       if (result?.isEmpty ?? true) {
-        if (!mounted) return;
-        showSimpleSnackbar(
-            context, S.current.resultCreateFailure(state.nameController.text));
+        showSimpleSnackbar(context,
+            S.current.msgFailedCreateObject(state.nameController.text));
       } else {
         state = state.copyWith(result: AsyncValue.data(result!));
-        if (!mounted) return;
         Navigator.of(context).pop();
         showSimpleSnackbar(context,
-            S.of(context).resultCreateSuccess(state.nameController.text));
+            S.of(context).msgSuccessCreateObject(state.nameController.text));
       }
     }
     state = hasTags

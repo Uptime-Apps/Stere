@@ -69,9 +69,11 @@ class FirebaseCategoryService implements CategoryService {
   @override
   Future<String?> deleteCategory(Category category) async {
     try {
-      final imagePath =
-          Uri.decodeFull(category.imagePath!.split('?').first.split('/').last);
-      await _categoryRepository.deleteCategoryImage(imagePath);
+      if (category.imagePath != null) {
+        final imagePath = Uri.decodeFull(
+            category.imagePath!.split('?').first.split('/').last);
+        await _categoryRepository.deleteCategoryImage(imagePath);
+      }
       await _categoryRepository.deleteCategory(category.id!);
       return S.current.resultDeleteSuccess(category.name);
     } on Failure catch (e) {

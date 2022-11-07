@@ -8,6 +8,7 @@ import '../../core/components/others/inputs.dart';
 import '../../core/components/others/utilities.dart';
 import '../../core/constants/spacing_values.dart';
 import '../../l10n/generated/l10n.dart';
+import '../../routes/navigation_controller.dart';
 import '../../utils/validators.dart';
 import 'category_form_controller.dart';
 
@@ -78,7 +79,14 @@ class CategoryForm extends ConsumerWidget {
               margin: const EdgeInsets.only(bottom: kSpacing),
               width: double.infinity,
               child: FilledButton(
-                onPressed: () => notifier.submit(context),
+                onPressed: () async {
+                  await notifier.submit(context);
+                  if (prov.result.hasValue) {
+                    ref
+                        .read(navigationControllerProvider.notifier)
+                        .setCurrentIndex(0);
+                  }
+                },
                 label: prov.result.maybeWhen(
                   loading: () => const FilledButtonCircularProgressIndicator(),
                   orElse: () => Text(S.current.lblSave),
