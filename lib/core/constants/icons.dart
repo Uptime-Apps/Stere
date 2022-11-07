@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-IconData icRentals = Icons.event_note_rounded;
-IconData icAssets = Icons.now_widgets_rounded;
-IconData icCategories = Icons.category;
-IconData icHome = Icons.house;
+const IconData icRentals = Icons.event_note_rounded;
+const IconData icAssets = Icons.now_widgets_rounded;
+const IconData icCategories = Icons.category;
+const IconData icHome = Icons.home;

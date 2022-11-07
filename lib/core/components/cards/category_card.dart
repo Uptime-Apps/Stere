@@ -22,6 +22,8 @@ class CategoryCard extends ConsumerWidget {
         data: (data) => Image(
           image: NetworkImage(data!),
           fit: BoxFit.cover,
+          color: Colors.black.withOpacity(0.3),
+          colorBlendMode: BlendMode.hardLight,
           frameBuilder: ((context, child, frame, wasSynchronouslyLoaded) {
             return Stack(
               fit: StackFit.expand,
@@ -30,15 +32,14 @@ class CategoryCard extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: kSpacing / 2, vertical: kSpacing / 3),
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: FittedBox(
-                      child: Text(category.name,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall
-                              ?.copyWith(color: colorScheme.onPrimary)),
-                    ),
+                  child: Center(
+                    // alignment: Alignment.bottomRight,
+                    child: Text(category.name,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineSmall
+                            ?.copyWith(color: colorScheme.onPrimary)),
                   ),
                 )
               ],
