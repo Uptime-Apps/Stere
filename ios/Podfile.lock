@@ -596,12 +596,6 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
-  - AppAuth (1.6.0):
-    - AppAuth/Core (= 1.6.0)
-    - AppAuth/ExternalUserAgent (= 1.6.0)
-  - AppAuth/Core (1.6.0)
-  - AppAuth/ExternalUserAgent (1.6.0):
-    - AppAuth/Core
   - BoringSSL-GRPC (0.0.24):
     - BoringSSL-GRPC/Implementation (= 0.0.24)
     - BoringSSL-GRPC/Interface (= 0.0.24)
@@ -613,22 +607,11 @@ PODS:
     - firebase_core
     - Flutter
     - nanopb (< 2.30910.0, >= 2.30908.0)
-  - FBAEMKit (14.1.0):
-    - FBSDKCoreKit_Basics (= 14.1.0)
-  - FBSDKCoreKit (14.1.0):
-    - FBAEMKit (= 14.1.0)
-    - FBSDKCoreKit_Basics (= 14.1.0)
-  - FBSDKCoreKit_Basics (14.1.0)
-  - FBSDKLoginKit (14.1.0):
-    - FBSDKCoreKit (= 14.1.0)
   - Firebase/Auth (10.0.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 10.0.0)
   - Firebase/CoreOnly (10.0.0):
     - FirebaseCore (= 10.0.0)
-  - Firebase/Database (10.0.0):
-    - Firebase/CoreOnly
-    - FirebaseDatabase (~> 10.0.0)
   - Firebase/DynamicLinks (10.0.0):
     - Firebase/CoreOnly
     - FirebaseDynamicLinks (~> 10.0.0)
@@ -644,10 +627,6 @@ PODS:
     - Flutter
   - firebase_core (2.1.1):
     - Firebase/CoreOnly (= 10.0.0)
-    - Flutter
-  - firebase_database (10.0.2):
-    - Firebase/Database (= 10.0.0)
-    - firebase_core
     - Flutter
   - firebase_dynamic_links (5.0.2):
     - Firebase/DynamicLinks (= 10.0.0)
@@ -672,9 +651,6 @@ PODS:
     - FirebaseCore (~> 10.0)
   - FirebaseCoreInternal (10.1.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseDatabase (10.0.0):
-    - FirebaseCore (~> 10.0)
-    - leveldb-library (~> 1.22)
   - FirebaseDynamicLinks (10.0.0):
     - FirebaseCore (~> 10.0)
   - FirebaseFirestore (10.0.0):
@@ -697,16 +673,6 @@ PODS:
     - FirebaseCoreExtension (~> 10.0)
     - GTMSessionFetcher/Core (~> 2.1)
   - Flutter (1.0.0)
-  - flutter_facebook_auth (4.4.1):
-    - FBSDKLoginKit (= 14.1.0)
-    - Flutter
-  - google_sign_in_ios (0.0.1):
-    - Flutter
-    - GoogleSignIn (~> 6.2)
-  - GoogleSignIn (6.2.4):
-    - AppAuth (~> 1.5)
-    - GTMAppAuth (~> 1.3)
-    - GTMSessionFetcher/Core (< 3.0, >= 1.1)
   - GoogleUtilities/AppDelegateSwizzler (7.8.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -773,10 +739,7 @@ PODS:
     - gRPC-Core/Interface (= 1.44.0)
     - Libuv-gRPC (= 0.0.10)
   - gRPC-Core/Interface (1.44.0)
-  - GTMAppAuth (1.3.1):
-    - AppAuth/Core (~> 1.6)
-    - GTMSessionFetcher/Core (< 3.0, >= 1.5)
-  - GTMSessionFetcher/Core (2.1.0)
+  - GTMSessionFetcher/Core (2.2.0)
   - image_picker_ios (0.0.1):
     - Flutter
   - leveldb-library (1.22.1)
@@ -792,34 +755,20 @@ PODS:
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
   - PromisesObjC (2.1.1)
-  - sign_in_with_apple (0.0.1):
-    - Flutter
-  - twitter_login (0.0.1):
-    - Flutter
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
-  - firebase_database (from `.symlinks/plugins/firebase_database/ios`)
   - firebase_dynamic_links (from `.symlinks/plugins/firebase_dynamic_links/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
-  - flutter_facebook_auth (from `.symlinks/plugins/flutter_facebook_auth/ios`)
-  - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
-  - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
-  - twitter_login (from `.symlinks/plugins/twitter_login/ios`)
 
 SPEC REPOS:
   trunk:
     - abseil
-    - AppAuth
     - BoringSSL-GRPC
-    - FBAEMKit
-    - FBSDKCoreKit
-    - FBSDKCoreKit_Basics
-    - FBSDKLoginKit
     - Firebase
     - FirebaseAppCheckInterop
     - FirebaseAuth
@@ -827,15 +776,12 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreExtension
     - FirebaseCoreInternal
-    - FirebaseDatabase
     - FirebaseDynamicLinks
     - FirebaseFirestore
     - FirebaseStorage
-    - GoogleSignIn
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
-    - GTMAppAuth
     - GTMSessionFetcher
     - leveldb-library
     - Libuv-gRPC
@@ -849,38 +795,22 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
-  firebase_database:
-    :path: ".symlinks/plugins/firebase_database/ios"
   firebase_dynamic_links:
     :path: ".symlinks/plugins/firebase_dynamic_links/ios"
   firebase_storage:
     :path: ".symlinks/plugins/firebase_storage/ios"
   Flutter:
     :path: Flutter
-  flutter_facebook_auth:
-    :path: ".symlinks/plugins/flutter_facebook_auth/ios"
-  google_sign_in_ios:
-    :path: ".symlinks/plugins/google_sign_in_ios/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
-  sign_in_with_apple:
-    :path: ".symlinks/plugins/sign_in_with_apple/ios"
-  twitter_login:
-    :path: ".symlinks/plugins/twitter_login/ios"
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
-  AppAuth: 8fca6b5563a5baef2c04bee27538025e4ceb2add
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   cloud_firestore: 1efcf26ee1fe576dc695389683695230d60680f5
-  FBAEMKit: a899515e45476027f73aef377b5cffadcd56ca3a
-  FBSDKCoreKit: 24f8bc8d3b5b2a8c5c656a1329492a12e8efa792
-  FBSDKCoreKit_Basics: 6e578c9bdc7aa1365dbbbde633c9ebb536bcaa98
-  FBSDKLoginKit: 787de205d524c3a4b17d527916f1d066e4361660
   Firebase: 1b810f3d0c0532e27a48f1961f8c0400a668a2cf
   firebase_auth: 043e4d6b834491bb64ddc34b22910ab854c337df
   firebase_core: 5c0bb0ca7d0e70480a68a6e9ad9bf55d1edd5305
-  firebase_database: 8455f9246ebaa74de8afbbc440d85618fe26171e
   firebase_dynamic_links: c7bd5910d4d13d24ae5ad0a72ea1cf2c984443e3
   firebase_storage: 0e84174eaa45056b3bf9c09659f1c8706acaec7d
   FirebaseAppCheckInterop: 53eec3c354a95f8fe6ff947dd9518ea17f624914
@@ -889,26 +819,19 @@ SPEC CHECKSUMS:
   FirebaseCore: 97f48a3a567a72b8d4daa0f03c3aadb78df4e995
   FirebaseCoreExtension: 69b966c399abc4ca6dc75006ab87160f81512725
   FirebaseCoreInternal: 96d75228e10fd369564da51bd898414eb0f54df5
-  FirebaseDatabase: b210f8a811d6eb80dc565d9570e8486af06e331b
   FirebaseDynamicLinks: 37dcd9f082b9c5ea9eb5826e82aef58bbd6fd5c1
   FirebaseFirestore: 5007583f3db2129de8e87f18ee63f4c86f07e7a3
   FirebaseStorage: 8b0b0630e11b9f3e4a479a26cfccb70ec790ec50
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  flutter_facebook_auth: 361ac7a57263ebf327f26089507ead0d66558ee8
-  google_sign_in_ios: 4f85eb9f937450765c8573bb85fd8cd6a5af675c
-  GoogleSignIn: 5651ce3a61e56ca864160e79b484cd9ed3f49b7a
   GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
-  GTMAppAuth: 0ff230db599948a9ad7470ca667337803b3fc4dd
-  GTMSessionFetcher: ffbb25ec00ebcb5201adab0a56d808f6f1902d9f
+  GTMSessionFetcher: d62ffccea5108bb9e7762ee121ae63bbdd2c6303
   image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
-  sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
-  twitter_login: 2794db69b7640681171b17b3c2c84ad9dfb4a57f
 
 PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
 
