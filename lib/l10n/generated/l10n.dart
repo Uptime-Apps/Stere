@@ -164,6 +164,26 @@ class S {
     );
   }
 
+  /// `Price`
+  String get ilPrice {
+    return Intl.message(
+      'Price',
+      name: 'ilPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The price must be greater than 0`
+  String get emInvalidPrice {
+    return Intl.message(
+      'The price must be greater than 0',
+      name: 'emInvalidPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `More`
   String get lblMore {
     return Intl.message(

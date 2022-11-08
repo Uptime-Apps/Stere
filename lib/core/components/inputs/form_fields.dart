@@ -1,81 +1,9 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../l10n/generated/l10n.dart';
+import '../../constants/radius_values.dart';
 import '../../constants/spacing_values.dart';
-
-class TagInputField extends StatefulWidget {
-  const TagInputField(
-      {super.key,
-      required this.onChange,
-      required this.tagController,
-      this.errorText});
-  final Function(List<String>) onChange;
-  final TextEditingController tagController;
-  final String? errorText;
-
-  @override
-  _TagInputFieldState createState() => _TagInputFieldState();
-}
-
-class _TagInputFieldState extends State<TagInputField> {
-  final List<String> _tags = [];
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextFormField(
-          controller: widget.tagController,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(horizontal: kSpacing),
-            errorText: widget.errorText,
-            label: Text(S.of(context).lblTags),
-            prefixIcon: const Icon(Icons.label),
-          ),
-          textInputAction: TextInputAction.send,
-          maxLines: 1,
-          autocorrect: true,
-          onEditingComplete: () {
-            setState(() {
-              var text = widget.tagController.text.trim();
-              if (text.isNotEmpty) {
-                _tags.add(text);
-                widget.tagController.clear();
-                widget.onChange(_tags);
-              }
-            });
-          },
-        ),
-        ...?_buildChips(),
-      ],
-    );
-  }
-
-  List<Widget>? _buildChips() {
-    if (_tags.isNotEmpty) {
-      return [
-        Wrap(
-          direction: Axis.horizontal,
-          alignment: WrapAlignment.start,
-          spacing: kChipSpacing,
-          children: _tags
-              .map(
-                (e) => InputChip(
-                  deleteIcon: const Icon(Icons.close),
-                  label: Text(e),
-                  onDeleted: () => setState(() {
-                    _tags.remove(e);
-                  }),
-                ),
-              )
-              .toList(),
-        ),
-      ];
-    }
-    return null;
-  }
-}
 
 class NumericInputField extends StatelessWidget {
   const NumericInputField({
@@ -191,6 +119,49 @@ class TextInputField extends StatelessWidget {
       ),
       validator: validator,
       onEditingComplete: onEditingComplete,
+    );
+  }
+}
+
+class SelectFormField<T> extends StatelessWidget {
+  const SelectFormField({
+    Key? key,
+    required this.items,
+    required this.onChanged,
+    required this.hint,
+    this.icon,
+    this.validator,
+    this.selectedItemBuilder,
+  }) : super(key: key);
+
+  final List<DropdownMenuItem<T>> items;
+  final Function(T?)? onChanged;
+  final String hint;
+  final String? Function(T?)? validator;
+  final List<Widget> Function(BuildContext)? selectedItemBuilder;
+  final IconData? icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height / 2;
+    return DropdownButtonFormField2<T>(
+      dropdownMaxHeight: height,
+      dropdownOverButton: false,
+      scrollbarAlwaysShow: true,
+      scrollbarThickness: 4,
+      isDense: true,
+      dropdownPadding: const EdgeInsets.symmetric(vertical: kVerticalSpacing),
+      dropdownDecoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(kInputRadius),
+      ),
+      items: items,
+      validator: validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      onChanged: onChanged,
+      hint: Text(hint),
+      offset: Offset.fromDirection(0, 0),
+      decoration: InputDecoration(prefixIcon: Icon(icon)),
+      selectedItemBuilder: selectedItemBuilder,
     );
   }
 }

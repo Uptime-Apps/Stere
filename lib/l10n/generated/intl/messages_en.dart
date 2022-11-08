@@ -61,11 +61,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "emDebug": m0,
         "emFieldRequired":
             MessageLookupByLibrary.simpleMessage("This field is required"),
+        "emInvalidPrice": MessageLookupByLibrary.simpleMessage(
+            "The price must be greater than 0"),
         "emNoObjectsRegistered": m1,
         "emPageNotFound":
             MessageLookupByLibrary.simpleMessage("Page Not Found"),
         "emTagRequired":
             MessageLookupByLibrary.simpleMessage("A tag is required"),
+        "ilPrice": MessageLookupByLibrary.simpleMessage("Price"),
         "lblAssets": m2,
         "lblCancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "lblCategories": m3,

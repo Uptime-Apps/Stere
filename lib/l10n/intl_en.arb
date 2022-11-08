@@ -10,6 +10,8 @@
   "lblCreateObject": "New {object}",
   "lblHome": "Home",
   "lblLogout": "Log out",
+  "ilPrice": "Price",
+  "emInvalidPrice": "The price must be greater than 0",
   "lblMore": "More",
   "lblName": "Name",
   "lblRentals": "{isPlural, plural, one{Rental} other{Rentals}}",

@@ -12,7 +12,7 @@ import '../repositories/category_repository.dart';
 
 abstract class CategoryService {
   Stream<List<Category>>? getCategories();
-  Future<List<Category>?> getCategoriesOrderedByName();
+  Stream<List<Category>>? getCategoriesOrderedByName();
   Future<String?> getImageUrl(Category category);
   Future<String?> createCategory(Category category, File? image);
   Future<String?> deleteCategory(Category category);
@@ -23,13 +23,16 @@ class FirebaseCategoryService implements CategoryService {
   final CategoryRepository _categoryRepository;
   final String logName = '$categoriesFB.service';
 
+  Stream<List<Category>>? mapCategories(
+      Stream<List<Map<String, dynamic>>> documents) {
+    return documents
+        .map((event) => event.map((e) => Category.fromJson(e)).toList());
+  }
+
   @override
   Stream<List<Category>>? getCategories() {
     try {
-      final documents = _categoryRepository.getCategories();
-      final mappedDocuments = documents
-          .map((event) => event.map((e) => Category.fromJson(e)).toList());
-      return mappedDocuments;
+      return mapCategories(_categoryRepository.getCategories());
     } on Failure catch (e) {
       log(e.message, name: logName);
       return null;
@@ -37,12 +40,9 @@ class FirebaseCategoryService implements CategoryService {
   }
 
   @override
-  Future<List<Category>?> getCategoriesOrderedByName() async {
+  Stream<List<Category>>? getCategoriesOrderedByName() {
     try {
-      final documents = await _categoryRepository.getCategoriesOrderedByName();
-      final mappedDocuments =
-          documents.map((e) => Category.fromJson(e)).toList();
-      return mappedDocuments;
+      return mapCategories(_categoryRepository.getCategoriesOrderedByName());
     } on Failure catch (e) {
       log(e.message, name: logName);
       return null;

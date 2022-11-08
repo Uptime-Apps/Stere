@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/components/inputs/tag_input.dart';
 import '../../core/components/others/basic_scaffold.dart';
 import '../../core/components/others/filled_button.dart';
-import '../../core/components/others/image_picker.dart';
-import '../../core/components/others/inputs.dart';
+import '../../core/components/inputs/image_picker.dart';
 import '../../core/components/others/utilities.dart';
 import '../../core/constants/spacing_values.dart';
 import '../../l10n/generated/l10n.dart';

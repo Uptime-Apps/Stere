@@ -9,13 +9,13 @@ import '../firebase_references.dart';
 import '../models/category/category.dart';
 
 abstract class CategoryRepository {
-  Stream<List<Map<String, dynamic>>> getCategories();
-  Future<List<Map<String, dynamic>>> getCategoriesOrderedByName();
+  Future<String> createCategory(Category category);
   Future<String> getImageUrl(String path);
   Future<String> uploadImage(String name, File image);
-  Future<String> createCategory(Category category);
   Future<void> deleteCategory(String id);
   Future<void> deleteCategoryImage(String imagePath);
+  Stream<List<Map<String, dynamic>>> getCategories();
+  Stream<List<Map<String, dynamic>>> getCategoriesOrderedByName();
 }
 
 class FirebaseCategoryRepository implements CategoryRepository {
@@ -81,14 +81,16 @@ class FirebaseCategoryRepository implements CategoryRepository {
   }
 
   @override
-  Future<List<Map<String, dynamic>>> getCategoriesOrderedByName() async {
+  Stream<List<Map<String, dynamic>>> getCategoriesOrderedByName() {
     try {
-      final result = await categoriesRF.orderBy('name').get();
-      return result.docs.map((e) {
-        final doc = e.data();
-        doc['id'] = e.id;
-        return doc;
-      }).toList();
+      return categoriesRF
+          .orderBy('name')
+          .snapshots()
+          .asyncMap((event) => event.docs.map((e) {
+                final doc = e.data();
+                doc['id'] = e.id;
+                return doc;
+              }).toList());
     } on Exception catch (e) {
       throw Failure(message: 'Could get categories', exception: e);
     }
