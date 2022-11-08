@@ -4,11 +4,12 @@ import '../../../l10n/generated/l10n.dart';
 import '../../constants/spacing_values.dart';
 
 class DefaultSpacer extends StatelessWidget {
-  const DefaultSpacer({Key? key}) : super(key: key);
+  const DefaultSpacer({this.dim = kSpacing, super.key});
+  final double dim;
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(height: kSpacing, width: kSpacing);
+    return SizedBox(height: dim, width: dim);
   }
 }
 

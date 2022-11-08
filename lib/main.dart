@@ -33,6 +33,7 @@ class StereApp extends StatelessWidget {
       builder: (lightColorScheme, darkColorScheme) => MaterialApp(
         onGenerateTitle: (context) => S.of(context).appName,
         theme: appTheme.light(lightColorScheme),
+        // darkTheme: appTheme.dark(darkColorScheme),
         onGenerateRoute: RouteGenerator.generate,
         localizationsDelegates: const [
           S.delegate,
@@ -52,7 +53,7 @@ class AppTheme {
   late ThemeData theme;
   ThemeData light(ColorScheme? colorScheme) {
     ColorScheme scheme =
-        colorScheme ?? ColorScheme.fromSeed(seedColor: const Color(0x004B6674));
+        colorScheme ?? ColorScheme.fromSeed(seedColor: Colors.teal);
     return theme.copyWith(
       useMaterial3: true,
       colorScheme: scheme,
@@ -60,16 +61,12 @@ class AppTheme {
   }
 
   // ThemeData dark(ColorScheme? colorScheme) {
-  //   ColorScheme scheme =
-  //       colorScheme ?? ColorScheme.fromSeed(seedColor: const Color(0x00468189));
+  //   ColorScheme scheme = colorScheme ??
+  //       ColorScheme.fromSeed(
+  //           seedColor: Colors.green, brightness: Brightness.dark);
   //   return theme.copyWith(
+  //     useMaterial3: true,
   //     colorScheme: scheme,
-  //     appBarTheme: AppBarTheme(
-  //       elevation: 0,
-  //       scrolledUnderElevation: 2,
-  //       foregroundColor: scheme.onSurface,
-  //       backgroundColor: scheme.surface,
-  //     ),
   //   );
   // }
 }

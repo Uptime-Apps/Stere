@@ -16,7 +16,7 @@ class HomeScreen extends ConsumerWidget {
       children: [
         ListTile(
           title: Text(S.of(context).lblCategories(2)),
-          leading: Icon(icCategories),
+          leading: const Icon(icCategories),
         ),
         SizedBox(
           height: MediaQuery.of(context).size.height / 6,
@@ -24,7 +24,7 @@ class HomeScreen extends ConsumerWidget {
         ),
         ListTile(
           title: Text(S.of(context).stActiveRentals),
-          leading: Icon(icRentals),
+          leading: const Icon(icRentals),
         ),
         const Expanded(
           flex: 3,
