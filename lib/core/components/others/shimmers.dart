@@ -38,9 +38,13 @@ class ShimmeringBox extends StatelessWidget {
 class ShimmeringCard extends StatelessWidget {
   const ShimmeringCard({
     this.margin,
+    this.height,
+    this.width,
     Key? key,
   }) : super(key: key);
 
+  final double? height;
+  final double? width;
   final EdgeInsets? margin;
 
   @override
@@ -48,7 +52,7 @@ class ShimmeringCard extends StatelessWidget {
     return Card(
       margin: margin,
       clipBehavior: Clip.hardEdge,
-      child: const ShimmeringBox(),
+      child: ShimmeringBox(height: height, width: width),
     );
   }
 }

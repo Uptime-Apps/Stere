@@ -8,3 +8,4 @@ const kHorizontalSpacing = 12.0;
 const kVerticalSpacing = 16.0;
 
 const kProgressBarHeight = 8.0;
+const kCardImageHeight = 125.0;

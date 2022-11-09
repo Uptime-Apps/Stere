@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../backend/models/category/category.dart';
-import '../../backend/services/category_service.dart';
-import '../../l10n/generated/l10n.dart';
-import '../../utils/snackbar.dart';
+import '../../../backend/models/category/category.dart';
+import '../../../backend/services/category_service.dart';
+import '../../../l10n/generated/l10n.dart';
+import '../../../utils/snackbar.dart';
 import 'category_form_state.dart';
 
 final categoryFormControllerProvider = StateNotifierProvider.autoDispose<

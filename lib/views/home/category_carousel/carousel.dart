@@ -9,7 +9,7 @@ import '../../../core/components/others/utilities.dart';
 import '../../../core/constants/spacing_values.dart';
 import '../../../l10n/generated/l10n.dart';
 import '../../../utils/snackbar.dart';
-import '../../categories/category_form.dart';
+import '../../categories/form/category_form.dart';
 import '../home_controller.dart';
 
 class CategoryCarousel extends ConsumerWidget {
@@ -106,7 +106,7 @@ class _ClickableCategoryCard extends State<ClickableCategoryCard> {
             break;
         }
       }),
-      child: CategoryCard(widget.category),
+      child: CategoryImageCard(widget.category),
     );
   }
 

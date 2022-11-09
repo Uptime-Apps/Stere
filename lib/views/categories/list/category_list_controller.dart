@@ -1,11 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../backend/models/category/category.dart';
-import '../../backend/services/category_service.dart';
-import 'home_state.dart';
+import '../../../backend/models/category/category.dart';
+import '../../../backend/services/category_service.dart';
+import 'category_list_state.dart';
 
-class HomeController extends StateNotifier<HomeState> {
-  HomeController(HomeState state, this._categoryService) : super(state) {
+class CategoryListController extends StateNotifier<CategoryListState> {
+  CategoryListController(CategoryListState state, this._categoryService)
+      : super(state) {
     loadCategories();
   }
   final CategoryService _categoryService;
@@ -23,14 +24,15 @@ class HomeController extends StateNotifier<HomeState> {
   }
 }
 
-final homeControllerProvider = StateNotifierProvider<HomeController, HomeState>(
-  (ref) => HomeController(
-    HomeState(),
+final categoryListControllerProvider =
+    StateNotifierProvider<CategoryListController, CategoryListState>(
+  (ref) => CategoryListController(
+    CategoryListState(),
     ref.watch(categoryServiceProvider),
   ),
 );
 
-final homeCategoryImageProvider =
+final categoryListImageProvider =
     FutureProvider.autoDispose.family<String?, Category>((ref, category) async {
   final result = await ref.watch(categoryServiceProvider).getImageUrl(category);
   return result;

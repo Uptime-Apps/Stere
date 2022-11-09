@@ -23,7 +23,7 @@ class AssetScreen extends ConsumerWidget {
               children: [
                 ListTile(
                   title: Text(S.of(context).stActiveRentals),
-                  leading: Icon(icRentals),
+                  leading: const Icon(icRentals),
                 ),
               ],
             ),

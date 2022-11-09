@@ -8,7 +8,7 @@ import '../core/components/others/utilities.dart';
 import '../l10n/generated/l10n.dart';
 import '../views/assets/asset_form.dart';
 import '../views/authentication.dart';
-import '../views/categories/category_form.dart';
+import '../views/categories/form/category_form.dart';
 import '../views/error.dart';
 import '../views/rentals/rental_form.dart';
 

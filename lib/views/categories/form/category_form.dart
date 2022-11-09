@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/components/inputs/tag_input.dart';
-import '../../core/components/others/basic_scaffold.dart';
-import '../../core/components/others/filled_button.dart';
-import '../../core/components/inputs/image_picker.dart';
-import '../../core/components/others/utilities.dart';
-import '../../core/constants/spacing_values.dart';
-import '../../l10n/generated/l10n.dart';
-import '../../routes/navigation_controller.dart';
-import '../../utils/validators.dart';
+import '../../../core/components/inputs/image_picker.dart';
+import '../../../core/components/inputs/tag_input.dart';
+import '../../../core/components/others/basic_scaffold.dart';
+import '../../../core/components/others/filled_button.dart';
+import '../../../core/components/others/utilities.dart';
+import '../../../core/constants/spacing_values.dart';
+import '../../../l10n/generated/l10n.dart';
+import '../../../utils/validators.dart';
 import 'category_form_controller.dart';
 
 class CategoryForm extends ConsumerWidget {
@@ -81,11 +80,6 @@ class CategoryForm extends ConsumerWidget {
               child: FilledButton(
                 onPressed: () async {
                   await notifier.submit(context);
-                  if (prov.result.hasValue) {
-                    ref
-                        .read(navigationControllerProvider.notifier)
-                        .setCurrentIndex(0);
-                  }
                 },
                 label: prov.result.maybeWhen(
                   loading: () => const FilledButtonCircularProgressIndicator(),

@@ -6,7 +6,7 @@ import '../../../routes/navigation_controller.dart';
 import '../../../views/assets/asset_form.dart';
 import '../../../views/assets/asset.dart';
 import '../../../views/categories/category.dart';
-import '../../../views/categories/category_form.dart';
+import '../../../views/categories/form/category_form.dart';
 import '../../../views/home/home.dart';
 import '../../../views/rentals/rental_form.dart';
 import '../../../views/rentals/rental.dart';
