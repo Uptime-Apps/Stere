@@ -17,12 +17,44 @@ class CategoryImageCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
     if (category.imagePath != null) {
       final imagePath = ref.watch(categoryListImageProvider(category));
       return imagePath.when(
-        data: (data) => Image(
+        data: (data) => CategoryImageCardBody(
+          category,
           image: NetworkImage(data!),
+        ),
+        loading: () => const ShimmeringCard(),
+        error: (_, stackTrace) => Container(color: Colors.red),
+      );
+    } else {
+      // If there's no image from firebase
+      return CategoryImageCardBody(category);
+    }
+  }
+}
+
+class CategoryImageCardBody extends StatelessWidget {
+  const CategoryImageCardBody(
+    this.category, {
+    Key? key,
+    this.image,
+  }) : super(key: key);
+
+  final Category category;
+  final ImageProvider? image;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Image(
+          image: image ??
+              const AssetImage(
+                iaDefaultCategoryImage,
+              ),
           fit: BoxFit.cover,
           color: Colors.black.withOpacity(0.3),
           colorBlendMode: BlendMode.hardLight,
@@ -71,59 +103,7 @@ class CategoryImageCard extends ConsumerWidget {
             );
           }),
         ),
-        loading: () => const ShimmeringCard(),
-        error: (_, stackTrace) => Container(color: Colors.red),
-      );
-    } else {
-      // If there's no image from firebase
-      return CategoryImageCardBody(category: category);
-    }
-  }
-}
-
-class CategoryImageCardBody extends StatelessWidget {
-  const CategoryImageCardBody({
-    Key? key,
-    required this.category,
-    this.image,
-  }) : super(key: key);
-
-  final Category category;
-  final Widget? image;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    return Card(
-      clipBehavior: Clip.hardEdge,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          image ??
-              Image(
-                image: const AssetImage(
-                  iaDefaultCategoryImage,
-                ),
-                fit: BoxFit.cover,
-                color: Colors.black.withOpacity(0.3),
-                colorBlendMode: BlendMode.hardLight,
-              ),
-          Padding(
-            padding: const EdgeInsets.only(
-                right: kSpacing / 2, bottom: kSpacing / 3),
-            child: Center(
-              child: Text(category.name,
-                  textAlign: TextAlign.center,
-                  softWrap: true,
-                  // overflow: TextOverflow.fade,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineSmall
-                      ?.copyWith(color: colorScheme.onPrimary)),
-            ),
-          )
-        ],
-      ),
+      ],
     );
   }
 }
