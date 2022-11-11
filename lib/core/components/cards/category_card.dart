@@ -74,7 +74,8 @@ class CategoryImageCardBody extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: kHorizontalSpacing, vertical: kSpacing / 3),
-                  child: Center(
+                  child: FittedBox(
+                    alignment: Alignment.center,
                     child: Text(category.name,
                         textAlign: TextAlign.center,
                         softWrap: true,
