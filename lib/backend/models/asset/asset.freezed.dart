@@ -26,7 +26,7 @@ mixin _$Asset {
   int get mileage => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   DateTime get creationDate => throw _privateConstructorUsedError;
-  double get price => throw _privateConstructorUsedError;
+  num get price => throw _privateConstructorUsedError;
   String get status =>
       throw _privateConstructorUsedError; // All of this are required but for testing they will be optional
   List<String>? get tags => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $AssetCopyWith<$Res> {
       int mileage,
       String name,
       DateTime creationDate,
-      double price,
+      num price,
       String status,
       List<String>? tags,
       String? categoryId,
@@ -110,7 +110,7 @@ class _$AssetCopyWithImpl<$Res, $Val extends Asset>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double,
+              as num,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -144,7 +144,7 @@ abstract class _$$_AssetCopyWith<$Res> implements $AssetCopyWith<$Res> {
       int mileage,
       String name,
       DateTime creationDate,
-      double price,
+      num price,
       String status,
       List<String>? tags,
       String? categoryId,
@@ -200,7 +200,7 @@ class __$$_AssetCopyWithImpl<$Res> extends _$AssetCopyWithImpl<$Res, _$_Asset>
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as double,
+              as num,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -256,7 +256,7 @@ class _$_Asset implements _Asset {
   @override
   final DateTime creationDate;
   @override
-  final double price;
+  final num price;
   @override
   final String status;
 // All of this are required but for testing they will be optional
@@ -341,7 +341,7 @@ abstract class _Asset implements Asset {
       final int mileage,
       required final String name,
       required final DateTime creationDate,
-      required final double price,
+      required final num price,
       required final String status,
       final List<String>? tags,
       final String? categoryId,
@@ -362,7 +362,7 @@ abstract class _Asset implements Asset {
   @override
   DateTime get creationDate;
   @override
-  double get price;
+  num get price;
   @override
   String get status;
   @override // All of this are required but for testing they will be optional

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../backend/models/category/category.dart';
@@ -73,39 +74,42 @@ class _ClickableCategoryCard extends State<ClickableCategoryCard> {
     overlay = (Overlay.of(context)!.context.findRenderObject() as RenderBox?)!;
     return GestureDetector(
       onTapDown: getPosition,
-      onLongPress: () => showMenu(
-        context: context,
-        items: <PopupMenuEntry<int>>[
-          PopupMenuItem(
-            value: 0,
-            child: ListTile(
-              leading: const Icon(Icons.edit),
-              title: Text(S.of(context).lblEdit),
+      onLongPress: () {
+        HapticFeedback.mediumImpact();
+        showMenu(
+          context: context,
+          items: <PopupMenuEntry<int>>[
+            PopupMenuItem(
+              value: 0,
+              child: ListTile(
+                leading: const Icon(Icons.edit),
+                title: Text(S.of(context).lblEdit),
+              ),
             ),
-          ),
-          PopupMenuItem(
-            value: 1,
-            child: ListTile(
-              leading: const Icon(Icons.delete),
-              title: Text(S.of(context).lblDelete),
-            ),
-          )
-        ],
-        position: relRectSize,
-      ).then((value) {
-        switch (value) {
-          case 0:
-            break;
-          case 1:
-            showDialog(
-              context: context,
-              builder: (context) => DeleteCategoryDialog(widget.category),
-            );
-            break;
-          default:
-            break;
-        }
-      }),
+            PopupMenuItem(
+              value: 1,
+              child: ListTile(
+                leading: const Icon(Icons.delete),
+                title: Text(S.of(context).lblDelete),
+              ),
+            )
+          ],
+          position: relRectSize,
+        ).then((value) {
+          switch (value) {
+            case 0:
+              break;
+            case 1:
+              showDialog(
+                context: context,
+                builder: (context) => DeleteCategoryDialog(widget.category),
+              );
+              break;
+            default:
+              break;
+          }
+        });
+      },
       child: CategoryImageCard(widget.category),
     );
   }

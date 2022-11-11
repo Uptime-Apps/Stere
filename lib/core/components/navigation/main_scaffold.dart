@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/generated/l10n.dart';
 import '../../../routes/navigation_controller.dart';
-import '../../../views/assets/asset_form.dart';
 import '../../../views/assets/asset.dart';
+import '../../../views/assets/form/asset_form.dart';
 import '../../../views/categories/category.dart';
 import '../../../views/categories/form/category_form.dart';
 import '../../../views/home/home.dart';

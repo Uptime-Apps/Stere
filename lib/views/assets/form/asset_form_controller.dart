@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../backend/models/asset/asset.dart';
-import '../../backend/models/category/category.dart';
-import '../../backend/models/status/rental_status.dart';
-import '../../backend/services/asset_service.dart';
-import '../../backend/services/category_service.dart';
-import '../../l10n/generated/l10n.dart';
-import '../../utils/snackbar.dart';
+import '../../../backend/models/asset/asset.dart';
+import '../../../backend/models/category/category.dart';
+import '../../../backend/models/status/rental_status.dart';
+import '../../../backend/services/asset_service.dart';
+import '../../../backend/services/category_service.dart';
+import '../../../l10n/generated/l10n.dart';
+import '../../../utils/snackbar.dart';
 import 'asset_form_state.dart';
 
 final assetImageProvider =

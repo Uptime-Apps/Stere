@@ -12,7 +12,7 @@ class Asset with _$Asset {
       @Default(0) int mileage,
       required String name,
       required DateTime creationDate,
-      required double price,
+      required num price,
       required String status,
       // All of this are required but for testing they will be optional
       List<String>? tags,

@@ -6,7 +6,7 @@ import '../core/components/others/basic_scaffold.dart';
 import '../core/components/others/filled_button.dart';
 import '../core/components/others/utilities.dart';
 import '../l10n/generated/l10n.dart';
-import '../views/assets/asset_form.dart';
+import '../views/assets/form/asset_form.dart';
 import '../views/authentication.dart';
 import '../views/categories/form/category_form.dart';
 import '../views/error.dart';
