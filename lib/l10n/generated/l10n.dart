@@ -60,6 +60,16 @@ class S {
     );
   }
 
+  /// `Error [{code}]: {message}`
+  String emDebug(Object code, Object message) {
+    return Intl.message(
+      'Error [$code]: $message',
+      name: 'emDebug',
+      desc: '',
+      args: [code, message],
+    );
+  }
+
   /// `This field is required`
   String get emFieldRequired {
     return Intl.message(
@@ -70,23 +80,13 @@ class S {
     );
   }
 
-  /// `A tag is required`
-  String get emTagRequired {
+  /// `The price must be greater than 0`
+  String get emInvalidPrice {
     return Intl.message(
-      'A tag is required',
-      name: 'emTagRequired',
+      'The price must be greater than 0',
+      name: 'emInvalidPrice',
       desc: '',
       args: [],
-    );
-  }
-
-  /// `Error [{code}]: {message}`
-  String emDebug(Object code, Object message) {
-    return Intl.message(
-      'Error [$code]: $message',
-      name: 'emDebug',
-      desc: '',
-      args: [code, message],
     );
   }
 
@@ -110,6 +110,36 @@ class S {
     );
   }
 
+  /// `There was an error in the server`
+  String get emServerError {
+    return Intl.message(
+      'There was an error in the server',
+      name: 'emServerError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A tag is required`
+  String get emTagRequired {
+    return Intl.message(
+      'A tag is required',
+      name: 'emTagRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price`
+  String get ilPrice {
+    return Intl.message(
+      'Price',
+      name: 'ilPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{isPlural, plural, one{Asset} other{Assets}}`
   String lblAssets(num isPlural) {
     return Intl.plural(
@@ -119,6 +149,16 @@ class S {
       name: 'lblAssets',
       desc: '',
       args: [isPlural],
+    );
+  }
+
+  /// `Cancel`
+  String get lblCancel {
+    return Intl.message(
+      'Cancel',
+      name: 'lblCancel',
+      desc: '',
+      args: [],
     );
   }
 
@@ -134,6 +174,26 @@ class S {
     );
   }
 
+  /// `Confirm`
+  String get lblConfirm {
+    return Intl.message(
+      'Confirm',
+      name: 'lblConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create one!`
+  String get lblCreateNew {
+    return Intl.message(
+      'Create one!',
+      name: 'lblCreateNew',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `New {object}`
   String lblCreateObject(Object object) {
     return Intl.message(
@@ -141,6 +201,36 @@ class S {
       name: 'lblCreateObject',
       desc: '',
       args: [object],
+    );
+  }
+
+  /// `Delete`
+  String get lblDelete {
+    return Intl.message(
+      'Delete',
+      name: 'lblDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Done`
+  String get lblDone {
+    return Intl.message(
+      'Done',
+      name: 'lblDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get lblEdit {
+    return Intl.message(
+      'Edit',
+      name: 'lblEdit',
+      desc: '',
+      args: [],
     );
   }
 
@@ -159,26 +249,6 @@ class S {
     return Intl.message(
       'Log out',
       name: 'lblLogout',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Price`
-  String get ilPrice {
-    return Intl.message(
-      'Price',
-      name: 'ilPrice',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `The price must be greater than 0`
-  String get emInvalidPrice {
-    return Intl.message(
-      'The price must be greater than 0',
-      name: 'emInvalidPrice',
       desc: '',
       args: [],
     );
@@ -216,21 +286,31 @@ class S {
     );
   }
 
-  /// `Settings`
-  String get lblSettings {
-    return Intl.message(
-      'Settings',
-      name: 'lblSettings',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Save`
   String get lblSave {
     return Intl.message(
       'Save',
       name: 'lblSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get lblSend {
+    return Intl.message(
+      'Send',
+      name: 'lblSend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get lblSettings {
+    return Intl.message(
+      'Settings',
+      name: 'lblSettings',
       desc: '',
       args: [],
     );
@@ -266,6 +346,26 @@ class S {
     );
   }
 
+  /// `Failed to create "{object}"`
+  String msgFailedCreateObject(Object object) {
+    return Intl.message(
+      'Failed to create "$object"',
+      name: 'msgFailedCreateObject',
+      desc: '',
+      args: [object],
+    );
+  }
+
+  /// `Failed to delete "{object}"`
+  String msgFailedDeleteObject(Object object) {
+    return Intl.message(
+      'Failed to delete "$object"',
+      name: 'msgFailedDeleteObject',
+      desc: '',
+      args: [object],
+    );
+  }
+
   /// `To select a tag, pick a category`
   String get msgMissingCategory {
     return Intl.message(
@@ -283,6 +383,16 @@ class S {
       name: 'msgNoRegisters',
       desc: '',
       args: [itemLabel],
+    );
+  }
+
+  /// `Nothing to see here`
+  String get msgNothingToSee {
+    return Intl.message(
+      'Nothing to see here',
+      name: 'msgNothingToSee',
+      desc: '',
+      args: [],
     );
   }
 
@@ -306,91 +416,11 @@ class S {
     );
   }
 
-  /// `Welcome to Stere`
-  String get msgWelcome {
+  /// `Created "{object}" successfully`
+  String msgSuccessCreateObject(Object object) {
     return Intl.message(
-      'Welcome to Stere',
-      name: 'msgWelcome',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Before you begin, please verify your account. Send verification email to {email}`
-  String msgVerifyEmail(Object email) {
-    return Intl.message(
-      'Before you begin, please verify your account. Send verification email to $email',
-      name: 'msgVerifyEmail',
-      desc: '',
-      args: [email],
-    );
-  }
-
-  /// `Delete`
-  String get lblDelete {
-    return Intl.message(
-      'Delete',
-      name: 'lblDelete',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Edit`
-  String get lblEdit {
-    return Intl.message(
-      'Edit',
-      name: 'lblEdit',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Cancel`
-  String get lblCancel {
-    return Intl.message(
-      'Cancel',
-      name: 'lblCancel',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Confirm`
-  String get lblConfirm {
-    return Intl.message(
-      'Confirm',
-      name: 'lblConfirm',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `This will delete the category and all its assets. You won't be able to undo this action.`
-  String get msgWarningDeleteCategory {
-    return Intl.message(
-      'This will delete the category and all its assets. You won\'t be able to undo this action.',
-      name: 'msgWarningDeleteCategory',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Failed to delete "{object}"`
-  String msgFailedDeleteObject(Object object) {
-    return Intl.message(
-      'Failed to delete "$object"',
-      name: 'msgFailedDeleteObject',
-      desc: '',
-      args: [object],
-    );
-  }
-
-  /// `Failed to create "{object}"`
-  String msgFailedCreateObject(Object object) {
-    return Intl.message(
-      'Failed to create "$object"',
-      name: 'msgFailedCreateObject',
+      'Created "$object" successfully',
+      name: 'msgSuccessCreateObject',
       desc: '',
       args: [object],
     );
@@ -406,31 +436,31 @@ class S {
     );
   }
 
-  /// `Created "{object}" successfully`
-  String msgSuccessCreateObject(Object object) {
+  /// `Before you begin, please verify your account. Send verification email to {email}`
+  String msgVerifyEmail(Object email) {
     return Intl.message(
-      'Created "$object" successfully',
-      name: 'msgSuccessCreateObject',
+      'Before you begin, please verify your account. Send verification email to $email',
+      name: 'msgVerifyEmail',
       desc: '',
-      args: [object],
+      args: [email],
     );
   }
 
-  /// `Done`
-  String get lblDone {
+  /// `This will delete the category and all its assets. You won't be able to undo this action.`
+  String get msgWarningDeleteCategory {
     return Intl.message(
-      'Done',
-      name: 'lblDone',
+      'This will delete the category and all its assets. You won\'t be able to undo this action.',
+      name: 'msgWarningDeleteCategory',
       desc: '',
       args: [],
     );
   }
 
-  /// `Send`
-  String get lblSend {
+  /// `Welcome to Stere`
+  String get msgWelcome {
     return Intl.message(
-      'Send',
-      name: 'lblSend',
+      'Welcome to Stere',
+      name: 'msgWelcome',
       desc: '',
       args: [],
     );

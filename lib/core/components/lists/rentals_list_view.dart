@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../l10n/generated/l10n.dart';
 import '../../../views/rentals/rental_form.dart';
+import '../../constants/icons.dart';
 import '../../constants/spacing_values.dart';
-import '../cards/call_to_action_card.dart';
+import 'empty_list.dart';
 
 class RentalsListView extends StatelessWidget {
   const RentalsListView({
@@ -22,12 +23,10 @@ class RentalsListView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: CallToActionCard(
-                    msg: S.of(context).emNoObjectsRegistered(rentalsText(2)),
-                    actionLabel: S.of(context).lblCreateObject(rentalsText(1)),
-                    onPressed: () =>
-                        Navigator.of(context).pushNamed(RentalForm.route)),
+              EmptyListScreen(
+                itemName: S.of(context).lblRentals(2),
+                icon: icRentals,
+                actionRoute: RentalForm.route,
               )
             ],
           ),

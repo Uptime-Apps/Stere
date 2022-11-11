@@ -132,3 +132,31 @@ class LoadingSkeleton extends StatelessWidget {
     );
   }
 }
+
+class ListTileSkeleton extends StatelessWidget {
+  const ListTileSkeleton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const ListTile(
+      leading: CircularLoadingSkeleton(),
+      title: ListTileTextSkeleton(),
+      subtitle: ListTileTextSkeleton(),
+    );
+  }
+}
+
+class ListTileTextSkeleton extends StatelessWidget {
+  const ListTileTextSkeleton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(kInputRadius),
+      child: ShimmeringBox(
+        width: 10.0,
+        height: Theme.of(context).textTheme.titleMedium!.fontSize,
+      ),
+    );
+  }
+}

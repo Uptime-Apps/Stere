@@ -7,6 +7,7 @@ import '../../core/constants/spacing_values.dart';
 import 'list/category_list_controller.dart';
 
 class CategoryScreen extends ConsumerWidget {
+  static const route = 'categories';
   const CategoryScreen({super.key});
 
   @override

@@ -85,7 +85,7 @@ class AssetFormController extends StateNotifier<AssetFormState> {
             name: state.nameController.text,
             price: double.parse(state.priceController.text.trim()),
             status: AssetStatus.available.toShortString(),
-            categoryId: category.id,
+            categoryId: category.id!,
             categoryName: category.name,
             tags: state.selectedTags,
           ),

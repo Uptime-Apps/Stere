@@ -15,9 +15,9 @@ _$_Asset _$$_AssetFromJson(Map<String, dynamic> json) => _$_Asset(
       creationDate: DateTime.parse(json['creationDate'] as String),
       price: json['price'] as num,
       status: json['status'] as String,
+      categoryId: json['categoryId'] as String,
+      categoryName: json['categoryName'] as String,
       tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      categoryId: json['categoryId'] as String?,
-      categoryName: json['categoryName'] as String?,
     );
 
 Map<String, dynamic> _$$_AssetToJson(_$_Asset instance) => <String, dynamic>{
@@ -29,7 +29,7 @@ Map<String, dynamic> _$$_AssetToJson(_$_Asset instance) => <String, dynamic>{
       'creationDate': instance.creationDate.toIso8601String(),
       'price': instance.price,
       'status': instance.status,
-      'tags': instance.tags,
       'categoryId': instance.categoryId,
       'categoryName': instance.categoryName,
+      'tags': instance.tags,
     };

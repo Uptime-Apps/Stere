@@ -74,7 +74,9 @@ class FirebaseAssetService implements AssetService {
   @override
   Future<String?> getImageUrl(Asset asset) async {
     try {
-      return await _assetRepository.getImageUrl(asset.imagePath!);
+      if (asset.imagePath != null) {
+        return await _assetRepository.getImageUrl(asset.imagePath!);
+      }
     } on Failure catch (e) {
       log(e.message, name: logName);
     } on FirebaseException catch (e) {

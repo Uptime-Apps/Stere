@@ -27,11 +27,11 @@ mixin _$Asset {
   String get name => throw _privateConstructorUsedError;
   DateTime get creationDate => throw _privateConstructorUsedError;
   num get price => throw _privateConstructorUsedError;
-  String get status =>
+  String get status => throw _privateConstructorUsedError;
+  String get categoryId => throw _privateConstructorUsedError;
+  String get categoryName =>
       throw _privateConstructorUsedError; // All of this are required but for testing they will be optional
   List<String>? get tags => throw _privateConstructorUsedError;
-  String? get categoryId => throw _privateConstructorUsedError;
-  String? get categoryName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,9 +52,9 @@ abstract class $AssetCopyWith<$Res> {
       DateTime creationDate,
       num price,
       String status,
-      List<String>? tags,
-      String? categoryId,
-      String? categoryName});
+      String categoryId,
+      String categoryName,
+      List<String>? tags});
 }
 
 /// @nodoc
@@ -78,9 +78,9 @@ class _$AssetCopyWithImpl<$Res, $Val extends Asset>
     Object? creationDate = null,
     Object? price = null,
     Object? status = null,
+    Object? categoryId = null,
+    Object? categoryName = null,
     Object? tags = freezed,
-    Object? categoryId = freezed,
-    Object? categoryName = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -115,18 +115,18 @@ class _$AssetCopyWithImpl<$Res, $Val extends Asset>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryName: null == categoryName
+          ? _value.categoryName
+          : categoryName // ignore: cast_nullable_to_non_nullable
+              as String,
       tags: freezed == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      categoryId: freezed == categoryId
-          ? _value.categoryId
-          : categoryId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      categoryName: freezed == categoryName
-          ? _value.categoryName
-          : categoryName // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 }
@@ -146,9 +146,9 @@ abstract class _$$_AssetCopyWith<$Res> implements $AssetCopyWith<$Res> {
       DateTime creationDate,
       num price,
       String status,
-      List<String>? tags,
-      String? categoryId,
-      String? categoryName});
+      String categoryId,
+      String categoryName,
+      List<String>? tags});
 }
 
 /// @nodoc
@@ -168,9 +168,9 @@ class __$$_AssetCopyWithImpl<$Res> extends _$AssetCopyWithImpl<$Res, _$_Asset>
     Object? creationDate = null,
     Object? price = null,
     Object? status = null,
+    Object? categoryId = null,
+    Object? categoryName = null,
     Object? tags = freezed,
-    Object? categoryId = freezed,
-    Object? categoryName = freezed,
   }) {
     return _then(_$_Asset(
       id: freezed == id
@@ -205,18 +205,18 @@ class __$$_AssetCopyWithImpl<$Res> extends _$AssetCopyWithImpl<$Res, _$_Asset>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as String,
+      categoryName: null == categoryName
+          ? _value.categoryName
+          : categoryName // ignore: cast_nullable_to_non_nullable
+              as String,
       tags: freezed == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      categoryId: freezed == categoryId
-          ? _value.categoryId
-          : categoryId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      categoryName: freezed == categoryName
-          ? _value.categoryName
-          : categoryName // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -233,9 +233,9 @@ class _$_Asset implements _Asset {
       required this.creationDate,
       required this.price,
       required this.status,
-      final List<String>? tags,
-      this.categoryId,
-      this.categoryName})
+      required this.categoryId,
+      required this.categoryName,
+      final List<String>? tags})
       : _tags = tags;
 
   factory _$_Asset.fromJson(Map<String, dynamic> json) =>
@@ -259,6 +259,10 @@ class _$_Asset implements _Asset {
   final num price;
   @override
   final String status;
+  @override
+  final String categoryId;
+  @override
+  final String categoryName;
 // All of this are required but for testing they will be optional
   final List<String>? _tags;
 // All of this are required but for testing they will be optional
@@ -271,13 +275,8 @@ class _$_Asset implements _Asset {
   }
 
   @override
-  final String? categoryId;
-  @override
-  final String? categoryName;
-
-  @override
   String toString() {
-    return 'Asset(id: $id, imagePath: $imagePath, isAutomotive: $isAutomotive, mileage: $mileage, name: $name, creationDate: $creationDate, price: $price, status: $status, tags: $tags, categoryId: $categoryId, categoryName: $categoryName)';
+    return 'Asset(id: $id, imagePath: $imagePath, isAutomotive: $isAutomotive, mileage: $mileage, name: $name, creationDate: $creationDate, price: $price, status: $status, categoryId: $categoryId, categoryName: $categoryName, tags: $tags)';
   }
 
   @override
@@ -296,11 +295,11 @@ class _$_Asset implements _Asset {
                 other.creationDate == creationDate) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality().equals(other._tags, _tags) &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId) &&
             (identical(other.categoryName, categoryName) ||
-                other.categoryName == categoryName));
+                other.categoryName == categoryName) &&
+            const DeepCollectionEquality().equals(other._tags, _tags));
   }
 
   @JsonKey(ignore: true)
@@ -315,9 +314,9 @@ class _$_Asset implements _Asset {
       creationDate,
       price,
       status,
-      const DeepCollectionEquality().hash(_tags),
       categoryId,
-      categoryName);
+      categoryName,
+      const DeepCollectionEquality().hash(_tags));
 
   @JsonKey(ignore: true)
   @override
@@ -343,9 +342,9 @@ abstract class _Asset implements Asset {
       required final DateTime creationDate,
       required final num price,
       required final String status,
-      final List<String>? tags,
-      final String? categoryId,
-      final String? categoryName}) = _$_Asset;
+      required final String categoryId,
+      required final String categoryName,
+      final List<String>? tags}) = _$_Asset;
 
   factory _Asset.fromJson(Map<String, dynamic> json) = _$_Asset.fromJson;
 
@@ -365,12 +364,12 @@ abstract class _Asset implements Asset {
   num get price;
   @override
   String get status;
+  @override
+  String get categoryId;
+  @override
+  String get categoryName;
   @override // All of this are required but for testing they will be optional
   List<String>? get tags;
-  @override
-  String? get categoryId;
-  @override
-  String? get categoryName;
   @override
   @JsonKey(ignore: true)
   _$$_AssetCopyWith<_$_Asset> get copyWith =>

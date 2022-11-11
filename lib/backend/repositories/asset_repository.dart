@@ -51,7 +51,7 @@ class FirebaseAssetRepository implements AssetRepository {
   @override
   Stream<List<Map<String, dynamic>>> getAssets() {
     try {
-      return categoriesRF.snapshots().asyncMap(
+      return assetsRF.snapshots().asyncMap(
             (event) => event.docs.map(
               (e) {
                 final doc = e.data();
@@ -68,7 +68,7 @@ class FirebaseAssetRepository implements AssetRepository {
   @override
   Stream<List<Map<String, dynamic>>> getAssetsOrderedByName() {
     try {
-      return categoriesRF.orderBy('name').snapshots().asyncMap(
+      return assetsRF.orderBy('name').snapshots().asyncMap(
             (event) => event.docs.map(
               (e) {
                 final doc = e.data();
@@ -78,7 +78,7 @@ class FirebaseAssetRepository implements AssetRepository {
             ).toList(),
           );
     } on Exception catch (e) {
-      throw Failure(message: 'Could get categories', exception: e);
+      throw Failure(message: 'Could get assets', exception: e);
     }
   }
 
@@ -95,7 +95,7 @@ class FirebaseAssetRepository implements AssetRepository {
   @override
   Stream<List<Map<String, dynamic>>> getAssetsByCategory(String categoryId) {
     try {
-      return categoriesRF
+      return assetsRF
           .where('categoryId', isEqualTo: categoryId)
           .snapshots()
           .asyncMap(

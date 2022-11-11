@@ -66,6 +66,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "emNoObjectsRegistered": m1,
         "emPageNotFound":
             MessageLookupByLibrary.simpleMessage("Page Not Found"),
+        "emServerError": MessageLookupByLibrary.simpleMessage(
+            "There was an error in the server"),
         "emTagRequired":
             MessageLookupByLibrary.simpleMessage("A tag is required"),
         "ilPrice": MessageLookupByLibrary.simpleMessage("Price"),
@@ -73,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblCancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "lblCategories": m3,
         "lblConfirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "lblCreateNew": MessageLookupByLibrary.simpleMessage("Create one!"),
         "lblCreateObject": m4,
         "lblDelete": MessageLookupByLibrary.simpleMessage("Delete"),
         "lblDone": MessageLookupByLibrary.simpleMessage("Done"),
@@ -94,6 +97,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "msgMissingCategory": MessageLookupByLibrary.simpleMessage(
             "To select a tag, pick a category"),
         "msgNoRegisters": m8,
+        "msgNothingToSee":
+            MessageLookupByLibrary.simpleMessage("Nothing to see here"),
         "msgPageNotFound":
             MessageLookupByLibrary.simpleMessage("Page not found"),
         "msgRegisteredSuccessfully":
