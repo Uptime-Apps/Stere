@@ -19,10 +19,12 @@ class LinearProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Color color = Theme.of(context).colorScheme.secondary;
     return LinearProgressIndicator(
       value: value,
       minHeight: kProgressBarHeight,
-      color: Theme.of(context).colorScheme.secondary,
+      color: color,
+      backgroundColor: color.withOpacity(0.1),
     );
   }
 }

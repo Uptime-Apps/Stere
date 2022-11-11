@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'utilities.dart';
 
+import '../../constants/others.dart';
 import '../../constants/radius_values.dart';
 
 class ShimmeringInput extends StatelessWidget {
@@ -22,10 +24,11 @@ class ShimmeringBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var mainColor = Theme.of(context).colorScheme.surfaceVariant;
+    final colorScheme = Theme.of(context).colorScheme;
     return Shimmer.fromColors(
-      baseColor: mainColor,
-      highlightColor: mainColor.withOpacity(0.6),
+      baseColor: colorScheme.surfaceVariant,
+      highlightColor: colorScheme.surfaceVariant.withOpacity(0.6),
+      period: const Duration(milliseconds: kShimmerDuration),
       child: Container(
         color: Colors.white,
         height: height ?? double.infinity,
@@ -53,6 +56,79 @@ class ShimmeringCard extends StatelessWidget {
       margin: margin,
       clipBehavior: Clip.hardEdge,
       child: ShimmeringBox(height: height, width: width),
+    );
+  }
+}
+
+class LinearLoadingSkeleton extends StatelessWidget {
+  const LinearLoadingSkeleton({
+    this.progress,
+    Key? key,
+  }) : super(key: key);
+  final double? progress;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      clipBehavior: Clip.hardEdge,
+      child: LoadingSkeleton(
+        progressBar:
+            (progress != null) ? LinearProgressBar(value: progress!) : null,
+      ),
+    );
+  }
+}
+
+class CircularLoadingSkeleton extends StatelessWidget {
+  const CircularLoadingSkeleton({
+    this.progress,
+    Key? key,
+  }) : super(key: key);
+  final double? progress;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(50),
+      clipBehavior: Clip.antiAlias,
+      child: CircleAvatar(
+        backgroundColor: Colors.transparent,
+        child: LoadingSkeleton(
+          alignment: Alignment.center,
+          progressBar: (progress != null)
+              ? CircularProgressIndicator(
+                  strokeWidth: 2,
+                  value: progress!,
+                )
+              : null,
+        ),
+      ),
+    );
+  }
+}
+
+class LoadingSkeleton extends StatelessWidget {
+  const LoadingSkeleton(
+      {this.progressBar, this.alignment = Alignment.bottomCenter, super.key});
+  final Widget? progressBar;
+  final AlignmentGeometry alignment;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) => SizedBox(
+        height: constraints.maxHeight,
+        child: Stack(
+          alignment: alignment,
+          children: [
+            ShimmeringBox(
+              height: constraints.maxHeight,
+              width: constraints.maxWidth,
+            ),
+            if (progressBar != null) progressBar!,
+          ],
+        ),
+      ),
     );
   }
 }

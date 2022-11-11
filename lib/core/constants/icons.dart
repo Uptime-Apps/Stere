@@ -9,3 +9,10 @@ const IconData icHome = Icons.home;
 const IconData icRenatlDone = Icons.event_available;
 const IconData icRenatlInProgress = Icons.event;
 const IconData icRentalOverdue = Icons.event_busy;
+
+const IconData icAssetStatusUnavailable = Icons.alarm_off;
+const IconData icAssetStatusAvailable = Icons.alarm_add;
+const IconData icAssetStatusRented = Icons.alarm_on;
+const IconData icAssetStatusDiscarded = Icons.delete;
+const IconData icAssetStatusMaintenance = Icons.settings_suggest;
+// const IconData icAssetStatusRented = Icons.alarm_on;
