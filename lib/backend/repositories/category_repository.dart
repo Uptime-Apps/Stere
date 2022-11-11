@@ -46,18 +46,18 @@ class FirebaseCategoryRepository implements CategoryRepository {
   }
 
   @override
-  Future<void> deleteCategory(String id) async {
+  Future<void> deleteCategory(String id) {
     try {
-      categoriesRF.doc(id).delete();
+      return categoriesRF.doc(id).delete();
     } on Exception catch (e) {
       throw Failure(message: 'Could not delete category', exception: e);
     }
   }
 
   @override
-  Future<void> deleteCategoryImage(String imagePath) async {
+  Future<void> deleteCategoryImage(String imagePath) {
     try {
-      await FirebaseStorage.instance.ref('categories/$imagePath').delete();
+      return FirebaseStorage.instance.ref('$categoriesFB/$imagePath').delete();
     } on Exception catch (e) {
       throw Failure(message: 'Could not delete image', exception: e);
     }

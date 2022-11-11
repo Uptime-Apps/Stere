@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../backend/models/category/category.dart';
 import '../../../views/categories/list/category_list_controller.dart';
+import '../../../views/home/home_controller.dart';
 import '../../constants/icons.dart';
 import '../../constants/image_assets.dart';
 import '../../constants/spacing_values.dart';
@@ -10,6 +13,7 @@ import '../others/shimmers.dart';
 import '../others/utilities.dart';
 
 class CategoryImageCard extends ConsumerWidget {
+  static const logName = 'category-image-card';
   const CategoryImageCard(this.category, {Key? key, this.width})
       : super(key: key);
   final Category category;
@@ -18,14 +22,17 @@ class CategoryImageCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (category.imagePath != null) {
-      final imagePath = ref.watch(categoryListImageProvider(category));
+      final imagePath = ref.watch(homeCategoryImageProvider(category));
       return imagePath.when(
         data: (data) => CategoryImageCardBody(
           category,
           image: NetworkImage(data!),
         ),
         loading: () => const ShimmeringCard(),
-        error: (_, stackTrace) => Container(color: Colors.red),
+        error: (_, stackTrace) {
+          log(stackTrace.toString(), name: logName);
+          return Container(color: Colors.red);
+        },
       );
     } else {
       // If there's no image from firebase
@@ -35,6 +42,7 @@ class CategoryImageCard extends ConsumerWidget {
 }
 
 class CategoryImageCardBody extends StatelessWidget {
+  static const logName = 'category-image-card-body';
   const CategoryImageCardBody(
     this.category, {
     Key? key,
@@ -109,6 +117,7 @@ class CategoryImageCardBody extends StatelessWidget {
 }
 
 class CategoryCard extends ConsumerWidget {
+  static const logName = 'category-card';
   const CategoryCard(this.category, {super.key});
   final Category category;
 
@@ -150,7 +159,10 @@ class CategoryCard extends ConsumerWidget {
                 }),
               ),
           loading: () => const ShimmeringCard(height: kCardImageHeight * 1.5),
-          error: (_, stackTrace) => Container(color: Colors.red));
+          error: (_, stackTrace) {
+            log(stackTrace.toString(), name: logName);
+            return Container(color: Colors.red);
+          });
     } else {
       // If there's no image from firebase
       return CategoryCardBody(category);
@@ -183,11 +195,12 @@ class CategoryCardBody extends StatelessWidget {
                 ),
           ),
           ListTile(
-              title: Text(category.name),
-              leading: (category.isAutomotive)
-                  ? const Icon(icCategoriesAutomotive)
-                  : const Icon(icCategories),
-              subtitle: const Text('Has 4 items')),
+            title: Text(category.name),
+            leading: (category.isAutomotive)
+                ? const Icon(icCategoriesAutomotive)
+                : const Icon(icCategories),
+            // subtitle: const Text('Has 4 items'),
+          ),
         ],
       ),
     );

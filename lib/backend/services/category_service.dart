@@ -55,7 +55,7 @@ class FirebaseCategoryService implements CategoryService {
       final uid = FirebaseAuth.instance.currentUser?.uid;
       final extension = image.path.split('.').last;
       final fileName = category.name.toLowerCase().replaceAll(' ', '_');
-      final imagePath = '$rentalsFB/${uid}_$fileName.$extension';
+      final imagePath = '$categoriesFB/${uid}_$fileName.$extension';
       await _categoryRepository.uploadImage(
         imagePath,
         image,
@@ -72,9 +72,12 @@ class FirebaseCategoryService implements CategoryService {
       if (category.imagePath != null) {
         final imagePath = Uri.decodeFull(
             category.imagePath!.split('?').first.split('/').last);
-        await _categoryRepository.deleteCategoryImage(imagePath);
+        await _categoryRepository.deleteCategoryImage(imagePath).whenComplete(
+            () => log('Deleted image successfulyy: ${category.imagePath}',
+                name: logName, level: 1));
       }
-      await _categoryRepository.deleteCategory(category.id!);
+      await _categoryRepository.deleteCategory(category.id!).whenComplete(
+          () => log('Deleted category successfully: ${category.id}'));
       return S.current.resultDeleteSuccess(category.name);
     } on Failure catch (e) {
       log(e.message, name: logName);
