@@ -516,6 +516,16 @@ class S {
     );
   }
 
+  /// `Failed to update "{object}"`
+  String msgFailedUpdateObject(Object object) {
+    return Intl.message(
+      'Failed to update "$object"',
+      name: 'msgFailedUpdateObject',
+      desc: '',
+      args: [object],
+    );
+  }
+
   /// `Failed to delete "{object}"`
   String msgFailedDeleteObject(Object object) {
     return Intl.message(
@@ -600,6 +610,16 @@ class S {
     );
   }
 
+  /// `Updated "{object}" successfully`
+  String msgSuccessUpdateObject(Object object) {
+    return Intl.message(
+      'Updated "$object" successfully',
+      name: 'msgSuccessUpdateObject',
+      desc: '',
+      args: [object],
+    );
+  }
+
   /// `Deleted "{object}" successfully`
   String msgSuccessDeleteObject(Object object) {
     return Intl.message(
@@ -667,36 +687,6 @@ class S {
       name: 'optPassport',
       desc: '',
       args: [],
-    );
-  }
-
-  /// `An error occurred while creating {itemName}`
-  String resultCreateFailure(Object itemName) {
-    return Intl.message(
-      'An error occurred while creating $itemName',
-      name: 'resultCreateFailure',
-      desc: '',
-      args: [itemName],
-    );
-  }
-
-  /// `{itemName} was created`
-  String resultCreateSuccess(Object itemName) {
-    return Intl.message(
-      '$itemName was created',
-      name: 'resultCreateSuccess',
-      desc: '',
-      args: [itemName],
-    );
-  }
-
-  /// `All data from category {itemName} was removed`
-  String resultDeleteSuccess(Object itemName) {
-    return Intl.message(
-      'All data from category $itemName was removed',
-      name: 'resultDeleteSuccess',
-      desc: '',
-      args: [itemName],
     );
   }
 

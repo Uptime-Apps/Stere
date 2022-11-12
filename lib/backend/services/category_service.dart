@@ -78,7 +78,7 @@ class FirebaseCategoryService implements CategoryService {
       }
       await _categoryRepository.deleteCategory(category.id!).whenComplete(
           () => log('Deleted category successfully: ${category.id}'));
-      return S.current.resultDeleteSuccess(category.name);
+      return S.current.msgSuccessDeleteObject(category.name);
     } on Failure catch (e) {
       log(e.message, name: logName);
       return null;

@@ -31,7 +31,8 @@ class FirebaseCategoryRepository implements CategoryRepository {
       return res.id;
     } on Exception catch (e) {
       throw Failure(
-          message: S.current.resultCreateFailure(category.name), exception: e);
+          message: S.current.msgSuccessCreateObject(category.name),
+          exception: e);
     }
   }
 

@@ -39,26 +39,23 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m7(object) => "Failed to delete \"${object}\"";
 
-  static String m8(status) => "${Intl.select(status, {
+  static String m8(object) => "Failed to update \"${object}\"";
+
+  static String m9(status) => "${Intl.select(status, {
             'false': 'The form is missing information or has invalid data',
             'other': 'The form\'s information is valid',
           })}";
 
-  static String m9(itemLabel) => "You have no ${itemLabel} registered";
+  static String m10(itemLabel) => "You have no ${itemLabel} registered";
 
-  static String m10(object) => "Created \"${object}\" successfully";
+  static String m11(object) => "Created \"${object}\" successfully";
 
-  static String m11(object) => "Deleted \"${object}\" successfully";
+  static String m12(object) => "Deleted \"${object}\" successfully";
 
-  static String m12(email) =>
+  static String m13(object) => "Updated \"${object}\" successfully";
+
+  static String m14(email) =>
       "Before you begin, please verify your account. Send verification email to ${email}";
-
-  static String m13(itemName) => "An error occurred while creating ${itemName}";
-
-  static String m14(itemName) => "${itemName} was created";
-
-  static String m15(itemName) =>
-      "All data from category ${itemName} was removed";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -122,19 +119,21 @@ class MessageLookup extends MessageLookupByLibrary {
             "Click if the category contains automotive items"),
         "msgFailedCreateObject": m6,
         "msgFailedDeleteObject": m7,
-        "msgFormStatus": m8,
+        "msgFailedUpdateObject": m8,
+        "msgFormStatus": m9,
         "msgMissingCategory": MessageLookupByLibrary.simpleMessage(
             "To select a tag, pick a category"),
-        "msgNoRegisters": m9,
+        "msgNoRegisters": m10,
         "msgNothingToSee":
             MessageLookupByLibrary.simpleMessage("Nothing to see here"),
         "msgPageNotFound":
             MessageLookupByLibrary.simpleMessage("Page not found"),
         "msgRegisteredSuccessfully":
             MessageLookupByLibrary.simpleMessage("Registered successfully"),
-        "msgSuccessCreateObject": m10,
-        "msgSuccessDeleteObject": m11,
-        "msgVerifyEmail": m12,
+        "msgSuccessCreateObject": m11,
+        "msgSuccessDeleteObject": m12,
+        "msgSuccessUpdateObject": m13,
+        "msgVerifyEmail": m14,
         "msgWarningDeleteCategory": MessageLookupByLibrary.simpleMessage(
             "This will delete the category and all its assets. You won\'t be able to undo this action."),
         "msgWelcome": MessageLookupByLibrary.simpleMessage("Welcome to Stere"),
@@ -143,9 +142,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "optIdentification":
             MessageLookupByLibrary.simpleMessage("Identification"),
         "optPassport": MessageLookupByLibrary.simpleMessage("Passport"),
-        "resultCreateFailure": m13,
-        "resultCreateSuccess": m14,
-        "resultDeleteSuccess": m15,
         "stActiveRentals":
             MessageLookupByLibrary.simpleMessage("Active Rentals"),
         "stVerifyEmail": MessageLookupByLibrary.simpleMessage("Verify Email"),

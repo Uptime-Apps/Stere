@@ -32,7 +32,7 @@ class FirebaseAssetRepository implements AssetRepository {
       return res.id;
     } on Exception catch (e) {
       throw Failure(
-          message: S.current.resultCreateFailure(asset.name), exception: e);
+          message: S.current.msgSuccessCreateObject(asset.name), exception: e);
     }
   }
 
