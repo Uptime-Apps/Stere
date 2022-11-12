@@ -7,6 +7,7 @@ class VerticalStepper extends StatelessWidget {
     Key? key,
     required this.currentStep,
     required this.steps,
+    this.finalStepNoMargin = false,
     this.controls,
     this.onStepCancel,
     this.onStepContinue,
@@ -16,14 +17,19 @@ class VerticalStepper extends StatelessWidget {
   final List<Widget> Function(BuildContext context, ControlsDetails details)?
       controls;
   final int currentStep;
+  final bool finalStepNoMargin;
   final void Function()? onStepCancel;
   final void Function()? onStepContinue;
   final void Function(int)? onStepTapped;
 
   @override
   Widget build(BuildContext context) {
+    final horizontalMargin =
+        !(finalStepNoMargin && currentStep == steps.length - 1)
+            ? kSpacing * 3
+            : 0.0;
     return Stepper(
-      margin: const EdgeInsets.symmetric(horizontal: 64, vertical: 8),
+      margin: EdgeInsets.symmetric(horizontal: horizontalMargin, vertical: 8),
       onStepTapped: onStepTapped,
       controlsBuilder: controls != null
           ? (context, details) {

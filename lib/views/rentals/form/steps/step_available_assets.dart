@@ -25,22 +25,24 @@ class StepAvailableAssets extends ConsumerWidget {
                     width: MediaQuery.of(context).size.width / 2,
                     child: ListTile(
                       visualDensity: VisualDensity.compact,
-                      title: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: '${e.categoryName}: ',
-                              style: DefaultTextStyle.of(context)
-                                  .style
-                                  .copyWith(fontWeight: FontWeight.bold),
-                            ),
-                            TextSpan(
-                              text: e.name,
-                              style: DefaultTextStyle.of(context).style,
-                            ),
-                          ],
-                        ),
-                      ),
+                      // title: RichText(
+                      //   text: TextSpan(
+                      //     children: [
+                      //       TextSpan(
+                      //         text: '${e.categoryName}: ',
+                      //         style: DefaultTextStyle.of(context)
+                      //             .style
+                      //             .copyWith(fontWeight: FontWeight.bold),
+                      //       ),
+                      //       TextSpan(
+                      //         text: e.name,
+                      //         style: DefaultTextStyle.of(context).style,
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+                      title: Text(e.name),
+                      subtitle: Text(e.categoryName),
                     ),
                   ),
                 ),

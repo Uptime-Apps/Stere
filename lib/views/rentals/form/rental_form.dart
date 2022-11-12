@@ -46,6 +46,7 @@ class RentalFormStepper extends ConsumerWidget {
     final prov = ref.watch(rentalFormControllerProvider);
     final notifier = ref.read(rentalFormControllerProvider.notifier);
     return VerticalStepper(
+      finalStepNoMargin: true,
       onStepTapped: (prov.validForm) ? (step) => notifier.setStep(step) : null,
       controls: (context, details) => [
         FilledButton(

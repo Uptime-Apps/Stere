@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../backend/models/rental/deposit.dart';
+import '../../../../core/components/list_tiles/asset.dart';
+import '../../../../core/constants/spacing_values.dart';
 import '../../../../l10n/generated/l10n.dart';
 import '../rental_form_controller.dart';
 
@@ -22,56 +24,51 @@ class ValidFormFinalReview extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final prov = ref.watch(rentalFormControllerProvider);
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        children: [
-          Wrap(
-            children: [
-              TinyListTile(
-                icon: Icons.shopping_bag,
-                title: prov.chosenAsset.value!.name,
+    return Card(
+      child: SizedBox(
+        width: double.infinity,
+        child: Column(
+          children: [
+            AssetListTile(prov.chosenAsset.value!),
+            Padding(
+              padding: const EdgeInsets.all(kCardSpacing * 2),
+              child: Table(
+                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                children: [
+                  buildRow(
+                    [
+                      S.of(context).lblClientName,
+                      prov.clientNameController.text
+                    ],
+                  ),
+                  buildRow(
+                    [
+                      S.of(context).lblClientDeposit,
+                      prov.clientDeposit.value ==
+                              DepositEnum.identification.name
+                          ? S.of(context).lblClientDepositIdentification
+                          : S.of(context).lblClientDepositPassport
+                    ],
+                  ),
+                  buildRow([
+                    S.of(context).lblClientHousing,
+                    prov.clientHousingController.text
+                  ]),
+                  buildRow([
+                    S.of(context).lblClientPhone,
+                    prov.clientPhoneController.text
+                  ]),
+                  buildRow(
+                      [S.of(context).lblHours, prov.hoursRented.toString()]),
+                  buildRow([
+                    S.of(context).lblInitialMileage,
+                    prov.initialMileageController.text
+                  ]),
+                ],
               ),
-              TinyListTile(
-                icon: Icons.watch_later_outlined,
-                title:
-                    '${prov.hoursRented.toString()} ${S.of(context).lblHours}',
-              ),
-              TinyListTile(
-                icon: Icons.shopping_bag,
-                title: prov.chosenAsset.value!.mileage.toString(),
-              ),
-            ],
-          ),
-          const Divider(),
-          Wrap(
-            children: [
-              TinyListTile(
-                icon: Icons.person,
-                title: prov.clientNameController.text,
-                subtitle: S.of(context).lblClientName,
-              ),
-              TinyListTile(
-                title:
-                    prov.clientDeposit.value == DepositEnum.identification.name
-                        ? S.of(context).lblClientDepositIdentification
-                        : S.of(context).lblClientDepositPassport,
-                icon: Icons.inbox,
-                subtitle: S.of(context).lblClientDeposit,
-              ),
-              TinyListTile(
-                title: prov.clientHousingController.text,
-                icon: Icons.hotel,
-                subtitle: S.of(context).lblClientHousing,
-              ),
-              TinyListTile(
-                title: prov.clientPhoneController.text,
-                icon: Icons.phone,
-                subtitle: S.of(context).lblClientPhone,
-              ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -81,11 +78,20 @@ class ValidFormFinalReview extends ConsumerWidget {
   }
 }
 
+TableRow buildRow(List<String> cells) => TableRow(
+    children: cells
+        .map((e) => Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: kSpacing / 2, vertical: kSpacing / 4),
+            child: Center(
+              child: Text(e),
+            )))
+        .toList());
+
 class TinyListTile extends StatelessWidget {
-  const TinyListTile(
-      {required this.icon, required this.title, this.subtitle, Key? key})
+  const TinyListTile({this.icon, required this.title, this.subtitle, Key? key})
       : super(key: key);
-  final IconData icon;
+  final IconData? icon;
   final String title;
   final String? subtitle;
 
@@ -93,7 +99,7 @@ class TinyListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return ListTile(
-      leading: Icon(icon, color: colorScheme.tertiary),
+      leading: Icon(icon, color: colorScheme.secondary),
       horizontalTitleGap: 0,
       dense: true,
       visualDensity: VisualDensity.compact,

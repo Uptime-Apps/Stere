@@ -43,35 +43,32 @@ class StepRentalInformation extends ConsumerWidget {
             (value == null) ? S.of(context).emFieldRequired : null,
         hint: '${S.of(context).lblHours}*',
       ),
-      if (prov.hoursRented != null)
-        NumericInputField(
-          onChanged: (_) => notifier.validateForm(),
-          controller: prov.rentalPriceController,
-          icon: Icons.money,
-          label: '${S.of(context).lblPrice}*',
-          textInputAction: TextInputAction.next,
-          validator: requiredFieldValidation,
-        ),
-      if (prov.hoursRented != null &&
-          prov.rentalPriceController.text.isNotEmpty) ...[
-        ...automotiveInputs,
-        TextInputField(
-          controller: prov.notesController,
-          textInputAction: TextInputAction.newline,
-          icon: Icons.library_books,
-          label: S.of(context).lblNotesReport,
-          maxLines: 8,
-        ),
-        TextInputField(
-          controller: prov.damageReportController,
-          textInputAction: TextInputAction.newline,
-          icon: Icons.edit,
-          label: S.of(context).lblDamageReport,
-          maxLines: 8,
-        ),
-      ]
+      NumericInputField(
+        onChanged: (_) => notifier.validateForm(),
+        controller: prov.rentalPriceController,
+        icon: Icons.money,
+        label: '${S.of(context).lblPrice}*',
+        textInputAction: TextInputAction.next,
+        validator: requiredFieldValidation,
+      ),
+      ...automotiveInputs,
+      TextInputField(
+        controller: prov.notesController,
+        textInputAction: TextInputAction.newline,
+        icon: Icons.library_books,
+        label: S.of(context).lblNotesReport,
+        maxLines: 8,
+      ),
+      TextInputField(
+        controller: prov.damageReportController,
+        textInputAction: TextInputAction.newline,
+        icon: Icons.edit,
+        label: S.of(context).lblDamageReport,
+        maxLines: 8,
+      ),
     ];
     return ListView.separated(
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (_, index) => formItems[index],
       itemCount: formItems.length,
