@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../l10n/generated/l10n.dart';
-import '../../../views/rentals/rental_form.dart';
+import '../../../views/rentals/form/rental_form.dart';
 import '../../constants/icons.dart';
 import '../../constants/spacing_values.dart';
 import 'empty_list.dart';

@@ -174,6 +174,66 @@ class S {
     );
   }
 
+  /// `Client Deposit`
+  String get lblClientDeposit {
+    return Intl.message(
+      'Client Deposit',
+      name: 'lblClientDeposit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Identification`
+  String get lblClientDepositIdentification {
+    return Intl.message(
+      'Identification',
+      name: 'lblClientDepositIdentification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passport`
+  String get lblClientDepositPassport {
+    return Intl.message(
+      'Passport',
+      name: 'lblClientDepositPassport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Housing`
+  String get lblClientHousing {
+    return Intl.message(
+      'Housing',
+      name: 'lblClientHousing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Client Name`
+  String get lblClientName {
+    return Intl.message(
+      'Client Name',
+      name: 'lblClientName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone`
+  String get lblClientPhone {
+    return Intl.message(
+      'Phone',
+      name: 'lblClientPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Confirm`
   String get lblConfirm {
     return Intl.message(
@@ -201,6 +261,16 @@ class S {
       name: 'lblCreateObject',
       desc: '',
       args: [object],
+    );
+  }
+
+  /// `Damage Report`
+  String get lblDamageReport {
+    return Intl.message(
+      'Damage Report',
+      name: 'lblDamageReport',
+      desc: '',
+      args: [],
     );
   }
 
@@ -234,11 +304,51 @@ class S {
     );
   }
 
+  /// `Final Mileage`
+  String get lblFinalMileage {
+    return Intl.message(
+      'Final Mileage',
+      name: 'lblFinalMileage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `History`
+  String get lblHistory {
+    return Intl.message(
+      'History',
+      name: 'lblHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Home`
   String get lblHome {
     return Intl.message(
       'Home',
       name: 'lblHome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hours`
+  String get lblHours {
+    return Intl.message(
+      'Hours',
+      name: 'lblHours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Initial Mileage`
+  String get lblInitialMileage {
+    return Intl.message(
+      'Initial Mileage',
+      name: 'lblInitialMileage',
       desc: '',
       args: [],
     );
@@ -269,6 +379,46 @@ class S {
     return Intl.message(
       'Name',
       name: 'lblName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get lblNo {
+    return Intl.message(
+      'No',
+      name: 'lblNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notes`
+  String get lblNotesReport {
+    return Intl.message(
+      'Notes',
+      name: 'lblNotesReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get lblNotifications {
+    return Intl.message(
+      'Notifications',
+      name: 'lblNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price`
+  String get lblPrice {
+    return Intl.message(
+      'Price',
+      name: 'lblPrice',
       desc: '',
       args: [],
     );
@@ -326,6 +476,16 @@ class S {
     );
   }
 
+  /// `Yes`
+  String get lblYes {
+    return Intl.message(
+      'Yes',
+      name: 'lblYes',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Are you sure?`
   String get msgAreYouSure {
     return Intl.message(
@@ -363,6 +523,20 @@ class S {
       name: 'msgFailedDeleteObject',
       desc: '',
       args: [object],
+    );
+  }
+
+  /// `{status, select, false{The form is missing information or has invalid data} other{The form's information is valid}}`
+  String msgFormStatus(Object status) {
+    return Intl.select(
+      status,
+      {
+        'false': 'The form is missing information or has invalid data',
+        'other': 'The form\'s information is valid',
+      },
+      name: 'msgFormStatus',
+      desc: '',
+      args: [status],
     );
   }
 
@@ -476,6 +650,26 @@ class S {
     );
   }
 
+  /// `Identification`
+  String get optIdentification {
+    return Intl.message(
+      'Identification',
+      name: 'optIdentification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passport`
+  String get optPassport {
+    return Intl.message(
+      'Passport',
+      name: 'optPassport',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `An error occurred while creating {itemName}`
   String resultCreateFailure(Object itemName) {
     return Intl.message(
@@ -521,6 +715,46 @@ class S {
     return Intl.message(
       'Verify Email',
       name: 'stVerifyEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Available Assets`
+  String get stepAvailableAssets {
+    return Intl.message(
+      'Available Assets',
+      name: 'stepAvailableAssets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer Information`
+  String get stepClientInformation {
+    return Intl.message(
+      'Customer Information',
+      name: 'stepClientInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Final Review`
+  String get stepFinalReview {
+    return Intl.message(
+      'Final Review',
+      name: 'stepFinalReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rental Information`
+  String get stepRentalInformation {
+    return Intl.message(
+      'Rental Information',
+      name: 'stepRentalInformation',
       desc: '',
       args: [],
     );

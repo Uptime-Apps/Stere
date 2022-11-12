@@ -57,6 +57,13 @@ class AppTheme {
     return theme.copyWith(
       useMaterial3: true,
       colorScheme: scheme,
+      tabBarTheme: TabBarTheme(
+        labelColor: scheme.primary,
+        unselectedLabelColor: scheme.onSurfaceVariant,
+        indicator: UnderlineTabIndicator(
+          borderSide: BorderSide(width: 3, color: scheme.primary),
+        ),
+      ),
     );
   }
 

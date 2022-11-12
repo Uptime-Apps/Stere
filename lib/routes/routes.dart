@@ -10,7 +10,7 @@ import '../views/assets/form/asset_form.dart';
 import '../views/authentication.dart';
 import '../views/categories/form/category_form.dart';
 import '../views/error.dart';
-import '../views/rentals/rental_form.dart';
+import '../views/rentals/form/rental_form.dart';
 
 class RouteGenerator {
   static Route<dynamic> generate(RouteSettings settings) {
