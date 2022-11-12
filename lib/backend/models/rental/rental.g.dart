@@ -9,7 +9,8 @@ part of 'rental.dart';
 _$_Rental _$$_RentalFromJson(Map<String, dynamic> json) => _$_Rental(
       id: json['id'] as String?,
       employeeId: json['employeeId'] as String,
-      employeeName: json['employeeName'] as String,
+      employeeEmail: json['employeeEmail'] as String,
+      employeeName: json['employeeName'] as String?,
       employeePhoto: json['employeePhoto'] as String?,
       clientId: json['clientId'] as String,
       clientName: json['clientName'] as String,
@@ -34,6 +35,7 @@ _$_Rental _$$_RentalFromJson(Map<String, dynamic> json) => _$_Rental(
 Map<String, dynamic> _$$_RentalToJson(_$_Rental instance) => <String, dynamic>{
       'id': instance.id,
       'employeeId': instance.employeeId,
+      'employeeEmail': instance.employeeEmail,
       'employeeName': instance.employeeName,
       'employeePhoto': instance.employeePhoto,
       'clientId': instance.clientId,

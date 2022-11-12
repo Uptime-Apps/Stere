@@ -10,7 +10,8 @@ class Rental with _$Rental {
   factory Rental({
     String? id,
     required String employeeId,
-    required String employeeName,
+    required String employeeEmail,
+    String? employeeName,
     String? employeePhoto,
     required String clientId,
     required String clientName,

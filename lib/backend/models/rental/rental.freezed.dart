@@ -22,7 +22,8 @@ Rental _$RentalFromJson(Map<String, dynamic> json) {
 mixin _$Rental {
   String? get id => throw _privateConstructorUsedError;
   String get employeeId => throw _privateConstructorUsedError;
-  String get employeeName => throw _privateConstructorUsedError;
+  String get employeeEmail => throw _privateConstructorUsedError;
+  String? get employeeName => throw _privateConstructorUsedError;
   String? get employeePhoto => throw _privateConstructorUsedError;
   String get clientId => throw _privateConstructorUsedError;
   String get clientName => throw _privateConstructorUsedError;
@@ -56,7 +57,8 @@ abstract class $RentalCopyWith<$Res> {
   $Res call(
       {String? id,
       String employeeId,
-      String employeeName,
+      String employeeEmail,
+      String? employeeName,
       String? employeePhoto,
       String clientId,
       String clientName,
@@ -93,7 +95,8 @@ class _$RentalCopyWithImpl<$Res, $Val extends Rental>
   $Res call({
     Object? id = freezed,
     Object? employeeId = null,
-    Object? employeeName = null,
+    Object? employeeEmail = null,
+    Object? employeeName = freezed,
     Object? employeePhoto = freezed,
     Object? clientId = null,
     Object? clientName = null,
@@ -123,10 +126,14 @@ class _$RentalCopyWithImpl<$Res, $Val extends Rental>
           ? _value.employeeId
           : employeeId // ignore: cast_nullable_to_non_nullable
               as String,
-      employeeName: null == employeeName
+      employeeEmail: null == employeeEmail
+          ? _value.employeeEmail
+          : employeeEmail // ignore: cast_nullable_to_non_nullable
+              as String,
+      employeeName: freezed == employeeName
           ? _value.employeeName
           : employeeName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       employeePhoto: freezed == employeePhoto
           ? _value.employeePhoto
           : employeePhoto // ignore: cast_nullable_to_non_nullable
@@ -216,7 +223,8 @@ abstract class _$$_RentalCopyWith<$Res> implements $RentalCopyWith<$Res> {
   $Res call(
       {String? id,
       String employeeId,
-      String employeeName,
+      String employeeEmail,
+      String? employeeName,
       String? employeePhoto,
       String clientId,
       String clientName,
@@ -250,7 +258,8 @@ class __$$_RentalCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? employeeId = null,
-    Object? employeeName = null,
+    Object? employeeEmail = null,
+    Object? employeeName = freezed,
     Object? employeePhoto = freezed,
     Object? clientId = null,
     Object? clientName = null,
@@ -280,10 +289,14 @@ class __$$_RentalCopyWithImpl<$Res>
           ? _value.employeeId
           : employeeId // ignore: cast_nullable_to_non_nullable
               as String,
-      employeeName: null == employeeName
+      employeeEmail: null == employeeEmail
+          ? _value.employeeEmail
+          : employeeEmail // ignore: cast_nullable_to_non_nullable
+              as String,
+      employeeName: freezed == employeeName
           ? _value.employeeName
           : employeeName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       employeePhoto: freezed == employeePhoto
           ? _value.employeePhoto
           : employeePhoto // ignore: cast_nullable_to_non_nullable
@@ -370,7 +383,8 @@ class _$_Rental implements _Rental {
   _$_Rental(
       {this.id,
       required this.employeeId,
-      required this.employeeName,
+      required this.employeeEmail,
+      this.employeeName,
       this.employeePhoto,
       required this.clientId,
       required this.clientName,
@@ -399,7 +413,9 @@ class _$_Rental implements _Rental {
   @override
   final String employeeId;
   @override
-  final String employeeName;
+  final String employeeEmail;
+  @override
+  final String? employeeName;
   @override
   final String? employeePhoto;
   @override
@@ -441,7 +457,7 @@ class _$_Rental implements _Rental {
 
   @override
   String toString() {
-    return 'Rental(id: $id, employeeId: $employeeId, employeeName: $employeeName, employeePhoto: $employeePhoto, clientId: $clientId, clientName: $clientName, clientHousing: $clientHousing, clientDeposit: $clientDeposit, clientPhone: $clientPhone, backupPhone: $backupPhone, assetId: $assetId, assetName: $assetName, assetPhoto: $assetPhoto, initialMileage: $initialMileage, finalMileage: $finalMileage, damageReport: $damageReport, notes: $notes, referralType: $referralType, creationDate: $creationDate, hoursRented: $hoursRented, rentalPrice: $rentalPrice, status: $status)';
+    return 'Rental(id: $id, employeeId: $employeeId, employeeEmail: $employeeEmail, employeeName: $employeeName, employeePhoto: $employeePhoto, clientId: $clientId, clientName: $clientName, clientHousing: $clientHousing, clientDeposit: $clientDeposit, clientPhone: $clientPhone, backupPhone: $backupPhone, assetId: $assetId, assetName: $assetName, assetPhoto: $assetPhoto, initialMileage: $initialMileage, finalMileage: $finalMileage, damageReport: $damageReport, notes: $notes, referralType: $referralType, creationDate: $creationDate, hoursRented: $hoursRented, rentalPrice: $rentalPrice, status: $status)';
   }
 
   @override
@@ -452,6 +468,8 @@ class _$_Rental implements _Rental {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.employeeId, employeeId) ||
                 other.employeeId == employeeId) &&
+            (identical(other.employeeEmail, employeeEmail) ||
+                other.employeeEmail == employeeEmail) &&
             (identical(other.employeeName, employeeName) ||
                 other.employeeName == employeeName) &&
             (identical(other.employeePhoto, employeePhoto) ||
@@ -497,6 +515,7 @@ class _$_Rental implements _Rental {
         runtimeType,
         id,
         employeeId,
+        employeeEmail,
         employeeName,
         employeePhoto,
         clientId,
@@ -537,7 +556,8 @@ abstract class _Rental implements Rental {
   factory _Rental(
       {final String? id,
       required final String employeeId,
-      required final String employeeName,
+      required final String employeeEmail,
+      final String? employeeName,
       final String? employeePhoto,
       required final String clientId,
       required final String clientName,
@@ -565,7 +585,9 @@ abstract class _Rental implements Rental {
   @override
   String get employeeId;
   @override
-  String get employeeName;
+  String get employeeEmail;
+  @override
+  String? get employeeName;
   @override
   String? get employeePhoto;
   @override
