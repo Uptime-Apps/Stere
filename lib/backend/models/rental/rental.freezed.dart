@@ -20,29 +20,29 @@ Rental _$RentalFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Rental {
-  String? get id => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError; //Employee Details
   String get employeeId => throw _privateConstructorUsedError;
   String get employeeEmail => throw _privateConstructorUsedError;
   String? get employeeName => throw _privateConstructorUsedError;
-  String? get employeePhoto => throw _privateConstructorUsedError;
+  String? get employeePhoto =>
+      throw _privateConstructorUsedError; //Rental Information
+  List<RentalAsset> get assets => throw _privateConstructorUsedError;
+  double? get initialMileage => throw _privateConstructorUsedError;
+  double? get finalMileage => throw _privateConstructorUsedError;
+  String? get damageReport => throw _privateConstructorUsedError;
+  String? get notes => throw _privateConstructorUsedError;
+  int get hoursRented => throw _privateConstructorUsedError;
+  double get rentalPrice => throw _privateConstructorUsedError; //Client Details
   String get clientId => throw _privateConstructorUsedError;
   String get clientName => throw _privateConstructorUsedError;
   String get clientHousing => throw _privateConstructorUsedError;
   String get clientDeposit => throw _privateConstructorUsedError;
   String get clientPhone => throw _privateConstructorUsedError;
-  String? get clientEmail => throw _privateConstructorUsedError;
+  String get clientEmail =>
+      throw _privateConstructorUsedError; //Rental Metadata
   String? get backupPhone => throw _privateConstructorUsedError;
-  String get assetId => throw _privateConstructorUsedError;
-  String get assetName => throw _privateConstructorUsedError;
-  String? get assetPhoto => throw _privateConstructorUsedError;
-  double? get initialMileage => throw _privateConstructorUsedError;
-  double? get finalMileage => throw _privateConstructorUsedError;
-  String? get damageReport => throw _privateConstructorUsedError;
-  String? get notes => throw _privateConstructorUsedError;
   String? get referralType => throw _privateConstructorUsedError;
   DateTime get creationDate => throw _privateConstructorUsedError;
-  int get hoursRented => throw _privateConstructorUsedError;
-  double get rentalPrice => throw _privateConstructorUsedError;
   RentalStatus get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -61,24 +61,22 @@ abstract class $RentalCopyWith<$Res> {
       String employeeEmail,
       String? employeeName,
       String? employeePhoto,
+      List<RentalAsset> assets,
+      double? initialMileage,
+      double? finalMileage,
+      String? damageReport,
+      String? notes,
+      int hoursRented,
+      double rentalPrice,
       String clientId,
       String clientName,
       String clientHousing,
       String clientDeposit,
       String clientPhone,
-      String? clientEmail,
+      String clientEmail,
       String? backupPhone,
-      String assetId,
-      String assetName,
-      String? assetPhoto,
-      double? initialMileage,
-      double? finalMileage,
-      String? damageReport,
-      String? notes,
       String? referralType,
       DateTime creationDate,
-      int hoursRented,
-      double rentalPrice,
       RentalStatus status});
 }
 
@@ -100,24 +98,22 @@ class _$RentalCopyWithImpl<$Res, $Val extends Rental>
     Object? employeeEmail = null,
     Object? employeeName = freezed,
     Object? employeePhoto = freezed,
+    Object? assets = null,
+    Object? initialMileage = freezed,
+    Object? finalMileage = freezed,
+    Object? damageReport = freezed,
+    Object? notes = freezed,
+    Object? hoursRented = null,
+    Object? rentalPrice = null,
     Object? clientId = null,
     Object? clientName = null,
     Object? clientHousing = null,
     Object? clientDeposit = null,
     Object? clientPhone = null,
-    Object? clientEmail = freezed,
+    Object? clientEmail = null,
     Object? backupPhone = freezed,
-    Object? assetId = null,
-    Object? assetName = null,
-    Object? assetPhoto = freezed,
-    Object? initialMileage = freezed,
-    Object? finalMileage = freezed,
-    Object? damageReport = freezed,
-    Object? notes = freezed,
     Object? referralType = freezed,
     Object? creationDate = null,
-    Object? hoursRented = null,
-    Object? rentalPrice = null,
     Object? status = null,
   }) {
     return _then(_value.copyWith(
@@ -141,6 +137,34 @@ class _$RentalCopyWithImpl<$Res, $Val extends Rental>
           ? _value.employeePhoto
           : employeePhoto // ignore: cast_nullable_to_non_nullable
               as String?,
+      assets: null == assets
+          ? _value.assets
+          : assets // ignore: cast_nullable_to_non_nullable
+              as List<RentalAsset>,
+      initialMileage: freezed == initialMileage
+          ? _value.initialMileage
+          : initialMileage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      finalMileage: freezed == finalMileage
+          ? _value.finalMileage
+          : finalMileage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      damageReport: freezed == damageReport
+          ? _value.damageReport
+          : damageReport // ignore: cast_nullable_to_non_nullable
+              as String?,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hoursRented: null == hoursRented
+          ? _value.hoursRented
+          : hoursRented // ignore: cast_nullable_to_non_nullable
+              as int,
+      rentalPrice: null == rentalPrice
+          ? _value.rentalPrice
+          : rentalPrice // ignore: cast_nullable_to_non_nullable
+              as double,
       clientId: null == clientId
           ? _value.clientId
           : clientId // ignore: cast_nullable_to_non_nullable
@@ -161,41 +185,13 @@ class _$RentalCopyWithImpl<$Res, $Val extends Rental>
           ? _value.clientPhone
           : clientPhone // ignore: cast_nullable_to_non_nullable
               as String,
-      clientEmail: freezed == clientEmail
+      clientEmail: null == clientEmail
           ? _value.clientEmail
           : clientEmail // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       backupPhone: freezed == backupPhone
           ? _value.backupPhone
           : backupPhone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      assetId: null == assetId
-          ? _value.assetId
-          : assetId // ignore: cast_nullable_to_non_nullable
-              as String,
-      assetName: null == assetName
-          ? _value.assetName
-          : assetName // ignore: cast_nullable_to_non_nullable
-              as String,
-      assetPhoto: freezed == assetPhoto
-          ? _value.assetPhoto
-          : assetPhoto // ignore: cast_nullable_to_non_nullable
-              as String?,
-      initialMileage: freezed == initialMileage
-          ? _value.initialMileage
-          : initialMileage // ignore: cast_nullable_to_non_nullable
-              as double?,
-      finalMileage: freezed == finalMileage
-          ? _value.finalMileage
-          : finalMileage // ignore: cast_nullable_to_non_nullable
-              as double?,
-      damageReport: freezed == damageReport
-          ? _value.damageReport
-          : damageReport // ignore: cast_nullable_to_non_nullable
-              as String?,
-      notes: freezed == notes
-          ? _value.notes
-          : notes // ignore: cast_nullable_to_non_nullable
               as String?,
       referralType: freezed == referralType
           ? _value.referralType
@@ -205,14 +201,6 @@ class _$RentalCopyWithImpl<$Res, $Val extends Rental>
           ? _value.creationDate
           : creationDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      hoursRented: null == hoursRented
-          ? _value.hoursRented
-          : hoursRented // ignore: cast_nullable_to_non_nullable
-              as int,
-      rentalPrice: null == rentalPrice
-          ? _value.rentalPrice
-          : rentalPrice // ignore: cast_nullable_to_non_nullable
-              as double,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -233,24 +221,22 @@ abstract class _$$_RentalCopyWith<$Res> implements $RentalCopyWith<$Res> {
       String employeeEmail,
       String? employeeName,
       String? employeePhoto,
+      List<RentalAsset> assets,
+      double? initialMileage,
+      double? finalMileage,
+      String? damageReport,
+      String? notes,
+      int hoursRented,
+      double rentalPrice,
       String clientId,
       String clientName,
       String clientHousing,
       String clientDeposit,
       String clientPhone,
-      String? clientEmail,
+      String clientEmail,
       String? backupPhone,
-      String assetId,
-      String assetName,
-      String? assetPhoto,
-      double? initialMileage,
-      double? finalMileage,
-      String? damageReport,
-      String? notes,
       String? referralType,
       DateTime creationDate,
-      int hoursRented,
-      double rentalPrice,
       RentalStatus status});
 }
 
@@ -269,24 +255,22 @@ class __$$_RentalCopyWithImpl<$Res>
     Object? employeeEmail = null,
     Object? employeeName = freezed,
     Object? employeePhoto = freezed,
+    Object? assets = null,
+    Object? initialMileage = freezed,
+    Object? finalMileage = freezed,
+    Object? damageReport = freezed,
+    Object? notes = freezed,
+    Object? hoursRented = null,
+    Object? rentalPrice = null,
     Object? clientId = null,
     Object? clientName = null,
     Object? clientHousing = null,
     Object? clientDeposit = null,
     Object? clientPhone = null,
-    Object? clientEmail = freezed,
+    Object? clientEmail = null,
     Object? backupPhone = freezed,
-    Object? assetId = null,
-    Object? assetName = null,
-    Object? assetPhoto = freezed,
-    Object? initialMileage = freezed,
-    Object? finalMileage = freezed,
-    Object? damageReport = freezed,
-    Object? notes = freezed,
     Object? referralType = freezed,
     Object? creationDate = null,
-    Object? hoursRented = null,
-    Object? rentalPrice = null,
     Object? status = null,
   }) {
     return _then(_$_Rental(
@@ -310,6 +294,34 @@ class __$$_RentalCopyWithImpl<$Res>
           ? _value.employeePhoto
           : employeePhoto // ignore: cast_nullable_to_non_nullable
               as String?,
+      assets: null == assets
+          ? _value._assets
+          : assets // ignore: cast_nullable_to_non_nullable
+              as List<RentalAsset>,
+      initialMileage: freezed == initialMileage
+          ? _value.initialMileage
+          : initialMileage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      finalMileage: freezed == finalMileage
+          ? _value.finalMileage
+          : finalMileage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      damageReport: freezed == damageReport
+          ? _value.damageReport
+          : damageReport // ignore: cast_nullable_to_non_nullable
+              as String?,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hoursRented: null == hoursRented
+          ? _value.hoursRented
+          : hoursRented // ignore: cast_nullable_to_non_nullable
+              as int,
+      rentalPrice: null == rentalPrice
+          ? _value.rentalPrice
+          : rentalPrice // ignore: cast_nullable_to_non_nullable
+              as double,
       clientId: null == clientId
           ? _value.clientId
           : clientId // ignore: cast_nullable_to_non_nullable
@@ -330,41 +342,13 @@ class __$$_RentalCopyWithImpl<$Res>
           ? _value.clientPhone
           : clientPhone // ignore: cast_nullable_to_non_nullable
               as String,
-      clientEmail: freezed == clientEmail
+      clientEmail: null == clientEmail
           ? _value.clientEmail
           : clientEmail // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       backupPhone: freezed == backupPhone
           ? _value.backupPhone
           : backupPhone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      assetId: null == assetId
-          ? _value.assetId
-          : assetId // ignore: cast_nullable_to_non_nullable
-              as String,
-      assetName: null == assetName
-          ? _value.assetName
-          : assetName // ignore: cast_nullable_to_non_nullable
-              as String,
-      assetPhoto: freezed == assetPhoto
-          ? _value.assetPhoto
-          : assetPhoto // ignore: cast_nullable_to_non_nullable
-              as String?,
-      initialMileage: freezed == initialMileage
-          ? _value.initialMileage
-          : initialMileage // ignore: cast_nullable_to_non_nullable
-              as double?,
-      finalMileage: freezed == finalMileage
-          ? _value.finalMileage
-          : finalMileage // ignore: cast_nullable_to_non_nullable
-              as double?,
-      damageReport: freezed == damageReport
-          ? _value.damageReport
-          : damageReport // ignore: cast_nullable_to_non_nullable
-              as String?,
-      notes: freezed == notes
-          ? _value.notes
-          : notes // ignore: cast_nullable_to_non_nullable
               as String?,
       referralType: freezed == referralType
           ? _value.referralType
@@ -374,14 +358,6 @@ class __$$_RentalCopyWithImpl<$Res>
           ? _value.creationDate
           : creationDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      hoursRented: null == hoursRented
-          ? _value.hoursRented
-          : hoursRented // ignore: cast_nullable_to_non_nullable
-              as int,
-      rentalPrice: null == rentalPrice
-          ? _value.rentalPrice
-          : rentalPrice // ignore: cast_nullable_to_non_nullable
-              as double,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -399,31 +375,31 @@ class _$_Rental implements _Rental {
       required this.employeeEmail,
       this.employeeName,
       this.employeePhoto,
+      required final List<RentalAsset> assets,
+      this.initialMileage,
+      this.finalMileage,
+      this.damageReport,
+      this.notes,
+      required this.hoursRented,
+      required this.rentalPrice,
       required this.clientId,
       required this.clientName,
       required this.clientHousing,
       required this.clientDeposit,
       required this.clientPhone,
-      this.clientEmail,
+      required this.clientEmail,
       this.backupPhone,
-      required this.assetId,
-      required this.assetName,
-      this.assetPhoto,
-      this.initialMileage,
-      this.finalMileage,
-      this.damageReport,
-      this.notes,
       this.referralType,
       required this.creationDate,
-      required this.hoursRented,
-      required this.rentalPrice,
-      required this.status});
+      required this.status})
+      : _assets = assets;
 
   factory _$_Rental.fromJson(Map<String, dynamic> json) =>
       _$$_RentalFromJson(json);
 
   @override
   final String? id;
+//Employee Details
   @override
   final String employeeId;
   @override
@@ -432,6 +408,28 @@ class _$_Rental implements _Rental {
   final String? employeeName;
   @override
   final String? employeePhoto;
+//Rental Information
+  final List<RentalAsset> _assets;
+//Rental Information
+  @override
+  List<RentalAsset> get assets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_assets);
+  }
+
+  @override
+  final double? initialMileage;
+  @override
+  final double? finalMileage;
+  @override
+  final String? damageReport;
+  @override
+  final String? notes;
+  @override
+  final int hoursRented;
+  @override
+  final double rentalPrice;
+//Client Details
   @override
   final String clientId;
   @override
@@ -443,37 +441,20 @@ class _$_Rental implements _Rental {
   @override
   final String clientPhone;
   @override
-  final String? clientEmail;
+  final String clientEmail;
+//Rental Metadata
   @override
   final String? backupPhone;
-  @override
-  final String assetId;
-  @override
-  final String assetName;
-  @override
-  final String? assetPhoto;
-  @override
-  final double? initialMileage;
-  @override
-  final double? finalMileage;
-  @override
-  final String? damageReport;
-  @override
-  final String? notes;
   @override
   final String? referralType;
   @override
   final DateTime creationDate;
   @override
-  final int hoursRented;
-  @override
-  final double rentalPrice;
-  @override
   final RentalStatus status;
 
   @override
   String toString() {
-    return 'Rental(id: $id, employeeId: $employeeId, employeeEmail: $employeeEmail, employeeName: $employeeName, employeePhoto: $employeePhoto, clientId: $clientId, clientName: $clientName, clientHousing: $clientHousing, clientDeposit: $clientDeposit, clientPhone: $clientPhone, clientEmail: $clientEmail, backupPhone: $backupPhone, assetId: $assetId, assetName: $assetName, assetPhoto: $assetPhoto, initialMileage: $initialMileage, finalMileage: $finalMileage, damageReport: $damageReport, notes: $notes, referralType: $referralType, creationDate: $creationDate, hoursRented: $hoursRented, rentalPrice: $rentalPrice, status: $status)';
+    return 'Rental(id: $id, employeeId: $employeeId, employeeEmail: $employeeEmail, employeeName: $employeeName, employeePhoto: $employeePhoto, assets: $assets, initialMileage: $initialMileage, finalMileage: $finalMileage, damageReport: $damageReport, notes: $notes, hoursRented: $hoursRented, rentalPrice: $rentalPrice, clientId: $clientId, clientName: $clientName, clientHousing: $clientHousing, clientDeposit: $clientDeposit, clientPhone: $clientPhone, clientEmail: $clientEmail, backupPhone: $backupPhone, referralType: $referralType, creationDate: $creationDate, status: $status)';
   }
 
   @override
@@ -490,6 +471,18 @@ class _$_Rental implements _Rental {
                 other.employeeName == employeeName) &&
             (identical(other.employeePhoto, employeePhoto) ||
                 other.employeePhoto == employeePhoto) &&
+            const DeepCollectionEquality().equals(other._assets, _assets) &&
+            (identical(other.initialMileage, initialMileage) ||
+                other.initialMileage == initialMileage) &&
+            (identical(other.finalMileage, finalMileage) ||
+                other.finalMileage == finalMileage) &&
+            (identical(other.damageReport, damageReport) ||
+                other.damageReport == damageReport) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
+            (identical(other.hoursRented, hoursRented) ||
+                other.hoursRented == hoursRented) &&
+            (identical(other.rentalPrice, rentalPrice) ||
+                other.rentalPrice == rentalPrice) &&
             (identical(other.clientId, clientId) ||
                 other.clientId == clientId) &&
             (identical(other.clientName, clientName) ||
@@ -504,26 +497,10 @@ class _$_Rental implements _Rental {
                 other.clientEmail == clientEmail) &&
             (identical(other.backupPhone, backupPhone) ||
                 other.backupPhone == backupPhone) &&
-            (identical(other.assetId, assetId) || other.assetId == assetId) &&
-            (identical(other.assetName, assetName) ||
-                other.assetName == assetName) &&
-            (identical(other.assetPhoto, assetPhoto) ||
-                other.assetPhoto == assetPhoto) &&
-            (identical(other.initialMileage, initialMileage) ||
-                other.initialMileage == initialMileage) &&
-            (identical(other.finalMileage, finalMileage) ||
-                other.finalMileage == finalMileage) &&
-            (identical(other.damageReport, damageReport) ||
-                other.damageReport == damageReport) &&
-            (identical(other.notes, notes) || other.notes == notes) &&
             (identical(other.referralType, referralType) ||
                 other.referralType == referralType) &&
             (identical(other.creationDate, creationDate) ||
                 other.creationDate == creationDate) &&
-            (identical(other.hoursRented, hoursRented) ||
-                other.hoursRented == hoursRented) &&
-            (identical(other.rentalPrice, rentalPrice) ||
-                other.rentalPrice == rentalPrice) &&
             (identical(other.status, status) || other.status == status));
   }
 
@@ -536,6 +513,13 @@ class _$_Rental implements _Rental {
         employeeEmail,
         employeeName,
         employeePhoto,
+        const DeepCollectionEquality().hash(_assets),
+        initialMileage,
+        finalMileage,
+        damageReport,
+        notes,
+        hoursRented,
+        rentalPrice,
         clientId,
         clientName,
         clientHousing,
@@ -543,17 +527,8 @@ class _$_Rental implements _Rental {
         clientPhone,
         clientEmail,
         backupPhone,
-        assetId,
-        assetName,
-        assetPhoto,
-        initialMileage,
-        finalMileage,
-        damageReport,
-        notes,
         referralType,
         creationDate,
-        hoursRented,
-        rentalPrice,
         status
       ]);
 
@@ -578,31 +553,29 @@ abstract class _Rental implements Rental {
       required final String employeeEmail,
       final String? employeeName,
       final String? employeePhoto,
+      required final List<RentalAsset> assets,
+      final double? initialMileage,
+      final double? finalMileage,
+      final String? damageReport,
+      final String? notes,
+      required final int hoursRented,
+      required final double rentalPrice,
       required final String clientId,
       required final String clientName,
       required final String clientHousing,
       required final String clientDeposit,
       required final String clientPhone,
-      final String? clientEmail,
+      required final String clientEmail,
       final String? backupPhone,
-      required final String assetId,
-      required final String assetName,
-      final String? assetPhoto,
-      final double? initialMileage,
-      final double? finalMileage,
-      final String? damageReport,
-      final String? notes,
       final String? referralType,
       required final DateTime creationDate,
-      required final int hoursRented,
-      required final double rentalPrice,
       required final RentalStatus status}) = _$_Rental;
 
   factory _Rental.fromJson(Map<String, dynamic> json) = _$_Rental.fromJson;
 
   @override
   String? get id;
-  @override
+  @override //Employee Details
   String get employeeId;
   @override
   String get employeeEmail;
@@ -610,7 +583,21 @@ abstract class _Rental implements Rental {
   String? get employeeName;
   @override
   String? get employeePhoto;
+  @override //Rental Information
+  List<RentalAsset> get assets;
   @override
+  double? get initialMileage;
+  @override
+  double? get finalMileage;
+  @override
+  String? get damageReport;
+  @override
+  String? get notes;
+  @override
+  int get hoursRented;
+  @override
+  double get rentalPrice;
+  @override //Client Details
   String get clientId;
   @override
   String get clientName;
@@ -621,31 +608,13 @@ abstract class _Rental implements Rental {
   @override
   String get clientPhone;
   @override
-  String? get clientEmail;
-  @override
+  String get clientEmail;
+  @override //Rental Metadata
   String? get backupPhone;
-  @override
-  String get assetId;
-  @override
-  String get assetName;
-  @override
-  String? get assetPhoto;
-  @override
-  double? get initialMileage;
-  @override
-  double? get finalMileage;
-  @override
-  String? get damageReport;
-  @override
-  String? get notes;
   @override
   String? get referralType;
   @override
   DateTime get creationDate;
-  @override
-  int get hoursRented;
-  @override
-  double get rentalPrice;
   @override
   RentalStatus get status;
   @override
