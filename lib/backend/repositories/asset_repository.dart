@@ -10,13 +10,13 @@ import '../models/asset/asset.dart';
 
 abstract class AssetRepository {
   Stream<List<Map<String, dynamic>>> getAssets();
-  Stream<List<Map<String, dynamic>>> getAssetsByCategory(String categoryId);
+  Future<List<Map<String, dynamic>>> getAssetsByCategory(String categoryId);
   Stream<List<Map<String, dynamic>>> getAssetsOrderedByName();
-  Future<void> deleteAsset(String id);
-  Future<String> createAsset(Asset asset);
+  Future<void> delete(String id);
+  Future<String> create(Asset asset);
   Future<String> getImageUrl(String path);
   Future<String> uploadImage(String name, File image);
-  Future<void> deleteAssetImage(String imagePath);
+  Future<void> deleteImage(String imagePath);
 }
 
 class FirebaseAssetRepository implements AssetRepository {
@@ -26,7 +26,7 @@ class FirebaseAssetRepository implements AssetRepository {
   );
 
   @override
-  Future<String> createAsset(Asset asset) async {
+  Future<String> create(Asset asset) async {
     try {
       final res = await _ref.add(asset);
       return res.id;
@@ -37,15 +37,17 @@ class FirebaseAssetRepository implements AssetRepository {
   }
 
   @override
-  Future<void> deleteAsset(String id) {
-    // TODO: implement deleteAsset
-    throw UnimplementedError();
+  Future<void> delete(String id) {
+    return assetsRF.doc(id).delete();
   }
 
   @override
-  Future<void> deleteAssetImage(String imagePath) {
-    // TODO: implement deleteAssetImage
-    throw UnimplementedError();
+  Future<void> deleteImage(String imagePath) {
+    try {
+      return FirebaseStorage.instance.ref('$assetsFB/$imagePath').delete();
+    } on Exception catch (e) {
+      throw Failure(message: 'Could not delete image', exception: e);
+    }
   }
 
   @override
@@ -93,20 +95,15 @@ class FirebaseAssetRepository implements AssetRepository {
   }
 
   @override
-  Stream<List<Map<String, dynamic>>> getAssetsByCategory(String categoryId) {
+  Future<List<Map<String, dynamic>>> getAssetsByCategory(
+      String categoryId) async {
     try {
-      return assetsRF
-          .where('categoryId', isEqualTo: categoryId)
-          .snapshots()
-          .asyncMap(
-            (event) => event.docs.map(
-              (e) {
-                final doc = e.data();
-                doc['id'] = e.id;
-                return doc;
-              },
-            ).toList(),
-          );
+      var res = await assetsRF.where('categoryId', isEqualTo: categoryId).get();
+      return res.docs.map((e) {
+        final doc = e.data();
+        doc['id'] = e.id;
+        return doc;
+      }).toList();
     } on Exception catch (e) {
       throw Failure(message: 'Could get assets', exception: e);
     }

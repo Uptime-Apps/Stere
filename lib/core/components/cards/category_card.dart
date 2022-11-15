@@ -31,7 +31,7 @@ class CategoryImageCard extends ConsumerWidget {
         loading: () => const ShimmeringCard(),
         error: (_, stackTrace) {
           log(stackTrace.toString(), name: logName);
-          return Container(color: Colors.red);
+          return Container();
         },
       );
     } else {

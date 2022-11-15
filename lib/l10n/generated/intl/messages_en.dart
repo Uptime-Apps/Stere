@@ -32,30 +32,35 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m4(object) => "New ${object}";
 
-  static String m5(isPlural) =>
+  static String m5(hours) =>
+      "${Intl.plural(hours, one: '1 hour', other: '${hours} hours')}";
+
+  static String m6(isPlural) =>
       "${Intl.plural(isPlural, one: 'Rental', other: 'Rentals')}";
 
-  static String m6(object) => "Failed to create \"${object}\"";
+  static String m7(object) => "Failed to create \"${object}\"";
 
-  static String m7(object) => "Failed to delete \"${object}\"";
+  static String m8(object) => "Failed to delete \"${object}\"";
 
-  static String m8(object) => "Failed to update \"${object}\"";
+  static String m9(object) => "Failed to update \"${object}\"";
 
-  static String m9(status) => "${Intl.select(status, {
+  static String m10(status) => "${Intl.select(status, {
             'false': 'The form is missing information or has invalid data',
             'other': 'The form\'s information is valid',
           })}";
 
-  static String m10(itemLabel) => "You have no ${itemLabel} registered";
+  static String m11(itemLabel) => "You have no ${itemLabel} registered";
 
-  static String m11(object) => "Created \"${object}\" successfully";
+  static String m12(object) => "Created \"${object}\" successfully";
 
-  static String m12(object) => "Deleted \"${object}\" successfully";
+  static String m13(object) => "Deleted \"${object}\" successfully";
 
-  static String m13(object) => "Updated \"${object}\" successfully";
+  static String m14(object) => "Updated \"${object}\" successfully";
 
-  static String m14(email) =>
+  static String m15(email) =>
       "Before you begin, please verify your account. Send verification email to ${email}";
+
+  static String m16(price) => "${price}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -72,18 +77,23 @@ class MessageLookup extends MessageLookupByLibrary {
             "There was an error in the server"),
         "emTagRequired":
             MessageLookupByLibrary.simpleMessage("A tag is required"),
+        "exClientBackupPhone": MessageLookupByLibrary.simpleMessage(
+            "Hotel, AirBnB, family member..."),
         "ilPrice": MessageLookupByLibrary.simpleMessage("Price"),
         "lblAssets": m2,
         "lblCancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "lblCategories": m3,
-        "lblClientDeposit":
-            MessageLookupByLibrary.simpleMessage("Client Deposit"),
+        "lblClientBackupPhone":
+            MessageLookupByLibrary.simpleMessage("Backup Phone"),
+        "lblClientDeposit": MessageLookupByLibrary.simpleMessage("Deposit"),
         "lblClientDepositIdentification":
             MessageLookupByLibrary.simpleMessage("Identification"),
         "lblClientDepositPassport":
             MessageLookupByLibrary.simpleMessage("Passport"),
         "lblClientHousing": MessageLookupByLibrary.simpleMessage("Housing"),
-        "lblClientName": MessageLookupByLibrary.simpleMessage("Client Name"),
+        "lblClientId":
+            MessageLookupByLibrary.simpleMessage("Identification number"),
+        "lblClientName": MessageLookupByLibrary.simpleMessage("Name"),
         "lblClientPhone": MessageLookupByLibrary.simpleMessage("Phone"),
         "lblConfirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "lblCreateNew": MessageLookupByLibrary.simpleMessage("Create one!"),
@@ -97,7 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Final Mileage"),
         "lblHistory": MessageLookupByLibrary.simpleMessage("History"),
         "lblHome": MessageLookupByLibrary.simpleMessage("Home"),
-        "lblHours": MessageLookupByLibrary.simpleMessage("Hours"),
+        "lblHours": m5,
         "lblInitialMileage":
             MessageLookupByLibrary.simpleMessage("Initial Mileage"),
         "lblLogout": MessageLookupByLibrary.simpleMessage("Log out"),
@@ -108,8 +118,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblNotifications":
             MessageLookupByLibrary.simpleMessage("Notifications"),
         "lblPrice": MessageLookupByLibrary.simpleMessage("Price"),
-        "lblRentals": m5,
+        "lblRentals": m6,
         "lblSave": MessageLookupByLibrary.simpleMessage("Save"),
+        "lblSelectedAssets":
+            MessageLookupByLibrary.simpleMessage("Selected Assets"),
         "lblSend": MessageLookupByLibrary.simpleMessage("Send"),
         "lblSettings": MessageLookupByLibrary.simpleMessage("Settings"),
         "lblTags": MessageLookupByLibrary.simpleMessage("Tags"),
@@ -117,23 +129,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "msgAreYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "msgAutomotive": MessageLookupByLibrary.simpleMessage(
             "Click if the category contains automotive items"),
-        "msgFailedCreateObject": m6,
-        "msgFailedDeleteObject": m7,
-        "msgFailedUpdateObject": m8,
-        "msgFormStatus": m9,
+        "msgFailedCreateObject": m7,
+        "msgFailedDeleteObject": m8,
+        "msgFailedUpdateObject": m9,
+        "msgFormStatus": m10,
         "msgMissingCategory": MessageLookupByLibrary.simpleMessage(
             "To select a tag, pick a category"),
-        "msgNoRegisters": m10,
+        "msgNoInformation":
+            MessageLookupByLibrary.simpleMessage("No information"),
+        "msgNoRegisters": m11,
         "msgNothingToSee":
             MessageLookupByLibrary.simpleMessage("Nothing to see here"),
         "msgPageNotFound":
             MessageLookupByLibrary.simpleMessage("Page not found"),
         "msgRegisteredSuccessfully":
             MessageLookupByLibrary.simpleMessage("Registered successfully"),
-        "msgSuccessCreateObject": m11,
-        "msgSuccessDeleteObject": m12,
-        "msgSuccessUpdateObject": m13,
-        "msgVerifyEmail": m14,
+        "msgSuccessCreateObject": m12,
+        "msgSuccessDeleteObject": m13,
+        "msgSuccessUpdateObject": m14,
+        "msgVerifyEmail": m15,
         "msgWarningDeleteCategory": MessageLookupByLibrary.simpleMessage(
             "This will delete the category and all its assets. You won\'t be able to undo this action."),
         "msgWelcome": MessageLookupByLibrary.simpleMessage("Welcome to Stere"),
@@ -142,6 +156,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "optIdentification":
             MessageLookupByLibrary.simpleMessage("Identification"),
         "optPassport": MessageLookupByLibrary.simpleMessage("Passport"),
+        "priceFormat": m16,
         "stActiveRentals":
             MessageLookupByLibrary.simpleMessage("Active Rentals"),
         "stVerifyEmail": MessageLookupByLibrary.simpleMessage("Verify Email"),

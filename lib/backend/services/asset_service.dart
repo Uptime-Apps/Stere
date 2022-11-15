@@ -11,11 +11,11 @@ import '../repositories/asset_repository.dart';
 
 abstract class AssetService {
   Stream<List<Asset>>? getAssets();
-  Stream<List<Asset>>? getAssetsByCategory(String id);
+  Future<List<Asset>?> getAssetsByCategory(String id);
   Stream<List<Asset>>? getAssetsOrderedByName();
   Future<String?> getImageUrl(Asset asset);
-  Future<String?> createAsset(Asset asset, File? image);
-  Future<String?> deleteAsset(Asset asset);
+  Future<String?> create(Asset asset, File? image);
+  Future<void> delete(Asset asset);
 }
 
 class FirebaseAssetService implements AssetService {
@@ -24,7 +24,7 @@ class FirebaseAssetService implements AssetService {
   final String logName = '$assetsFB.service';
 
   @override
-  Future<String?> createAsset(Asset asset, File? image) async {
+  Future<String?> create(Asset asset, File? image) async {
     if (image != null) {
       final uid = FirebaseAuth.instance.currentUser?.uid;
       final extension = image.path.split('.').last;
@@ -36,14 +36,23 @@ class FirebaseAssetService implements AssetService {
       );
       asset = asset.copyWith(imagePath: imagePath);
     }
-    final newId = await _assetRepository.createAsset(asset);
+    final newId = await _assetRepository.create(asset);
     return newId;
   }
 
   @override
-  Future<String?> deleteAsset(Asset asset) {
-    // TODO: implement deleteAsset
-    throw UnimplementedError();
+  Future<void> delete(Asset asset) async {
+    final id = asset.id!;
+    // delete image
+    if (asset.imagePath != null) {
+      final imagePath =
+          Uri.decodeFull(asset.imagePath!.split('?').first.split('/').last);
+      await _assetRepository.deleteImage(imagePath).whenComplete(() => log(
+          'Deleted image successfuly: ${asset.imagePath}',
+          name: logName,
+          level: 1));
+    }
+    return _assetRepository.delete(id);
   }
 
   Stream<List<Asset>>? mapAssets(Stream<List<Map<String, dynamic>>> documents) {
@@ -86,9 +95,10 @@ class FirebaseAssetService implements AssetService {
   }
 
   @override
-  Stream<List<Asset>>? getAssetsByCategory(String categoryId) {
+  Future<List<Asset>?> getAssetsByCategory(String categoryId) async {
     try {
-      mapAssets(_assetRepository.getAssetsByCategory(categoryId));
+      var res = await _assetRepository.getAssetsByCategory(categoryId);
+      return res.map((e) => Asset.fromJson(e)).toList();
     } on Failure catch (e) {
       log(e.message, name: logName);
     }

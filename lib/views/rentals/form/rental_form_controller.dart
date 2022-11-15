@@ -1,20 +1,28 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../backend/models/asset/asset.dart';
+import '../../../backend/models/rental/rental.dart';
 import '../../../backend/models/status/rental_status.dart';
 import '../../../backend/services/asset_service.dart';
+import '../../../backend/services/rental_service.dart';
 import '../../../core/components/others/filled_button.dart';
 import '../../../l10n/generated/l10n.dart';
+import '../../../utils/snackbar.dart';
 import 'rental_form_state.dart';
 
 class RentalFormController extends StateNotifier<RentalFormState> {
-  RentalFormController(RentalFormState state, {required this.assetService})
+  static const logName = 'rental-form-controller';
+  RentalFormController(RentalFormState state,
+      {required this.service, required this.assetService})
       : super(state) {
     load();
   }
 
+  final RentalService service;
   final AssetService assetService;
 
   void load() {
@@ -22,9 +30,45 @@ class RentalFormController extends StateNotifier<RentalFormState> {
         assets: AsyncValue.data(assetService.getAssetsOrderedByName()));
   }
 
-  void nextStep() {
-    state = state.copyWith(currentStep: state.currentStep + 1);
-    validateForm();
+  Future<void> nextStep(BuildContext context) async {
+    if (state.currentStep < 3) {
+      validateForm();
+      state = state.copyWith(currentStep: state.currentStep + 1);
+    } else {
+      validateForm();
+      log('here to submit', name: logName);
+      final Asset asset = state.chosenAsset.value!;
+      final User currentUser = FirebaseAuth.instance.currentUser!;
+      Rental rental = Rental(
+        backupPhone: state.backupPhoneController.text,
+        clientDeposit: state.clientDeposit.value!,
+        clientHousing: state.clientHousingController.text,
+        clientId: state.clientIdController.text,
+        clientName: state.clientNameController.text,
+        clientPhone: state.clientPhoneController.text,
+        damageReport: state.damageReportController.text,
+        hoursRented: state.hoursRented ?? 4,
+        initialMileage: (state.chosenAsset.value!.isAutomotive)
+            ? double.parse(state.initialMileageController.text)
+            : null,
+        notes: state.notesController.text,
+        referralType: state.referralType.value?.name,
+        rentalPrice: double.parse(state.rentalPriceController.text),
+        status: RentalStatus.active,
+        assetId: asset.id!,
+        assetName: asset.name,
+        assetPhoto: asset.imagePath,
+        creationDate: DateTime.now(),
+        employeeId: currentUser.uid,
+        employeeEmail: currentUser.email!,
+        employeeName: currentUser.displayName,
+        employeePhoto: currentUser.photoURL,
+      );
+      await service.create(rental);
+      Navigator.of(context).pop();
+      showSimpleSnackbar(
+          S.current.msgSuccessCreateObject(S.current.lblRentals(1)));
+    }
   }
 
   void setStep(int step) {
@@ -73,8 +117,10 @@ class RentalFormController extends StateNotifier<RentalFormState> {
     bool housing = state.clientHousingController.text.isNotEmpty;
     bool name = state.clientNameController.text.isNotEmpty;
     bool phone = state.clientPhoneController.text.isNotEmpty;
+    bool backupPhone = state.backupPhoneController.text.isNotEmpty;
     bool deposit = state.clientDeposit.value != null;
-    return housing && deposit && name && phone;
+    bool id = state.clientIdController.value.text.isNotEmpty;
+    return name && id && deposit && housing && phone && backupPhone;
   }
 
   String validateForm() {
@@ -131,6 +177,7 @@ final rentalFormControllerProvider =
         backupPhoneController: TextEditingController(),
         chosenAsset: const AsyncValue.loading(),
         clientDeposit: const AsyncValue.loading(),
+        clientIdController: TextEditingController(),
         clientHousingController: TextEditingController(),
         clientNameController: TextEditingController(),
         clientPhoneController: TextEditingController(),
@@ -146,5 +193,6 @@ final rentalFormControllerProvider =
         result: AsyncValue.data(S.current.lblSave),
         status: RentalStatus.active,
       ),
-      assetService: ref.watch(assetServiceProvider));
+      assetService: ref.watch(assetServiceProvider),
+      service: ref.watch(rentalServiceProvider));
 });

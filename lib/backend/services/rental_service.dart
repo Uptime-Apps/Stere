@@ -1,16 +1,14 @@
 import 'dart:developer';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/failure.dart';
 import '../firebase_references.dart';
-import '../models/asset/asset.dart';
 import '../models/rental/rental.dart';
 import '../repositories/rental_repository.dart';
 
 abstract class RentalService {
-  Future<String?> create(Rental object, Asset asset);
+  Future<String?> create(Rental object);
   void update(Rental object);
   void delete(Rental object);
   Stream<List<Rental>>? getAll();
@@ -23,17 +21,8 @@ class FirebaseRentalService implements RentalService {
   final String logName = '$rentalsFB.service';
 
   @override
-  Future<String?> create(Rental object, Asset asset) async {
-    User currentUser = FirebaseAuth.instance.currentUser!;
-    final newId = await _repository.create(object.copyWith(
-      assetId: asset.id!,
-      assetName: asset.name,
-      assetPhoto: asset.imagePath,
-      employeeId: currentUser.uid,
-      employeeEmail: currentUser.email!,
-      employeeName: currentUser.displayName,
-      employeePhoto: currentUser.photoURL,
-    ));
+  Future<String?> create(Rental object) async {
+    final newId = await _repository.create(object);
     return newId;
   }
 

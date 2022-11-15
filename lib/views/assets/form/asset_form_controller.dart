@@ -79,7 +79,7 @@ class AssetFormController extends StateNotifier<AssetFormState> {
       state = state.copyWith(result: const AsyncValue.loading());
       final category = state.chosenCategory.value;
       if (category != null) {
-        final result = await assetService.createAsset(
+        final result = await assetService.create(
           Asset(
             creationDate: DateTime.now(),
             name: state.nameController.text,
@@ -95,11 +95,11 @@ class AssetFormController extends StateNotifier<AssetFormState> {
         final lang = S.current;
         if (result?.isEmpty ?? true) {
           showSimpleSnackbar(
-              context, lang.msgFailedCreateObject(state.nameController.text));
+              lang.msgFailedCreateObject(state.nameController.text));
         } else {
-          Navigator.of(context).pop();
           showSimpleSnackbar(
-              context, lang.msgSuccessCreateObject(state.nameController.text));
+              lang.msgSuccessCreateObject(state.nameController.text));
+          Navigator.of(context).pop();
         }
       } else {
         state =

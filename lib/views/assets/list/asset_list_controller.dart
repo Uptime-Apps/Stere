@@ -18,8 +18,8 @@ class AssetListController extends StateNotifier<AssetListState> {
     }
   }
 
-  Future<String?> deleteAsset(Asset asset) {
-    return _service.deleteAsset(asset);
+  Future<void> deleteAsset(Asset asset) {
+    return _service.delete(asset);
   }
 }
 

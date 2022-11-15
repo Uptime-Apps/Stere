@@ -101,6 +101,7 @@ class _ClickableCategoryCard extends State<ClickableCategoryCard> {
               break;
             case 1:
               showDialog(
+                // add the key from the home screen
                 context: context,
                 builder: (context) => DeleteCategoryDialog(widget.category),
               );
@@ -136,11 +137,9 @@ class DeleteCategoryDialog extends ConsumerWidget {
         final result = await ref
             .read(homeControllerProvider.notifier)
             .deleteCategory(category);
-        showSimpleSnackbar(
-            context,
-            (result == null)
-                ? lang.msgFailedDeleteObject(lang.lblCategories(1))
-                : lang.msgSuccessDeleteObject(category.name));
+        showSimpleSnackbar((result == null)
+            ? lang.msgFailedDeleteObject(lang.lblCategories(1))
+            : lang.msgSuccessDeleteObject(category.name));
       },
       icon: Icons.delete,
       content: S.of(context).msgWarningDeleteCategory,

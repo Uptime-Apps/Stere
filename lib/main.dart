@@ -26,11 +26,14 @@ Future<void> main() async {
 
 class StereApp extends StatelessWidget {
   const StereApp({super.key});
+  static GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
+
   @override
   Widget build(BuildContext context) {
     AppTheme appTheme = AppTheme(context);
     return DynamicColorBuilder(
       builder: (lightColorScheme, darkColorScheme) => MaterialApp(
+        navigatorKey: navKey,
         onGenerateTitle: (context) => S.of(context).appName,
         theme: appTheme.light(lightColorScheme),
         // darkTheme: appTheme.dark(darkColorScheme),

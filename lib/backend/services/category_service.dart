@@ -9,6 +9,7 @@ import '../../l10n/generated/l10n.dart';
 import '../firebase_references.dart';
 import '../models/category/category.dart';
 import '../repositories/category_repository.dart';
+import 'asset_service.dart';
 
 abstract class CategoryService {
   Stream<List<Category>>? getCategories();
@@ -19,8 +20,9 @@ abstract class CategoryService {
 }
 
 class FirebaseCategoryService implements CategoryService {
-  FirebaseCategoryService(this._categoryRepository);
+  FirebaseCategoryService(this._categoryRepository, this._assetService);
   final CategoryRepository _categoryRepository;
+  final AssetService _assetService;
   final String logName = '$categoriesFB.service';
 
   Stream<List<Category>>? mapCategories(
@@ -69,15 +71,42 @@ class FirebaseCategoryService implements CategoryService {
   @override
   Future<String?> deleteCategory(Category category) async {
     try {
+      final id = category.id!;
+      // get assets from this category
+      var assets = await _assetService.getAssetsByCategory(id);
+      // delete assets if there are any
+      final String categoryLD = '${category.name} [${category.id}]';
+      if (assets?.isNotEmpty ?? false) {
+        for (var e in assets!) {
+          await _assetService.delete(e).whenComplete(() => log(
+              'Deleted Asset ${e.id} (${e.name}) from Category $categoryLD',
+              name: logName));
+        }
+      }
+      // delete image
       if (category.imagePath != null) {
         final imagePath = Uri.decodeFull(
             category.imagePath!.split('?').first.split('/').last);
-        await _categoryRepository.deleteCategoryImage(imagePath).whenComplete(
-            () => log('Deleted image successfulyy: ${category.imagePath}',
-                name: logName, level: 1));
+        await _categoryRepository.deleteImage(imagePath).whenComplete(() => log(
+            'Deleted image successfuly: ${category.imagePath}',
+            name: logName,
+            level: 1));
       }
-      await _categoryRepository.deleteCategory(category.id!).whenComplete(
-          () => log('Deleted category successfully: ${category.id}'));
+      await _categoryRepository
+          .deleteCategory(id)
+          .then(
+            (_) => log(
+                '${S.current.msgSuccessDeleteObject(S.current.lblCategories(1))}: $categoryLD',
+                name: logName),
+          )
+          .onError(
+            (error, stackTrace) => log(
+              '${S.current.msgFailedDeleteObject(S.current.lblCategories(1))}: $categoryLD',
+              error: error,
+              stackTrace: stackTrace,
+              name: logName,
+            ),
+          );
       return S.current.msgSuccessDeleteObject(category.name);
     } on Failure catch (e) {
       log(e.message, name: logName);
@@ -101,5 +130,6 @@ class FirebaseCategoryService implements CategoryService {
 
 final categoryServiceProvider = Provider<CategoryService>((ref) {
   final categoryRepository = ref.watch(categoryRepositoryProvider);
-  return FirebaseCategoryService(categoryRepository);
+  final assetService = ref.watch(assetServiceProvider);
+  return FirebaseCategoryService(categoryRepository, assetService);
 });

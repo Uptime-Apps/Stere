@@ -11,6 +11,7 @@ class NumericInputField extends StatelessWidget {
     required this.controller,
     this.errorText,
     this.label,
+    this.helperText,
     this.validator,
     this.onChanged,
     this.onEditingComplete,
@@ -20,6 +21,7 @@ class NumericInputField extends StatelessWidget {
 
   final String? errorText;
   final String? label;
+  final String? helperText;
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final String? Function(String?)? onChanged;
@@ -41,6 +43,7 @@ class NumericInputField extends StatelessWidget {
         prefixIcon: Icon(icon),
         errorText: errorText,
         label: label != null ? Text(label!) : null,
+        helperText: helperText,
       ),
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       validator: validator,

@@ -41,7 +41,7 @@ class StepRentalInformation extends ConsumerWidget {
         },
         validator: (value) =>
             (value == null) ? S.of(context).emFieldRequired : null,
-        hint: '${S.of(context).lblHours}*',
+        hint: '${S.of(context).lblHours(0)}*',
       ),
       NumericInputField(
         onChanged: (_) => notifier.validateForm(),
@@ -79,8 +79,8 @@ class StepRentalInformation extends ConsumerWidget {
   List<DropdownMenuItem<int>> getHourOptions(BuildContext context) {
     const hourOptions = [4, 8];
     return hourOptions
-        .map((e) => DropdownMenuItem(
-            value: e, child: Text('${e.toString()} ${S.of(context).lblHours}')))
+        .map((e) =>
+            DropdownMenuItem(value: e, child: Text(S.of(context).lblHours(e))))
         .toList();
   }
 }

@@ -30,11 +30,11 @@ class FirebaseRentalRepository implements RentalRepository {
     try {
       final res = await _ref.add(object).then(
         (doc) {
-          log(S.current.msgSuccessUpdateObject(objName), name: logName);
+          log(S.current.msgSuccessCreateObject(objName), name: logName);
           return doc;
         },
         onError: ((error, stackTrace) => log(
-              S.current.msgFailedUpdateObject(objName),
+              S.current.msgFailedCreateObject(objName),
               name: logName,
               error: error,
               stackTrace: stackTrace,

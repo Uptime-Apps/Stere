@@ -13,7 +13,7 @@ abstract class CategoryRepository {
   Future<String> getImageUrl(String path);
   Future<String> uploadImage(String name, File image);
   Future<void> deleteCategory(String id);
-  Future<void> deleteCategoryImage(String imagePath);
+  Future<void> deleteImage(String imagePath);
   Stream<List<Map<String, dynamic>>> getCategories();
   Stream<List<Map<String, dynamic>>> getCategoriesOrderedByName();
 }
@@ -56,7 +56,7 @@ class FirebaseCategoryRepository implements CategoryRepository {
   }
 
   @override
-  Future<void> deleteCategoryImage(String imagePath) {
+  Future<void> deleteImage(String imagePath) {
     try {
       return FirebaseStorage.instance.ref('$categoriesFB/$imagePath').delete();
     } on Exception catch (e) {

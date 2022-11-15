@@ -60,7 +60,7 @@ class RentalFormStepper extends ConsumerWidget {
         ),
       ],
       currentStep: prov.currentStep,
-      onStepContinue: () => notifier.nextStep(),
+      onStepContinue: () => notifier.nextStep(context),
       onStepCancel: () => notifier.cancelStep(context),
       steps: [
         Step(

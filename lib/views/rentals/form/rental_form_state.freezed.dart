@@ -19,11 +19,10 @@ mixin _$RentalFormState {
   int get currentStep => throw _privateConstructorUsedError;
   bool get validForm => throw _privateConstructorUsedError;
   String? get assetPhoto => throw _privateConstructorUsedError;
-  String? get clientId => throw _privateConstructorUsedError;
   String? get employeePhoto => throw _privateConstructorUsedError;
   int? get hoursRented => throw _privateConstructorUsedError;
   AsyncValue<Asset> get chosenAsset => throw _privateConstructorUsedError;
-  AsyncValue<ReferralType> get referralType =>
+  AsyncValue<ReferralType?> get referralType =>
       throw _privateConstructorUsedError;
   AsyncValue<Stream<List<Asset>>?> get assets =>
       throw _privateConstructorUsedError;
@@ -37,6 +36,8 @@ mixin _$RentalFormState {
   TextEditingController get backupPhoneController =>
       throw _privateConstructorUsedError;
   TextEditingController get clientHousingController =>
+      throw _privateConstructorUsedError;
+  TextEditingController get clientIdController =>
       throw _privateConstructorUsedError;
   TextEditingController get clientNameController =>
       throw _privateConstructorUsedError;
@@ -68,11 +69,10 @@ abstract class $RentalFormStateCopyWith<$Res> {
       {int currentStep,
       bool validForm,
       String? assetPhoto,
-      String? clientId,
       String? employeePhoto,
       int? hoursRented,
       AsyncValue<Asset> chosenAsset,
-      AsyncValue<ReferralType> referralType,
+      AsyncValue<ReferralType?> referralType,
       AsyncValue<Stream<List<Asset>>?> assets,
       AsyncValue<String> clientDeposit,
       AsyncValue<String> result,
@@ -83,6 +83,7 @@ abstract class $RentalFormStateCopyWith<$Res> {
       String employeeName,
       TextEditingController backupPhoneController,
       TextEditingController clientHousingController,
+      TextEditingController clientIdController,
       TextEditingController clientNameController,
       TextEditingController clientPhoneController,
       TextEditingController damageReportController,
@@ -108,7 +109,6 @@ class _$RentalFormStateCopyWithImpl<$Res, $Val extends RentalFormState>
     Object? currentStep = null,
     Object? validForm = null,
     Object? assetPhoto = freezed,
-    Object? clientId = freezed,
     Object? employeePhoto = freezed,
     Object? hoursRented = freezed,
     Object? chosenAsset = null,
@@ -123,6 +123,7 @@ class _$RentalFormStateCopyWithImpl<$Res, $Val extends RentalFormState>
     Object? employeeName = null,
     Object? backupPhoneController = null,
     Object? clientHousingController = null,
+    Object? clientIdController = null,
     Object? clientNameController = null,
     Object? clientPhoneController = null,
     Object? damageReportController = null,
@@ -144,10 +145,6 @@ class _$RentalFormStateCopyWithImpl<$Res, $Val extends RentalFormState>
           ? _value.assetPhoto
           : assetPhoto // ignore: cast_nullable_to_non_nullable
               as String?,
-      clientId: freezed == clientId
-          ? _value.clientId
-          : clientId // ignore: cast_nullable_to_non_nullable
-              as String?,
       employeePhoto: freezed == employeePhoto
           ? _value.employeePhoto
           : employeePhoto // ignore: cast_nullable_to_non_nullable
@@ -163,7 +160,7 @@ class _$RentalFormStateCopyWithImpl<$Res, $Val extends RentalFormState>
       referralType: null == referralType
           ? _value.referralType
           : referralType // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<ReferralType>,
+              as AsyncValue<ReferralType?>,
       assets: null == assets
           ? _value.assets
           : assets // ignore: cast_nullable_to_non_nullable
@@ -203,6 +200,10 @@ class _$RentalFormStateCopyWithImpl<$Res, $Val extends RentalFormState>
       clientHousingController: null == clientHousingController
           ? _value.clientHousingController
           : clientHousingController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
+      clientIdController: null == clientIdController
+          ? _value.clientIdController
+          : clientIdController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
       clientNameController: null == clientNameController
           ? _value.clientNameController
@@ -248,11 +249,10 @@ abstract class _$$_RentalFormStateCopyWith<$Res>
       {int currentStep,
       bool validForm,
       String? assetPhoto,
-      String? clientId,
       String? employeePhoto,
       int? hoursRented,
       AsyncValue<Asset> chosenAsset,
-      AsyncValue<ReferralType> referralType,
+      AsyncValue<ReferralType?> referralType,
       AsyncValue<Stream<List<Asset>>?> assets,
       AsyncValue<String> clientDeposit,
       AsyncValue<String> result,
@@ -263,6 +263,7 @@ abstract class _$$_RentalFormStateCopyWith<$Res>
       String employeeName,
       TextEditingController backupPhoneController,
       TextEditingController clientHousingController,
+      TextEditingController clientIdController,
       TextEditingController clientNameController,
       TextEditingController clientPhoneController,
       TextEditingController damageReportController,
@@ -286,7 +287,6 @@ class __$$_RentalFormStateCopyWithImpl<$Res>
     Object? currentStep = null,
     Object? validForm = null,
     Object? assetPhoto = freezed,
-    Object? clientId = freezed,
     Object? employeePhoto = freezed,
     Object? hoursRented = freezed,
     Object? chosenAsset = null,
@@ -301,6 +301,7 @@ class __$$_RentalFormStateCopyWithImpl<$Res>
     Object? employeeName = null,
     Object? backupPhoneController = null,
     Object? clientHousingController = null,
+    Object? clientIdController = null,
     Object? clientNameController = null,
     Object? clientPhoneController = null,
     Object? damageReportController = null,
@@ -322,10 +323,6 @@ class __$$_RentalFormStateCopyWithImpl<$Res>
           ? _value.assetPhoto
           : assetPhoto // ignore: cast_nullable_to_non_nullable
               as String?,
-      clientId: freezed == clientId
-          ? _value.clientId
-          : clientId // ignore: cast_nullable_to_non_nullable
-              as String?,
       employeePhoto: freezed == employeePhoto
           ? _value.employeePhoto
           : employeePhoto // ignore: cast_nullable_to_non_nullable
@@ -341,7 +338,7 @@ class __$$_RentalFormStateCopyWithImpl<$Res>
       referralType: null == referralType
           ? _value.referralType
           : referralType // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<ReferralType>,
+              as AsyncValue<ReferralType?>,
       assets: null == assets
           ? _value.assets
           : assets // ignore: cast_nullable_to_non_nullable
@@ -382,6 +379,10 @@ class __$$_RentalFormStateCopyWithImpl<$Res>
           ? _value.clientHousingController
           : clientHousingController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
+      clientIdController: null == clientIdController
+          ? _value.clientIdController
+          : clientIdController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
       clientNameController: null == clientNameController
           ? _value.clientNameController
           : clientNameController // ignore: cast_nullable_to_non_nullable
@@ -421,7 +422,6 @@ class _$_RentalFormState implements _RentalFormState {
       {this.currentStep = 0,
       this.validForm = false,
       this.assetPhoto,
-      this.clientId,
       this.employeePhoto,
       this.hoursRented,
       required this.chosenAsset,
@@ -436,6 +436,7 @@ class _$_RentalFormState implements _RentalFormState {
       required this.employeeName,
       required this.backupPhoneController,
       required this.clientHousingController,
+      required this.clientIdController,
       required this.clientNameController,
       required this.clientPhoneController,
       required this.damageReportController,
@@ -453,15 +454,13 @@ class _$_RentalFormState implements _RentalFormState {
   @override
   final String? assetPhoto;
   @override
-  final String? clientId;
-  @override
   final String? employeePhoto;
   @override
   final int? hoursRented;
   @override
   final AsyncValue<Asset> chosenAsset;
   @override
-  final AsyncValue<ReferralType> referralType;
+  final AsyncValue<ReferralType?> referralType;
   @override
   final AsyncValue<Stream<List<Asset>>?> assets;
   @override
@@ -483,6 +482,8 @@ class _$_RentalFormState implements _RentalFormState {
   @override
   final TextEditingController clientHousingController;
   @override
+  final TextEditingController clientIdController;
+  @override
   final TextEditingController clientNameController;
   @override
   final TextEditingController clientPhoneController;
@@ -499,7 +500,7 @@ class _$_RentalFormState implements _RentalFormState {
 
   @override
   String toString() {
-    return 'RentalFormState(currentStep: $currentStep, validForm: $validForm, assetPhoto: $assetPhoto, clientId: $clientId, employeePhoto: $employeePhoto, hoursRented: $hoursRented, chosenAsset: $chosenAsset, referralType: $referralType, assets: $assets, clientDeposit: $clientDeposit, result: $result, creationDate: $creationDate, formKey: $formKey, status: $status, employeeId: $employeeId, employeeName: $employeeName, backupPhoneController: $backupPhoneController, clientHousingController: $clientHousingController, clientNameController: $clientNameController, clientPhoneController: $clientPhoneController, damageReportController: $damageReportController, finalMileageController: $finalMileageController, initialMileageController: $initialMileageController, notesController: $notesController, rentalPriceController: $rentalPriceController)';
+    return 'RentalFormState(currentStep: $currentStep, validForm: $validForm, assetPhoto: $assetPhoto, employeePhoto: $employeePhoto, hoursRented: $hoursRented, chosenAsset: $chosenAsset, referralType: $referralType, assets: $assets, clientDeposit: $clientDeposit, result: $result, creationDate: $creationDate, formKey: $formKey, status: $status, employeeId: $employeeId, employeeName: $employeeName, backupPhoneController: $backupPhoneController, clientHousingController: $clientHousingController, clientIdController: $clientIdController, clientNameController: $clientNameController, clientPhoneController: $clientPhoneController, damageReportController: $damageReportController, finalMileageController: $finalMileageController, initialMileageController: $initialMileageController, notesController: $notesController, rentalPriceController: $rentalPriceController)';
   }
 
   @override
@@ -513,8 +514,6 @@ class _$_RentalFormState implements _RentalFormState {
                 other.validForm == validForm) &&
             (identical(other.assetPhoto, assetPhoto) ||
                 other.assetPhoto == assetPhoto) &&
-            (identical(other.clientId, clientId) ||
-                other.clientId == clientId) &&
             (identical(other.employeePhoto, employeePhoto) ||
                 other.employeePhoto == employeePhoto) &&
             (identical(other.hoursRented, hoursRented) ||
@@ -540,6 +539,8 @@ class _$_RentalFormState implements _RentalFormState {
             (identical(
                     other.clientHousingController, clientHousingController) ||
                 other.clientHousingController == clientHousingController) &&
+            (identical(other.clientIdController, clientIdController) ||
+                other.clientIdController == clientIdController) &&
             (identical(other.clientNameController, clientNameController) ||
                 other.clientNameController == clientNameController) &&
             (identical(other.clientPhoneController, clientPhoneController) ||
@@ -563,7 +564,6 @@ class _$_RentalFormState implements _RentalFormState {
         currentStep,
         validForm,
         assetPhoto,
-        clientId,
         employeePhoto,
         hoursRented,
         chosenAsset,
@@ -578,6 +578,7 @@ class _$_RentalFormState implements _RentalFormState {
         employeeName,
         backupPhoneController,
         clientHousingController,
+        clientIdController,
         clientNameController,
         clientPhoneController,
         damageReportController,
@@ -599,11 +600,10 @@ abstract class _RentalFormState implements RentalFormState {
           {final int currentStep,
           final bool validForm,
           final String? assetPhoto,
-          final String? clientId,
           final String? employeePhoto,
           final int? hoursRented,
           required final AsyncValue<Asset> chosenAsset,
-          required final AsyncValue<ReferralType> referralType,
+          required final AsyncValue<ReferralType?> referralType,
           required final AsyncValue<Stream<List<Asset>>?> assets,
           required final AsyncValue<String> clientDeposit,
           required final AsyncValue<String> result,
@@ -614,6 +614,7 @@ abstract class _RentalFormState implements RentalFormState {
           required final String employeeName,
           required final TextEditingController backupPhoneController,
           required final TextEditingController clientHousingController,
+          required final TextEditingController clientIdController,
           required final TextEditingController clientNameController,
           required final TextEditingController clientPhoneController,
           required final TextEditingController damageReportController,
@@ -630,15 +631,13 @@ abstract class _RentalFormState implements RentalFormState {
   @override
   String? get assetPhoto;
   @override
-  String? get clientId;
-  @override
   String? get employeePhoto;
   @override
   int? get hoursRented;
   @override
   AsyncValue<Asset> get chosenAsset;
   @override
-  AsyncValue<ReferralType> get referralType;
+  AsyncValue<ReferralType?> get referralType;
   @override
   AsyncValue<Stream<List<Asset>>?> get assets;
   @override
@@ -659,6 +658,8 @@ abstract class _RentalFormState implements RentalFormState {
   TextEditingController get backupPhoneController;
   @override
   TextEditingController get clientHousingController;
+  @override
+  TextEditingController get clientIdController;
   @override
   TextEditingController get clientNameController;
   @override

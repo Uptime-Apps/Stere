@@ -47,12 +47,12 @@ class CategoryFormController extends StateNotifier<CategoryFormState> {
       );
       if (!mounted) return;
       if (result?.isEmpty ?? true) {
-        showSimpleSnackbar(context,
+        showSimpleSnackbar(
             S.current.msgFailedCreateObject(state.nameController.text));
       } else {
         state = state.copyWith(result: AsyncValue.data(result!));
         Navigator.of(context).pop();
-        showSimpleSnackbar(context,
+        showSimpleSnackbar(
             S.of(context).msgSuccessCreateObject(state.nameController.text));
       }
     }

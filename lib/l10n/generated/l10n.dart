@@ -130,6 +130,16 @@ class S {
     );
   }
 
+  /// `Hotel, AirBnB, family member...`
+  String get exClientBackupPhone {
+    return Intl.message(
+      'Hotel, AirBnB, family member...',
+      name: 'exClientBackupPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Price`
   String get ilPrice {
     return Intl.message(
@@ -174,10 +184,20 @@ class S {
     );
   }
 
-  /// `Client Deposit`
+  /// `Backup Phone`
+  String get lblClientBackupPhone {
+    return Intl.message(
+      'Backup Phone',
+      name: 'lblClientBackupPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deposit`
   String get lblClientDeposit {
     return Intl.message(
-      'Client Deposit',
+      'Deposit',
       name: 'lblClientDeposit',
       desc: '',
       args: [],
@@ -214,10 +234,20 @@ class S {
     );
   }
 
-  /// `Client Name`
+  /// `Identification number`
+  String get lblClientId {
+    return Intl.message(
+      'Identification number',
+      name: 'lblClientId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
   String get lblClientName {
     return Intl.message(
-      'Client Name',
+      'Name',
       name: 'lblClientName',
       desc: '',
       args: [],
@@ -334,13 +364,15 @@ class S {
     );
   }
 
-  /// `Hours`
-  String get lblHours {
-    return Intl.message(
-      'Hours',
+  /// `{hours, plural, one{1 hour} other{{hours} hours}}`
+  String lblHours(num hours) {
+    return Intl.plural(
+      hours,
+      one: '1 hour',
+      other: '$hours hours',
       name: 'lblHours',
       desc: '',
-      args: [],
+      args: [hours],
     );
   }
 
@@ -394,6 +426,20 @@ class S {
     );
   }
 
+  /// `{price}`
+  String priceFormat(double price) {
+    final NumberFormat priceNumberFormat = NumberFormat.currency(
+        locale: Intl.getCurrentLocale(), symbol: '₡', decimalDigits: 2);
+    final String priceString = priceNumberFormat.format(price);
+
+    return Intl.message(
+      '$priceString',
+      name: 'priceFormat',
+      desc: '',
+      args: [priceString],
+    );
+  }
+
   /// `Notes`
   String get lblNotesReport {
     return Intl.message(
@@ -409,6 +455,16 @@ class S {
     return Intl.message(
       'Notifications',
       name: 'lblNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selected Assets`
+  String get lblSelectedAssets {
+    return Intl.message(
+      'Selected Assets',
+      name: 'lblSelectedAssets',
       desc: '',
       args: [],
     );
@@ -516,21 +572,21 @@ class S {
     );
   }
 
-  /// `Failed to update "{object}"`
-  String msgFailedUpdateObject(Object object) {
-    return Intl.message(
-      'Failed to update "$object"',
-      name: 'msgFailedUpdateObject',
-      desc: '',
-      args: [object],
-    );
-  }
-
   /// `Failed to delete "{object}"`
   String msgFailedDeleteObject(Object object) {
     return Intl.message(
       'Failed to delete "$object"',
       name: 'msgFailedDeleteObject',
+      desc: '',
+      args: [object],
+    );
+  }
+
+  /// `Failed to update "{object}"`
+  String msgFailedUpdateObject(Object object) {
+    return Intl.message(
+      'Failed to update "$object"',
+      name: 'msgFailedUpdateObject',
       desc: '',
       args: [object],
     );
@@ -610,21 +666,21 @@ class S {
     );
   }
 
-  /// `Updated "{object}" successfully`
-  String msgSuccessUpdateObject(Object object) {
-    return Intl.message(
-      'Updated "$object" successfully',
-      name: 'msgSuccessUpdateObject',
-      desc: '',
-      args: [object],
-    );
-  }
-
   /// `Deleted "{object}" successfully`
   String msgSuccessDeleteObject(Object object) {
     return Intl.message(
       'Deleted "$object" successfully',
       name: 'msgSuccessDeleteObject',
+      desc: '',
+      args: [object],
+    );
+  }
+
+  /// `Updated "{object}" successfully`
+  String msgSuccessUpdateObject(Object object) {
+    return Intl.message(
+      'Updated "$object" successfully',
+      name: 'msgSuccessUpdateObject',
       desc: '',
       args: [object],
     );
@@ -685,6 +741,16 @@ class S {
     return Intl.message(
       'Passport',
       name: 'optPassport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No information`
+  String get msgNoInformation {
+    return Intl.message(
+      'No information',
+      name: 'msgNoInformation',
       desc: '',
       args: [],
     );

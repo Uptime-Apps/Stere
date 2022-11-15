@@ -30,6 +30,7 @@ mixin _$Rental {
   String get clientHousing => throw _privateConstructorUsedError;
   String get clientDeposit => throw _privateConstructorUsedError;
   String get clientPhone => throw _privateConstructorUsedError;
+  String? get clientEmail => throw _privateConstructorUsedError;
   String? get backupPhone => throw _privateConstructorUsedError;
   String get assetId => throw _privateConstructorUsedError;
   String get assetName => throw _privateConstructorUsedError;
@@ -38,7 +39,7 @@ mixin _$Rental {
   double? get finalMileage => throw _privateConstructorUsedError;
   String? get damageReport => throw _privateConstructorUsedError;
   String? get notes => throw _privateConstructorUsedError;
-  String get referralType => throw _privateConstructorUsedError;
+  String? get referralType => throw _privateConstructorUsedError;
   DateTime get creationDate => throw _privateConstructorUsedError;
   int get hoursRented => throw _privateConstructorUsedError;
   double get rentalPrice => throw _privateConstructorUsedError;
@@ -65,6 +66,7 @@ abstract class $RentalCopyWith<$Res> {
       String clientHousing,
       String clientDeposit,
       String clientPhone,
+      String? clientEmail,
       String? backupPhone,
       String assetId,
       String assetName,
@@ -73,7 +75,7 @@ abstract class $RentalCopyWith<$Res> {
       double? finalMileage,
       String? damageReport,
       String? notes,
-      String referralType,
+      String? referralType,
       DateTime creationDate,
       int hoursRented,
       double rentalPrice,
@@ -103,6 +105,7 @@ class _$RentalCopyWithImpl<$Res, $Val extends Rental>
     Object? clientHousing = null,
     Object? clientDeposit = null,
     Object? clientPhone = null,
+    Object? clientEmail = freezed,
     Object? backupPhone = freezed,
     Object? assetId = null,
     Object? assetName = null,
@@ -111,7 +114,7 @@ class _$RentalCopyWithImpl<$Res, $Val extends Rental>
     Object? finalMileage = freezed,
     Object? damageReport = freezed,
     Object? notes = freezed,
-    Object? referralType = null,
+    Object? referralType = freezed,
     Object? creationDate = null,
     Object? hoursRented = null,
     Object? rentalPrice = null,
@@ -158,6 +161,10 @@ class _$RentalCopyWithImpl<$Res, $Val extends Rental>
           ? _value.clientPhone
           : clientPhone // ignore: cast_nullable_to_non_nullable
               as String,
+      clientEmail: freezed == clientEmail
+          ? _value.clientEmail
+          : clientEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
       backupPhone: freezed == backupPhone
           ? _value.backupPhone
           : backupPhone // ignore: cast_nullable_to_non_nullable
@@ -190,10 +197,10 @@ class _$RentalCopyWithImpl<$Res, $Val extends Rental>
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      referralType: null == referralType
+      referralType: freezed == referralType
           ? _value.referralType
           : referralType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       creationDate: null == creationDate
           ? _value.creationDate
           : creationDate // ignore: cast_nullable_to_non_nullable
@@ -231,6 +238,7 @@ abstract class _$$_RentalCopyWith<$Res> implements $RentalCopyWith<$Res> {
       String clientHousing,
       String clientDeposit,
       String clientPhone,
+      String? clientEmail,
       String? backupPhone,
       String assetId,
       String assetName,
@@ -239,7 +247,7 @@ abstract class _$$_RentalCopyWith<$Res> implements $RentalCopyWith<$Res> {
       double? finalMileage,
       String? damageReport,
       String? notes,
-      String referralType,
+      String? referralType,
       DateTime creationDate,
       int hoursRented,
       double rentalPrice,
@@ -266,6 +274,7 @@ class __$$_RentalCopyWithImpl<$Res>
     Object? clientHousing = null,
     Object? clientDeposit = null,
     Object? clientPhone = null,
+    Object? clientEmail = freezed,
     Object? backupPhone = freezed,
     Object? assetId = null,
     Object? assetName = null,
@@ -274,7 +283,7 @@ class __$$_RentalCopyWithImpl<$Res>
     Object? finalMileage = freezed,
     Object? damageReport = freezed,
     Object? notes = freezed,
-    Object? referralType = null,
+    Object? referralType = freezed,
     Object? creationDate = null,
     Object? hoursRented = null,
     Object? rentalPrice = null,
@@ -321,6 +330,10 @@ class __$$_RentalCopyWithImpl<$Res>
           ? _value.clientPhone
           : clientPhone // ignore: cast_nullable_to_non_nullable
               as String,
+      clientEmail: freezed == clientEmail
+          ? _value.clientEmail
+          : clientEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
       backupPhone: freezed == backupPhone
           ? _value.backupPhone
           : backupPhone // ignore: cast_nullable_to_non_nullable
@@ -353,10 +366,10 @@ class __$$_RentalCopyWithImpl<$Res>
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
-      referralType: null == referralType
+      referralType: freezed == referralType
           ? _value.referralType
           : referralType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       creationDate: null == creationDate
           ? _value.creationDate
           : creationDate // ignore: cast_nullable_to_non_nullable
@@ -391,6 +404,7 @@ class _$_Rental implements _Rental {
       required this.clientHousing,
       required this.clientDeposit,
       required this.clientPhone,
+      this.clientEmail,
       this.backupPhone,
       required this.assetId,
       required this.assetName,
@@ -399,7 +413,7 @@ class _$_Rental implements _Rental {
       this.finalMileage,
       this.damageReport,
       this.notes,
-      required this.referralType,
+      this.referralType,
       required this.creationDate,
       required this.hoursRented,
       required this.rentalPrice,
@@ -429,6 +443,8 @@ class _$_Rental implements _Rental {
   @override
   final String clientPhone;
   @override
+  final String? clientEmail;
+  @override
   final String? backupPhone;
   @override
   final String assetId;
@@ -445,7 +461,7 @@ class _$_Rental implements _Rental {
   @override
   final String? notes;
   @override
-  final String referralType;
+  final String? referralType;
   @override
   final DateTime creationDate;
   @override
@@ -457,7 +473,7 @@ class _$_Rental implements _Rental {
 
   @override
   String toString() {
-    return 'Rental(id: $id, employeeId: $employeeId, employeeEmail: $employeeEmail, employeeName: $employeeName, employeePhoto: $employeePhoto, clientId: $clientId, clientName: $clientName, clientHousing: $clientHousing, clientDeposit: $clientDeposit, clientPhone: $clientPhone, backupPhone: $backupPhone, assetId: $assetId, assetName: $assetName, assetPhoto: $assetPhoto, initialMileage: $initialMileage, finalMileage: $finalMileage, damageReport: $damageReport, notes: $notes, referralType: $referralType, creationDate: $creationDate, hoursRented: $hoursRented, rentalPrice: $rentalPrice, status: $status)';
+    return 'Rental(id: $id, employeeId: $employeeId, employeeEmail: $employeeEmail, employeeName: $employeeName, employeePhoto: $employeePhoto, clientId: $clientId, clientName: $clientName, clientHousing: $clientHousing, clientDeposit: $clientDeposit, clientPhone: $clientPhone, clientEmail: $clientEmail, backupPhone: $backupPhone, assetId: $assetId, assetName: $assetName, assetPhoto: $assetPhoto, initialMileage: $initialMileage, finalMileage: $finalMileage, damageReport: $damageReport, notes: $notes, referralType: $referralType, creationDate: $creationDate, hoursRented: $hoursRented, rentalPrice: $rentalPrice, status: $status)';
   }
 
   @override
@@ -484,6 +500,8 @@ class _$_Rental implements _Rental {
                 other.clientDeposit == clientDeposit) &&
             (identical(other.clientPhone, clientPhone) ||
                 other.clientPhone == clientPhone) &&
+            (identical(other.clientEmail, clientEmail) ||
+                other.clientEmail == clientEmail) &&
             (identical(other.backupPhone, backupPhone) ||
                 other.backupPhone == backupPhone) &&
             (identical(other.assetId, assetId) || other.assetId == assetId) &&
@@ -523,6 +541,7 @@ class _$_Rental implements _Rental {
         clientHousing,
         clientDeposit,
         clientPhone,
+        clientEmail,
         backupPhone,
         assetId,
         assetName,
@@ -564,6 +583,7 @@ abstract class _Rental implements Rental {
       required final String clientHousing,
       required final String clientDeposit,
       required final String clientPhone,
+      final String? clientEmail,
       final String? backupPhone,
       required final String assetId,
       required final String assetName,
@@ -572,7 +592,7 @@ abstract class _Rental implements Rental {
       final double? finalMileage,
       final String? damageReport,
       final String? notes,
-      required final String referralType,
+      final String? referralType,
       required final DateTime creationDate,
       required final int hoursRented,
       required final double rentalPrice,
@@ -601,6 +621,8 @@ abstract class _Rental implements Rental {
   @override
   String get clientPhone;
   @override
+  String? get clientEmail;
+  @override
   String? get backupPhone;
   @override
   String get assetId;
@@ -617,7 +639,7 @@ abstract class _Rental implements Rental {
   @override
   String? get notes;
   @override
-  String get referralType;
+  String? get referralType;
   @override
   DateTime get creationDate;
   @override

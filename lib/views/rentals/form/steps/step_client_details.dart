@@ -21,6 +21,18 @@ class StepClientDetails extends ConsumerWidget {
         textInputAction: TextInputAction.next,
         onEditingComplete: () => notifier.validateForm(),
       ),
+      NumericInputField(
+        controller: prov.clientIdController,
+        label: S.of(context).lblClientId,
+        icon: Icons.co_present,
+        onEditingComplete: () => notifier.validateForm(),
+      ),
+      SelectFormField(
+        icon: Icons.contact_page_rounded,
+        items: getDepositOptions(context),
+        onChanged: (deposit) => notifier.selectDeposit(deposit),
+        hint: S.of(context).lblClientDeposit,
+      ),
       TextInputField(
         controller: prov.clientHousingController,
         label: S.of(context).lblClientHousing,
@@ -34,16 +46,12 @@ class StepClientDetails extends ConsumerWidget {
         icon: Icons.phone,
         onEditingComplete: () => notifier.validateForm(),
       ),
-      // NumericInputField(
-      //   controller: ,
-      //   label: S.of(context).lblBackupPhone,
-      //   icon: Icons.phone,
-      // ),
-      SelectFormField(
-        icon: Icons.contact_page_rounded,
-        items: getDepositOptions(context),
-        onChanged: (deposit) => notifier.selectDeposit(deposit),
-        hint: S.of(context).lblClientDeposit,
+      NumericInputField(
+        controller: prov.backupPhoneController,
+        label: S.of(context).lblClientBackupPhone,
+        icon: Icons.phone,
+        helperText: S.of(context).exClientBackupPhone,
+        onEditingComplete: () => notifier.validateForm(),
       ),
     ];
     return ListView.separated(
@@ -51,6 +59,7 @@ class StepClientDetails extends ConsumerWidget {
       itemBuilder: (_, index) => formItems[index],
       itemCount: formItems.length,
       separatorBuilder: (_, __) => const DefaultSpacer(),
+      physics: const NeverScrollableScrollPhysics(),
     );
   }
 

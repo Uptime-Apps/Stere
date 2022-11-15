@@ -37,7 +37,7 @@ class RouteGenerator {
       case RentalForm.route:
         return MaterialPageRoute(builder: (context) => const RentalForm());
       case AssetForm.route:
-        return MaterialPageRoute(builder: (context) => const AssetForm());
+        return MaterialPageRoute(builder: (context) => AssetForm());
       case CategoryForm.route:
         return MaterialPageRoute(builder: (context) => const CategoryForm());
       default:
