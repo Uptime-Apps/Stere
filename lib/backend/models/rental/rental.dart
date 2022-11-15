@@ -9,32 +9,29 @@ part 'rental.g.dart';
 @freezed
 class Rental with _$Rental {
   factory Rental({
-    String? id,
-    //Employee Details
-    required String employeeId,
-    required String employeeEmail,
-    String? employeeName,
-    String? employeePhoto,
-    //Rental Information
-    required List<RentalAsset> assets,
-    double? initialMileage,
-    double? finalMileage,
-    String? damageReport,
-    String? notes,
-    required int hoursRented,
-    required double rentalPrice,
-    //Client Details
-    required String clientId,
-    required String clientName,
-    required String clientHousing,
-    required String clientDeposit,
-    required String clientPhone,
-    required String clientEmail,
     //Rental Metadata
-    String? backupPhone,
+    String? id,
     String? referralType,
     required DateTime creationDate,
     required RentalStatus status,
+
+    //Employee Details
+    String? employeeName,
+    String? employeePhoto,
+    required String employeeEmail,
+    required String employeeId,
+
+    //Rental Information
+    required List<RentalAsset> assets,
+
+    //Client Details
+    required String clientDeposit,
+    required String clientEmail,
+    required String clientHousing,
+    required String clientId,
+    required String clientName,
+    required String clientPhone,
+    String? backupPhone,
   }) = _Rental;
 
   factory Rental.fromJson(Map<String, dynamic> json) => _$RentalFromJson(json);

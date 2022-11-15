@@ -21,10 +21,16 @@ RentalAsset _$RentalAssetFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RentalAsset {
   String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get categoryName => throw _privateConstructorUsedError;
-  String get categoryId => throw _privateConstructorUsedError;
+  String? get damageReport => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
+  String? get notes => throw _privateConstructorUsedError;
+  double? get finalMileage => throw _privateConstructorUsedError;
+  double? get initialMileage => throw _privateConstructorUsedError;
+  String get categoryId => throw _privateConstructorUsedError;
+  String get categoryName => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  double get rentalPrice => throw _privateConstructorUsedError;
+  int get hoursRented => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,10 +46,16 @@ abstract class $RentalAssetCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String name,
-      String categoryName,
+      String? damageReport,
+      String? image,
+      String? notes,
+      double? finalMileage,
+      double? initialMileage,
       String categoryId,
-      String? image});
+      String categoryName,
+      String name,
+      double rentalPrice,
+      int hoursRented});
 }
 
 /// @nodoc
@@ -60,32 +72,62 @@ class _$RentalAssetCopyWithImpl<$Res, $Val extends RentalAsset>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
-    Object? categoryName = null,
-    Object? categoryId = null,
+    Object? damageReport = freezed,
     Object? image = freezed,
+    Object? notes = freezed,
+    Object? finalMileage = freezed,
+    Object? initialMileage = freezed,
+    Object? categoryId = null,
+    Object? categoryName = null,
+    Object? name = null,
+    Object? rentalPrice = null,
+    Object? hoursRented = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      damageReport: freezed == damageReport
+          ? _value.damageReport
+          : damageReport // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
+      finalMileage: freezed == finalMileage
+          ? _value.finalMileage
+          : finalMileage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      initialMileage: freezed == initialMileage
+          ? _value.initialMileage
+          : initialMileage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
               as String,
       categoryName: null == categoryName
           ? _value.categoryName
           : categoryName // ignore: cast_nullable_to_non_nullable
               as String,
-      categoryId: null == categoryId
-          ? _value.categoryId
-          : categoryId // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
+      rentalPrice: null == rentalPrice
+          ? _value.rentalPrice
+          : rentalPrice // ignore: cast_nullable_to_non_nullable
+              as double,
+      hoursRented: null == hoursRented
+          ? _value.hoursRented
+          : hoursRented // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -100,10 +142,16 @@ abstract class _$$_RentalAssetCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String name,
-      String categoryName,
+      String? damageReport,
+      String? image,
+      String? notes,
+      double? finalMileage,
+      double? initialMileage,
       String categoryId,
-      String? image});
+      String categoryName,
+      String name,
+      double rentalPrice,
+      int hoursRented});
 }
 
 /// @nodoc
@@ -118,32 +166,62 @@ class __$$_RentalAssetCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
-    Object? categoryName = null,
-    Object? categoryId = null,
+    Object? damageReport = freezed,
     Object? image = freezed,
+    Object? notes = freezed,
+    Object? finalMileage = freezed,
+    Object? initialMileage = freezed,
+    Object? categoryId = null,
+    Object? categoryName = null,
+    Object? name = null,
+    Object? rentalPrice = null,
+    Object? hoursRented = null,
   }) {
     return _then(_$_RentalAsset(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      damageReport: freezed == damageReport
+          ? _value.damageReport
+          : damageReport // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
+      finalMileage: freezed == finalMileage
+          ? _value.finalMileage
+          : finalMileage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      initialMileage: freezed == initialMileage
+          ? _value.initialMileage
+          : initialMileage // ignore: cast_nullable_to_non_nullable
+              as double?,
+      categoryId: null == categoryId
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
               as String,
       categoryName: null == categoryName
           ? _value.categoryName
           : categoryName // ignore: cast_nullable_to_non_nullable
               as String,
-      categoryId: null == categoryId
-          ? _value.categoryId
-          : categoryId // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
+      rentalPrice: null == rentalPrice
+          ? _value.rentalPrice
+          : rentalPrice // ignore: cast_nullable_to_non_nullable
+              as double,
+      hoursRented: null == hoursRented
+          ? _value.hoursRented
+          : hoursRented // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -153,10 +231,16 @@ class __$$_RentalAssetCopyWithImpl<$Res>
 class _$_RentalAsset implements _RentalAsset {
   _$_RentalAsset(
       {required this.id,
-      required this.name,
-      required this.categoryName,
+      this.damageReport,
+      this.image,
+      this.notes,
+      this.finalMileage,
+      this.initialMileage,
       required this.categoryId,
-      this.image});
+      required this.categoryName,
+      required this.name,
+      required this.rentalPrice,
+      required this.hoursRented});
 
   factory _$_RentalAsset.fromJson(Map<String, dynamic> json) =>
       _$$_RentalAssetFromJson(json);
@@ -164,17 +248,29 @@ class _$_RentalAsset implements _RentalAsset {
   @override
   final String id;
   @override
-  final String name;
+  final String? damageReport;
   @override
-  final String categoryName;
+  final String? image;
+  @override
+  final String? notes;
+  @override
+  final double? finalMileage;
+  @override
+  final double? initialMileage;
   @override
   final String categoryId;
   @override
-  final String? image;
+  final String categoryName;
+  @override
+  final String name;
+  @override
+  final double rentalPrice;
+  @override
+  final int hoursRented;
 
   @override
   String toString() {
-    return 'RentalAsset(id: $id, name: $name, categoryName: $categoryName, categoryId: $categoryId, image: $image)';
+    return 'RentalAsset(id: $id, damageReport: $damageReport, image: $image, notes: $notes, finalMileage: $finalMileage, initialMileage: $initialMileage, categoryId: $categoryId, categoryName: $categoryName, name: $name, rentalPrice: $rentalPrice, hoursRented: $hoursRented)';
   }
 
   @override
@@ -183,18 +279,40 @@ class _$_RentalAsset implements _RentalAsset {
         (other.runtimeType == runtimeType &&
             other is _$_RentalAsset &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.categoryName, categoryName) ||
-                other.categoryName == categoryName) &&
+            (identical(other.damageReport, damageReport) ||
+                other.damageReport == damageReport) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.notes, notes) || other.notes == notes) &&
+            (identical(other.finalMileage, finalMileage) ||
+                other.finalMileage == finalMileage) &&
+            (identical(other.initialMileage, initialMileage) ||
+                other.initialMileage == initialMileage) &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.categoryName, categoryName) ||
+                other.categoryName == categoryName) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.rentalPrice, rentalPrice) ||
+                other.rentalPrice == rentalPrice) &&
+            (identical(other.hoursRented, hoursRented) ||
+                other.hoursRented == hoursRented));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, categoryName, categoryId, image);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      damageReport,
+      image,
+      notes,
+      finalMileage,
+      initialMileage,
+      categoryId,
+      categoryName,
+      name,
+      rentalPrice,
+      hoursRented);
 
   @JsonKey(ignore: true)
   @override
@@ -213,10 +331,16 @@ class _$_RentalAsset implements _RentalAsset {
 abstract class _RentalAsset implements RentalAsset {
   factory _RentalAsset(
       {required final String id,
-      required final String name,
-      required final String categoryName,
+      final String? damageReport,
+      final String? image,
+      final String? notes,
+      final double? finalMileage,
+      final double? initialMileage,
       required final String categoryId,
-      final String? image}) = _$_RentalAsset;
+      required final String categoryName,
+      required final String name,
+      required final double rentalPrice,
+      required final int hoursRented}) = _$_RentalAsset;
 
   factory _RentalAsset.fromJson(Map<String, dynamic> json) =
       _$_RentalAsset.fromJson;
@@ -224,13 +348,25 @@ abstract class _RentalAsset implements RentalAsset {
   @override
   String get id;
   @override
-  String get name;
+  String? get damageReport;
   @override
-  String get categoryName;
+  String? get image;
+  @override
+  String? get notes;
+  @override
+  double? get finalMileage;
+  @override
+  double? get initialMileage;
   @override
   String get categoryId;
   @override
-  String? get image;
+  String get categoryName;
+  @override
+  String get name;
+  @override
+  double get rentalPrice;
+  @override
+  int get hoursRented;
   @override
   @JsonKey(ignore: true)
   _$$_RentalAssetCopyWith<_$_RentalAsset> get copyWith =>
