@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/components/inputs/form_fields.dart';
 import '../../../../core/components/others/utilities.dart';
 import '../../../../l10n/generated/l10n.dart';
-import '../../../../utils/validators.dart';
 import '../rental_form_controller.dart';
 
 class StepRentalInformation extends ConsumerWidget {
@@ -15,57 +13,57 @@ class StepRentalInformation extends ConsumerWidget {
     final prov = ref.watch(rentalFormControllerProvider);
     final notifier = ref.read(rentalFormControllerProvider.notifier);
     List<Widget> automotiveInputs = [];
-    prov.chosenAsset.whenData(
-      (asset) {
-        if (asset.isAutomotive) {
-          automotiveInputs = [
-            NumericInputField(
-              onChanged: (_) => notifier.validateForm(),
-              controller: prov.initialMileageController,
-              textInputAction: TextInputAction.next,
-              icon: Icons.speed,
-              label: '${S.of(context).lblInitialMileage}*',
-            ),
-          ];
-        }
-      },
-    );
+    // prov.chosenAsset.whenData(
+    //   (asset) {
+    //     if (asset.isAutomotive) {
+    //       // automotiveInputs = [
+    //       //   NumericInputField(
+    //       //     onChanged: (_) => notifier.validateForm(),
+    //       //     controller: prov.initialMileageController,
+    //       //     textInputAction: TextInputAction.next,
+    //       //     icon: Icons.speed,
+    //       //     label: '${S.of(context).lblInitialMileage}*',
+    //       //   ),
+    //       // ];
+    //     }
+    //   },
+    // );
     final formItems = [
-      SelectFormField(
-        icon: Icons.watch_later_outlined,
-        items: getHourOptions(context),
-        onChanged: (hours) {
-          if (hours != null) {
-            notifier.selectHours(hours);
-          }
-        },
-        validator: (value) =>
-            (value == null) ? S.of(context).emFieldRequired : null,
-        hint: '${S.of(context).lblHours(0)}*',
-      ),
-      NumericInputField(
-        onChanged: (_) => notifier.validateForm(),
-        controller: prov.rentalPriceController,
-        icon: Icons.money,
-        label: '${S.of(context).lblPrice}*',
-        textInputAction: TextInputAction.next,
-        validator: requiredFieldValidation,
-      ),
-      ...automotiveInputs,
-      TextInputField(
-        controller: prov.notesController,
-        textInputAction: TextInputAction.newline,
-        icon: Icons.library_books,
-        label: S.of(context).lblNotesReport,
-        maxLines: 8,
-      ),
-      TextInputField(
-        controller: prov.damageReportController,
-        textInputAction: TextInputAction.newline,
-        icon: Icons.edit,
-        label: S.of(context).lblDamageReport,
-        maxLines: 8,
-      ),
+      // SelectFormField(
+      //   icon: Icons.watch_later_outlined,
+      //   items: getHourOptions(context),
+      //   onChanged: (hours) {
+      //     if (hours != null) {
+      //       notifier.selectHours(hours);
+      //     }
+      //   },
+      //   validator: (value) =>
+      //       (value == null) ? S.of(context).emFieldRequired : null,
+      //   hint: '${S.of(context).lblHours(0)}*',
+      // ),
+      // NumericInputField(
+      //   onChanged: (_) => notifier.validateForm(),
+      //   controller: prov.rentalPriceController,
+      //   icon: Icons.money,
+      //   label: '${S.of(context).lblPrice}*',
+      //   textInputAction: TextInputAction.next,
+      //   validator: requiredFieldValidation,
+      // ),
+      // ...automotiveInputs,
+      // TextInputField(
+      //   controller: prov.notesController,
+      //   textInputAction: TextInputAction.newline,
+      //   icon: Icons.library_books,
+      //   label: S.of(context).lblNotesReport,
+      //   maxLines: 8,
+      // ),
+      // TextInputField(
+      //   controller: prov.damageReportController,
+      //   textInputAction: TextInputAction.newline,
+      //   icon: Icons.edit,
+      //   label: S.of(context).lblDamageReport,
+      //   maxLines: 8,
+      // ),
     ];
     return ListView.separated(
       physics: const NeverScrollableScrollPhysics(),

@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../backend/models/asset/asset.dart';
 import '../../../backend/models/referral_type/referral_type.dart';
+import '../../../backend/models/rental/rental_asset.dart';
 import '../../../backend/models/status/rental_status.dart';
 
 part 'rental_form_state.freezed.dart';
@@ -11,30 +12,33 @@ part 'rental_form_state.freezed.dart';
 @freezed
 class RentalFormState with _$RentalFormState {
   factory RentalFormState({
+    //Form Metadata
     @Default(0) int currentStep,
     @Default(false) bool validForm,
-    String? assetPhoto,
-    String? employeePhoto,
-    int? hoursRented,
-    required AsyncValue<Asset> chosenAsset,
-    required AsyncValue<ReferralType?> referralType,
     required AsyncValue<Stream<List<Asset>>?> assets,
-    required AsyncValue<String> clientDeposit,
     required AsyncValue<String> result,
-    required DateTime creationDate,
     required GlobalKey<FormState> formKey,
+
+    //Rental Metadata
+    required AsyncValue<ReferralType?> referralType,
     required RentalStatus status,
-    required String employeeId,
-    required String employeeName,
+
+    //Rental Information
+    required AsyncValue<List<RentalAsset>> selectedAssets,
+    // int? hoursRented,
+    // required TextEditingController damageReportController,
+    // required TextEditingController finalMileageController,
+    // required TextEditingController initialMileageController,
+    // required TextEditingController notesController,
+    // required TextEditingController rentalPriceController,
+
+    //Client Details
+    required AsyncValue<String> clientDeposit,
+    required TextEditingController clientEmailController,
     required TextEditingController backupPhoneController,
     required TextEditingController clientHousingController,
     required TextEditingController clientIdController,
     required TextEditingController clientNameController,
     required TextEditingController clientPhoneController,
-    required TextEditingController damageReportController,
-    required TextEditingController finalMileageController,
-    required TextEditingController initialMileageController,
-    required TextEditingController notesController,
-    required TextEditingController rentalPriceController,
   }) = _RentalFormState;
 }

@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../backend/models/asset/asset.dart';
 import '../../../backend/models/rental/rental.dart';
+import '../../../backend/models/rental/rental_asset.dart';
 import '../../../backend/models/status/rental_status.dart';
 import '../../../backend/services/asset_service.dart';
 import '../../../backend/services/rental_service.dart';
@@ -37,32 +38,30 @@ class RentalFormController extends StateNotifier<RentalFormState> {
     } else {
       validateForm();
       log('here to submit', name: logName);
-      final Asset asset = state.chosenAsset.value!;
       final User currentUser = FirebaseAuth.instance.currentUser!;
       Rental rental = Rental(
+        // damageReport: state.damageReportController.text,
+        // hoursRented: state.hoursRented ?? 4,
+        // initialMileage: (state.chosenAsset.value!.isAutomotive)
+        //     : null,
+        //     ? double.parse(state.initialMileageController.text)
+        // notes: state.notesController.text,
+        // rentalPrice: double.parse(state.rentalPriceController.text),
+        assets: state.selectedAssets.value!,
         backupPhone: state.backupPhoneController.text,
         clientDeposit: state.clientDeposit.value!,
+        clientEmail: state.clientEmailController.text,
         clientHousing: state.clientHousingController.text,
         clientId: state.clientIdController.text,
         clientName: state.clientNameController.text,
         clientPhone: state.clientPhoneController.text,
-        damageReport: state.damageReportController.text,
-        hoursRented: state.hoursRented ?? 4,
-        initialMileage: (state.chosenAsset.value!.isAutomotive)
-            ? double.parse(state.initialMileageController.text)
-            : null,
-        notes: state.notesController.text,
-        referralType: state.referralType.value?.name,
-        rentalPrice: double.parse(state.rentalPriceController.text),
-        status: RentalStatus.active,
-        assetId: asset.id!,
-        assetName: asset.name,
-        assetPhoto: asset.imagePath,
         creationDate: DateTime.now(),
-        employeeId: currentUser.uid,
         employeeEmail: currentUser.email!,
+        employeeId: currentUser.uid,
         employeeName: currentUser.displayName,
         employeePhoto: currentUser.photoURL,
+        referralType: state.referralType.value?.name,
+        status: RentalStatus.active,
       );
       await service.create(rental);
       Navigator.of(context).pop();
@@ -108,10 +107,12 @@ class RentalFormController extends StateNotifier<RentalFormState> {
     validateForm();
   }
 
-  bool validStepAvailableAssets() => state.chosenAsset.value != null;
+  bool validStepAvailableAssets() =>
+      state.selectedAssets.value != null &&
+      state.selectedAssets.value!.isNotEmpty;
 
-  bool validStepRentalInformation() =>
-      state.hoursRented != null && state.rentalPriceController.text.isNotEmpty;
+  // bool validStepRentalInformation() =>
+  // state.hoursRented != null && state.rentalPriceController.text.isNotEmpty;
 
   bool validStepClientDetails() {
     bool housing = state.clientHousingController.text.isNotEmpty;
@@ -129,9 +130,9 @@ class RentalFormController extends StateNotifier<RentalFormState> {
       case 0:
         formStatus = validStepAvailableAssets();
         break;
-      case 1:
-        formStatus = validStepRentalInformation();
-        break;
+      // case 1:
+      //   formStatus = validStepRentalInformation();
+      // break;
       case 2:
         formStatus = validStepClientDetails();
         break;
@@ -153,16 +154,28 @@ class RentalFormController extends StateNotifier<RentalFormState> {
     validateForm();
   }
 
-  void selectAsset(Asset? asset) {
-    state = state.copyWith(
-        chosenAsset: asset != null
-            ? AsyncValue.data(asset)
-            : const AsyncValue.loading());
+  void addAsset(Asset? asset) {
+    var currentAssets = state.selectedAssets.value!;
+    if (asset != null) {
+      currentAssets.add(RentalAsset(
+        id: asset.id!,
+        name: asset.name,
+        categoryId: asset.categoryId,
+        categoryName: asset.categoryName,
+        hoursRented: 0,
+        rentalPrice: 0,
+      ));
+      state = state.copyWith(selectedAssets: AsyncValue.data(currentAssets));
+    } else {
+      state = state.copyWith(selectedAssets: const AsyncValue.loading());
+    }
     validateForm();
   }
 
-  void selectHours(int hours) {
-    state = state.copyWith(hoursRented: hours);
+  void selectHours(String assetId, int hours) {
+    var currentAssets = state.selectedAssets.value!;
+    // currentAssets.firstWhere((element) => element.id == assetId).copyWith()
+    // state = state.copyWith(hoursRented: hours);
     validateForm();
   }
 }
@@ -174,22 +187,15 @@ final rentalFormControllerProvider =
       RentalFormState(
         formKey: GlobalKey<FormState>(),
         assets: const AsyncValue.loading(),
-        backupPhoneController: TextEditingController(),
-        chosenAsset: const AsyncValue.loading(),
         clientDeposit: const AsyncValue.loading(),
-        clientIdController: TextEditingController(),
+        clientEmailController: TextEditingController(),
         clientHousingController: TextEditingController(),
+        clientIdController: TextEditingController(),
         clientNameController: TextEditingController(),
         clientPhoneController: TextEditingController(),
-        creationDate: DateTime.now(),
-        damageReportController: TextEditingController(),
-        employeeId: FirebaseAuth.instance.currentUser?.uid ?? '',
-        employeeName: FirebaseAuth.instance.currentUser?.displayName ?? '',
-        finalMileageController: TextEditingController(),
-        initialMileageController: TextEditingController(),
-        notesController: TextEditingController(),
+        backupPhoneController: TextEditingController(),
         referralType: const AsyncValue.loading(),
-        rentalPriceController: TextEditingController(),
+        selectedAssets: const AsyncValue.loading(),
         result: AsyncValue.data(S.current.lblSave),
         status: RentalStatus.active,
       ),

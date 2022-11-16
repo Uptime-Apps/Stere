@@ -5,7 +5,6 @@ import '../../../../backend/models/asset/asset.dart';
 import '../../../../core/components/inputs/form_fields.dart';
 import '../../../../core/components/others/shimmers.dart';
 import '../../../../l10n/generated/l10n.dart';
-import '../rental_form_controller.dart';
 
 class StepAvailableAssets extends ConsumerWidget {
   const StepAvailableAssets(this.assetsStream, {Key? key}) : super(key: key);
@@ -36,7 +35,7 @@ class StepAvailableAssets extends ConsumerWidget {
             items: menuItems,
             icon: Icons.shopping_bag,
             onChanged: (asset) => {
-              ref.read(rentalFormControllerProvider.notifier).selectAsset(asset)
+              // ref.read(rentalFormControllerProvider.notifier).selectAsset(asset)
             },
             hint: S.of(context).lblAssets(2),
             selectedItemBuilder: (context) => snapshot.data!

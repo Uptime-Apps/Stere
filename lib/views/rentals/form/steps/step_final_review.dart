@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../backend/models/rental/deposit.dart';
-import '../../../../core/components/list_tiles/asset.dart';
 import '../../../../core/constants/icons.dart';
 import '../../../../core/constants/spacing_values.dart';
 import '../../../../l10n/generated/l10n.dart';
@@ -25,9 +24,9 @@ class ValidFormFinalReview extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final prov = ref.watch(rentalFormControllerProvider);
-    final double price = (prov.rentalPriceController.text.isNotEmpty)
-        ? double.parse(prov.rentalPriceController.text)
-        : 0;
+    // final double price = (prov.rentalPriceController.text.isNotEmpty)
+    //     ? double.parse(prov.rentalPriceController.text)
+    //     : 0;
     return Column(
       children: [
         ListTile(
@@ -67,18 +66,18 @@ class ValidFormFinalReview extends ConsumerWidget {
         ListTile(
             title: Text(S.of(context).lblSelectedAssets),
             leading: const Icon(icAssets)),
-        Card(
-            child: Column(
-          children: [
-            RentedAssetListTile(
-              asset: prov.chosenAsset.value!,
-              hoursRented: prov.hoursRented ?? 0,
-              price: price,
-              notes: prov.notesController.text,
-              damageReport: prov.damageReportController.text,
-            )
-          ],
-        ))
+        // Card(
+        //     child: Column(
+        //   children: [
+        //     RentedAssetListTile(
+        //       asset: prov.chosenAsset.value!,
+        //       hoursRented: prov.hoursRented ?? 0,
+        //       price: price,
+        //       notes: prov.notesController.text,
+        //       damageReport: prov.damageReportController.text,
+        //     )
+        //   ],
+        // ))
       ],
     );
   }

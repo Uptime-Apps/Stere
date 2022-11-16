@@ -16,23 +16,29 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RentalFormState {
+//Form Metadata
   int get currentStep => throw _privateConstructorUsedError;
   bool get validForm => throw _privateConstructorUsedError;
-  String? get assetPhoto => throw _privateConstructorUsedError;
-  String? get employeePhoto => throw _privateConstructorUsedError;
-  int? get hoursRented => throw _privateConstructorUsedError;
-  AsyncValue<Asset> get chosenAsset => throw _privateConstructorUsedError;
-  AsyncValue<ReferralType?> get referralType =>
-      throw _privateConstructorUsedError;
   AsyncValue<Stream<List<Asset>>?> get assets =>
       throw _privateConstructorUsedError;
-  AsyncValue<String> get clientDeposit => throw _privateConstructorUsedError;
   AsyncValue<String> get result => throw _privateConstructorUsedError;
-  DateTime get creationDate => throw _privateConstructorUsedError;
-  GlobalKey<FormState> get formKey => throw _privateConstructorUsedError;
-  RentalStatus get status => throw _privateConstructorUsedError;
-  String get employeeId => throw _privateConstructorUsedError;
-  String get employeeName => throw _privateConstructorUsedError;
+  GlobalKey<FormState> get formKey =>
+      throw _privateConstructorUsedError; //Rental Metadata
+  AsyncValue<ReferralType?> get referralType =>
+      throw _privateConstructorUsedError;
+  RentalStatus get status =>
+      throw _privateConstructorUsedError; //Rental Information
+  AsyncValue<List<RentalAsset>> get selectedAssets =>
+      throw _privateConstructorUsedError; // int? hoursRented,
+// required TextEditingController damageReportController,
+// required TextEditingController finalMileageController,
+// required TextEditingController initialMileageController,
+// required TextEditingController notesController,
+// required TextEditingController rentalPriceController,
+//Client Details
+  AsyncValue<String> get clientDeposit => throw _privateConstructorUsedError;
+  TextEditingController get clientEmailController =>
+      throw _privateConstructorUsedError;
   TextEditingController get backupPhoneController =>
       throw _privateConstructorUsedError;
   TextEditingController get clientHousingController =>
@@ -42,16 +48,6 @@ mixin _$RentalFormState {
   TextEditingController get clientNameController =>
       throw _privateConstructorUsedError;
   TextEditingController get clientPhoneController =>
-      throw _privateConstructorUsedError;
-  TextEditingController get damageReportController =>
-      throw _privateConstructorUsedError;
-  TextEditingController get finalMileageController =>
-      throw _privateConstructorUsedError;
-  TextEditingController get initialMileageController =>
-      throw _privateConstructorUsedError;
-  TextEditingController get notesController =>
-      throw _privateConstructorUsedError;
-  TextEditingController get rentalPriceController =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -68,29 +64,19 @@ abstract class $RentalFormStateCopyWith<$Res> {
   $Res call(
       {int currentStep,
       bool validForm,
-      String? assetPhoto,
-      String? employeePhoto,
-      int? hoursRented,
-      AsyncValue<Asset> chosenAsset,
-      AsyncValue<ReferralType?> referralType,
       AsyncValue<Stream<List<Asset>>?> assets,
-      AsyncValue<String> clientDeposit,
       AsyncValue<String> result,
-      DateTime creationDate,
       GlobalKey<FormState> formKey,
+      AsyncValue<ReferralType?> referralType,
       RentalStatus status,
-      String employeeId,
-      String employeeName,
+      AsyncValue<List<RentalAsset>> selectedAssets,
+      AsyncValue<String> clientDeposit,
+      TextEditingController clientEmailController,
       TextEditingController backupPhoneController,
       TextEditingController clientHousingController,
       TextEditingController clientIdController,
       TextEditingController clientNameController,
-      TextEditingController clientPhoneController,
-      TextEditingController damageReportController,
-      TextEditingController finalMileageController,
-      TextEditingController initialMileageController,
-      TextEditingController notesController,
-      TextEditingController rentalPriceController});
+      TextEditingController clientPhoneController});
 }
 
 /// @nodoc
@@ -108,29 +94,19 @@ class _$RentalFormStateCopyWithImpl<$Res, $Val extends RentalFormState>
   $Res call({
     Object? currentStep = null,
     Object? validForm = null,
-    Object? assetPhoto = freezed,
-    Object? employeePhoto = freezed,
-    Object? hoursRented = freezed,
-    Object? chosenAsset = null,
-    Object? referralType = null,
     Object? assets = null,
-    Object? clientDeposit = null,
     Object? result = null,
-    Object? creationDate = null,
     Object? formKey = null,
+    Object? referralType = null,
     Object? status = null,
-    Object? employeeId = null,
-    Object? employeeName = null,
+    Object? selectedAssets = null,
+    Object? clientDeposit = null,
+    Object? clientEmailController = null,
     Object? backupPhoneController = null,
     Object? clientHousingController = null,
     Object? clientIdController = null,
     Object? clientNameController = null,
     Object? clientPhoneController = null,
-    Object? damageReportController = null,
-    Object? finalMileageController = null,
-    Object? initialMileageController = null,
-    Object? notesController = null,
-    Object? rentalPriceController = null,
   }) {
     return _then(_value.copyWith(
       currentStep: null == currentStep
@@ -141,58 +117,38 @@ class _$RentalFormStateCopyWithImpl<$Res, $Val extends RentalFormState>
           ? _value.validForm
           : validForm // ignore: cast_nullable_to_non_nullable
               as bool,
-      assetPhoto: freezed == assetPhoto
-          ? _value.assetPhoto
-          : assetPhoto // ignore: cast_nullable_to_non_nullable
-              as String?,
-      employeePhoto: freezed == employeePhoto
-          ? _value.employeePhoto
-          : employeePhoto // ignore: cast_nullable_to_non_nullable
-              as String?,
-      hoursRented: freezed == hoursRented
-          ? _value.hoursRented
-          : hoursRented // ignore: cast_nullable_to_non_nullable
-              as int?,
-      chosenAsset: null == chosenAsset
-          ? _value.chosenAsset
-          : chosenAsset // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<Asset>,
-      referralType: null == referralType
-          ? _value.referralType
-          : referralType // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<ReferralType?>,
       assets: null == assets
           ? _value.assets
           : assets // ignore: cast_nullable_to_non_nullable
               as AsyncValue<Stream<List<Asset>>?>,
-      clientDeposit: null == clientDeposit
-          ? _value.clientDeposit
-          : clientDeposit // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<String>,
       result: null == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
               as AsyncValue<String>,
-      creationDate: null == creationDate
-          ? _value.creationDate
-          : creationDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       formKey: null == formKey
           ? _value.formKey
           : formKey // ignore: cast_nullable_to_non_nullable
               as GlobalKey<FormState>,
+      referralType: null == referralType
+          ? _value.referralType
+          : referralType // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<ReferralType?>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RentalStatus,
-      employeeId: null == employeeId
-          ? _value.employeeId
-          : employeeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      employeeName: null == employeeName
-          ? _value.employeeName
-          : employeeName // ignore: cast_nullable_to_non_nullable
-              as String,
+      selectedAssets: null == selectedAssets
+          ? _value.selectedAssets
+          : selectedAssets // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<List<RentalAsset>>,
+      clientDeposit: null == clientDeposit
+          ? _value.clientDeposit
+          : clientDeposit // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<String>,
+      clientEmailController: null == clientEmailController
+          ? _value.clientEmailController
+          : clientEmailController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
       backupPhoneController: null == backupPhoneController
           ? _value.backupPhoneController
           : backupPhoneController // ignore: cast_nullable_to_non_nullable
@@ -212,26 +168,6 @@ class _$RentalFormStateCopyWithImpl<$Res, $Val extends RentalFormState>
       clientPhoneController: null == clientPhoneController
           ? _value.clientPhoneController
           : clientPhoneController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      damageReportController: null == damageReportController
-          ? _value.damageReportController
-          : damageReportController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      finalMileageController: null == finalMileageController
-          ? _value.finalMileageController
-          : finalMileageController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      initialMileageController: null == initialMileageController
-          ? _value.initialMileageController
-          : initialMileageController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      notesController: null == notesController
-          ? _value.notesController
-          : notesController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      rentalPriceController: null == rentalPriceController
-          ? _value.rentalPriceController
-          : rentalPriceController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
     ) as $Val);
   }
@@ -248,29 +184,19 @@ abstract class _$$_RentalFormStateCopyWith<$Res>
   $Res call(
       {int currentStep,
       bool validForm,
-      String? assetPhoto,
-      String? employeePhoto,
-      int? hoursRented,
-      AsyncValue<Asset> chosenAsset,
-      AsyncValue<ReferralType?> referralType,
       AsyncValue<Stream<List<Asset>>?> assets,
-      AsyncValue<String> clientDeposit,
       AsyncValue<String> result,
-      DateTime creationDate,
       GlobalKey<FormState> formKey,
+      AsyncValue<ReferralType?> referralType,
       RentalStatus status,
-      String employeeId,
-      String employeeName,
+      AsyncValue<List<RentalAsset>> selectedAssets,
+      AsyncValue<String> clientDeposit,
+      TextEditingController clientEmailController,
       TextEditingController backupPhoneController,
       TextEditingController clientHousingController,
       TextEditingController clientIdController,
       TextEditingController clientNameController,
-      TextEditingController clientPhoneController,
-      TextEditingController damageReportController,
-      TextEditingController finalMileageController,
-      TextEditingController initialMileageController,
-      TextEditingController notesController,
-      TextEditingController rentalPriceController});
+      TextEditingController clientPhoneController});
 }
 
 /// @nodoc
@@ -286,29 +212,19 @@ class __$$_RentalFormStateCopyWithImpl<$Res>
   $Res call({
     Object? currentStep = null,
     Object? validForm = null,
-    Object? assetPhoto = freezed,
-    Object? employeePhoto = freezed,
-    Object? hoursRented = freezed,
-    Object? chosenAsset = null,
-    Object? referralType = null,
     Object? assets = null,
-    Object? clientDeposit = null,
     Object? result = null,
-    Object? creationDate = null,
     Object? formKey = null,
+    Object? referralType = null,
     Object? status = null,
-    Object? employeeId = null,
-    Object? employeeName = null,
+    Object? selectedAssets = null,
+    Object? clientDeposit = null,
+    Object? clientEmailController = null,
     Object? backupPhoneController = null,
     Object? clientHousingController = null,
     Object? clientIdController = null,
     Object? clientNameController = null,
     Object? clientPhoneController = null,
-    Object? damageReportController = null,
-    Object? finalMileageController = null,
-    Object? initialMileageController = null,
-    Object? notesController = null,
-    Object? rentalPriceController = null,
   }) {
     return _then(_$_RentalFormState(
       currentStep: null == currentStep
@@ -319,58 +235,38 @@ class __$$_RentalFormStateCopyWithImpl<$Res>
           ? _value.validForm
           : validForm // ignore: cast_nullable_to_non_nullable
               as bool,
-      assetPhoto: freezed == assetPhoto
-          ? _value.assetPhoto
-          : assetPhoto // ignore: cast_nullable_to_non_nullable
-              as String?,
-      employeePhoto: freezed == employeePhoto
-          ? _value.employeePhoto
-          : employeePhoto // ignore: cast_nullable_to_non_nullable
-              as String?,
-      hoursRented: freezed == hoursRented
-          ? _value.hoursRented
-          : hoursRented // ignore: cast_nullable_to_non_nullable
-              as int?,
-      chosenAsset: null == chosenAsset
-          ? _value.chosenAsset
-          : chosenAsset // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<Asset>,
-      referralType: null == referralType
-          ? _value.referralType
-          : referralType // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<ReferralType?>,
       assets: null == assets
           ? _value.assets
           : assets // ignore: cast_nullable_to_non_nullable
               as AsyncValue<Stream<List<Asset>>?>,
-      clientDeposit: null == clientDeposit
-          ? _value.clientDeposit
-          : clientDeposit // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<String>,
       result: null == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
               as AsyncValue<String>,
-      creationDate: null == creationDate
-          ? _value.creationDate
-          : creationDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       formKey: null == formKey
           ? _value.formKey
           : formKey // ignore: cast_nullable_to_non_nullable
               as GlobalKey<FormState>,
+      referralType: null == referralType
+          ? _value.referralType
+          : referralType // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<ReferralType?>,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as RentalStatus,
-      employeeId: null == employeeId
-          ? _value.employeeId
-          : employeeId // ignore: cast_nullable_to_non_nullable
-              as String,
-      employeeName: null == employeeName
-          ? _value.employeeName
-          : employeeName // ignore: cast_nullable_to_non_nullable
-              as String,
+      selectedAssets: null == selectedAssets
+          ? _value.selectedAssets
+          : selectedAssets // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<List<RentalAsset>>,
+      clientDeposit: null == clientDeposit
+          ? _value.clientDeposit
+          : clientDeposit // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<String>,
+      clientEmailController: null == clientEmailController
+          ? _value.clientEmailController
+          : clientEmailController // ignore: cast_nullable_to_non_nullable
+              as TextEditingController,
       backupPhoneController: null == backupPhoneController
           ? _value.backupPhoneController
           : backupPhoneController // ignore: cast_nullable_to_non_nullable
@@ -391,26 +287,6 @@ class __$$_RentalFormStateCopyWithImpl<$Res>
           ? _value.clientPhoneController
           : clientPhoneController // ignore: cast_nullable_to_non_nullable
               as TextEditingController,
-      damageReportController: null == damageReportController
-          ? _value.damageReportController
-          : damageReportController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      finalMileageController: null == finalMileageController
-          ? _value.finalMileageController
-          : finalMileageController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      initialMileageController: null == initialMileageController
-          ? _value.initialMileageController
-          : initialMileageController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      notesController: null == notesController
-          ? _value.notesController
-          : notesController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
-      rentalPriceController: null == rentalPriceController
-          ? _value.rentalPriceController
-          : rentalPriceController // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
     ));
   }
 }
@@ -421,30 +297,21 @@ class _$_RentalFormState implements _RentalFormState {
   _$_RentalFormState(
       {this.currentStep = 0,
       this.validForm = false,
-      this.assetPhoto,
-      this.employeePhoto,
-      this.hoursRented,
-      required this.chosenAsset,
-      required this.referralType,
       required this.assets,
-      required this.clientDeposit,
       required this.result,
-      required this.creationDate,
       required this.formKey,
+      required this.referralType,
       required this.status,
-      required this.employeeId,
-      required this.employeeName,
+      required this.selectedAssets,
+      required this.clientDeposit,
+      required this.clientEmailController,
       required this.backupPhoneController,
       required this.clientHousingController,
       required this.clientIdController,
       required this.clientNameController,
-      required this.clientPhoneController,
-      required this.damageReportController,
-      required this.finalMileageController,
-      required this.initialMileageController,
-      required this.notesController,
-      required this.rentalPriceController});
+      required this.clientPhoneController});
 
+//Form Metadata
   @override
   @JsonKey()
   final int currentStep;
@@ -452,31 +319,30 @@ class _$_RentalFormState implements _RentalFormState {
   @JsonKey()
   final bool validForm;
   @override
-  final String? assetPhoto;
-  @override
-  final String? employeePhoto;
-  @override
-  final int? hoursRented;
-  @override
-  final AsyncValue<Asset> chosenAsset;
-  @override
-  final AsyncValue<ReferralType?> referralType;
-  @override
   final AsyncValue<Stream<List<Asset>>?> assets;
-  @override
-  final AsyncValue<String> clientDeposit;
   @override
   final AsyncValue<String> result;
   @override
-  final DateTime creationDate;
-  @override
   final GlobalKey<FormState> formKey;
+//Rental Metadata
+  @override
+  final AsyncValue<ReferralType?> referralType;
   @override
   final RentalStatus status;
+//Rental Information
   @override
-  final String employeeId;
+  final AsyncValue<List<RentalAsset>> selectedAssets;
+// int? hoursRented,
+// required TextEditingController damageReportController,
+// required TextEditingController finalMileageController,
+// required TextEditingController initialMileageController,
+// required TextEditingController notesController,
+// required TextEditingController rentalPriceController,
+//Client Details
   @override
-  final String employeeName;
+  final AsyncValue<String> clientDeposit;
+  @override
+  final TextEditingController clientEmailController;
   @override
   final TextEditingController backupPhoneController;
   @override
@@ -487,20 +353,10 @@ class _$_RentalFormState implements _RentalFormState {
   final TextEditingController clientNameController;
   @override
   final TextEditingController clientPhoneController;
-  @override
-  final TextEditingController damageReportController;
-  @override
-  final TextEditingController finalMileageController;
-  @override
-  final TextEditingController initialMileageController;
-  @override
-  final TextEditingController notesController;
-  @override
-  final TextEditingController rentalPriceController;
 
   @override
   String toString() {
-    return 'RentalFormState(currentStep: $currentStep, validForm: $validForm, assetPhoto: $assetPhoto, employeePhoto: $employeePhoto, hoursRented: $hoursRented, chosenAsset: $chosenAsset, referralType: $referralType, assets: $assets, clientDeposit: $clientDeposit, result: $result, creationDate: $creationDate, formKey: $formKey, status: $status, employeeId: $employeeId, employeeName: $employeeName, backupPhoneController: $backupPhoneController, clientHousingController: $clientHousingController, clientIdController: $clientIdController, clientNameController: $clientNameController, clientPhoneController: $clientPhoneController, damageReportController: $damageReportController, finalMileageController: $finalMileageController, initialMileageController: $initialMileageController, notesController: $notesController, rentalPriceController: $rentalPriceController)';
+    return 'RentalFormState(currentStep: $currentStep, validForm: $validForm, assets: $assets, result: $result, formKey: $formKey, referralType: $referralType, status: $status, selectedAssets: $selectedAssets, clientDeposit: $clientDeposit, clientEmailController: $clientEmailController, backupPhoneController: $backupPhoneController, clientHousingController: $clientHousingController, clientIdController: $clientIdController, clientNameController: $clientNameController, clientPhoneController: $clientPhoneController)';
   }
 
   @override
@@ -512,28 +368,18 @@ class _$_RentalFormState implements _RentalFormState {
                 other.currentStep == currentStep) &&
             (identical(other.validForm, validForm) ||
                 other.validForm == validForm) &&
-            (identical(other.assetPhoto, assetPhoto) ||
-                other.assetPhoto == assetPhoto) &&
-            (identical(other.employeePhoto, employeePhoto) ||
-                other.employeePhoto == employeePhoto) &&
-            (identical(other.hoursRented, hoursRented) ||
-                other.hoursRented == hoursRented) &&
-            (identical(other.chosenAsset, chosenAsset) ||
-                other.chosenAsset == chosenAsset) &&
+            (identical(other.assets, assets) || other.assets == assets) &&
+            (identical(other.result, result) || other.result == result) &&
+            (identical(other.formKey, formKey) || other.formKey == formKey) &&
             (identical(other.referralType, referralType) ||
                 other.referralType == referralType) &&
-            (identical(other.assets, assets) || other.assets == assets) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.selectedAssets, selectedAssets) ||
+                other.selectedAssets == selectedAssets) &&
             (identical(other.clientDeposit, clientDeposit) ||
                 other.clientDeposit == clientDeposit) &&
-            (identical(other.result, result) || other.result == result) &&
-            (identical(other.creationDate, creationDate) ||
-                other.creationDate == creationDate) &&
-            (identical(other.formKey, formKey) || other.formKey == formKey) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.employeeId, employeeId) ||
-                other.employeeId == employeeId) &&
-            (identical(other.employeeName, employeeName) ||
-                other.employeeName == employeeName) &&
+            (identical(other.clientEmailController, clientEmailController) ||
+                other.clientEmailController == clientEmailController) &&
             (identical(other.backupPhoneController, backupPhoneController) ||
                 other.backupPhoneController == backupPhoneController) &&
             (identical(
@@ -544,49 +390,27 @@ class _$_RentalFormState implements _RentalFormState {
             (identical(other.clientNameController, clientNameController) ||
                 other.clientNameController == clientNameController) &&
             (identical(other.clientPhoneController, clientPhoneController) ||
-                other.clientPhoneController == clientPhoneController) &&
-            (identical(other.damageReportController, damageReportController) ||
-                other.damageReportController == damageReportController) &&
-            (identical(other.finalMileageController, finalMileageController) ||
-                other.finalMileageController == finalMileageController) &&
-            (identical(
-                    other.initialMileageController, initialMileageController) ||
-                other.initialMileageController == initialMileageController) &&
-            (identical(other.notesController, notesController) ||
-                other.notesController == notesController) &&
-            (identical(other.rentalPriceController, rentalPriceController) ||
-                other.rentalPriceController == rentalPriceController));
+                other.clientPhoneController == clientPhoneController));
   }
 
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        currentStep,
-        validForm,
-        assetPhoto,
-        employeePhoto,
-        hoursRented,
-        chosenAsset,
-        referralType,
-        assets,
-        clientDeposit,
-        result,
-        creationDate,
-        formKey,
-        status,
-        employeeId,
-        employeeName,
-        backupPhoneController,
-        clientHousingController,
-        clientIdController,
-        clientNameController,
-        clientPhoneController,
-        damageReportController,
-        finalMileageController,
-        initialMileageController,
-        notesController,
-        rentalPriceController
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      currentStep,
+      validForm,
+      assets,
+      result,
+      formKey,
+      referralType,
+      status,
+      selectedAssets,
+      clientDeposit,
+      clientEmailController,
+      backupPhoneController,
+      clientHousingController,
+      clientIdController,
+      clientNameController,
+      clientPhoneController);
 
   @JsonKey(ignore: true)
   @override
@@ -599,61 +423,47 @@ abstract class _RentalFormState implements RentalFormState {
   factory _RentalFormState(
           {final int currentStep,
           final bool validForm,
-          final String? assetPhoto,
-          final String? employeePhoto,
-          final int? hoursRented,
-          required final AsyncValue<Asset> chosenAsset,
-          required final AsyncValue<ReferralType?> referralType,
           required final AsyncValue<Stream<List<Asset>>?> assets,
-          required final AsyncValue<String> clientDeposit,
           required final AsyncValue<String> result,
-          required final DateTime creationDate,
           required final GlobalKey<FormState> formKey,
+          required final AsyncValue<ReferralType?> referralType,
           required final RentalStatus status,
-          required final String employeeId,
-          required final String employeeName,
+          required final AsyncValue<List<RentalAsset>> selectedAssets,
+          required final AsyncValue<String> clientDeposit,
+          required final TextEditingController clientEmailController,
           required final TextEditingController backupPhoneController,
           required final TextEditingController clientHousingController,
           required final TextEditingController clientIdController,
           required final TextEditingController clientNameController,
-          required final TextEditingController clientPhoneController,
-          required final TextEditingController damageReportController,
-          required final TextEditingController finalMileageController,
-          required final TextEditingController initialMileageController,
-          required final TextEditingController notesController,
-          required final TextEditingController rentalPriceController}) =
+          required final TextEditingController clientPhoneController}) =
       _$_RentalFormState;
 
-  @override
+  @override //Form Metadata
   int get currentStep;
   @override
   bool get validForm;
   @override
-  String? get assetPhoto;
-  @override
-  String? get employeePhoto;
-  @override
-  int? get hoursRented;
-  @override
-  AsyncValue<Asset> get chosenAsset;
-  @override
-  AsyncValue<ReferralType?> get referralType;
-  @override
   AsyncValue<Stream<List<Asset>>?> get assets;
-  @override
-  AsyncValue<String> get clientDeposit;
   @override
   AsyncValue<String> get result;
   @override
-  DateTime get creationDate;
-  @override
   GlobalKey<FormState> get formKey;
+  @override //Rental Metadata
+  AsyncValue<ReferralType?> get referralType;
   @override
   RentalStatus get status;
+  @override //Rental Information
+  AsyncValue<List<RentalAsset>> get selectedAssets;
+  @override // int? hoursRented,
+// required TextEditingController damageReportController,
+// required TextEditingController finalMileageController,
+// required TextEditingController initialMileageController,
+// required TextEditingController notesController,
+// required TextEditingController rentalPriceController,
+//Client Details
+  AsyncValue<String> get clientDeposit;
   @override
-  String get employeeId;
-  @override
-  String get employeeName;
+  TextEditingController get clientEmailController;
   @override
   TextEditingController get backupPhoneController;
   @override
@@ -664,16 +474,6 @@ abstract class _RentalFormState implements RentalFormState {
   TextEditingController get clientNameController;
   @override
   TextEditingController get clientPhoneController;
-  @override
-  TextEditingController get damageReportController;
-  @override
-  TextEditingController get finalMileageController;
-  @override
-  TextEditingController get initialMileageController;
-  @override
-  TextEditingController get notesController;
-  @override
-  TextEditingController get rentalPriceController;
   @override
   @JsonKey(ignore: true)
   _$$_RentalFormStateCopyWith<_$_RentalFormState> get copyWith =>
