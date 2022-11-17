@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'steps/step_client_details.dart';
 
 import '../../../core/components/navigation/stepper.dart';
 import '../../../core/components/others/basic_scaffold.dart';
@@ -7,9 +8,9 @@ import '../../../core/components/others/filled_button.dart';
 import '../../../core/components/others/utilities.dart';
 import '../../../core/constants/spacing_values.dart';
 import '../../../l10n/generated/l10n.dart';
-import 'steps/step_available_assets.dart';
-import 'steps/step_rental_information.dart';
+import 'steps/available_assets/step_available_assets.dart';
 import 'rental_form_controller.dart';
+import 'steps/step_final_review.dart';
 
 class RentalForm extends ConsumerWidget {
   static const route = 'rental-form';
@@ -59,18 +60,29 @@ class RentalFormStepper extends ConsumerWidget {
     final prov = ref.watch(rentalFormControllerProvider);
     final notifier = ref.read(rentalFormControllerProvider.notifier);
     return VerticalStepper(
+      buttonsAlignment: (prov.currentStep == 2)
+          ? MainAxisAlignment.center
+          : MainAxisAlignment.start,
       finalStepNoMargin: true,
       onStepTapped: (prov.validForm) ? (step) => notifier.setStep(step) : null,
       controls: (context, details) => [
-        FilledButton(
-          onPressed: prov.validForm ? details.onStepContinue! : null,
-          label: Text(S.of(context).lblConfirm),
+        Expanded(
+          child: FilledButton(
+            onPressed: prov.validForm ? details.onStepContinue! : null,
+            label: Text((prov.currentStep == 2)
+                ? S.of(context).lblCreateObject(S.of(context).lblRentals(1))
+                : S.of(context).lblConfirm),
+          ),
         ),
-        const DefaultSpacer(),
-        TextButton(
-          onPressed: details.onStepCancel!,
-          child: Text(S.of(context).lblCancel),
-        ),
+        if (prov.currentStep != 2) ...{
+          const DefaultSpacer(),
+          Flexible(
+            child: TextButton(
+              onPressed: details.onStepCancel!,
+              child: Text(S.of(context).lblCancel),
+            ),
+          ),
+        }
       ],
       currentStep: prov.currentStep,
       onStepContinue: () => notifier.nextStep(context),
@@ -90,9 +102,15 @@ class RentalFormStepper extends ConsumerWidget {
         ),
         Step(
           isActive: prov.currentStep == 1,
-          title: Text(S.of(context).stepRentalInformation),
-          content: const StepRentalInformation(),
-          // state: validStepState(notifier.validStepRentalInformation()),
+          title: Text(S.of(context).stepClientInformation),
+          content: const StepClientDetails(),
+          state: validStepState(notifier.validStepClientDetails()),
+        ),
+        Step(
+          isActive: prov.currentStep == 2,
+          title: Text(S.of(context).stepFinalReview),
+          content: const StepFinalReview(),
+          state: validStepState(notifier.validStepClientDetails()),
         ),
       ],
     );

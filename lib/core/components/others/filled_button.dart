@@ -24,7 +24,8 @@ class FilledButton extends StatelessWidget {
           // fixedSize: const Size.fromHeight(40),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(kFilledButtonRadius))),
-      child: Padding(
+      child: Container(
+        width: width,
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: label,
       ),

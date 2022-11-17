@@ -8,13 +8,14 @@ import '../../constants/spacing_values.dart';
 class NumericInputField extends StatelessWidget {
   const NumericInputField({
     Key? key,
-    required this.controller,
+    this.controller,
     this.errorText,
     this.label,
     this.helperText,
     this.validator,
     this.onChanged,
     this.onEditingComplete,
+    this.initialValue,
     this.icon,
     this.textInputAction,
   }) : super(key: key);
@@ -22,9 +23,10 @@ class NumericInputField extends StatelessWidget {
   final String? errorText;
   final String? label;
   final String? helperText;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? Function(String?)? validator;
-  final String? Function(String?)? onChanged;
+  final String? initialValue;
+  final void Function(String?)? onChanged;
   final void Function()? onEditingComplete;
   final IconData? icon;
   final TextInputAction? textInputAction;
@@ -36,6 +38,7 @@ class NumericInputField extends StatelessWidget {
       controller: controller,
       textInputAction: textInputAction,
       maxLines: 1,
+      initialValue: initialValue,
       keyboardType:
           const TextInputType.numberWithOptions(decimal: true, signed: false),
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -89,21 +92,25 @@ class MoneyInputField extends StatelessWidget {
 class TextInputField extends StatelessWidget {
   const TextInputField({
     Key? key,
-    required this.controller,
+    this.controller,
     this.errorText,
     this.label,
     this.validator,
     this.textInputAction,
     this.icon,
     this.onEditingComplete,
+    this.initialValue,
     this.maxLines = 1,
+    this.onChanged,
   }) : super(key: key);
 
   final String? errorText;
   final String? label;
   final TextInputAction? textInputAction;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final String? initialValue;
+  final void Function(String)? onChanged;
   final IconData? icon;
   final void Function()? onEditingComplete;
   final int maxLines;
@@ -112,8 +119,10 @@ class TextInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      onChanged: onChanged,
       textInputAction: textInputAction,
       maxLines: maxLines,
+      initialValue: initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         prefixIcon: Icon(icon),
@@ -132,6 +141,7 @@ class SelectFormField<T> extends StatelessWidget {
     required this.items,
     required this.onChanged,
     required this.hint,
+    this.value,
     this.icon,
     this.validator,
     this.selectedItemBuilder,
@@ -139,6 +149,7 @@ class SelectFormField<T> extends StatelessWidget {
 
   final List<DropdownMenuItem<T>> items;
   final Function(T?)? onChanged;
+  final T? value;
   final String hint;
   final String? Function(T?)? validator;
   final List<Widget> Function(BuildContext)? selectedItemBuilder;
@@ -160,6 +171,7 @@ class SelectFormField<T> extends StatelessWidget {
       items: items,
       validator: validator,
       autovalidateMode: AutovalidateMode.onUserInteraction,
+      value: value,
       onChanged: onChanged,
       hint: Text(
         hint,

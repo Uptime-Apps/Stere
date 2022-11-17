@@ -32,21 +32,14 @@ class RentalFormController extends StateNotifier<RentalFormState> {
   }
 
   Future<void> nextStep(BuildContext context) async {
-    if (state.currentStep < 3) {
-      validateForm();
+    if (state.currentStep < 2) {
       state = state.copyWith(currentStep: state.currentStep + 1);
+      validateForm();
     } else {
       validateForm();
       log('here to submit', name: logName);
       final User currentUser = FirebaseAuth.instance.currentUser!;
       Rental rental = Rental(
-        // damageReport: state.damageReportController.text,
-        // hoursRented: state.hoursRented ?? 4,
-        // initialMileage: (state.chosenAsset.value!.isAutomotive)
-        //     : null,
-        //     ? double.parse(state.initialMileageController.text)
-        // notes: state.notesController.text,
-        // rentalPrice: double.parse(state.rentalPriceController.text),
         assets: state.selectedAssets.value!,
         backupPhone: state.backupPhoneController.text,
         clientDeposit: state.clientDeposit.value!,
@@ -107,12 +100,17 @@ class RentalFormController extends StateNotifier<RentalFormState> {
     validateForm();
   }
 
-  bool validStepAvailableAssets() =>
-      state.selectedAssets.value != null &&
-      state.selectedAssets.value!.isNotEmpty;
-
-  // bool validStepRentalInformation() =>
-  // state.hoursRented != null && state.rentalPriceController.text.isNotEmpty;
+  bool validStepAvailableAssets() {
+    bool hasSelections = state.selectedAssets.value != null &&
+        state.selectedAssets.value!.isNotEmpty;
+    if (hasSelections) {
+      bool allReady = state.selectedAssets.value!
+          .map((element) => element.status == RentalAssetStatus.ready)
+          .reduce((value, element) => value && element);
+      return allReady;
+    }
+    return false;
+  }
 
   bool validStepClientDetails() {
     bool housing = state.clientHousingController.text.isNotEmpty;
@@ -130,13 +128,10 @@ class RentalFormController extends StateNotifier<RentalFormState> {
       case 0:
         formStatus = validStepAvailableAssets();
         break;
-      // case 1:
-      //   formStatus = validStepRentalInformation();
-      // break;
-      case 2:
+      case 1:
         formStatus = validStepClientDetails();
         break;
-      case 3:
+      case 2:
         formStatus = true;
         break;
       default:
@@ -171,6 +166,14 @@ class RentalFormController extends StateNotifier<RentalFormState> {
       rentalPrice: 0,
       status: RentalAssetStatus.incomplete,
     ));
+    state = state.copyWith(selectedAssets: AsyncValue.data(currentAssets));
+    validateForm();
+  }
+
+  void editSelection(int index, RentalAsset rAsset) {
+    var currentAssets = state.selectedAssets.value!.toList();
+    currentAssets.removeAt(index);
+    currentAssets.add(rAsset);
     state = state.copyWith(selectedAssets: AsyncValue.data(currentAssets));
     validateForm();
   }

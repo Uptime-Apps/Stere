@@ -11,6 +11,7 @@ class VerticalStepper extends StatelessWidget {
     this.controls,
     this.onStepCancel,
     this.onStepContinue,
+    this.buttonsAlignment = MainAxisAlignment.start,
     this.onStepTapped,
   }) : super(key: key);
   final List<Step> steps;
@@ -18,6 +19,7 @@ class VerticalStepper extends StatelessWidget {
       controls;
   final int currentStep;
   final bool finalStepNoMargin;
+  final MainAxisAlignment buttonsAlignment;
   final void Function()? onStepCancel;
   final void Function()? onStepContinue;
   final void Function(int)? onStepTapped;
@@ -29,13 +31,15 @@ class VerticalStepper extends StatelessWidget {
             ? kSpacing * 3
             : 0.0;
     return Stepper(
-      margin: EdgeInsets.symmetric(horizontal: horizontalMargin, vertical: 8),
+      margin: EdgeInsets.symmetric(horizontal: horizontalMargin, vertical: 0),
       onStepTapped: onStepTapped,
       controlsBuilder: controls != null
           ? (context, details) {
               return Padding(
                 padding: const EdgeInsets.only(top: kVerticalSpacing),
                 child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: buttonsAlignment,
                   children: controls!(context, details),
                 ),
               );
