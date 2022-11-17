@@ -5,7 +5,7 @@ import '../../../../backend/models/rental/deposit.dart';
 import '../../../../core/constants/icons.dart';
 import '../../../../core/constants/spacing_values.dart';
 import '../../../../l10n/generated/l10n.dart';
-import '../../form/rental_form_controller.dart';
+import '../rental_form_controller.dart';
 
 class StepFinalReview extends ConsumerWidget {
   const StepFinalReview({Key? key}) : super(key: key);

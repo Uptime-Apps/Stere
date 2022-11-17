@@ -7,8 +7,8 @@ import '../../../core/components/others/filled_button.dart';
 import '../../../core/components/others/utilities.dart';
 import '../../../core/constants/spacing_values.dart';
 import '../../../l10n/generated/l10n.dart';
-import '../old_form/steps/step_available_assets.dart';
-import '../old_form/steps/step_rental_information.dart';
+import 'steps/step_available_assets.dart';
+import 'steps/step_rental_information.dart';
 import 'rental_form_controller.dart';
 
 class RentalForm extends ConsumerWidget {

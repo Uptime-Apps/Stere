@@ -3,12 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../../../../backend/models/asset/asset.dart';
-import '../../../../backend/models/rental/rental_asset.dart';
 import '../../../../backend/models/status/rental_status.dart';
 import '../../../../core/components/inputs/dropdowns.dart';
 import '../../../../core/components/others/utilities.dart';
+import '../../../../core/constants/radius_values.dart';
+import '../../../../core/constants/spacing_values.dart';
 import '../../../../l10n/generated/l10n.dart';
-import '../../form/rental_form_controller.dart';
+import '../rental_form_controller.dart';
 
 class StepAvailableAssets extends ConsumerWidget {
   const StepAvailableAssets(this.assetsFuture, {Key? key}) : super(key: key);
@@ -48,7 +49,27 @@ class StepAvailableAssets extends ConsumerWidget {
                                 backgroundColor: colorScheme.primary,
                                 foregroundColor: colorScheme.onPrimary,
                                 icon: Icons.edit,
-                                onPressed: (context) {},
+                                onPressed: (context) {
+                                  showModalBottomSheet(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              kCardRadius)),
+                                      context: context,
+                                      builder: (context) {
+                                        return Padding(
+                                          padding: const EdgeInsets.all(
+                                              kCardSpacing),
+                                          child: Column(
+                                            children: [
+                                              Text(obj.name,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headlineSmall),
+                                            ],
+                                          ),
+                                        );
+                                      });
+                                },
                               ),
                             ),
                           ),
@@ -89,25 +110,6 @@ class StepAvailableAssets extends ConsumerWidget {
                 ),
             orElse: () => const DefaultSpacer()),
       ],
-    );
-  }
-}
-
-class RentalAssetListTile extends StatelessWidget {
-  const RentalAssetListTile(
-    this.object, {
-    Key? key,
-  }) : super(key: key);
-  final RentalAsset object;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    bool status = false;
-    return ListTile(
-      title: Text(object.name),
-      subtitle: Text(object.categoryName),
-      trailing: Icon((status) ? Icons.check : Icons.indeterminate_check_box),
     );
   }
 }

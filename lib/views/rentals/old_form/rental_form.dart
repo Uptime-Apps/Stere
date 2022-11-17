@@ -8,10 +8,10 @@ import '../../../core/components/others/utilities.dart';
 import '../../../core/constants/spacing_values.dart';
 import '../../../l10n/generated/l10n.dart';
 import '../form/rental_form_controller.dart';
-import 'steps/step_available_assets.dart';
-import 'steps/step_client_details.dart';
-import 'steps/step_final_review.dart';
-import 'steps/step_rental_information.dart';
+import '../form/steps/step_available_assets.dart';
+import '../form/steps/step_client_details.dart';
+import '../form/steps/step_final_review.dart';
+import '../form/steps/step_rental_information.dart';
 
 class RentalForm extends ConsumerWidget {
   static const route = 'rental-form';

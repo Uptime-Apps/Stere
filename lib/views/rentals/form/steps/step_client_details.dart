@@ -4,7 +4,7 @@ import '../../../../backend/models/rental/deposit.dart';
 import '../../../../core/components/inputs/form_fields.dart';
 import '../../../../core/components/others/utilities.dart';
 import '../../../../l10n/generated/l10n.dart';
-import '../../form/rental_form_controller.dart';
+import '../rental_form_controller.dart';
 
 class StepClientDetails extends ConsumerWidget {
   const StepClientDetails({Key? key}) : super(key: key);
