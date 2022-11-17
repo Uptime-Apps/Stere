@@ -15,7 +15,7 @@ class RentalFormState with _$RentalFormState {
     //Form Metadata
     @Default(0) int currentStep,
     @Default(false) bool validForm,
-    required AsyncValue<Stream<List<Asset>>?> assets,
+    required AsyncValue<Future<List<Asset>>?> assets,
     required AsyncValue<String> result,
     required GlobalKey<FormState> formKey,
 

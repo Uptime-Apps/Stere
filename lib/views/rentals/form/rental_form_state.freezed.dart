@@ -19,7 +19,7 @@ mixin _$RentalFormState {
 //Form Metadata
   int get currentStep => throw _privateConstructorUsedError;
   bool get validForm => throw _privateConstructorUsedError;
-  AsyncValue<Stream<List<Asset>>?> get assets =>
+  AsyncValue<Future<List<Asset>>?> get assets =>
       throw _privateConstructorUsedError;
   AsyncValue<String> get result => throw _privateConstructorUsedError;
   GlobalKey<FormState> get formKey =>
@@ -64,7 +64,7 @@ abstract class $RentalFormStateCopyWith<$Res> {
   $Res call(
       {int currentStep,
       bool validForm,
-      AsyncValue<Stream<List<Asset>>?> assets,
+      AsyncValue<Future<List<Asset>>?> assets,
       AsyncValue<String> result,
       GlobalKey<FormState> formKey,
       AsyncValue<ReferralType?> referralType,
@@ -120,7 +120,7 @@ class _$RentalFormStateCopyWithImpl<$Res, $Val extends RentalFormState>
       assets: null == assets
           ? _value.assets
           : assets // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<Stream<List<Asset>>?>,
+              as AsyncValue<Future<List<Asset>>?>,
       result: null == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -184,7 +184,7 @@ abstract class _$$_RentalFormStateCopyWith<$Res>
   $Res call(
       {int currentStep,
       bool validForm,
-      AsyncValue<Stream<List<Asset>>?> assets,
+      AsyncValue<Future<List<Asset>>?> assets,
       AsyncValue<String> result,
       GlobalKey<FormState> formKey,
       AsyncValue<ReferralType?> referralType,
@@ -238,7 +238,7 @@ class __$$_RentalFormStateCopyWithImpl<$Res>
       assets: null == assets
           ? _value.assets
           : assets // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<Stream<List<Asset>>?>,
+              as AsyncValue<Future<List<Asset>>?>,
       result: null == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -319,7 +319,7 @@ class _$_RentalFormState implements _RentalFormState {
   @JsonKey()
   final bool validForm;
   @override
-  final AsyncValue<Stream<List<Asset>>?> assets;
+  final AsyncValue<Future<List<Asset>>?> assets;
   @override
   final AsyncValue<String> result;
   @override
@@ -423,7 +423,7 @@ abstract class _RentalFormState implements RentalFormState {
   factory _RentalFormState(
           {final int currentStep,
           final bool validForm,
-          required final AsyncValue<Stream<List<Asset>>?> assets,
+          required final AsyncValue<Future<List<Asset>>?> assets,
           required final AsyncValue<String> result,
           required final GlobalKey<FormState> formKey,
           required final AsyncValue<ReferralType?> referralType,
@@ -443,7 +443,7 @@ abstract class _RentalFormState implements RentalFormState {
   @override
   bool get validForm;
   @override
-  AsyncValue<Stream<List<Asset>>?> get assets;
+  AsyncValue<Future<List<Asset>>?> get assets;
   @override
   AsyncValue<String> get result;
   @override

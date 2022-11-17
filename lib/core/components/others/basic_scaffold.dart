@@ -7,10 +7,12 @@ class StereBasicScaffold extends StatelessWidget {
       {required this.title,
       required this.body,
       this.leading,
+      this.trailing,
       this.fab,
       this.bottomAppBar,
       super.key});
 
+  final List<Widget>? trailing;
   final Widget body;
   final Widget? leading;
   final String title;
@@ -25,6 +27,7 @@ class StereBasicScaffold extends StatelessWidget {
         title: Text(title),
         bottom: bottomAppBar,
         leading: leading,
+        actions: trailing,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: kSpacing),

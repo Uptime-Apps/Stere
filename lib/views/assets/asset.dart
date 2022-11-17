@@ -22,7 +22,7 @@ class AssetScreen extends ConsumerWidget {
               color: Colors.red,
               child: Text(S.of(context).emServerError),
             ),
-            data: ((stream) => StreamBuilder(
+            data: ((future) => FutureBuilder(
                 builder: (context, snapshot) {
                   // If there's data to show
                   if (snapshot.hasData && snapshot.data!.isNotEmpty) {
@@ -34,14 +34,14 @@ class AssetScreen extends ConsumerWidget {
                       // itemExtent: MediaQuery.of(context).size.height / 3.5,
                     );
                   }
-                  // If the stream has no data
+                  // If the future has no data
                   return EmptyListScreen(
                     itemName: S.of(context).lblAssets(2),
                     icon: Icons.add_shopping_cart_sharp,
                     actionRoute: AssetForm.route,
                   );
                 },
-                stream: stream)),
+                future: future)),
             loading: () => Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: kHorizontalSpacing),

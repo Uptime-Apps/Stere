@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/components/others/utilities.dart';
 import '../../../../l10n/generated/l10n.dart';
-import '../rental_form_controller.dart';
+import '../../form/rental_form_controller.dart';
 
 class StepRentalInformation extends ConsumerWidget {
   const StepRentalInformation({Key? key}) : super(key: key);

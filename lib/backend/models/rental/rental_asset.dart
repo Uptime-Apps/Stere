@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../status/rental_status.dart';
+
 part 'rental_asset.freezed.dart';
 part 'rental_asset.g.dart';
 
@@ -17,6 +19,7 @@ class RentalAsset with _$RentalAsset {
     required String name,
     required double rentalPrice,
     required int hoursRented,
+    required RentalAssetStatus status,
   }) = _RentalAsset;
 
   factory RentalAsset.fromJson(Map<String, dynamic> json) =>

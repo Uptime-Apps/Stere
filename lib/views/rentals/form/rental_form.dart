@@ -7,34 +7,47 @@ import '../../../core/components/others/filled_button.dart';
 import '../../../core/components/others/utilities.dart';
 import '../../../core/constants/spacing_values.dart';
 import '../../../l10n/generated/l10n.dart';
-import '../form/rental_form_controller.dart';
-import 'steps/step_available_assets.dart';
-import 'steps/step_client_details.dart';
-import 'steps/step_final_review.dart';
-import 'steps/step_rental_information.dart';
+import '../old_form/steps/step_available_assets.dart';
+import '../old_form/steps/step_rental_information.dart';
+import 'rental_form_controller.dart';
 
 class RentalForm extends ConsumerWidget {
   static const route = 'rental-form';
-  const RentalForm({Key? key}) : super(key: key);
+  const RentalForm({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final prov = ref.watch(rentalFormControllerProvider);
+    var prov = ref.watch(rentalFormControllerProvider);
     return StereBasicScaffold(
-      title: S.of(context).lblCreateObject(S.of(context).lblRentals(1)),
-      leading: IconButton(
-        onPressed: () =>
-            ref.read(rentalFormControllerProvider.notifier).exitForm(context),
-        icon: const Icon(Icons.arrow_back_ios),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: kVerticalSpacing),
-          child: Form(key: prov.formKey, child: const RentalFormStepper()),
+        title: S.of(context).lblCreateObject(S.of(context).lblRentals(1)),
+        leading: IconButton(
+          onPressed: () =>
+              ref.read(rentalFormControllerProvider.notifier).exitForm(context),
+          icon: const Icon(Icons.arrow_back_ios),
         ),
-      ),
-    );
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: kVerticalSpacing),
+            child: Form(key: prov.formKey, child: const RentalFormStepper()),
+          ),
+        ),
+        trailing: [
+          IconButton(
+            onPressed: () => showDialog(
+                context: context,
+                builder: (context) => SimpleDialog(
+                      title: Text(S.of(context).stInformationDialogNewRental),
+                      contentPadding: const EdgeInsets.all(kSpacing * 1.5),
+                      children: [
+                        Text(S.of(context).stInformationDialogNewRentalDelete),
+                        const Divider(),
+                        Text(S.of(context).stInformationDialogNewRentalEdit)
+                      ],
+                    )),
+            icon: const Icon(Icons.help),
+          )
+        ]);
   }
 }
 
@@ -80,17 +93,6 @@ class RentalFormStepper extends ConsumerWidget {
           title: Text(S.of(context).stepRentalInformation),
           content: const StepRentalInformation(),
           // state: validStepState(notifier.validStepRentalInformation()),
-        ),
-        Step(
-          isActive: prov.currentStep == 2,
-          title: Text(S.of(context).stepClientInformation),
-          content: const StepClientDetails(),
-          state: validStepState(notifier.validStepClientDetails()),
-        ),
-        Step(
-          isActive: ref.watch(rentalFormControllerProvider).currentStep == 3,
-          title: Text(S.of(context).stepFinalReview),
-          content: const StepFinalReview(),
         ),
       ],
     );

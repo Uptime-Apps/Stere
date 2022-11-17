@@ -161,7 +161,10 @@ class SelectFormField<T> extends StatelessWidget {
       validator: validator,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       onChanged: onChanged,
-      hint: Text(hint),
+      hint: Text(
+        hint,
+        overflow: TextOverflow.ellipsis,
+      ),
       offset: Offset.fromDirection(0, 0),
       decoration: InputDecoration(prefixIcon: Icon(icon)),
       selectedItemBuilder: selectedItemBuilder,

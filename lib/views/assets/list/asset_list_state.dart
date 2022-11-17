@@ -8,6 +8,6 @@ part 'asset_list_state.freezed.dart';
 @freezed
 class AssetListState with _$AssetListState {
   factory AssetListState({
-    AsyncValue<Stream<List<Asset>>>? assets,
+    AsyncValue<Future<List<Asset>>>? assets,
   }) = _AssetListState;
 }

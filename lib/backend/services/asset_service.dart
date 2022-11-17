@@ -10,9 +10,9 @@ import '../models/asset/asset.dart';
 import '../repositories/asset_repository.dart';
 
 abstract class AssetService {
-  Stream<List<Asset>>? getAssets();
-  Future<List<Asset>?> getAssetsByCategory(String id);
-  Stream<List<Asset>>? getAssetsOrderedByName();
+  Future<List<Asset>>? getAssets();
+  Future<List<Asset>>? getAssetsByCategory(String id);
+  Future<List<Asset>>? getAssetsOrderedByName();
   Future<String?> getImageUrl(Asset asset);
   Future<String?> create(Asset asset, File? image);
   Future<void> delete(Asset asset);
@@ -55,13 +55,14 @@ class FirebaseAssetService implements AssetService {
     return _assetRepository.delete(id);
   }
 
-  Stream<List<Asset>>? mapAssets(Stream<List<Map<String, dynamic>>> documents) {
-    return documents
-        .map((event) => event.map((e) => Asset.fromJson(e)).toList());
+  Future<List<Asset>> mapAssets(
+      Future<List<Map<String, dynamic>>> documents) async {
+    var docs = await documents;
+    return docs.map((e) => Asset.fromJson(e)).toList();
   }
 
   @override
-  Stream<List<Asset>>? getAssets() {
+  Future<List<Asset>>? getAssets() {
     try {
       return mapAssets(_assetRepository.getAssets());
     } on Failure catch (e) {
@@ -71,7 +72,7 @@ class FirebaseAssetService implements AssetService {
   }
 
   @override
-  Stream<List<Asset>>? getAssetsOrderedByName() {
+  Future<List<Asset>>? getAssetsOrderedByName() {
     try {
       return mapAssets(_assetRepository.getAssetsOrderedByName());
     } on Failure catch (e) {
@@ -95,10 +96,9 @@ class FirebaseAssetService implements AssetService {
   }
 
   @override
-  Future<List<Asset>?> getAssetsByCategory(String categoryId) async {
+  Future<List<Asset>>? getAssetsByCategory(String categoryId) {
     try {
-      var res = await _assetRepository.getAssetsByCategory(categoryId);
-      return res.map((e) => Asset.fromJson(e)).toList();
+      return mapAssets(_assetRepository.getAssetsByCategory(categoryId));
     } on Failure catch (e) {
       log(e.message, name: logName);
     }

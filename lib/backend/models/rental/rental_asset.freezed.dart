@@ -31,6 +31,7 @@ mixin _$RentalAsset {
   String get name => throw _privateConstructorUsedError;
   double get rentalPrice => throw _privateConstructorUsedError;
   int get hoursRented => throw _privateConstructorUsedError;
+  RentalAssetStatus get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +56,8 @@ abstract class $RentalAssetCopyWith<$Res> {
       String categoryName,
       String name,
       double rentalPrice,
-      int hoursRented});
+      int hoursRented,
+      RentalAssetStatus status});
 }
 
 /// @nodoc
@@ -82,6 +84,7 @@ class _$RentalAssetCopyWithImpl<$Res, $Val extends RentalAsset>
     Object? name = null,
     Object? rentalPrice = null,
     Object? hoursRented = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -128,6 +131,10 @@ class _$RentalAssetCopyWithImpl<$Res, $Val extends RentalAsset>
           ? _value.hoursRented
           : hoursRented // ignore: cast_nullable_to_non_nullable
               as int,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as RentalAssetStatus,
     ) as $Val);
   }
 }
@@ -151,7 +158,8 @@ abstract class _$$_RentalAssetCopyWith<$Res>
       String categoryName,
       String name,
       double rentalPrice,
-      int hoursRented});
+      int hoursRented,
+      RentalAssetStatus status});
 }
 
 /// @nodoc
@@ -176,6 +184,7 @@ class __$$_RentalAssetCopyWithImpl<$Res>
     Object? name = null,
     Object? rentalPrice = null,
     Object? hoursRented = null,
+    Object? status = null,
   }) {
     return _then(_$_RentalAsset(
       id: null == id
@@ -222,6 +231,10 @@ class __$$_RentalAssetCopyWithImpl<$Res>
           ? _value.hoursRented
           : hoursRented // ignore: cast_nullable_to_non_nullable
               as int,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as RentalAssetStatus,
     ));
   }
 }
@@ -240,7 +253,8 @@ class _$_RentalAsset implements _RentalAsset {
       required this.categoryName,
       required this.name,
       required this.rentalPrice,
-      required this.hoursRented});
+      required this.hoursRented,
+      required this.status});
 
   factory _$_RentalAsset.fromJson(Map<String, dynamic> json) =>
       _$$_RentalAssetFromJson(json);
@@ -267,10 +281,12 @@ class _$_RentalAsset implements _RentalAsset {
   final double rentalPrice;
   @override
   final int hoursRented;
+  @override
+  final RentalAssetStatus status;
 
   @override
   String toString() {
-    return 'RentalAsset(id: $id, damageReport: $damageReport, image: $image, notes: $notes, finalMileage: $finalMileage, initialMileage: $initialMileage, categoryId: $categoryId, categoryName: $categoryName, name: $name, rentalPrice: $rentalPrice, hoursRented: $hoursRented)';
+    return 'RentalAsset(id: $id, damageReport: $damageReport, image: $image, notes: $notes, finalMileage: $finalMileage, initialMileage: $initialMileage, categoryId: $categoryId, categoryName: $categoryName, name: $name, rentalPrice: $rentalPrice, hoursRented: $hoursRented, status: $status)';
   }
 
   @override
@@ -295,7 +311,8 @@ class _$_RentalAsset implements _RentalAsset {
             (identical(other.rentalPrice, rentalPrice) ||
                 other.rentalPrice == rentalPrice) &&
             (identical(other.hoursRented, hoursRented) ||
-                other.hoursRented == hoursRented));
+                other.hoursRented == hoursRented) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
@@ -312,7 +329,8 @@ class _$_RentalAsset implements _RentalAsset {
       categoryName,
       name,
       rentalPrice,
-      hoursRented);
+      hoursRented,
+      status);
 
   @JsonKey(ignore: true)
   @override
@@ -340,7 +358,8 @@ abstract class _RentalAsset implements RentalAsset {
       required final String categoryName,
       required final String name,
       required final double rentalPrice,
-      required final int hoursRented}) = _$_RentalAsset;
+      required final int hoursRented,
+      required final RentalAssetStatus status}) = _$_RentalAsset;
 
   factory _RentalAsset.fromJson(Map<String, dynamic> json) =
       _$_RentalAsset.fromJson;
@@ -367,6 +386,8 @@ abstract class _RentalAsset implements RentalAsset {
   double get rentalPrice;
   @override
   int get hoursRented;
+  @override
+  RentalAssetStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$_RentalAssetCopyWith<_$_RentalAsset> get copyWith =>

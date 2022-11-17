@@ -10,8 +10,8 @@ import '../models/rental/rental.dart';
 import '../models/status/rental_status.dart';
 
 abstract class RentalRepository {
-  Stream<List<Map<String, dynamic>>> getAll();
-  Stream<List<Map<String, dynamic>>> getActive();
+  Future<List<Map<String, dynamic>>> getAll();
+  Future<List<Map<String, dynamic>>> getActive();
   void delete(String id);
   Future<String> create(Rental object);
   void update(Rental object);
@@ -75,39 +75,35 @@ class FirebaseRentalRepository implements RentalRepository {
   }
 
   @override
-  Stream<List<Map<String, dynamic>>> getAll() {
+  Future<List<Map<String, dynamic>>> getAll() async {
     try {
-      return assetsRF.snapshots().asyncMap(
-            (event) => event.docs.map(
-              (e) {
-                final doc = e.data();
-                doc['id'] = e.id;
-                return doc;
-              },
-            ).toList(),
-          );
+      var objects = await rentalRF.get();
+      return objects.docs.map(
+        (e) {
+          final doc = e.data();
+          doc['id'] = e.id;
+          return doc;
+        },
+      ).toList();
     } on Exception catch (e) {
-      throw Failure(message: 'Could get rentals', exception: e);
+      throw Failure(message: 'Could not get rentals', exception: e);
     }
   }
 
   @override
-  Stream<List<Map<String, dynamic>>> getActive() {
+  Future<List<Map<String, dynamic>>> getActive() async {
     try {
-      return assetsRF
-          .where('status', isEqualTo: RentalStatus.active)
-          .snapshots()
-          .asyncMap(
-            (event) => event.docs.map(
-              (e) {
-                final doc = e.data();
-                doc['id'] = e.id;
-                return doc;
-              },
-            ).toList(),
-          );
+      var objects =
+          await rentalRF.where('status', isEqualTo: RentalStatus.active).get();
+      return objects.docs.map(
+        (e) {
+          final doc = e.data();
+          doc['id'] = e.id;
+          return doc;
+        },
+      ).toList();
     } on Exception catch (e) {
-      throw Failure(message: 'Could get ordered rentals', exception: e);
+      throw Failure(message: 'Could not get ordered rentals', exception: e);
     }
   }
 }

@@ -9,9 +9,9 @@ import '../firebase_references.dart';
 import '../models/asset/asset.dart';
 
 abstract class AssetRepository {
-  Stream<List<Map<String, dynamic>>> getAssets();
+  Future<List<Map<String, dynamic>>> getAssets();
   Future<List<Map<String, dynamic>>> getAssetsByCategory(String categoryId);
-  Stream<List<Map<String, dynamic>>> getAssetsOrderedByName();
+  Future<List<Map<String, dynamic>>> getAssetsOrderedByName();
   Future<void> delete(String id);
   Future<String> create(Asset asset);
   Future<String> getImageUrl(String path);
@@ -51,47 +51,33 @@ class FirebaseAssetRepository implements AssetRepository {
   }
 
   @override
-  Stream<List<Map<String, dynamic>>> getAssets() {
+  Future<List<Map<String, dynamic>>> getAssets() async {
     try {
-      return assetsRF.snapshots().asyncMap(
-            (event) => event.docs.map(
-              (e) {
-                final doc = e.data();
-                doc['id'] = e.id;
-                return doc;
-              },
-            ).toList(),
-          );
+      var res = await assetsRF.get();
+      return res.docs.map(
+        (e) {
+          final doc = e.data();
+          doc['id'] = e.id;
+          return doc;
+        },
+      ).toList();
     } on Exception catch (e) {
       throw Failure(message: 'Could get assets', exception: e);
     }
   }
 
   @override
-  Stream<List<Map<String, dynamic>>> getAssetsOrderedByName() {
+  Future<List<Map<String, dynamic>>> getAssetsOrderedByName() async {
     try {
-      return assetsRF.orderBy('name').snapshots().asyncMap(
-            (event) => event.docs.map(
-              (e) {
-                final doc = e.data();
-                doc['id'] = e.id;
-                return doc;
-              },
-            ).toList(),
-          );
+      var res = await assetsRF.orderBy('name').get();
+      return res.docs.map((e) {
+        final doc = e.data();
+        doc['id'] = e.id;
+        return doc;
+      }).toList();
     } on Exception catch (e) {
       throw Failure(message: 'Could get assets', exception: e);
     }
-  }
-
-  @override
-  Future<String> getImageUrl(String path) =>
-      FirebaseStorage.instance.ref(path).getDownloadURL();
-
-  @override
-  Future<String> uploadImage(String name, File image) async {
-    final task = await FirebaseStorage.instance.ref(name).putFile(image);
-    return task.ref.getDownloadURL();
   }
 
   @override
@@ -107,6 +93,16 @@ class FirebaseAssetRepository implements AssetRepository {
     } on Exception catch (e) {
       throw Failure(message: 'Could get assets', exception: e);
     }
+  }
+
+  @override
+  Future<String> getImageUrl(String path) =>
+      FirebaseStorage.instance.ref(path).getDownloadURL();
+
+  @override
+  Future<String> uploadImage(String name, File image) async {
+    final task = await FirebaseStorage.instance.ref(name).putFile(image);
+    return task.ref.getDownloadURL();
   }
 }
 

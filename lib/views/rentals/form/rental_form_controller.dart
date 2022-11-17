@@ -154,28 +154,31 @@ class RentalFormController extends StateNotifier<RentalFormState> {
     validateForm();
   }
 
-  void addAsset(Asset? asset) {
-    var currentAssets = state.selectedAssets.value!;
-    if (asset != null) {
-      currentAssets.add(RentalAsset(
-        id: asset.id!,
-        name: asset.name,
-        categoryId: asset.categoryId,
-        categoryName: asset.categoryName,
-        hoursRented: 0,
-        rentalPrice: 0,
-      ));
-      state = state.copyWith(selectedAssets: AsyncValue.data(currentAssets));
-    } else {
-      state = state.copyWith(selectedAssets: const AsyncValue.loading());
-    }
+  Future<List<Asset>> getUnselectedAssets() async {
+    var currentSelections = state.selectedAssets.value!.map((e) => e.id);
+    var assets = await state.assets.value!;
+    return assets.where((e) => currentSelections.contains(e.id!)).toList();
+  }
+
+  void addSelection(Asset asset) {
+    var currentAssets = state.selectedAssets.value!.toList();
+    currentAssets.add(RentalAsset(
+      id: asset.id!,
+      name: asset.name,
+      categoryId: asset.categoryId,
+      categoryName: asset.categoryName,
+      hoursRented: 0,
+      rentalPrice: 0,
+      status: RentalAssetStatus.incomplete,
+    ));
+    state = state.copyWith(selectedAssets: AsyncValue.data(currentAssets));
     validateForm();
   }
 
-  void selectHours(String assetId, int hours) {
+  void removeSelection(String assetId) {
     var currentAssets = state.selectedAssets.value!;
-    // currentAssets.firstWhere((element) => element.id == assetId).copyWith()
-    // state = state.copyWith(hoursRented: hours);
+    currentAssets.removeWhere((element) => element.id == assetId);
+    state = state.copyWith(selectedAssets: AsyncValue.data(currentAssets));
     validateForm();
   }
 }
@@ -195,7 +198,7 @@ final rentalFormControllerProvider =
         clientPhoneController: TextEditingController(),
         backupPhoneController: TextEditingController(),
         referralType: const AsyncValue.loading(),
-        selectedAssets: const AsyncValue.loading(),
+        selectedAssets: const AsyncValue.data([]),
         result: AsyncValue.data(S.current.lblSave),
         status: RentalStatus.active,
       ),

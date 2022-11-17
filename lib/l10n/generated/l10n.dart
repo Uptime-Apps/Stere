@@ -460,6 +460,16 @@ class S {
     );
   }
 
+  /// `{object} Available: {count}`
+  String lblAvailableCount(Object object, Object count) {
+    return Intl.message(
+      '$object Available: $count',
+      name: 'lblAvailableCount',
+      desc: '',
+      args: [object, count],
+    );
+  }
+
   /// `Selected Assets`
   String get lblSelectedAssets {
     return Intl.message(
@@ -542,6 +552,36 @@ class S {
     );
   }
 
+  /// `Incomplete`
+  String get ttIncomplete {
+    return Intl.message(
+      'Incomplete',
+      name: 'ttIncomplete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ready`
+  String get ttReady {
+    return Intl.message(
+      'Ready',
+      name: 'ttReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Undefined`
+  String get ttUndefined {
+    return Intl.message(
+      'Undefined',
+      name: 'ttUndefined',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Are you sure?`
   String get msgAreYouSure {
     return Intl.message(
@@ -549,6 +589,16 @@ class S {
       name: 'msgAreYouSure',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `No {objects} available`
+  String msgNothingAvailable(Object objects) {
+    return Intl.message(
+      'No $objects available',
+      name: 'msgNothingAvailable',
+      desc: '',
+      args: [objects],
     );
   }
 
@@ -771,6 +821,36 @@ class S {
     return Intl.message(
       'Verify Email',
       name: 'stVerifyEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What to do with selected assets?`
+  String get stInformationDialogNewRental {
+    return Intl.message(
+      'What to do with selected assets?',
+      name: 'stInformationDialogNewRental',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete them by swiping one of your selected assets to the left`
+  String get stInformationDialogNewRentalDelete {
+    return Intl.message(
+      'Delete them by swiping one of your selected assets to the left',
+      name: 'stInformationDialogNewRentalDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit them by swiping one of your selected assets to the right`
+  String get stInformationDialogNewRentalEdit {
+    return Intl.message(
+      'Edit them by swiping one of your selected assets to the right',
+      name: 'stInformationDialogNewRentalEdit',
       desc: '',
       args: [],
     );

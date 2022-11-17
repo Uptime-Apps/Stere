@@ -19,6 +19,7 @@ _$_RentalAsset _$$_RentalAssetFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       rentalPrice: (json['rentalPrice'] as num).toDouble(),
       hoursRented: json['hoursRented'] as int,
+      status: $enumDecode(_$RentalAssetStatusEnumMap, json['status']),
     );
 
 Map<String, dynamic> _$$_RentalAssetToJson(_$_RentalAsset instance) =>
@@ -34,4 +35,10 @@ Map<String, dynamic> _$$_RentalAssetToJson(_$_RentalAsset instance) =>
       'name': instance.name,
       'rentalPrice': instance.rentalPrice,
       'hoursRented': instance.hoursRented,
+      'status': _$RentalAssetStatusEnumMap[instance.status]!,
     };
+
+const _$RentalAssetStatusEnumMap = {
+  RentalAssetStatus.ready: 'ready',
+  RentalAssetStatus.incomplete: 'incomplete',
+};
