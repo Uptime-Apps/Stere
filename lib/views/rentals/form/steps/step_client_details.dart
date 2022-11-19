@@ -21,6 +21,13 @@ class StepClientDetails extends ConsumerWidget {
         textInputAction: TextInputAction.next,
         onEditingComplete: () => notifier.validateForm(),
       ),
+      TextInputField(
+        controller: prov.clientEmailController,
+        label: S.of(context).lblClientEmail,
+        icon: Icons.email,
+        textInputAction: TextInputAction.next,
+        onEditingComplete: () => notifier.validateForm(),
+      ),
       NumericInputField(
         controller: prov.clientIdController,
         label: S.of(context).lblClientId,

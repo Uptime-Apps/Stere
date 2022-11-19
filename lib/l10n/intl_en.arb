@@ -14,6 +14,7 @@
   "lblCategories": "{isPlural, plural, one{Category} other{Categories}}",
   "lblClientBackupPhone": "Backup Phone",
   "lblClientDeposit": "Deposit",
+  "lblClientEmail": "Email",
   "lblClientDepositIdentification": "Identification",
   "lblClientDepositPassport": "Passport",
   "lblClientHousing": "Housing",

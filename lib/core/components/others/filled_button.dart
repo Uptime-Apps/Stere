@@ -26,6 +26,7 @@ class FilledButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(kFilledButtonRadius))),
       child: Container(
         width: width,
+        // alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: label,
       ),

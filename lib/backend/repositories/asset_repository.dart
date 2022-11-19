@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
@@ -7,6 +8,7 @@ import '../../core/failure.dart';
 import '../../l10n/generated/l10n.dart';
 import '../firebase_references.dart';
 import '../models/asset/asset.dart';
+import '../models/status/rental_status.dart';
 
 abstract class AssetRepository {
   Future<List<Map<String, dynamic>>> getAssets();
@@ -17,6 +19,7 @@ abstract class AssetRepository {
   Future<String> getImageUrl(String path);
   Future<String> uploadImage(String name, File image);
   Future<void> deleteImage(String imagePath);
+  Future<void> setStatus(String id, AssetStatus status);
 }
 
 class FirebaseAssetRepository implements AssetRepository {
@@ -24,6 +27,7 @@ class FirebaseAssetRepository implements AssetRepository {
     fromFirestore: (snapshot, _) => Asset.fromJson(snapshot.data()!),
     toFirestore: (asset, _) => asset.toJson(),
   );
+  final String logName = 'firebase-asset-repository';
 
   @override
   Future<String> create(Asset asset) async {
@@ -103,6 +107,17 @@ class FirebaseAssetRepository implements AssetRepository {
   Future<String> uploadImage(String name, File image) async {
     final task = await FirebaseStorage.instance.ref(name).putFile(image);
     return task.ref.getDownloadURL();
+  }
+
+  @override
+  Future<void> setStatus(String id, AssetStatus status) async {
+    try {
+      log('Updated status to ${status.name}', name: logName);
+      return assetsRF.doc(id).update({'status': status.name});
+    } on Exception catch (e) {
+      log('Failed to Updated status of $id', name: logName);
+      throw Failure(message: 'Could get assets', exception: e);
+    }
   }
 }
 

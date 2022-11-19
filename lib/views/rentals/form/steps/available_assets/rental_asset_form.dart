@@ -75,7 +75,7 @@ class _RentalAssetFormState extends State<RentalAssetForm> {
         textInputAction: TextInputAction.newline,
         icon: Icons.library_books,
         label: S.of(context).lblNotesReport,
-        maxLines: 5,
+        maxLines: 4,
         onChanged: (value) => setState(() => notes = value),
       ),
       TextInputField(
@@ -103,8 +103,10 @@ class _RentalAssetFormState extends State<RentalAssetForm> {
           ),
           const DefaultSpacer(),
           FilledButton(
+            width: double.infinity,
             label: Text(
               S.of(context).lblConfirm,
+              textAlign: TextAlign.center,
             ),
             onPressed: submit,
           )

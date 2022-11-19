@@ -13,7 +13,7 @@ abstract class RentalRepository {
   Future<List<Map<String, dynamic>>> getAll();
   Future<List<Map<String, dynamic>>> getActive();
   void delete(String id);
-  Future<String> create(Rental object);
+  Future<String?> create(Rental object);
   void update(Rental object);
 }
 
@@ -25,7 +25,7 @@ class FirebaseRentalRepository implements RentalRepository {
   );
 
   @override
-  Future<String> create(Rental object) async {
+  Future<String?> create(Rental object) async {
     final String objName = S.current.lblRentals(1);
     try {
       final res = await _ref.add(object).then(
@@ -40,7 +40,7 @@ class FirebaseRentalRepository implements RentalRepository {
             error: error,
             stackTrace: stackTrace,
           );
-          return '';
+          return null;
         }),
       );
       return res.id;

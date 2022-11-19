@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../firebase_references.dart';
 import '../models/rental/rental.dart';
+import '../models/status/rental_status.dart';
 import '../repositories/rental_repository.dart';
+import 'asset_service.dart';
 
 abstract class RentalService {
   Future<String?> create(Rental object);
@@ -15,13 +17,23 @@ abstract class RentalService {
 }
 
 class FirebaseRentalService implements RentalService {
-  FirebaseRentalService(this._repository);
+  FirebaseRentalService(this._repository, this._assetService);
   final RentalRepository _repository;
+  final AssetService _assetService;
   final String logName = '$rentalsFB.service';
 
   @override
   Future<String?> create(Rental object) async {
-    final newId = await _repository.create(object);
+    final newId = await _repository.create(object).then((rentalId) {
+      for (var asset in object.assets) {
+        _assetService.setStatus(asset.id, AssetStatus.rented);
+      }
+      return rentalId;
+    }).onError((error, stackTrace) {
+      log('failed to create',
+          error: error, stackTrace: stackTrace, name: logName);
+      return null;
+    });
     return newId;
   }
 
@@ -60,5 +72,6 @@ class FirebaseRentalService implements RentalService {
 
 final rentalServiceProvider = Provider<RentalService>((ref) {
   final rentalRepository = ref.watch(rentalRepositoryProvider);
-  return FirebaseRentalService(rentalRepository);
+  final assetService = ref.watch(assetServiceProvider);
+  return FirebaseRentalService(rentalRepository, assetService);
 });

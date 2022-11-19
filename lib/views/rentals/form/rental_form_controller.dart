@@ -117,8 +117,9 @@ class RentalFormController extends StateNotifier<RentalFormState> {
     bool phone = state.clientPhoneController.text.isNotEmpty;
     bool backupPhone = state.backupPhoneController.text.isNotEmpty;
     bool deposit = state.clientDeposit.value != null;
+    bool email = state.clientEmailController.text.isNotEmpty;
     bool id = state.clientIdController.value.text.isNotEmpty;
-    return name && id && deposit && housing && phone && backupPhone;
+    return name && id && deposit && housing && phone && backupPhone && email;
   }
 
   String validateForm() {

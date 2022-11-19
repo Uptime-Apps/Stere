@@ -95,6 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Identification"),
         "lblClientDepositPassport":
             MessageLookupByLibrary.simpleMessage("Passport"),
+        "lblClientEmail": MessageLookupByLibrary.simpleMessage("Email"),
         "lblClientHousing": MessageLookupByLibrary.simpleMessage("Housing"),
         "lblClientId":
             MessageLookupByLibrary.simpleMessage("Identification number"),

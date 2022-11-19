@@ -204,6 +204,16 @@ class S {
     );
   }
 
+  /// `Email`
+  String get lblClientEmail {
+    return Intl.message(
+      'Email',
+      name: 'lblClientEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Identification`
   String get lblClientDepositIdentification {
     return Intl.message(

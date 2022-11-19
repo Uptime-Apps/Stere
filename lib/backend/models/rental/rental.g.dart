@@ -36,7 +36,7 @@ Map<String, dynamic> _$$_RentalToJson(_$_Rental instance) => <String, dynamic>{
       'employeePhoto': instance.employeePhoto,
       'employeeEmail': instance.employeeEmail,
       'employeeId': instance.employeeId,
-      'assets': instance.assets,
+      'assets': instance.assets.map((e) => e.toJson()).toList(),
       'clientDeposit': instance.clientDeposit,
       'clientEmail': instance.clientEmail,
       'clientHousing': instance.clientHousing,
