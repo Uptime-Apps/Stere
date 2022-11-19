@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../backend/models/asset/asset.dart';
 import '../../../backend/models/rental/rental_asset.dart';
+import '../../../backend/models/status/rental_status.dart';
 import '../../../l10n/generated/l10n.dart';
+import '../../../utils/extensions.dart';
 import '../../../views/assets/list/asset_list_controller.dart';
 import '../../constants/icons.dart';
 import '../../constants/image_assets.dart';
@@ -32,13 +34,37 @@ class AssetListTile extends ConsumerWidget {
           : defaultImage,
       loading: () => const CircularLoadingSkeleton(),
     );
+
+    Color statusColor = Colors.amber;
+    if (asset.status == AssetStatus.available.name) {
+      statusColor = Colors.green;
+    }
+    if (asset.status == AssetStatus.maintenance.name) {
+      statusColor = Colors.grey;
+    }
+    if (asset.status == AssetStatus.rented.name) {
+      statusColor = Colors.red.shade300;
+    }
     return ListTile(
-      title: Text(asset.name),
-      subtitle: Text(asset.categoryName),
-      leading: img,
-      trailing:
-          Icon((!asset.isAutomotive) ? icCategories : icCategoriesAutomotive),
-    );
+        title: Text(asset.name),
+        subtitle: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(asset.categoryName),
+          ],
+        ),
+        leading: img,
+        trailing: RawChip(
+          avatar: CircleAvatar(
+              backgroundColor: Colors.white.withAlpha(180),
+              foregroundColor: statusColor.withAlpha(230),
+              child: Icon(
+                (!asset.isAutomotive) ? icCategories : icCategoriesAutomotive,
+                size: 20,
+              )),
+          label: Text(asset.status.capitalize()),
+          backgroundColor: statusColor,
+        ));
   }
 }
 

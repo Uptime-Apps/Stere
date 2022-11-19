@@ -28,10 +28,11 @@ class AssetScreen extends ConsumerWidget {
                   if (snapshot.hasData && snapshot.data!.isNotEmpty) {
                     final dataList =
                         snapshot.data!.map((e) => AssetListTile(e)).toList();
-                    return ListView.builder(
+                    return ListView.separated(
                       itemBuilder: (_, index) => dataList[index],
                       itemCount: dataList.length,
                       // itemExtent: MediaQuery.of(context).size.height / 3.5,
+                      separatorBuilder: (_, __) => const Divider(),
                     );
                   }
                   // If the future has no data
