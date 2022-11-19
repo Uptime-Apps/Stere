@@ -28,7 +28,7 @@ mixin _$RentalFormState {
       throw _privateConstructorUsedError;
   RentalStatus get status =>
       throw _privateConstructorUsedError; //Rental Information
-  AsyncValue<List<RentalAsset>> get selectedAssets =>
+  List<RentalAsset> get selectedAssets =>
       throw _privateConstructorUsedError; // int? hoursRented,
 // required TextEditingController damageReportController,
 // required TextEditingController finalMileageController,
@@ -69,7 +69,7 @@ abstract class $RentalFormStateCopyWith<$Res> {
       GlobalKey<FormState> formKey,
       AsyncValue<ReferralType?> referralType,
       RentalStatus status,
-      AsyncValue<List<RentalAsset>> selectedAssets,
+      List<RentalAsset> selectedAssets,
       AsyncValue<String> clientDeposit,
       TextEditingController clientEmailController,
       TextEditingController backupPhoneController,
@@ -140,7 +140,7 @@ class _$RentalFormStateCopyWithImpl<$Res, $Val extends RentalFormState>
       selectedAssets: null == selectedAssets
           ? _value.selectedAssets
           : selectedAssets // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<RentalAsset>>,
+              as List<RentalAsset>,
       clientDeposit: null == clientDeposit
           ? _value.clientDeposit
           : clientDeposit // ignore: cast_nullable_to_non_nullable
@@ -189,7 +189,7 @@ abstract class _$$_RentalFormStateCopyWith<$Res>
       GlobalKey<FormState> formKey,
       AsyncValue<ReferralType?> referralType,
       RentalStatus status,
-      AsyncValue<List<RentalAsset>> selectedAssets,
+      List<RentalAsset> selectedAssets,
       AsyncValue<String> clientDeposit,
       TextEditingController clientEmailController,
       TextEditingController backupPhoneController,
@@ -256,9 +256,9 @@ class __$$_RentalFormStateCopyWithImpl<$Res>
           : status // ignore: cast_nullable_to_non_nullable
               as RentalStatus,
       selectedAssets: null == selectedAssets
-          ? _value.selectedAssets
+          ? _value._selectedAssets
           : selectedAssets // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<RentalAsset>>,
+              as List<RentalAsset>,
       clientDeposit: null == clientDeposit
           ? _value.clientDeposit
           : clientDeposit // ignore: cast_nullable_to_non_nullable
@@ -302,14 +302,15 @@ class _$_RentalFormState implements _RentalFormState {
       required this.formKey,
       required this.referralType,
       required this.status,
-      required this.selectedAssets,
+      final List<RentalAsset> selectedAssets = const [],
       required this.clientDeposit,
       required this.clientEmailController,
       required this.backupPhoneController,
       required this.clientHousingController,
       required this.clientIdController,
       required this.clientNameController,
-      required this.clientPhoneController});
+      required this.clientPhoneController})
+      : _selectedAssets = selectedAssets;
 
 //Form Metadata
   @override
@@ -330,8 +331,15 @@ class _$_RentalFormState implements _RentalFormState {
   @override
   final RentalStatus status;
 //Rental Information
+  final List<RentalAsset> _selectedAssets;
+//Rental Information
   @override
-  final AsyncValue<List<RentalAsset>> selectedAssets;
+  @JsonKey()
+  List<RentalAsset> get selectedAssets {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_selectedAssets);
+  }
+
 // int? hoursRented,
 // required TextEditingController damageReportController,
 // required TextEditingController finalMileageController,
@@ -374,8 +382,8 @@ class _$_RentalFormState implements _RentalFormState {
             (identical(other.referralType, referralType) ||
                 other.referralType == referralType) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.selectedAssets, selectedAssets) ||
-                other.selectedAssets == selectedAssets) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedAssets, _selectedAssets) &&
             (identical(other.clientDeposit, clientDeposit) ||
                 other.clientDeposit == clientDeposit) &&
             (identical(other.clientEmailController, clientEmailController) ||
@@ -403,7 +411,7 @@ class _$_RentalFormState implements _RentalFormState {
       formKey,
       referralType,
       status,
-      selectedAssets,
+      const DeepCollectionEquality().hash(_selectedAssets),
       clientDeposit,
       clientEmailController,
       backupPhoneController,
@@ -428,7 +436,7 @@ abstract class _RentalFormState implements RentalFormState {
           required final GlobalKey<FormState> formKey,
           required final AsyncValue<ReferralType?> referralType,
           required final RentalStatus status,
-          required final AsyncValue<List<RentalAsset>> selectedAssets,
+          final List<RentalAsset> selectedAssets,
           required final AsyncValue<String> clientDeposit,
           required final TextEditingController clientEmailController,
           required final TextEditingController backupPhoneController,
@@ -453,7 +461,7 @@ abstract class _RentalFormState implements RentalFormState {
   @override
   RentalStatus get status;
   @override //Rental Information
-  AsyncValue<List<RentalAsset>> get selectedAssets;
+  List<RentalAsset> get selectedAssets;
   @override // int? hoursRented,
 // required TextEditingController damageReportController,
 // required TextEditingController finalMileageController,

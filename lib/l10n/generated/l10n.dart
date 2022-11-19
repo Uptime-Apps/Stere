@@ -512,6 +512,26 @@ class S {
     );
   }
 
+  /// `Not Available`
+  String get lblNotAvailable {
+    return Intl.message(
+      'Not Available',
+      name: 'lblNotAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total`
+  String get lblTotal {
+    return Intl.message(
+      'Total',
+      name: 'lblTotal',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Send`
   String get lblSend {
     return Intl.message(

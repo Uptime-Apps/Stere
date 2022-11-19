@@ -33,12 +33,15 @@ class FirebaseRentalRepository implements RentalRepository {
           log(S.current.msgSuccessCreateObject(objName), name: logName);
           return doc;
         },
-        onError: ((error, stackTrace) => log(
-              S.current.msgFailedCreateObject(objName),
-              name: logName,
-              error: error,
-              stackTrace: stackTrace,
-            )),
+        onError: ((error, stackTrace) {
+          log(
+            S.current.msgFailedCreateObject(objName),
+            name: logName,
+            error: error,
+            stackTrace: stackTrace,
+          );
+          return '';
+        }),
       );
       return res.id;
     } on Exception catch (e) {

@@ -13,7 +13,7 @@ abstract class AssetService {
   Future<List<Asset>>? getAssets();
   Future<List<Asset>>? getAssetsByCategory(String id);
   Future<List<Asset>>? getAssetsOrderedByName();
-  Future<String?> getImageUrl(Asset asset);
+  Future<String?> getImageUrl(String? imagePath);
   Future<String?> create(Asset asset, File? image);
   Future<void> delete(Asset asset);
 }
@@ -82,11 +82,11 @@ class FirebaseAssetService implements AssetService {
   }
 
   @override
-  Future<String?> getImageUrl(Asset asset) async {
+  Future<String?> getImageUrl(String? imagePath) async {
     try {
-      if (asset.imagePath != null) {
-        return await _assetRepository.getImageUrl(asset.imagePath!);
-      }
+      return (imagePath?.isNotEmpty ?? false)
+          ? await _assetRepository.getImageUrl(imagePath!)
+          : null;
     } on Failure catch (e) {
       log(e.message, name: logName);
     } on FirebaseException catch (e) {

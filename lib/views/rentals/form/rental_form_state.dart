@@ -24,7 +24,7 @@ class RentalFormState with _$RentalFormState {
     required RentalStatus status,
 
     //Rental Information
-    required AsyncValue<List<RentalAsset>> selectedAssets,
+    @Default([]) List<RentalAsset> selectedAssets,
     // int? hoursRented,
     // required TextEditingController damageReportController,
     // required TextEditingController finalMileageController,

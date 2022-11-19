@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../backend/models/rental/deposit.dart';
+import '../../../../core/components/chips/numeric_chips.dart';
+import '../../../../core/components/list_tiles/asset.dart';
 import '../../../../core/constants/icons.dart';
 import '../../../../core/constants/spacing_values.dart';
 import '../../../../l10n/generated/l10n.dart';
@@ -14,7 +16,17 @@ class StepFinalReview extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return (ref.watch(rentalFormControllerProvider).validForm)
         ? const ValidFormFinalReview()
-        : Container();
+        : const LoadingFinalReview();
+    // : Container();
+  }
+}
+
+class LoadingFinalReview extends StatelessWidget {
+  const LoadingFinalReview({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
 
@@ -24,9 +36,58 @@ class ValidFormFinalReview extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final prov = ref.watch(rentalFormControllerProvider);
-    // final double price = (prov.rentalPriceController.text.isNotEmpty)
-    //     ? double.parse(prov.rentalPriceController.text)
-    //     : 0;
+    double totalPrice =
+        prov.selectedAssets.map((e) => e.rentalPrice).reduce((a, b) => a + b);
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CustomerInformationTable(
+            name: prov.clientNameController.text,
+            deposit: prov.clientDeposit.value,
+            identification: prov.clientIdController.text,
+            housing: prov.clientHousingController.text,
+            phone: prov.clientPhoneController.text,
+            backupPhone: prov.backupPhoneController.text,
+          ),
+          ListTile(
+              title: Text(S.of(context).lblSelectedAssets),
+              leading: const Icon(icAssets)),
+          Column(
+            children:
+                prov.selectedAssets.map((e) => RentedAssetListTile(e)).toList(),
+          ),
+          const Divider(),
+          ListTile(
+            title: Text(S.of(context).lblTotal),
+            trailing: PriceChip(price: totalPrice),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class CustomerInformationTable extends StatelessWidget {
+  const CustomerInformationTable({
+    this.name,
+    this.deposit,
+    this.identification,
+    this.housing,
+    this.phone,
+    this.backupPhone,
+    super.key,
+  });
+  final String? name;
+  final String? deposit;
+  final String? identification;
+  final String? housing;
+  final String? phone;
+  final String? backupPhone;
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Column(
       children: [
         ListTile(
@@ -34,115 +95,48 @@ class ValidFormFinalReview extends ConsumerWidget {
             leading: const Icon(icAssets)),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: kCardSpacing * 1.5),
-          child: Column(
-            children: [
-              SectionTable(
-                children: [
-                  buildRow(
-                    S.of(context).lblClientName,
-                    prov.clientNameController.text,
-                  ),
-                  buildRow(
-                      S.of(context).lblClientDeposit,
-                      prov.clientDeposit.value ==
-                              DepositEnum.identification.name
-                          ? S.of(context).lblClientDepositIdentification
-                          : S.of(context).lblClientDepositPassport),
-                  buildRow(
-                    S.of(context).lblClientId,
-                    prov.clientIdController.text,
-                  ),
-                  buildRow(S.of(context).lblClientHousing,
-                      prov.clientHousingController.text),
-                  buildRow(S.of(context).lblClientPhone,
-                      prov.clientPhoneController.text),
-                  buildRow(S.of(context).lblClientBackupPhone,
-                      prov.backupPhoneController.text),
-                ],
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: kSpacing),
+            child: Table(
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              children: [
+                buildRow(S.of(context).lblClientName,
+                    name ?? S.of(context).lblNotAvailable, textTheme),
+                buildRow(
+                    S.of(context).lblClientDeposit,
+                    deposit == DepositEnum.identification.name
+                        ? S.of(context).lblClientDepositIdentification
+                        : S.of(context).lblClientDepositPassport,
+                    textTheme),
+                buildRow(S.of(context).lblClientId,
+                    identification ?? S.of(context).lblNotAvailable, textTheme),
+                buildRow(S.of(context).lblClientHousing,
+                    housing ?? S.of(context).lblNotAvailable, textTheme),
+                buildRow(S.of(context).lblClientPhone,
+                    phone ?? S.of(context).lblNotAvailable, textTheme),
+                buildRow(S.of(context).lblClientBackupPhone,
+                    backupPhone ?? S.of(context).lblNotAvailable, textTheme),
+              ],
+            ),
           ),
         ),
-        ListTile(
-            title: Text(S.of(context).lblSelectedAssets),
-            leading: const Icon(icAssets)),
-        // Card(
-        //     child: Column(
-        //   children: [
-        //     RentedAssetListTile(
-        //       asset: prov.chosenAsset.value!,
-        //       hoursRented: prov.hoursRented ?? 0,
-        //       price: price,
-        //       notes: prov.notesController.text,
-        //       damageReport: prov.damageReportController.text,
-        //     )
-        //   ],
-        // ))
       ],
     );
   }
-}
 
-class SectionTable extends StatelessWidget {
-  const SectionTable(
-      {this.title, this.aboveTable, required this.children, super.key});
-  final String? title;
-  final Widget? aboveTable;
-  final List<TableRow> children;
-
-  @override
-  Widget build(BuildContext context) {
-    final sectionStyle = Theme.of(context).textTheme.titleMedium;
-    return Column(
-      children: [
-        if (title?.isNotEmpty ?? false) ...[
-          Text(title!, style: sectionStyle),
-          const Divider(),
-        ],
-        if (aboveTable != null) aboveTable!,
+  TableRow buildRow(String label, String value, TextTheme theme) =>
+      TableRow(children: [
         Padding(
-          padding: const EdgeInsets.only(bottom: kSpacing),
-          child: Table(
-            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-            children: children,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-TableRow buildRow(String label, String value) => TableRow(children: [
-      Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: kSpacing / 2, vertical: kSpacing / 4),
-          child: Text(label,
-              textAlign: TextAlign.end,
-              style: const TextStyle(fontWeight: FontWeight.bold))),
-      Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: kSpacing / 2, vertical: kSpacing / 4),
-          child: Text(value, textAlign: TextAlign.start)),
-    ]);
-
-class TinyListTile extends StatelessWidget {
-  const TinyListTile({this.icon, required this.title, this.subtitle, Key? key})
-      : super(key: key);
-  final IconData? icon;
-  final String title;
-  final String? subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    return ListTile(
-      leading: Icon(icon, color: colorScheme.secondary),
-      horizontalTitleGap: 0,
-      dense: true,
-      visualDensity: VisualDensity.compact,
-      contentPadding: EdgeInsets.zero,
-      title: Text(title),
-      subtitle: subtitle != null ? Text(subtitle!) : null,
-    );
-  }
+            padding: const EdgeInsets.symmetric(
+                horizontal: kSpacing / 2, vertical: kSpacing / 4),
+            child: Text(label,
+                textAlign: TextAlign.start,
+                style: theme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ))),
+        Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: kSpacing / 2, vertical: kSpacing / 4),
+            child: Text(value, textAlign: TextAlign.end)),
+      ]);
 }

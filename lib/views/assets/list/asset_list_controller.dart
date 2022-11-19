@@ -32,7 +32,7 @@ final assetListControllerProvider =
 );
 
 final assetListImageProvider =
-    FutureProvider.autoDispose.family<String?, Asset>((ref, asset) async {
-  final result = await ref.watch(assetServiceProvider).getImageUrl(asset);
+    FutureProvider.autoDispose.family<String?, String?>((ref, imagePath) async {
+  final result = await ref.watch(assetServiceProvider).getImageUrl(imagePath);
   return result;
 });

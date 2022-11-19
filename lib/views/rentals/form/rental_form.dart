@@ -26,12 +26,9 @@ class RentalForm extends ConsumerWidget {
               ref.read(rentalFormControllerProvider.notifier).exitForm(context),
           icon: const Icon(Icons.arrow_back_ios),
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: kVerticalSpacing),
-            child: Form(key: prov.formKey, child: const RentalFormStepper()),
-          ),
+        body: Container(
+          margin: const EdgeInsets.symmetric(vertical: kVerticalSpacing),
+          child: Form(key: prov.formKey, child: const RentalFormStepper()),
         ),
         trailing: [
           IconButton(
@@ -64,7 +61,7 @@ class RentalFormStepper extends ConsumerWidget {
           ? MainAxisAlignment.center
           : MainAxisAlignment.start,
       finalStepNoMargin: true,
-      onStepTapped: (prov.validForm) ? (step) => notifier.setStep(step) : null,
+      onStepTapped: (step) => (step != 2) ? notifier.setStep(step) : null,
       controls: (context, details) => [
         Expanded(
           child: FilledButton(

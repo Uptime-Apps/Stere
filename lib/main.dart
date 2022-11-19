@@ -69,14 +69,4 @@ class AppTheme {
       ),
     );
   }
-
-  // ThemeData dark(ColorScheme? colorScheme) {
-  //   ColorScheme scheme = colorScheme ??
-  //       ColorScheme.fromSeed(
-  //           seedColor: Colors.green, brightness: Brightness.dark);
-  //   return theme.copyWith(
-  //     useMaterial3: true,
-  //     colorScheme: scheme,
-  //   );
-  // }
 }

@@ -27,71 +27,68 @@ class StepAvailableAssets extends ConsumerWidget {
       children: [
         AvailableAssetsDropdown(assetsFuture: assetsFuture),
         const DefaultSpacer(),
-        prov.selectedAssets.maybeWhen(
-            data: (data) => ListView.separated(
-                  shrinkWrap: true,
-                  itemCount: data.length,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    final obj = data[index];
-                    return Slidable(
-                      key: ValueKey<String>(obj.id),
-                      startActionPane: ActionPane(
-                        motion: const ScrollMotion(),
-                        extentRatio: 0.5,
-                        children: [
-                          SlidableAction(
-                            backgroundColor: colorScheme.primary,
-                            foregroundColor: colorScheme.onPrimary,
-                            icon: Icons.edit,
-                            onPressed: (context) async {
-                              var res = await showModalBottomSheet<RentalAsset>(
-                                  isScrollControlled: true,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(kCardRadius)),
-                                  context: context,
-                                  builder: (context) => RentalAssetForm(obj));
-                              if (res != null) {
-                                notifier.editSelection(index, res);
-                                // log(res.toString(), name: logName);
-                              }
-                            },
-                          ),
-                          SlidableAction(
-                            backgroundColor: colorScheme.error,
-                            foregroundColor: colorScheme.onError,
-                            icon: Icons.delete,
-                            onPressed: (context) {
-                              notifier.removeSelection(obj.id);
-                            },
-                          ),
-                        ],
+        ListView.separated(
+          shrinkWrap: true,
+          itemCount: prov.selectedAssets.length,
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            final obj = prov.selectedAssets[index];
+            return Slidable(
+              key: ValueKey<String>(obj.id),
+              startActionPane: ActionPane(
+                motion: const ScrollMotion(),
+                extentRatio: 0.5,
+                children: [
+                  SlidableAction(
+                    backgroundColor: colorScheme.primary,
+                    foregroundColor: colorScheme.onPrimary,
+                    icon: Icons.edit,
+                    onPressed: (context) async {
+                      var res = await showModalBottomSheet<RentalAsset>(
+                          isScrollControlled: true,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(kCardRadius)),
+                          context: context,
+                          builder: (context) => RentalAssetForm(obj));
+                      if (res != null) {
+                        notifier.editSelection(index, res);
+                        // log(res.toString(), name: logName);
+                      }
+                    },
+                  ),
+                  SlidableAction(
+                    backgroundColor: colorScheme.error,
+                    foregroundColor: colorScheme.onError,
+                    icon: Icons.delete,
+                    onPressed: (context) {
+                      notifier.removeSelection(obj.id);
+                    },
+                  ),
+                ],
+              ),
+              child: ListTile(
+                title: Text(obj.name),
+                subtitle: Text(obj.categoryName),
+                trailing: (obj.status == RentalAssetStatus.incomplete)
+                    ? Tooltip(
+                        message: S.of(context).ttIncomplete,
+                        child: Icon(
+                          Icons.pending,
+                          color: colorScheme.secondary,
+                        ),
+                      )
+                    : Tooltip(
+                        message: S.of(context).ttReady,
+                        child: Icon(
+                          Icons.check,
+                          color: colorScheme.primary,
+                        ),
                       ),
-                      child: ListTile(
-                        title: Text(obj.name),
-                        subtitle: Text(obj.categoryName),
-                        trailing: (obj.status == RentalAssetStatus.incomplete)
-                            ? Tooltip(
-                                message: S.of(context).ttIncomplete,
-                                child: Icon(
-                                  Icons.pending,
-                                  color: colorScheme.secondary,
-                                ),
-                              )
-                            : Tooltip(
-                                message: S.of(context).ttReady,
-                                child: Icon(
-                                  Icons.check,
-                                  color: colorScheme.primary,
-                                ),
-                              ),
-                      ),
-                    );
-                  },
-                  separatorBuilder: (_, __) => const Divider(),
-                ),
-            orElse: () => const DefaultSpacer()),
+              ),
+            );
+          },
+          separatorBuilder: (_, __) => const Divider(),
+        ),
       ],
     );
   }

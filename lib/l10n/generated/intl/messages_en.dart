@@ -119,6 +119,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblMore": MessageLookupByLibrary.simpleMessage("More"),
         "lblName": MessageLookupByLibrary.simpleMessage("Name"),
         "lblNo": MessageLookupByLibrary.simpleMessage("No"),
+        "lblNotAvailable":
+            MessageLookupByLibrary.simpleMessage("Not Available"),
         "lblNotesReport": MessageLookupByLibrary.simpleMessage("Notes"),
         "lblNotifications":
             MessageLookupByLibrary.simpleMessage("Notifications"),
@@ -130,6 +132,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblSend": MessageLookupByLibrary.simpleMessage("Send"),
         "lblSettings": MessageLookupByLibrary.simpleMessage("Settings"),
         "lblTags": MessageLookupByLibrary.simpleMessage("Tags"),
+        "lblTotal": MessageLookupByLibrary.simpleMessage("Total"),
         "lblYes": MessageLookupByLibrary.simpleMessage("Yes"),
         "msgAreYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "msgAutomotive": MessageLookupByLibrary.simpleMessage(

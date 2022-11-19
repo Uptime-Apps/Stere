@@ -57,6 +57,8 @@
   "lblRentals": "{isPlural, plural, one{Rental} other{Rentals}}",
   "lblSave": "Save",
   "lblSave": "Save",
+  "lblNotAvailable": "Not Available",
+  "lblTotal": "Total",
   "lblSend": "Send",
   "lblSettings": "Settings",
   "lblTags": "Tags",

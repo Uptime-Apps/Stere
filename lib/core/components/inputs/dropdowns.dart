@@ -20,12 +20,16 @@ class AvailableAssetsDropdown extends ConsumerWidget {
     var prov = ref.watch(rentalFormControllerProvider);
     var notifier = ref.read(rentalFormControllerProvider.notifier);
     return FutureBuilder(
-      builder: (context, snapshot) {
-        if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-          var unselectedMenuItems = snapshot.data!.where((asset) =>
-              prov.selectedAssets.value!
-                  .indexWhere((rentalAsset) => asset.id == rentalAsset.id) ==
-              -1);
+      builder: (context, allAssets) {
+        if (allAssets.hasData && allAssets.data!.isNotEmpty) {
+          List<Asset> unselectedMenuItems = (prov.selectedAssets.isEmpty)
+              ? allAssets.data!
+              : allAssets.data!
+                  .where((asset) =>
+                      prov.selectedAssets.indexWhere(
+                          (rentalAsset) => asset.id == rentalAsset.id) ==
+                      -1)
+                  .toList();
           var menuItems = unselectedMenuItems
               .map(
                 (e) => DropdownMenuItem(
@@ -33,23 +37,18 @@ class AvailableAssetsDropdown extends ConsumerWidget {
                   child: SizedBox(
                     height: 50,
                     width: MediaQuery.of(context).size.width / 2,
-                    child: StatefulBuilder(builder: (context, menuState) {
-                      final isSelected = prov.selectedAssets.value!
-                          .map((e) => e.id)
-                          .contains(e.id);
-                      return ListTile(
-                        onTap: () {
-                          isSelected
-                              ? notifier.removeSelection(e.id!)
-                              : notifier.addSelection(e);
-                          menuState(() {});
-                          Navigator.of(context).pop();
-                        },
-                        visualDensity: VisualDensity.compact,
-                        title: Text(e.name),
-                        subtitle: Text(e.categoryName),
-                      );
-                    }),
+                    child: ListTile(
+                      onTap: () {
+                        notifier.addSelection(e);
+                        Navigator.of(context).pop();
+                      },
+                      visualDensity: VisualDensity.compact,
+                      title: Tooltip(
+                        message: e.name,
+                        child: Text(e.name, overflow: TextOverflow.ellipsis),
+                      ),
+                      subtitle: Text(e.categoryName),
+                    ),
                   ),
                 ),
               )
@@ -63,7 +62,7 @@ class AvailableAssetsDropdown extends ConsumerWidget {
             },
             hint: S.of(context).lblAvailableCount(
                 S.of(context).lblAssets(2), menuItems.length.toString()),
-            selectedItemBuilder: (context) => snapshot.data!
+            selectedItemBuilder: (context) => allAssets.data!
                 .map((e) => SizedBox(
                     width: MediaQuery.of(context).size.width / 3,
                     child: Text(e.name, overflow: TextOverflow.ellipsis)))

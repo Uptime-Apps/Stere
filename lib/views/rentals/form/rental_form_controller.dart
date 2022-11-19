@@ -40,7 +40,7 @@ class RentalFormController extends StateNotifier<RentalFormState> {
       log('here to submit', name: logName);
       final User currentUser = FirebaseAuth.instance.currentUser!;
       Rental rental = Rental(
-        assets: state.selectedAssets.value!,
+        assets: state.selectedAssets,
         backupPhone: state.backupPhoneController.text,
         clientDeposit: state.clientDeposit.value!,
         clientEmail: state.clientEmailController.text,
@@ -101,10 +101,9 @@ class RentalFormController extends StateNotifier<RentalFormState> {
   }
 
   bool validStepAvailableAssets() {
-    bool hasSelections = state.selectedAssets.value != null &&
-        state.selectedAssets.value!.isNotEmpty;
+    bool hasSelections = state.selectedAssets.isNotEmpty;
     if (hasSelections) {
-      bool allReady = state.selectedAssets.value!
+      bool allReady = state.selectedAssets
           .map((element) => element.status == RentalAssetStatus.ready)
           .reduce((value, element) => value && element);
       return allReady;
@@ -150,38 +149,39 @@ class RentalFormController extends StateNotifier<RentalFormState> {
   }
 
   Future<List<Asset>> getUnselectedAssets() async {
-    var currentSelections = state.selectedAssets.value!.map((e) => e.id);
+    var currentSelections = state.selectedAssets.map((e) => e.id);
     var assets = await state.assets.value!;
     return assets.where((e) => currentSelections.contains(e.id!)).toList();
   }
 
   void addSelection(Asset asset) {
-    var currentAssets = state.selectedAssets.value!.toList();
+    var currentAssets = state.selectedAssets.toList();
     currentAssets.add(RentalAsset(
       id: asset.id!,
       name: asset.name,
       categoryId: asset.categoryId,
       categoryName: asset.categoryName,
+      image: asset.imagePath,
       hoursRented: 0,
       rentalPrice: 0,
       status: RentalAssetStatus.incomplete,
     ));
-    state = state.copyWith(selectedAssets: AsyncValue.data(currentAssets));
+    state = state.copyWith(selectedAssets: currentAssets);
     validateForm();
   }
 
   void editSelection(int index, RentalAsset rAsset) {
-    var currentAssets = state.selectedAssets.value!.toList();
+    var currentAssets = state.selectedAssets.toList();
     currentAssets.removeAt(index);
     currentAssets.add(rAsset);
-    state = state.copyWith(selectedAssets: AsyncValue.data(currentAssets));
+    state = state.copyWith(selectedAssets: currentAssets);
     validateForm();
   }
 
   void removeSelection(String assetId) {
-    var currentAssets = state.selectedAssets.value!;
+    var currentAssets = state.selectedAssets.toList();
     currentAssets.removeWhere((element) => element.id == assetId);
-    state = state.copyWith(selectedAssets: AsyncValue.data(currentAssets));
+    state = state.copyWith(selectedAssets: currentAssets);
     validateForm();
   }
 }
@@ -191,20 +191,19 @@ final rentalFormControllerProvider =
         (ref) {
   return RentalFormController(
       RentalFormState(
-        formKey: GlobalKey<FormState>(),
-        assets: const AsyncValue.loading(),
-        clientDeposit: const AsyncValue.loading(),
-        clientEmailController: TextEditingController(),
-        clientHousingController: TextEditingController(),
-        clientIdController: TextEditingController(),
-        clientNameController: TextEditingController(),
-        clientPhoneController: TextEditingController(),
-        backupPhoneController: TextEditingController(),
-        referralType: const AsyncValue.loading(),
-        selectedAssets: const AsyncValue.data([]),
-        result: AsyncValue.data(S.current.lblSave),
-        status: RentalStatus.active,
-      ),
+          formKey: GlobalKey<FormState>(),
+          assets: const AsyncValue.data(null),
+          clientDeposit: const AsyncValue.loading(),
+          clientEmailController: TextEditingController(),
+          clientHousingController: TextEditingController(),
+          clientIdController: TextEditingController(),
+          clientNameController: TextEditingController(),
+          clientPhoneController: TextEditingController(),
+          backupPhoneController: TextEditingController(),
+          referralType: const AsyncValue.loading(),
+          result: AsyncValue.data(S.current.lblSave),
+          status: RentalStatus.active,
+          currentStep: 0),
       assetService: ref.watch(assetServiceProvider),
       service: ref.watch(rentalServiceProvider));
 });
