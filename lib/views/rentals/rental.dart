@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/components/lists/chips.dart';
+import '../../backend/services/rental_service.dart';
+import '../../core/components/list_tiles/rental.dart';
+import '../../core/components/lists/empty_list.dart';
 import '../../core/components/others/utilities.dart';
 import '../../core/constants/icons.dart';
 import '../../core/constants/spacing_values.dart';
+import '../../l10n/generated/l10n.dart';
+import 'form/rental_form.dart';
 
 class RentalScreen extends ConsumerWidget {
   static const route = 'rentals';
@@ -12,53 +16,27 @@ class RentalScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return ListView.separated(
-      padding: const EdgeInsets.all(kSpacing),
-      itemCount: 10,
-      itemBuilder: ((context, index) {
-        return Card(
-          elevation: 0,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ListTile(
-                leading: CircleAvatar(
-                    backgroundColor: colorScheme.primary,
-                    foregroundColor: colorScheme.onPrimary,
-                    child: const Icon(Icons.person)),
-                title: const Text('Category.name'),
-                subtitle: const Text('Rental.clientName'),
-                trailing: CircleAvatar(
-                    backgroundColor: colorScheme.background,
-                    foregroundColor: colorScheme.onBackground,
-                    child: const Icon(icRenatlDone)),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: kSpacing, right: kSpacing, bottom: kCardSpacing),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const ChipsOverflowBar(['asdf', '92jejasdf']),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {},
-                        child: const Text('More details'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+    return FutureBuilder(
+      builder: (context, snapshot) {
+        if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+          final rentals = snapshot.data!;
+          return ListView.separated(
+            padding: const EdgeInsets.all(kSpacing),
+            itemCount: rentals.length,
+            itemBuilder: ((context, index) {
+              return RentalCard(rentals[index]);
+            }),
+            separatorBuilder: (context, index) =>
+                const DefaultSpacer(dim: kCardSpacing),
+          );
+        }
+        return EmptyListScreen(
+          itemName: S.of(context).lblRentals(2),
+          icon: icRentals,
+          actionRoute: RentalForm.route,
         );
-      }),
-      separatorBuilder: (context, index) =>
-          const DefaultSpacer(dim: kCardSpacing),
+      },
+      future: ref.watch(rentalServiceProvider).getAll(),
     );
   }
 }

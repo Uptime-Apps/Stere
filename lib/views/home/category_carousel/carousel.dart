@@ -80,16 +80,22 @@ class _ClickableCategoryCard extends State<ClickableCategoryCard> {
           context: context,
           items: <PopupMenuEntry<int>>[
             PopupMenuItem(
+              padding: const EdgeInsets.symmetric(horizontal: 0),
               value: 0,
               child: ListTile(
+                horizontalTitleGap: 0,
                 leading: const Icon(Icons.edit),
+                visualDensity: VisualDensity.compact,
                 title: Text(S.of(context).lblEdit),
               ),
             ),
             PopupMenuItem(
+              padding: const EdgeInsets.symmetric(horizontal: 0),
               value: 1,
               child: ListTile(
+                horizontalTitleGap: 0,
                 leading: const Icon(Icons.delete),
+                visualDensity: VisualDensity.compact,
                 title: Text(S.of(context).lblDelete),
               ),
             )

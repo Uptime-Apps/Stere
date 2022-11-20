@@ -99,7 +99,7 @@ class RentalFormStepper extends ConsumerWidget {
         ),
         Step(
           isActive: prov.currentStep == 1,
-          title: Text(S.of(context).stepClientInformation),
+          title: Text(S.of(context).stepClientDetails),
           content: const StepClientDetails(),
           state: validStepState(notifier.validStepClientDetails()),
         ),

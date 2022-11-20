@@ -114,6 +114,7 @@ class RentedAssetListTile extends ConsumerWidget {
                 builder: (context) {
                   var textTheme = Theme.of(context).textTheme;
                   return SimpleDialog(
+                    insetPadding: const EdgeInsets.symmetric(horizontal: 0),
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: kHorizontalSpacing * 2,
                       vertical: kVerticalSpacing,

@@ -96,7 +96,7 @@
   "stInformationDialogNewRentalDelete": "Delete them by swiping one of your selected assets to the left",
   "stInformationDialogNewRentalEdit":                            "Edit them by swiping one of your selected assets to the right",
   "stepAvailableAssets": "Available Assets",
-  "stepClientInformation": "Customer Information",
+  "stepClientDetails": "Customer Details",
   "stepFinalReview": "Final Review",
   "stepRentalInformation": "Rental Information"
 }

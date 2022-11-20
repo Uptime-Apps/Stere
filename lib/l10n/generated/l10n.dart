@@ -896,11 +896,11 @@ class S {
     );
   }
 
-  /// `Customer Information`
-  String get stepClientInformation {
+  /// `Customer Details`
+  String get stepClientDetails {
     return Intl.message(
-      'Customer Information',
-      name: 'stepClientInformation',
+      'Customer Details',
+      name: 'stepClientDetails',
       desc: '',
       args: [],
     );

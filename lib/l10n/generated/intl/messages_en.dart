@@ -179,8 +179,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "stVerifyEmail": MessageLookupByLibrary.simpleMessage("Verify Email"),
         "stepAvailableAssets":
             MessageLookupByLibrary.simpleMessage("Available Assets"),
-        "stepClientInformation":
-            MessageLookupByLibrary.simpleMessage("Customer Information"),
+        "stepClientDetails":
+            MessageLookupByLibrary.simpleMessage("Customer Details"),
         "stepFinalReview": MessageLookupByLibrary.simpleMessage("Final Review"),
         "stepRentalInformation":
             MessageLookupByLibrary.simpleMessage("Rental Information"),
