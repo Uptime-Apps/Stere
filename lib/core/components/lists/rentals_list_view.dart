@@ -42,22 +42,6 @@ class RentalsListView extends ConsumerWidget {
                         leading: const Icon(Icons.contact_page),
                         title: const Text('Contact Details'),
                         children: [
-                          // ListTile(
-                          //   visualDensity: VisualDensity.compact,
-                          //   leading: const Icon(Icons.contact_phone),
-                          //   title: Text(e.clientPhone),
-                          // ),
-                          // if (e.backupPhone != null)
-                          //   ListTile(
-                          //     visualDensity: VisualDensity.compact,
-                          //     leading: const Icon(Icons.phone),
-                          //     title: Text(e.backupPhone!),
-                          //   ),
-                          // ListTile(
-                          //   visualDensity: VisualDensity.compact,
-                          //   leading: const Icon(Icons.email),
-                          //   title: Text(e.clientEmail),
-                          // ),
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: kHorizontalSpacing),
@@ -125,6 +109,8 @@ class RentalsListView extends ConsumerWidget {
               itemBuilder: (_, i) => activeRentals[i],
               separatorBuilder: (_, __) => const DefaultSpacer(),
               itemCount: activeRentals.length,
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
             ),
           );
         }

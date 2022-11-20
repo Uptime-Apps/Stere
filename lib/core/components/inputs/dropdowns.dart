@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../backend/models/asset/asset.dart';
+import '../../../backend/models/status/rental_status.dart';
 import '../../../l10n/generated/l10n.dart';
 import '../../../views/rentals/form/rental_form_controller.dart';
 import '../others/shimmers.dart';
@@ -31,6 +32,7 @@ class AvailableAssetsDropdown extends ConsumerWidget {
                       -1)
                   .toList();
           var menuItems = unselectedMenuItems
+              .where((asset) => asset.status == AssetStatus.available.name)
               .map(
                 (e) => DropdownMenuItem(
                   value: e,

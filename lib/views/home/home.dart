@@ -12,25 +12,25 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: [
-        ListTile(
-          title: Text(S.of(context).lblCategories(2)),
-          leading: const Icon(icCategories),
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height / 6,
-          child: const CategoryCarousel(),
-        ),
-        ListTile(
-          title: Text(S.of(context).stActiveRentals),
-          leading: const Icon(icRentals),
-        ),
-        const Expanded(
-          flex: 3,
-          child: RentalsListView(),
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ListTile(
+            title: Text(S.of(context).lblCategories(2)),
+            leading: const Icon(icCategories),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 6,
+            child: const CategoryCarousel(),
+          ),
+          ListTile(
+            title: Text(S.of(context).stActiveRentals),
+            leading: const Icon(icRentals),
+          ),
+          const RentalsListView(),
+        ],
+      ),
     );
   }
 }
