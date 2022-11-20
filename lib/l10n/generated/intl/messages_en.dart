@@ -101,6 +101,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Identification number"),
         "lblClientName": MessageLookupByLibrary.simpleMessage("Name"),
         "lblClientPhone": MessageLookupByLibrary.simpleMessage("Phone"),
+        "lblClose": MessageLookupByLibrary.simpleMessage("Close"),
         "lblConfirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "lblCreateNew": MessageLookupByLibrary.simpleMessage("Create one!"),
         "lblCreateObject": m5,

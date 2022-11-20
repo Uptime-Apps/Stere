@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+
+import '../../../core/constants/colors.dart';
 import '../../../l10n/generated/l10n.dart';
 
 enum RentalStatus {
@@ -5,6 +8,23 @@ enum RentalStatus {
   completed,
   canceled,
   overdue,
+}
+
+extension RentalStatusExtension on RentalStatus {
+  Color? get color {
+    switch (this) {
+      case RentalStatus.active:
+        return clActive;
+      case RentalStatus.overdue:
+        return clOverdue;
+      case RentalStatus.canceled:
+        return clCanceled;
+      case RentalStatus.completed:
+        return clCompleted;
+      default:
+        return null;
+    }
+  }
 }
 
 enum RentalAssetStatus {

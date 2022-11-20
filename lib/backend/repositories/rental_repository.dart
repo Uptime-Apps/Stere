@@ -15,6 +15,7 @@ abstract class RentalRepository {
   void delete(String id);
   Future<String?> create(Rental object);
   void update(Rental object);
+  void setStatus(String id, RentalStatus status);
 }
 
 class FirebaseRentalRepository implements RentalRepository {
@@ -108,6 +109,25 @@ class FirebaseRentalRepository implements RentalRepository {
       ).toList();
     } on Exception catch (e) {
       throw Failure(message: 'Could not get ordered rentals', exception: e);
+    }
+  }
+
+  @override
+  void setStatus(String id, RentalStatus status) {
+    try {
+      rentalRF
+          .doc(id)
+          .set({'status': status.name}, SetOptions(merge: true))
+          .then((_) => log(S.current.msgSuccessUpdateObject('[$id:\t$status]'),
+              name: logName))
+          .onError((error, stackTrace) => log(
+                S.current.msgFailedUpdateObject('[$id:\t$status]'),
+                name: logName,
+                error: error,
+                stackTrace: stackTrace,
+              ));
+    } on Exception catch (e) {
+      throw Failure(message: S.current.msgFailedUpdateObject(id), exception: e);
     }
   }
 }

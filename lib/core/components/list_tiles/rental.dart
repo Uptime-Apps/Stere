@@ -1,8 +1,12 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 
 import '../../../backend/models/rental/rental.dart';
+import '../../../backend/models/status/rental_status.dart';
+import '../../../backend/services/rental_service.dart';
 import '../../../l10n/generated/l10n.dart';
 import '../../constants/icons.dart';
 import '../../constants/radius_values.dart';
@@ -12,8 +16,72 @@ import 'asset.dart';
 import '../others/tables.dart';
 import '../others/utilities.dart';
 
-class RentalCard extends StatelessWidget {
+class RentalCard extends ConsumerWidget {
   const RentalCard(this.rental, {super.key});
+  final Rental rental;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final child = RentalListTile(rental);
+    return Card(
+      clipBehavior: Clip.hardEdge,
+      elevation: 0,
+      child: (rental.status == RentalStatus.active)
+          ? Slidable(
+              key: ValueKey<String>(rental.id!),
+              startActionPane: ActionPane(
+                motion: const ScrollMotion(),
+                extentRatio: 0.5,
+                children: [
+                  SlidableAction(
+                    backgroundColor: colorScheme.error,
+                    foregroundColor: colorScheme.onError,
+                    label: S.of(context).lblCancel,
+                    icon: Icons.cancel,
+                    onPressed: (context) {
+                      ref.watch(rentalServiceProvider).cancel(rental);
+                    },
+                  ),
+                ],
+              ),
+              endActionPane: ActionPane(
+                motion: const ScrollMotion(),
+                extentRatio: 0.5,
+                children: [
+                  SlidableAction(
+                    backgroundColor: colorScheme.primary,
+                    foregroundColor: colorScheme.onPrimary,
+                    label: S.of(context).lblClose,
+                    icon: Icons.archive,
+                    onPressed: (context) {},
+                  ),
+                ],
+              ),
+              child: child)
+          : child,
+    );
+  }
+
+  TableRow buildRow(String label, String value, TextTheme theme) =>
+      TableRow(children: [
+        Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: kSpacing / 2, vertical: kSpacing / 4),
+            child: Text(label,
+                textAlign: TextAlign.start,
+                style: theme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ))),
+        Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: kSpacing / 2, vertical: kSpacing / 4),
+            child: Text(value, textAlign: TextAlign.end)),
+      ]);
+}
+
+class RentalListTile extends StatelessWidget {
+  const RentalListTile(this.rental, {super.key});
   final Rental rental;
 
   @override
@@ -39,7 +107,10 @@ class RentalCard extends StatelessWidget {
                 ),
               ),
               badgeColor: colorScheme.errorContainer,
-              child: const Icon(icAssets),
+              child: Icon(
+                icAssets,
+                color: rental.status.color,
+              ),
             ),
           ),
         ],
@@ -87,20 +158,4 @@ class RentalCard extends StatelessWidget {
       ]),
     );
   }
-
-  TableRow buildRow(String label, String value, TextTheme theme) =>
-      TableRow(children: [
-        Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: kSpacing / 2, vertical: kSpacing / 4),
-            child: Text(label,
-                textAlign: TextAlign.start,
-                style: theme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ))),
-        Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: kSpacing / 2, vertical: kSpacing / 4),
-            child: Text(value, textAlign: TextAlign.end)),
-      ]);
 }

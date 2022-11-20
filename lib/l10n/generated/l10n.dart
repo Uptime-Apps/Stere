@@ -214,6 +214,16 @@ class S {
     );
   }
 
+  /// `Close`
+  String get lblClose {
+    return Intl.message(
+      'Close',
+      name: 'lblClose',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Identification`
   String get lblClientDepositIdentification {
     return Intl.message(

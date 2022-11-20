@@ -40,8 +40,8 @@ class StepAvailableAssets extends ConsumerWidget {
                 extentRatio: 0.5,
                 children: [
                   SlidableAction(
-                    backgroundColor: colorScheme.primary,
-                    foregroundColor: colorScheme.onPrimary,
+                    backgroundColor: colorScheme.surfaceVariant,
+                    foregroundColor: colorScheme.onSurfaceVariant,
                     icon: Icons.edit,
                     onPressed: (context) async {
                       var res = await showModalBottomSheet<RentalAsset>(

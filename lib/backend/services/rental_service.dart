@@ -14,6 +14,7 @@ abstract class RentalService {
   void delete(Rental object);
   Future<List<Rental>?> getAll();
   Future<List<Rental>?> getActive();
+  void cancel(Rental object);
 }
 
 class FirebaseRentalService implements RentalService {
@@ -70,6 +71,14 @@ class FirebaseRentalService implements RentalService {
           stackTrace: stackTrace, error: error, name: logName);
       return [];
     });
+  }
+
+  @override
+  void cancel(Rental object) {
+    _repository.setStatus(object.id!, RentalStatus.canceled);
+    for (var asset in object.assets) {
+      _assetService.setStatus(asset.id, AssetStatus.available);
+    }
   }
 }
 
