@@ -65,8 +65,11 @@ class FirebaseRentalService implements RentalService {
 
   @override
   Future<List<Rental>?> getActive() {
-    // TODO: implement getActive
-    throw UnimplementedError();
+    return mapAssets(_repository.getActive()).onError((error, stackTrace) {
+      log('failed to get active rentals',
+          stackTrace: stackTrace, error: error, name: logName);
+      return [];
+    });
   }
 }
 

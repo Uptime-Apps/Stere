@@ -96,8 +96,9 @@ class FirebaseRentalRepository implements RentalRepository {
   @override
   Future<List<Map<String, dynamic>>> getActive() async {
     try {
-      var objects =
-          await rentalRF.where('status', isEqualTo: RentalStatus.active).get();
+      var objects = await rentalRF
+          .where('status', isEqualTo: RentalStatus.active.name)
+          .get();
       return objects.docs.map(
         (e) {
           final doc = e.data();
