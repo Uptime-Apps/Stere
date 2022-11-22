@@ -23,7 +23,7 @@ mixin _$Asset {
   String? get id => throw _privateConstructorUsedError;
   String? get imagePath => throw _privateConstructorUsedError;
   bool get isAutomotive => throw _privateConstructorUsedError;
-  int get mileage => throw _privateConstructorUsedError;
+  double get mileage => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   DateTime get creationDate => throw _privateConstructorUsedError;
   num get price => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $AssetCopyWith<$Res> {
       {String? id,
       String? imagePath,
       bool isAutomotive,
-      int mileage,
+      double mileage,
       String name,
       DateTime creationDate,
       num price,
@@ -98,7 +98,7 @@ class _$AssetCopyWithImpl<$Res, $Val extends Asset>
       mileage: null == mileage
           ? _value.mileage
           : mileage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -141,7 +141,7 @@ abstract class _$$_AssetCopyWith<$Res> implements $AssetCopyWith<$Res> {
       {String? id,
       String? imagePath,
       bool isAutomotive,
-      int mileage,
+      double mileage,
       String name,
       DateTime creationDate,
       num price,
@@ -188,7 +188,7 @@ class __$$_AssetCopyWithImpl<$Res> extends _$AssetCopyWithImpl<$Res, _$_Asset>
       mileage: null == mileage
           ? _value.mileage
           : mileage // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -228,7 +228,7 @@ class _$_Asset implements _Asset {
       {this.id,
       this.imagePath,
       this.isAutomotive = false,
-      this.mileage = 0,
+      this.mileage = 0.0,
       required this.name,
       required this.creationDate,
       required this.price,
@@ -250,7 +250,7 @@ class _$_Asset implements _Asset {
   final bool isAutomotive;
   @override
   @JsonKey()
-  final int mileage;
+  final double mileage;
   @override
   final String name;
   @override
@@ -337,7 +337,7 @@ abstract class _Asset implements Asset {
       {final String? id,
       final String? imagePath,
       final bool isAutomotive,
-      final int mileage,
+      final double mileage,
       required final String name,
       required final DateTime creationDate,
       required final num price,
@@ -355,7 +355,7 @@ abstract class _Asset implements Asset {
   @override
   bool get isAutomotive;
   @override
-  int get mileage;
+  double get mileage;
   @override
   String get name;
   @override

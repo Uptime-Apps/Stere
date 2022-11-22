@@ -10,7 +10,7 @@ _$_Asset _$$_AssetFromJson(Map<String, dynamic> json) => _$_Asset(
       id: json['id'] as String?,
       imagePath: json['imagePath'] as String?,
       isAutomotive: json['isAutomotive'] as bool? ?? false,
-      mileage: json['mileage'] as int? ?? 0,
+      mileage: (json['mileage'] as num?)?.toDouble() ?? 0.0,
       name: json['name'] as String,
       creationDate: DateTime.parse(json['creationDate'] as String),
       price: json['price'] as num,

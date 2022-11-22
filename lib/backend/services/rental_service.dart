@@ -14,6 +14,7 @@ abstract class RentalService {
   void delete(Rental object);
   Future<List<Rental>?> getAll();
   Future<List<Rental>?> getActive();
+  Stream<List<Rental>>? getOrderedByDate();
   void cancel(Rental object);
 }
 
@@ -49,15 +50,21 @@ class FirebaseRentalService implements RentalService {
     throw UnimplementedError();
   }
 
-  Future<List<Rental>> mapAssets(
+  Future<List<Rental>> mapRentals(
       Future<List<Map<String, dynamic>>> documents) async {
     var objects = await documents;
     return objects.map((e) => Rental.fromJson(e)).toList();
   }
 
+  Stream<List<Rental>>? mapRentalsToStream(
+      Stream<List<Map<String, dynamic>>> documents) {
+    return documents
+        .map((event) => event.map((e) => Rental.fromJson(e)).toList());
+  }
+
   @override
   Future<List<Rental>?> getAll() {
-    return mapAssets(_repository.getAll()).onError((error, stackTrace) {
+    return mapRentals(_repository.getAll()).onError((error, stackTrace) {
       log('failed to get rentals',
           stackTrace: stackTrace, error: error, name: logName);
       return [];
@@ -66,7 +73,7 @@ class FirebaseRentalService implements RentalService {
 
   @override
   Future<List<Rental>?> getActive() {
-    return mapAssets(_repository.getActive()).onError((error, stackTrace) {
+    return mapRentals(_repository.getActive()).onError((error, stackTrace) {
       log('failed to get active rentals',
           stackTrace: stackTrace, error: error, name: logName);
       return [];
@@ -79,6 +86,11 @@ class FirebaseRentalService implements RentalService {
     for (var asset in object.assets) {
       _assetService.setStatus(asset.id, AssetStatus.available);
     }
+  }
+
+  @override
+  Stream<List<Rental>>? getOrderedByDate() {
+    return mapRentalsToStream(_repository.getOrderedByDate(true));
   }
 }
 

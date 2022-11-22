@@ -13,6 +13,7 @@ abstract class RentalRepository {
   Future<List<Map<String, dynamic>>> getAll();
   Future<List<Map<String, dynamic>>> getActive();
   void delete(String id);
+  Stream<List<Map<String, dynamic>>> getOrderedByDate(bool descending);
   Future<String?> create(Rental object);
   void update(Rental object);
   void setStatus(String id, RentalStatus status);
@@ -128,6 +129,26 @@ class FirebaseRentalRepository implements RentalRepository {
               ));
     } on Exception catch (e) {
       throw Failure(message: S.current.msgFailedUpdateObject(id), exception: e);
+    }
+  }
+
+  @override
+  Stream<List<Map<String, dynamic>>> getOrderedByDate(bool descending) {
+    try {
+      return rentalRF
+          .orderBy('creationDate', descending: descending)
+          .snapshots()
+          .asyncMap(
+            (event) => event.docs.map(
+              (e) {
+                final doc = e.data();
+                doc['id'] = e.id;
+                return doc;
+              },
+            ).toList(),
+          );
+    } on Exception catch (e) {
+      throw Failure(message: 'Could not get rentals', exception: e);
     }
   }
 }

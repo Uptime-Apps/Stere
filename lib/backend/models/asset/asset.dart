@@ -9,7 +9,7 @@ class Asset with _$Asset {
     String? id,
     String? imagePath,
     @Default(false) bool isAutomotive,
-    @Default(0) int mileage,
+    @Default(0.0) double mileage,
     required String name,
     required DateTime creationDate,
     required num price,
