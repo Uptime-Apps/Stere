@@ -21,7 +21,7 @@ final navigationControllerProvider =
         NavigationItem(const AssetScreen(),
             icon: icAssets, label: S.current.lblAssets(2)),
         NavigationItem(const RentalScreen(),
-            icon: icRentals, label: S.current.lblRentals(2)),
+            icon: icHistory, label: S.current.lblRentalHistory),
         NavigationItem(const CategoryScreen(),
             icon: icCategories, label: S.current.lblCategories(2)),
       ],

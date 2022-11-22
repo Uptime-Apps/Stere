@@ -37,7 +37,7 @@ class AssetScreen extends ConsumerWidget {
                   }
                   // If the future has no data
                   return EmptyListScreen(
-                    itemName: S.of(context).lblAssets(2),
+                    message: S.of(context).lblAssets(2),
                     icon: Icons.add_shopping_cart_sharp,
                     actionRoute: AssetForm.route,
                   );
