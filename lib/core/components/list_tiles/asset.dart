@@ -120,6 +120,14 @@ class RentedAssetListTile extends ConsumerWidget {
                       vertical: kVerticalSpacing,
                     ),
                     children: [
+                      if (rAsset.initialMileage != null) ...[
+                        Text(
+                          S.of(context).lblInitialMileage,
+                          style: textTheme.headlineSmall,
+                        ),
+                        const DefaultSpacer(dim: kSpacing / 3),
+                        Text(rAsset.initialMileage!.toString()),
+                      ],
                       if (hasNotes) ...[
                         Text(
                           S.of(context).lblNotesReport,

@@ -88,6 +88,7 @@ class AssetFormController extends StateNotifier<AssetFormState> {
             categoryId: category.id!,
             categoryName: category.name,
             tags: state.selectedTags,
+            isAutomotive: category.isAutomotive,
           ),
           state.imageFile,
         );
