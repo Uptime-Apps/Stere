@@ -224,6 +224,16 @@ class S {
     );
   }
 
+  /// `Rental History`
+  String get lblRentalHistory {
+    return Intl.message(
+      'Rental History',
+      name: 'lblRentalHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Identification`
   String get lblClientDepositIdentification {
     return Intl.message(
@@ -639,6 +649,16 @@ class S {
       name: 'msgNothingAvailable',
       desc: '',
       args: [objects],
+    );
+  }
+
+  /// `No rentals active at the moment`
+  String get msgNoRentalsActive {
+    return Intl.message(
+      'No rentals active at the moment',
+      name: 'msgNoRentalsActive',
+      desc: '',
+      args: [],
     );
   }
 

@@ -7,11 +7,8 @@ import '../others/utilities.dart';
 
 class EmptyListScreen extends StatelessWidget {
   const EmptyListScreen(
-      {required this.itemName,
-      required this.icon,
-      this.actionRoute,
-      super.key});
-  final String itemName;
+      {required this.message, required this.icon, this.actionRoute, super.key});
+  final String message;
   final IconData icon;
   final String? actionRoute;
 
@@ -34,7 +31,7 @@ class EmptyListScreen extends StatelessWidget {
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const DefaultSpacer(dim: kSpacing / 4),
-          Text(S.of(context).msgNoRegisters(itemName.toLowerCase())),
+          Text(message),
           const DefaultSpacer(),
           if (actionRoute != null)
             FilledButton(

@@ -127,6 +127,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblNotifications":
             MessageLookupByLibrary.simpleMessage("Notifications"),
         "lblPrice": MessageLookupByLibrary.simpleMessage("Price"),
+        "lblRentalHistory":
+            MessageLookupByLibrary.simpleMessage("Rental History"),
         "lblRentals": m7,
         "lblSave": MessageLookupByLibrary.simpleMessage("Save"),
         "lblSelectedAssets":
@@ -148,6 +150,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "msgNoInformation":
             MessageLookupByLibrary.simpleMessage("No information"),
         "msgNoRegisters": m12,
+        "msgNoRentalsActive": MessageLookupByLibrary.simpleMessage(
+            "No rentals active at the moment"),
         "msgNothingAvailable": m13,
         "msgNothingToSee":
             MessageLookupByLibrary.simpleMessage("Nothing to see here"),
