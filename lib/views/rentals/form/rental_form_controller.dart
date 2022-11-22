@@ -56,7 +56,17 @@ class RentalFormController extends StateNotifier<RentalFormState> {
         referralType: state.referralType.value?.name,
         status: RentalStatus.active,
       );
-      await service.create(rental);
+      final result = await service.create(rental);
+      if (!mounted) return;
+      if (result?.isEmpty ?? true) {
+        showSimpleSnackbar(
+            S.current.msgFailedCreateObject(S.current.lblRentals(1)));
+      } else {
+        state = state.copyWith(result: AsyncValue.data(result!));
+        Navigator.of(context).pop();
+        showSimpleSnackbar(
+            S.of(context).msgSuccessCreateObject(S.current.lblRentals(1)));
+      }
       Navigator.of(context).pop();
       showSimpleSnackbar(
           S.current.msgSuccessCreateObject(S.current.lblRentals(1)));
@@ -163,6 +173,7 @@ class RentalFormController extends StateNotifier<RentalFormState> {
       categoryId: asset.categoryId,
       categoryName: asset.categoryName,
       image: asset.imagePath,
+      initialMileage: asset.mileage,
       hoursRented: 0,
       rentalPrice: 0,
       status: RentalAssetStatus.incomplete,
