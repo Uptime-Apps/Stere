@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/failure.dart';
 import '../firebase_references.dart';
 import '../models/rental/rental.dart';
 import '../models/status/rental_status.dart';
@@ -90,7 +91,12 @@ class FirebaseRentalService implements RentalService {
 
   @override
   Stream<List<Rental>>? getOrderedByDate() {
-    return mapRentalsToStream(_repository.getOrderedByDate(true));
+    try {
+      return mapRentalsToStream(_repository.getOrderedByDate(true));
+    } on Failure catch (e) {
+      log(e.message, name: logName);
+    }
+    return null;
   }
 }
 

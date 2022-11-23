@@ -14,8 +14,8 @@ import 'rental_asset_form.dart';
 
 class StepAvailableAssets extends ConsumerWidget {
   final logName = 'step-available-assets';
-  const StepAvailableAssets(this.assetsFuture, {Key? key}) : super(key: key);
-  final Future<List<Asset>>? assetsFuture;
+  const StepAvailableAssets(this.assetStream, {Key? key}) : super(key: key);
+  final Stream<List<Asset>>? assetStream;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,7 +25,7 @@ class StepAvailableAssets extends ConsumerWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        AvailableAssetsDropdown(assetsFuture: assetsFuture),
+        const AvailableAssetsDropdown(),
         const DefaultSpacer(),
         ListView.separated(
           shrinkWrap: true,

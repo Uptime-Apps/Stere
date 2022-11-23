@@ -22,7 +22,7 @@ class AssetScreen extends ConsumerWidget {
               color: Colors.red,
               child: Text(S.of(context).emServerError),
             ),
-            data: ((future) => FutureBuilder(
+            data: ((stream) => StreamBuilder(
                 builder: (context, snapshot) {
                   // If there's data to show
                   if (snapshot.hasData && snapshot.data!.isNotEmpty) {
@@ -42,7 +42,7 @@ class AssetScreen extends ConsumerWidget {
                     actionRoute: AssetForm.route,
                   );
                 },
-                future: future)),
+                stream: stream)),
             loading: () => Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: kHorizontalSpacing),

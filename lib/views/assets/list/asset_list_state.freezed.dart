@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AssetListState {
-  AsyncValue<Future<List<Asset>>>? get assets =>
+  AsyncValue<Stream<List<Asset>>>? get assets =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +30,7 @@ abstract class $AssetListStateCopyWith<$Res> {
           AssetListState value, $Res Function(AssetListState) then) =
       _$AssetListStateCopyWithImpl<$Res, AssetListState>;
   @useResult
-  $Res call({AsyncValue<Future<List<Asset>>>? assets});
+  $Res call({AsyncValue<Stream<List<Asset>>>? assets});
 }
 
 /// @nodoc
@@ -52,7 +52,7 @@ class _$AssetListStateCopyWithImpl<$Res, $Val extends AssetListState>
       assets: freezed == assets
           ? _value.assets
           : assets // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<Future<List<Asset>>>?,
+              as AsyncValue<Stream<List<Asset>>>?,
     ) as $Val);
   }
 }
@@ -65,7 +65,7 @@ abstract class _$$_AssetListStateCopyWith<$Res>
       __$$_AssetListStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AsyncValue<Future<List<Asset>>>? assets});
+  $Res call({AsyncValue<Stream<List<Asset>>>? assets});
 }
 
 /// @nodoc
@@ -85,7 +85,7 @@ class __$$_AssetListStateCopyWithImpl<$Res>
       assets: freezed == assets
           ? _value.assets
           : assets // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<Future<List<Asset>>>?,
+              as AsyncValue<Stream<List<Asset>>>?,
     ));
   }
 }
@@ -96,7 +96,7 @@ class _$_AssetListState implements _AssetListState {
   _$_AssetListState({this.assets});
 
   @override
-  final AsyncValue<Future<List<Asset>>>? assets;
+  final AsyncValue<Stream<List<Asset>>>? assets;
 
   @override
   String toString() {
@@ -122,11 +122,11 @@ class _$_AssetListState implements _AssetListState {
 }
 
 abstract class _AssetListState implements AssetListState {
-  factory _AssetListState({final AsyncValue<Future<List<Asset>>>? assets}) =
+  factory _AssetListState({final AsyncValue<Stream<List<Asset>>>? assets}) =
       _$_AssetListState;
 
   @override
-  AsyncValue<Future<List<Asset>>>? get assets;
+  AsyncValue<Stream<List<Asset>>>? get assets;
   @override
   @JsonKey(ignore: true)
   _$$_AssetListStateCopyWith<_$_AssetListState> get copyWith =>

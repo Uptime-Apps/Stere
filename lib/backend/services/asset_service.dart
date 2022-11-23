@@ -13,7 +13,8 @@ import '../repositories/asset_repository.dart';
 abstract class AssetService {
   Future<List<Asset>>? getAssets();
   Future<List<Asset>>? getAssetsByCategory(String id);
-  Future<List<Asset>>? getAssetsOrderedByName();
+  Stream<List<Asset>>? getAssetsOrderedByName();
+  Stream<List<Asset>>? getAvailable();
   Future<String?> getImageUrl(String? imagePath);
   Future<String?> create(Asset asset, File? image);
   void setStatus(String id, AssetStatus status);
@@ -68,10 +69,16 @@ class FirebaseAssetService implements AssetService {
     return docs.map((e) => Asset.fromJson(e)).toList();
   }
 
+  Stream<List<Asset>>? mapAssetsToStream(
+      Stream<List<Map<String, dynamic>>> documents) {
+    return documents
+        .map((event) => event.map((e) => Asset.fromJson(e)).toList());
+  }
+
   @override
   Future<List<Asset>>? getAssets() {
     try {
-      return mapAssets(_assetRepository.getAssets());
+      return mapAssets(_assetRepository.getAll());
     } on Failure catch (e) {
       log(e.message, name: logName);
     }
@@ -79,9 +86,19 @@ class FirebaseAssetService implements AssetService {
   }
 
   @override
-  Future<List<Asset>>? getAssetsOrderedByName() {
+  Stream<List<Asset>>? getAvailable() {
     try {
-      return mapAssets(_assetRepository.getAssetsOrderedByName());
+      return mapAssetsToStream(_assetRepository.getAvailable());
+    } on Failure catch (e) {
+      log(e.message, name: logName);
+    }
+    return null;
+  }
+
+  @override
+  Stream<List<Asset>>? getAssetsOrderedByName() {
+    try {
+      return mapAssetsToStream(_assetRepository.getAssetsOrderedByName());
     } on Failure catch (e) {
       log(e.message, name: logName);
     }

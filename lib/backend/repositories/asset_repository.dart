@@ -11,9 +11,10 @@ import '../models/asset/asset.dart';
 import '../models/status/rental_status.dart';
 
 abstract class AssetRepository {
-  Future<List<Map<String, dynamic>>> getAssets();
+  Future<List<Map<String, dynamic>>> getAll();
   Future<List<Map<String, dynamic>>> getAssetsByCategory(String categoryId);
-  Future<List<Map<String, dynamic>>> getAssetsOrderedByName();
+  Stream<List<Map<String, dynamic>>> getAssetsOrderedByName();
+  Stream<List<Map<String, dynamic>>> getAvailable();
   Future<void> delete(String id);
   Future<String> create(Asset asset);
   Future<String> getImageUrl(String path);
@@ -55,7 +56,7 @@ class FirebaseAssetRepository implements AssetRepository {
   }
 
   @override
-  Future<List<Map<String, dynamic>>> getAssets() async {
+  Future<List<Map<String, dynamic>>> getAll() async {
     try {
       var res = await assetsRF.get();
       return res.docs.map(
@@ -66,21 +67,44 @@ class FirebaseAssetRepository implements AssetRepository {
         },
       ).toList();
     } on Exception catch (e) {
-      throw Failure(message: 'Could get assets', exception: e);
+      throw Failure(message: 'Could not get assets', exception: e);
     }
   }
 
   @override
-  Future<List<Map<String, dynamic>>> getAssetsOrderedByName() async {
+  Stream<List<Map<String, dynamic>>> getAvailable() {
     try {
-      var res = await assetsRF.orderBy('name').get();
-      return res.docs.map((e) {
-        final doc = e.data();
-        doc['id'] = e.id;
-        return doc;
-      }).toList();
+      return assetsRF
+          .where('status', isEqualTo: AssetStatus.available.name)
+          .snapshots()
+          .asyncMap(
+            (event) => event.docs.map(
+              (e) {
+                final doc = e.data();
+                doc['id'] = e.id;
+                return doc;
+              },
+            ).toList(),
+          );
     } on Exception catch (e) {
-      throw Failure(message: 'Could get assets', exception: e);
+      throw Failure(message: 'Could not get active assets', exception: e);
+    }
+  }
+
+  @override
+  Stream<List<Map<String, dynamic>>> getAssetsOrderedByName() {
+    try {
+      return assetsRF.orderBy('name').snapshots().asyncMap(
+            (event) => event.docs.map(
+              (e) {
+                final doc = e.data();
+                doc['id'] = e.id;
+                return doc;
+              },
+            ).toList(),
+          );
+    } on Exception catch (e) {
+      throw Failure(message: 'Could not get assets', exception: e);
     }
   }
 

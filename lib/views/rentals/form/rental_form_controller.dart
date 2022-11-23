@@ -25,8 +25,8 @@ class RentalFormController extends StateNotifier<RentalFormState> {
   final AssetService assetService;
 
   void load() {
-    state = state.copyWith(
-        assets: AsyncValue.data(assetService.getAssetsOrderedByName()));
+    state =
+        state.copyWith(assets: AsyncValue.data(assetService.getAvailable()));
   }
 
   Future<void> nextStep(BuildContext context) async {
@@ -153,12 +153,6 @@ class RentalFormController extends StateNotifier<RentalFormState> {
             ? AsyncValue.data(deposit)
             : const AsyncValue.loading());
     validateForm();
-  }
-
-  Future<List<Asset>> getUnselectedAssets() async {
-    var currentSelections = state.selectedAssets.map((e) => e.id);
-    var assets = await state.assets.value!;
-    return assets.where((e) => currentSelections.contains(e.id!)).toList();
   }
 
   void addSelection(Asset asset) {

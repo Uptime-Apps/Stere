@@ -11,70 +11,70 @@ import 'form_fields.dart';
 class AvailableAssetsDropdown extends ConsumerWidget {
   const AvailableAssetsDropdown({
     super.key,
-    required this.assetsFuture,
   });
-
-  final Future<List<Asset>>? assetsFuture;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var prov = ref.watch(rentalFormControllerProvider);
     var notifier = ref.read(rentalFormControllerProvider.notifier);
-    return FutureBuilder(
-      builder: (context, allAssets) {
-        if (allAssets.hasData && allAssets.data!.isNotEmpty) {
-          List<Asset> unselectedMenuItems = (prov.selectedAssets.isEmpty)
-              ? allAssets.data!
-              : allAssets.data!
-                  .where((asset) =>
-                      prov.selectedAssets.indexWhere(
-                          (rentalAsset) => asset.id == rentalAsset.id) ==
-                      -1)
-                  .toList();
-          var menuItems = unselectedMenuItems
-              .where((asset) => asset.status == AssetStatus.available.name)
-              .map(
-                (e) => DropdownMenuItem(
-                  value: e,
-                  child: SizedBox(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width / 2,
-                    child: ListTile(
-                      onTap: () {
-                        notifier.addSelection(e);
-                        Navigator.of(context).pop();
-                      },
-                      visualDensity: VisualDensity.compact,
-                      title: Tooltip(
-                        message: e.name,
-                        child: Text(e.name, overflow: TextOverflow.ellipsis),
+    return prov.assets.maybeWhen(
+      orElse: () => const ShimmeringInput(),
+      data: (stream) => StreamBuilder(
+        builder: (context, snapshot) {
+          if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+            List<Asset> unselectedMenuItems = (prov.selectedAssets.isEmpty)
+                ? snapshot.data!
+                : snapshot.data!
+                    .where((asset) =>
+                        prov.selectedAssets.indexWhere(
+                            (rentalAsset) => asset.id == rentalAsset.id) ==
+                        -1)
+                    .toList();
+            var menuItems = unselectedMenuItems
+                .where((asset) => asset.status == AssetStatus.available.name)
+                .map(
+                  (e) => DropdownMenuItem(
+                    value: e,
+                    child: SizedBox(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width / 2,
+                      child: ListTile(
+                        onTap: () {
+                          notifier.addSelection(e);
+                          Navigator.of(context).pop();
+                        },
+                        visualDensity: VisualDensity.compact,
+                        title: Tooltip(
+                          message: e.name,
+                          child: Text(e.name, overflow: TextOverflow.ellipsis),
+                        ),
+                        subtitle: Text(e.categoryName),
                       ),
-                      subtitle: Text(e.categoryName),
                     ),
                   ),
-                ),
-              )
-              .toList();
+                )
+                .toList();
 
-          return SelectFormField(
-            items: menuItems,
-            icon: Icons.shopping_bag,
-            onChanged: (asset) => {
-              // ref.read(rentalFormControllerProvider.notifier).selectAsset(asset)
-            },
-            hint: S.of(context).lblAvailableCount(
-                S.of(context).lblAssets(2), menuItems.length.toString()),
-            selectedItemBuilder: (context) => allAssets.data!
-                .map((e) => SizedBox(
-                    width: MediaQuery.of(context).size.width / 3,
-                    child: Text(e.name, overflow: TextOverflow.ellipsis)))
-                .toList(),
-          );
-        } else {
-          return const ShimmeringInput();
-        }
-      },
-      future: assetsFuture,
+            return SelectFormField(
+              items: menuItems,
+              icon: Icons.shopping_bag,
+              onChanged: (asset) => {
+                // ref.read(rentalFormControllerProvider.notifier).selectAsset(asset)
+              },
+              hint: S.of(context).lblAvailableCount(
+                  S.of(context).lblAssets(2), menuItems.length.toString()),
+              selectedItemBuilder: (context) => snapshot.data!
+                  .map((e) => SizedBox(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: Text(e.name, overflow: TextOverflow.ellipsis)))
+                  .toList(),
+            );
+          } else {
+            return const ShimmeringInput();
+          }
+        },
+        stream: stream,
+      ),
     );
   }
 }
