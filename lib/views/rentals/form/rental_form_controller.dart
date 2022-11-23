@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -37,7 +35,6 @@ class RentalFormController extends StateNotifier<RentalFormState> {
       validateForm();
     } else {
       validateForm();
-      log('here to submit', name: logName);
       final User currentUser = FirebaseAuth.instance.currentUser!;
       Rental rental = Rental(
         assets: state.selectedAssets,
@@ -63,7 +60,6 @@ class RentalFormController extends StateNotifier<RentalFormState> {
             S.current.msgFailedCreateObject(S.current.lblRentals(1)));
       } else {
         state = state.copyWith(result: AsyncValue.data(result!));
-        Navigator.of(context).pop();
         showSimpleSnackbar(
             S.of(context).msgSuccessCreateObject(S.current.lblRentals(1)));
       }
