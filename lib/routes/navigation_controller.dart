@@ -18,10 +18,10 @@ final navigationControllerProvider =
       navigationItems: [
         NavigationItem(const HomeScreen(),
             icon: icHome, label: S.current.lblHome),
-        NavigationItem(const AssetScreen(),
-            icon: icAssets, label: S.current.lblAssets(2)),
         NavigationItem(const RentalScreen(),
             icon: icHistory, label: S.current.lblRentalHistory),
+        NavigationItem(const AssetScreen(),
+            icon: icAssets, label: S.current.lblAssets(2)),
         NavigationItem(const CategoryScreen(),
             icon: icCategories, label: S.current.lblCategories(2)),
       ],
