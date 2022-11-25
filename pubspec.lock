@@ -211,6 +211,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.9"
+  duration:
+    dependency: "direct main"
+    description:
+      name: duration
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.12"
   dynamic_color:
     dependency: "direct main"
     description:

@@ -14,6 +14,9 @@ _$_RentalAsset _$$_RentalAssetFromJson(Map<String, dynamic> json) =>
       notes: json['notes'] as String?,
       finalMileage: (json['finalMileage'] as num?)?.toDouble(),
       initialMileage: (json['initialMileage'] as num?)?.toDouble(),
+      returnTime: json['returnTime'] == null
+          ? null
+          : DateTime.parse(json['returnTime'] as String),
       categoryId: json['categoryId'] as String,
       categoryName: json['categoryName'] as String,
       name: json['name'] as String,
@@ -30,6 +33,7 @@ Map<String, dynamic> _$$_RentalAssetToJson(_$_RentalAsset instance) =>
       'notes': instance.notes,
       'finalMileage': instance.finalMileage,
       'initialMileage': instance.initialMileage,
+      'returnTime': instance.returnTime?.toIso8601String(),
       'categoryId': instance.categoryId,
       'categoryName': instance.categoryName,
       'name': instance.name,
@@ -41,4 +45,9 @@ Map<String, dynamic> _$$_RentalAssetToJson(_$_RentalAsset instance) =>
 const _$RentalAssetStatusEnumMap = {
   RentalAssetStatus.ready: 'ready',
   RentalAssetStatus.incomplete: 'incomplete',
+  RentalAssetStatus.available: 'available',
+  RentalAssetStatus.unavailable: 'unavailable',
+  RentalAssetStatus.discarded: 'discarded',
+  RentalAssetStatus.rented: 'rented',
+  RentalAssetStatus.maintenance: 'maintenance',
 };

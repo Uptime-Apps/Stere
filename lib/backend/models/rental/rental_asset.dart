@@ -14,6 +14,7 @@ class RentalAsset with _$RentalAsset {
     String? notes,
     double? finalMileage,
     double? initialMileage,
+    DateTime? returnTime,
     required String categoryId,
     required String categoryName,
     required String name,

@@ -37,7 +37,13 @@ class RentalFormController extends StateNotifier<RentalFormState> {
       validateForm();
       final User currentUser = FirebaseAuth.instance.currentUser!;
       Rental rental = Rental(
-        assets: state.selectedAssets,
+        assets: state.selectedAssets
+            .map((e) => e.copyWith(
+                  status: RentalAssetStatus.rented,
+                  returnTime:
+                      DateTime.now().add(Duration(hours: e.hoursRented)),
+                ))
+            .toList(),
         backupPhone: state.backupPhoneController.text,
         clientDeposit: state.clientDeposit.value!,
         clientEmail: state.clientEmailController.text,

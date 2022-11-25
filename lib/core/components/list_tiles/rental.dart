@@ -146,7 +146,12 @@ class RentalListTile extends StatelessWidget {
                     title: Text(S.of(context).lblSelectedAssets),
                     horizontalTitleGap: 0,
                     leading: const Icon(icAssets)),
-                ...rental.assets.map((e) => RentedAssetListTile(e)).toList(),
+                ...rental.assets.map((e) {
+                  return RentedAssetListTile(
+                    e,
+                    relativeTime: true,
+                  );
+                }).toList(),
               ],
             ),
           ),

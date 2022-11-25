@@ -162,6 +162,16 @@ class S {
     );
   }
 
+  /// `{object} Available: {count}`
+  String lblAvailableCount(Object object, Object count) {
+    return Intl.message(
+      '$object Available: $count',
+      name: 'lblAvailableCount',
+      desc: '',
+      args: [object, count],
+    );
+  }
+
   /// `Cancel`
   String get lblCancel {
     return Intl.message(
@@ -204,36 +214,6 @@ class S {
     );
   }
 
-  /// `Email`
-  String get lblClientEmail {
-    return Intl.message(
-      'Email',
-      name: 'lblClientEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Close`
-  String get lblClose {
-    return Intl.message(
-      'Close',
-      name: 'lblClose',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Rental History`
-  String get lblRentalHistory {
-    return Intl.message(
-      'Rental History',
-      name: 'lblRentalHistory',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Identification`
   String get lblClientDepositIdentification {
     return Intl.message(
@@ -249,6 +229,16 @@ class S {
     return Intl.message(
       'Passport',
       name: 'lblClientDepositPassport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get lblClientEmail {
+    return Intl.message(
+      'Email',
+      name: 'lblClientEmail',
       desc: '',
       args: [],
     );
@@ -289,6 +279,16 @@ class S {
     return Intl.message(
       'Phone',
       name: 'lblClientPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get lblClose {
+    return Intl.message(
+      'Close',
+      name: 'lblClose',
       desc: '',
       args: [],
     );
@@ -456,17 +456,13 @@ class S {
     );
   }
 
-  /// `{price}`
-  String priceFormat(double price) {
-    final NumberFormat priceNumberFormat = NumberFormat.currency(
-        locale: Intl.getCurrentLocale(), symbol: '₡', decimalDigits: 2);
-    final String priceString = priceNumberFormat.format(price);
-
+  /// `Not Available`
+  String get lblNotAvailable {
     return Intl.message(
-      '$priceString',
-      name: 'priceFormat',
+      'Not Available',
+      name: 'lblNotAvailable',
       desc: '',
-      args: [priceString],
+      args: [],
     );
   }
 
@@ -490,21 +486,11 @@ class S {
     );
   }
 
-  /// `{object} Available: {count}`
-  String lblAvailableCount(Object object, Object count) {
+  /// `Overdue`
+  String get lblOverdue {
     return Intl.message(
-      '$object Available: $count',
-      name: 'lblAvailableCount',
-      desc: '',
-      args: [object, count],
-    );
-  }
-
-  /// `Selected Assets`
-  String get lblSelectedAssets {
-    return Intl.message(
-      'Selected Assets',
-      name: 'lblSelectedAssets',
+      'Overdue',
+      name: 'lblOverdue',
       desc: '',
       args: [],
     );
@@ -515,6 +501,16 @@ class S {
     return Intl.message(
       'Price',
       name: 'lblPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rental History`
+  String get lblRentalHistory {
+    return Intl.message(
+      'Rental History',
+      name: 'lblRentalHistory',
       desc: '',
       args: [],
     );
@@ -542,21 +538,11 @@ class S {
     );
   }
 
-  /// `Not Available`
-  String get lblNotAvailable {
+  /// `Selected Assets`
+  String get lblSelectedAssets {
     return Intl.message(
-      'Not Available',
-      name: 'lblNotAvailable',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Total`
-  String get lblTotal {
-    return Intl.message(
-      'Total',
-      name: 'lblTotal',
+      'Selected Assets',
+      name: 'lblSelectedAssets',
       desc: '',
       args: [],
     );
@@ -592,6 +578,26 @@ class S {
     );
   }
 
+  /// `Overdue: `
+  String get msgIsOverdue {
+    return Intl.message(
+      'Overdue: ',
+      name: 'msgIsOverdue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total`
+  String get lblTotal {
+    return Intl.message(
+      'Total',
+      name: 'lblTotal',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Yes`
   String get lblYes {
     return Intl.message(
@@ -602,61 +608,11 @@ class S {
     );
   }
 
-  /// `Incomplete`
-  String get ttIncomplete {
-    return Intl.message(
-      'Incomplete',
-      name: 'ttIncomplete',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Ready`
-  String get ttReady {
-    return Intl.message(
-      'Ready',
-      name: 'ttReady',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Undefined`
-  String get ttUndefined {
-    return Intl.message(
-      'Undefined',
-      name: 'ttUndefined',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Are you sure?`
   String get msgAreYouSure {
     return Intl.message(
       'Are you sure?',
       name: 'msgAreYouSure',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No {objects} available`
-  String msgNothingAvailable(Object objects) {
-    return Intl.message(
-      'No $objects available',
-      name: 'msgNothingAvailable',
-      desc: '',
-      args: [objects],
-    );
-  }
-
-  /// `No rentals active at the moment`
-  String get msgNoRentalsActive {
-    return Intl.message(
-      'No rentals active at the moment',
-      name: 'msgNoRentalsActive',
       desc: '',
       args: [],
     );
@@ -726,6 +682,16 @@ class S {
     );
   }
 
+  /// `No information`
+  String get msgNoInformation {
+    return Intl.message(
+      'No information',
+      name: 'msgNoInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You have no {itemLabel} registered`
   String msgNoRegisters(Object itemLabel) {
     return Intl.message(
@@ -733,6 +699,26 @@ class S {
       name: 'msgNoRegisters',
       desc: '',
       args: [itemLabel],
+    );
+  }
+
+  /// `No rentals active at the moment`
+  String get msgNoRentalsActive {
+    return Intl.message(
+      'No rentals active at the moment',
+      name: 'msgNoRentalsActive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No {objects} available`
+  String msgNothingAvailable(Object objects) {
+    return Intl.message(
+      'No $objects available',
+      name: 'msgNothingAvailable',
+      desc: '',
+      args: [objects],
     );
   }
 
@@ -856,13 +842,17 @@ class S {
     );
   }
 
-  /// `No information`
-  String get msgNoInformation {
+  /// `{price}`
+  String priceFormat(double price) {
+    final NumberFormat priceNumberFormat = NumberFormat.currency(
+        locale: Intl.getCurrentLocale(), symbol: '₡', decimalDigits: 2);
+    final String priceString = priceNumberFormat.format(price);
+
     return Intl.message(
-      'No information',
-      name: 'msgNoInformation',
+      '$priceString',
+      name: 'priceFormat',
       desc: '',
-      args: [],
+      args: [priceString],
     );
   }
 
@@ -871,16 +861,6 @@ class S {
     return Intl.message(
       'Active Rentals',
       name: 'stActiveRentals',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Verify Email`
-  String get stVerifyEmail {
-    return Intl.message(
-      'Verify Email',
-      name: 'stVerifyEmail',
       desc: '',
       args: [],
     );
@@ -911,6 +891,16 @@ class S {
     return Intl.message(
       'Edit them by swiping one of your selected assets to the right',
       name: 'stInformationDialogNewRentalEdit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify Email`
+  String get stVerifyEmail {
+    return Intl.message(
+      'Verify Email',
+      name: 'stVerifyEmail',
       desc: '',
       args: [],
     );
@@ -951,6 +941,36 @@ class S {
     return Intl.message(
       'Rental Information',
       name: 'stepRentalInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Incomplete`
+  String get ttIncomplete {
+    return Intl.message(
+      'Incomplete',
+      name: 'ttIncomplete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ready`
+  String get ttReady {
+    return Intl.message(
+      'Ready',
+      name: 'ttReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Undefined`
+  String get ttUndefined {
+    return Intl.message(
+      'Undefined',
+      name: 'ttUndefined',
       desc: '',
       args: [],
     );

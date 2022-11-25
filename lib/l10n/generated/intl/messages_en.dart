@@ -126,6 +126,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblNotesReport": MessageLookupByLibrary.simpleMessage("Notes"),
         "lblNotifications":
             MessageLookupByLibrary.simpleMessage("Notifications"),
+        "lblOverdue": MessageLookupByLibrary.simpleMessage("Overdue"),
         "lblPrice": MessageLookupByLibrary.simpleMessage("Price"),
         "lblRentalHistory":
             MessageLookupByLibrary.simpleMessage("Rental History"),
@@ -145,6 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "msgFailedDeleteObject": m9,
         "msgFailedUpdateObject": m10,
         "msgFormStatus": m11,
+        "msgIsOverdue": MessageLookupByLibrary.simpleMessage("Overdue: "),
         "msgMissingCategory": MessageLookupByLibrary.simpleMessage(
             "To select a tag, pick a category"),
         "msgNoInformation":

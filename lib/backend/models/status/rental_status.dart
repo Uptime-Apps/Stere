@@ -30,6 +30,11 @@ extension RentalStatusExtension on RentalStatus {
 enum RentalAssetStatus {
   ready,
   incomplete,
+  available,
+  unavailable,
+  discarded,
+  rented,
+  maintenance,
 }
 
 extension RentalAssetExtension on RentalAssetStatus {

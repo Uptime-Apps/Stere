@@ -1,3 +1,4 @@
+import 'package:duration/duration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -7,6 +8,7 @@ import '../../../backend/models/status/rental_status.dart';
 import '../../../l10n/generated/l10n.dart';
 import '../../../utils/extensions.dart';
 import '../../../views/assets/list/asset_list_controller.dart';
+import '../../constants/colors.dart';
 import '../../constants/icons.dart';
 import '../../constants/image_assets.dart';
 import '../../constants/radius_values.dart';
@@ -71,9 +73,11 @@ class AssetListTile extends ConsumerWidget {
 class RentedAssetListTile extends ConsumerWidget {
   const RentedAssetListTile(
     this.rAsset, {
+    this.relativeTime = true,
     super.key,
   });
   final RentalAsset rAsset;
+  final bool relativeTime;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -92,14 +96,38 @@ class RentedAssetListTile extends ConsumerWidget {
           : defaultImage,
       loading: () => const CircularLoadingSkeleton(),
     );
+    final bool isOverdue = (rAsset.returnTime != null &&
+        rAsset.status == RentalAssetStatus.rented &&
+        rAsset.returnTime!.difference(DateTime.now()).isNegative);
+    final msgOverdue = (isOverdue) ? S.of(context).msgIsOverdue : null;
     return ListTile(
       title: Tooltip(
         message: rAsset.name,
         child: Text(rAsset.name, overflow: TextOverflow.ellipsis),
       ),
       isThreeLine: true,
-      subtitle: Text(S.of(context).lblHours(rAsset.hoursRented)),
-      leading: img,
+      subtitle: Text(
+        '$msgOverdue${printDuration(
+          DateTime.now().difference(rAsset.returnTime!),
+          abbreviated: true,
+          tersity: DurationTersity.hour,
+        )}',
+      ),
+      leading: (isOverdue)
+          ? Tooltip(
+              message: S.of(context).lblOverdue,
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: clOverdue,
+                      width: 3.0,
+                      strokeAlign: StrokeAlign.outside,
+                    ),
+                    borderRadius:
+                        const BorderRadius.all(Radius.circular(kCardRadius))),
+                child: img,
+              ))
+          : img,
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
