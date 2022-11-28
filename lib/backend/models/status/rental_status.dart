@@ -5,12 +5,27 @@ import '../../../l10n/generated/l10n.dart';
 
 enum RentalStatus {
   active,
-  completed,
+  closed,
   canceled,
   overdue,
 }
 
 extension RentalStatusExtension on RentalStatus {
+  String get local {
+    switch (this) {
+      case RentalStatus.active:
+        return S.current.ttActive;
+      case RentalStatus.closed:
+        return S.current.ttClosed;
+      case RentalStatus.canceled:
+        return S.current.ttCanceled;
+      case RentalStatus.overdue:
+        return S.current.ttOverdue;
+      default:
+        return S.current.ttUndefined;
+    }
+  }
+
   Color? get color {
     switch (this) {
       case RentalStatus.active:
@@ -19,8 +34,8 @@ extension RentalStatusExtension on RentalStatus {
         return clOverdue;
       case RentalStatus.canceled:
         return clCanceled;
-      case RentalStatus.completed:
-        return clCompleted;
+      case RentalStatus.closed:
+        return clClosed;
       default:
         return null;
     }
@@ -53,14 +68,27 @@ extension RentalAssetExtension on RentalAssetStatus {
 enum AssetStatus {
   available,
   unavailable,
+  maintenance,
   discarded,
   rented,
-  maintenance,
 }
 
-extension ParseToString on AssetStatus {
-  String toShortString() {
-    return toString().split('.').last;
+extension AssetExtension on AssetStatus {
+  String get local {
+    switch (this) {
+      case AssetStatus.available:
+        return S.current.ttAvailable;
+      case AssetStatus.unavailable:
+        return S.current.ttUnavailable;
+      case AssetStatus.maintenance:
+        return S.current.ttMaintenance;
+      case AssetStatus.discarded:
+        return S.current.ttDiscarded;
+      case AssetStatus.rented:
+        return S.current.ttRented;
+      default:
+        return S.current.ttUndefined;
+    }
   }
 }
 

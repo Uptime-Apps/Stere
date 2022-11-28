@@ -39,13 +39,13 @@ class AssetListTile extends ConsumerWidget {
 
     Color statusColor = Colors.amber;
     if (asset.status == AssetStatus.available.name) {
-      statusColor = Colors.green;
+      statusColor = clAvailable;
     }
     if (asset.status == AssetStatus.maintenance.name) {
-      statusColor = Colors.grey;
+      statusColor = clMaintenance;
     }
     if (asset.status == AssetStatus.rented.name) {
-      statusColor = Colors.red.shade300;
+      statusColor = clRented;
     }
     return ListTile(
         title: Text(asset.name),
@@ -70,6 +70,54 @@ class AssetListTile extends ConsumerWidget {
   }
 }
 
+class RentedAssetFormat {
+  Color? color;
+  late IconData icon;
+  late String label;
+  late String tooltip;
+
+  RentedAssetFormat({required RentalAsset rAsset, required bool relativeTime}) {
+    final bool isOverdue = (rAsset.returnTime != null &&
+        rAsset.status == RentalAssetStatus.rented &&
+        rAsset.returnTime!.difference(DateTime.now()).isNegative);
+    color = isOverdue ? clOverdue : null;
+    if (isOverdue && !relativeTime) {
+      color = null;
+      label = S.current.lblHours(rAsset.hoursRented);
+      icon = Icons.lock_clock;
+      tooltip = S.current.pfxRentedFor(
+        prettyDuration(
+          Duration(hours: rAsset.hoursRented),
+          tersity: DurationTersity.minute,
+        ),
+      );
+    } else if (isOverdue) {
+      // String? prefix = (isOverdue) ? S.of(context).msgIsOverdue : null;
+      label = prettyDuration(
+        DateTime.now().difference(rAsset.returnTime!),
+        tersity: DurationTersity.minute,
+      );
+      icon = Icons.warning;
+      tooltip = S.current.ttOverdue;
+    } else if (rAsset.returnTime != null) {
+      label = prettyDuration(
+        rAsset.returnTime!.difference(DateTime.now()),
+        tersity: DurationTersity.minute,
+      );
+      icon = Icons.timelapse;
+    } else {
+      label = S.current.lblHours(rAsset.hoursRented);
+      icon = Icons.lock_clock;
+      tooltip = S.current.pfxRentedFor(
+        prettyDuration(
+          Duration(hours: rAsset.hoursRented),
+          tersity: DurationTersity.minute,
+        ),
+      );
+    }
+  }
+}
+
 class RentedAssetListTile extends ConsumerWidget {
   const RentedAssetListTile(
     this.rAsset, {
@@ -81,8 +129,11 @@ class RentedAssetListTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // rental details
     final hasNotes = rAsset.notes?.isNotEmpty ?? false;
     final hasDamageReport = rAsset.damageReport?.isNotEmpty ?? false;
+
+    // rental image
     const defaultImage =
         CircleAvatar(backgroundImage: AssetImage(iaDefaultCategoryImage));
     final imagePath = ref.watch(assetListImageProvider(rAsset.image));
@@ -96,38 +147,33 @@ class RentedAssetListTile extends ConsumerWidget {
           : defaultImage,
       loading: () => const CircularLoadingSkeleton(),
     );
-    final bool isOverdue = (rAsset.returnTime != null &&
-        rAsset.status == RentalAssetStatus.rented &&
-        rAsset.returnTime!.difference(DateTime.now()).isNegative);
-    final msgOverdue = (isOverdue) ? S.of(context).msgIsOverdue : null;
+
+    final raf = RentedAssetFormat(rAsset: rAsset, relativeTime: relativeTime);
     return ListTile(
       title: Tooltip(
         message: rAsset.name,
         child: Text(rAsset.name, overflow: TextOverflow.ellipsis),
       ),
       isThreeLine: true,
-      subtitle: Text(
-        '$msgOverdue${printDuration(
-          DateTime.now().difference(rAsset.returnTime!),
-          abbreviated: true,
-          tersity: DurationTersity.hour,
-        )}',
+      subtitle: Text.rich(
+        TextSpan(
+          children: [
+            WidgetSpan(
+                child: Tooltip(
+                  message: rAsset.status.name.capitalize(),
+                  child: Icon(
+                    color: raf.color,
+                    raf.icon,
+                    size: Theme.of(context).textTheme.subtitle1?.fontSize,
+                  ),
+                ),
+                alignment: PlaceholderAlignment.top),
+            TextSpan(text: '\t${raf.label}'),
+          ],
+        ),
+        style: (raf.color != null) ? TextStyle(color: raf.color) : null,
       ),
-      leading: (isOverdue)
-          ? Tooltip(
-              message: S.of(context).lblOverdue,
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                      color: clOverdue,
-                      width: 3.0,
-                      strokeAlign: StrokeAlign.outside,
-                    ),
-                    borderRadius:
-                        const BorderRadius.all(Radius.circular(kCardRadius))),
-                child: img,
-              ))
-          : img,
+      leading: img,
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

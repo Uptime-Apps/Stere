@@ -87,12 +87,12 @@ class RentalListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
     return ListTile(
       visualDensity: VisualDensity.compact,
       dense: true,
       title: Text(rental.clientName),
-      subtitle:
-          Text(DateFormat.yMMMEd().format(rental.creationDate).toString()),
+      subtitle: Text(DateFormat.MMMEd().format(rental.creationDate).toString()),
       leading: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -109,7 +109,15 @@ class RentalListTile extends StatelessWidget {
               badgeColor: colorScheme.errorContainer,
               child: Icon(
                 icAssets,
-                color: rental.status.color,
+                color: (rental.status == RentalStatus.active &&
+                        rental.assets
+                            .map((e) => e.returnTime!
+                                .difference(DateTime.now())
+                                .isNegative)
+                            .toList()
+                            .contains(true))
+                    ? RentalStatus.overdue.color
+                    : rental.status.color,
               ),
             ),
           ),
@@ -123,36 +131,49 @@ class RentalListTile extends StatelessWidget {
         const DefaultSpacer(),
         InkWell(
           onTap: () => showModalBottomSheet(
-            // isScrollControlled: true,
-            // backgroundColor: colorScheme.primary,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(kCardRadius),
             ),
-
             context: context,
-            builder: (context) => SimpleDialog(
-              insetPadding: EdgeInsets.zero,
-              title: Text(S.of(context).stepRentalInformation),
-              children: [
-                CustomerInformationTable(
-                  name: rental.clientName,
-                  deposit: rental.clientDeposit,
-                  identification: rental.clientId,
-                  housing: rental.clientHousing,
-                  phone: rental.clientPhone,
-                  backupPhone: rental.backupPhone,
-                ),
-                ListTile(
-                    title: Text(S.of(context).lblSelectedAssets),
-                    horizontalTitleGap: 0,
-                    leading: const Icon(icAssets)),
-                ...rental.assets.map((e) {
-                  return RentedAssetListTile(
-                    e,
-                    relativeTime: true,
-                  );
-                }).toList(),
-              ],
+            builder: (context) => SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                        kSpacing, kSpacing, kSpacing, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          S.of(context).stepRentalInformation,
+                          style: textTheme.headlineSmall,
+                        ),
+                        Text(rental.status.local, style: textTheme.subtitle1),
+                      ],
+                    ),
+                  ),
+                  CustomerInformationTable(
+                    name: rental.clientName,
+                    deposit: rental.clientDeposit,
+                    identification: rental.clientId,
+                    housing: rental.clientHousing,
+                    phone: rental.clientPhone,
+                    backupPhone: rental.backupPhone,
+                  ),
+                  ListTile(
+                      title: Text(S.of(context).lblSelectedAssets),
+                      horizontalTitleGap: 0,
+                      leading: const Icon(icAssets)),
+                  ...rental.assets.map((e) {
+                    return RentedAssetListTile(
+                      e,
+                      relativeTime: rental.status != RentalStatus.canceled,
+                    );
+                  }).toList(),
+                ],
+              ),
             ),
           ),
           child: Tooltip(

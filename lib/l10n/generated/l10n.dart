@@ -486,16 +486,6 @@ class S {
     );
   }
 
-  /// `Overdue`
-  String get lblOverdue {
-    return Intl.message(
-      'Overdue',
-      name: 'lblOverdue',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Price`
   String get lblPrice {
     return Intl.message(
@@ -573,16 +563,6 @@ class S {
     return Intl.message(
       'Tags',
       name: 'lblTags',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Overdue: `
-  String get msgIsOverdue {
-    return Intl.message(
-      'Overdue: ',
-      name: 'msgIsOverdue',
       desc: '',
       args: [],
     );
@@ -842,6 +822,16 @@ class S {
     );
   }
 
+  /// `Rented for {time}`
+  String pfxRentedFor(Object time) {
+    return Intl.message(
+      'Rented for $time',
+      name: 'pfxRentedFor',
+      desc: '',
+      args: [time],
+    );
+  }
+
   /// `{price}`
   String priceFormat(double price) {
     final NumberFormat priceNumberFormat = NumberFormat.currency(
@@ -946,6 +936,56 @@ class S {
     );
   }
 
+  /// `Active`
+  String get ttActive {
+    return Intl.message(
+      'Active',
+      name: 'ttActive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Closed`
+  String get ttClosed {
+    return Intl.message(
+      'Closed',
+      name: 'ttClosed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Canceled`
+  String get ttCanceled {
+    return Intl.message(
+      'Canceled',
+      name: 'ttCanceled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Available`
+  String get ttAvailable {
+    return Intl.message(
+      'Available',
+      name: 'ttAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discarded`
+  String get ttDiscarded {
+    return Intl.message(
+      'Discarded',
+      name: 'ttDiscarded',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Incomplete`
   String get ttIncomplete {
     return Intl.message(
@@ -956,11 +996,51 @@ class S {
     );
   }
 
+  /// `Maintenance`
+  String get ttMaintenance {
+    return Intl.message(
+      'Maintenance',
+      name: 'ttMaintenance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Overdue`
+  String get ttOverdue {
+    return Intl.message(
+      'Overdue',
+      name: 'ttOverdue',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Ready`
   String get ttReady {
     return Intl.message(
       'Ready',
       name: 'ttReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rented`
+  String get ttRented {
+    return Intl.message(
+      'Rented',
+      name: 'ttRented',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unavailable`
+  String get ttUnavailable {
+    return Intl.message(
+      'Unavailable',
+      name: 'ttUnavailable',
       desc: '',
       args: [],
     );

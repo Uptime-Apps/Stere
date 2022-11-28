@@ -64,7 +64,9 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m17(email) =>
       "Before you begin, please verify your account. Send verification email to ${email}";
 
-  static String m18(price) => "${price}";
+  static String m18(time) => "Rented for ${time}";
+
+  static String m19(price) => "${price}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -126,7 +128,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblNotesReport": MessageLookupByLibrary.simpleMessage("Notes"),
         "lblNotifications":
             MessageLookupByLibrary.simpleMessage("Notifications"),
-        "lblOverdue": MessageLookupByLibrary.simpleMessage("Overdue"),
         "lblPrice": MessageLookupByLibrary.simpleMessage("Price"),
         "lblRentalHistory":
             MessageLookupByLibrary.simpleMessage("Rental History"),
@@ -146,7 +147,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "msgFailedDeleteObject": m9,
         "msgFailedUpdateObject": m10,
         "msgFormStatus": m11,
-        "msgIsOverdue": MessageLookupByLibrary.simpleMessage("Overdue: "),
         "msgMissingCategory": MessageLookupByLibrary.simpleMessage(
             "To select a tag, pick a category"),
         "msgNoInformation":
@@ -173,7 +173,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "optIdentification":
             MessageLookupByLibrary.simpleMessage("Identification"),
         "optPassport": MessageLookupByLibrary.simpleMessage("Passport"),
-        "priceFormat": m18,
+        "pfxRentedFor": m18,
+        "priceFormat": m19,
         "stActiveRentals":
             MessageLookupByLibrary.simpleMessage("Active Rentals"),
         "stInformationDialogNewRental": MessageLookupByLibrary.simpleMessage(
@@ -191,8 +192,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "stepFinalReview": MessageLookupByLibrary.simpleMessage("Final Review"),
         "stepRentalInformation":
             MessageLookupByLibrary.simpleMessage("Rental Information"),
+        "ttActive": MessageLookupByLibrary.simpleMessage("Active"),
+        "ttAvailable": MessageLookupByLibrary.simpleMessage("Available"),
+        "ttCanceled": MessageLookupByLibrary.simpleMessage("Canceled"),
+        "ttClosed": MessageLookupByLibrary.simpleMessage("Closed"),
+        "ttDiscarded": MessageLookupByLibrary.simpleMessage("Discarded"),
         "ttIncomplete": MessageLookupByLibrary.simpleMessage("Incomplete"),
+        "ttMaintenance": MessageLookupByLibrary.simpleMessage("Maintenance"),
+        "ttOverdue": MessageLookupByLibrary.simpleMessage("Overdue"),
         "ttReady": MessageLookupByLibrary.simpleMessage("Ready"),
+        "ttRented": MessageLookupByLibrary.simpleMessage("Rented"),
+        "ttUnavailable": MessageLookupByLibrary.simpleMessage("Unavailable"),
         "ttUndefined": MessageLookupByLibrary.simpleMessage("Undefined")
       };
 }

@@ -42,7 +42,6 @@
   "lblNotAvailable": "Not Available",
   "lblNotesReport": "Notes",
   "lblNotifications": "Notifications",
-  "lblOverdue": "Overdue",
   "lblPrice": "Price",
   "lblRentalHistory": "Rental History",
   "lblRentals": "{isPlural, plural, one{Rental} other{Rentals}}",
@@ -52,7 +51,6 @@
   "lblSend": "Send",
   "lblSettings": "Settings",
   "lblTags": "Tags",
-  "msgIsOverdue": "Overdue: ",
   "lblTags": "Tags",
   "lblTotal": "Total",
   "lblYes": "Yes",
@@ -79,6 +77,7 @@
   "msgYouHaveInformation": "You have information in the form, are you sure you want to discard your changes?",
   "optIdentification": "Identification",
   "optPassport": "Passport",
+  "pfxRentedFor": "Rented for {time}",
   "priceFormat": "{price}",
   "@priceFormat": {
     "placeholders": {
@@ -98,7 +97,16 @@
   "stepClientDetails": "Customer Details",
   "stepFinalReview": "Final Review",
   "stepRentalInformation": "Rental Information",
+  "ttActive": "Active",
+  "ttClosed": "Closed",
+  "ttCanceled": "Canceled",
+  "ttAvailable": "Available",
+  "ttDiscarded": "Discarded",
   "ttIncomplete": "Incomplete",
+  "ttMaintenance": "Maintenance",
+  "ttOverdue": "Overdue",
   "ttReady": "Ready",
+  "ttRented": "Rented",
+  "ttUnavailable": "Unavailable",
   "ttUndefined": "Undefined"
 }
