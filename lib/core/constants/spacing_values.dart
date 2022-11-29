@@ -9,3 +9,6 @@ const kVerticalSpacing = 16.0;
 
 const kProgressBarHeight = 8.0;
 const kCardImageHeight = 125.0;
+
+const kSmallSwipeActionExtent = 0.25;
+const kSwipeActionExtent = kSmallSwipeActionExtent;

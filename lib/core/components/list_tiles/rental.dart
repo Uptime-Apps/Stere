@@ -32,7 +32,7 @@ class RentalCard extends ConsumerWidget {
               key: ValueKey<String>(rental.id!),
               startActionPane: ActionPane(
                 motion: const ScrollMotion(),
-                extentRatio: 0.5,
+                extentRatio: kSmallSwipeActionExtent,
                 children: [
                   SlidableAction(
                     backgroundColor: colorScheme.error,
@@ -47,7 +47,7 @@ class RentalCard extends ConsumerWidget {
               ),
               endActionPane: ActionPane(
                 motion: const ScrollMotion(),
-                extentRatio: 0.5,
+                extentRatio: kSmallSwipeActionExtent,
                 children: [
                   SlidableAction(
                     backgroundColor: colorScheme.primary,
@@ -167,9 +167,25 @@ class RentalListTile extends StatelessWidget {
                       horizontalTitleGap: 0,
                       leading: const Icon(icAssets)),
                   ...rental.assets.map((e) {
-                    return RentedAssetListTile(
-                      e,
-                      relativeTime: rental.status != RentalStatus.canceled,
+                    return Slidable(
+                      key: ValueKey<String>(e.id),
+                      endActionPane: ActionPane(
+                        motion: const ScrollMotion(),
+                        extentRatio: kSmallSwipeActionExtent,
+                        children: [
+                          SlidableAction(
+                            backgroundColor: colorScheme.primary,
+                            foregroundColor: colorScheme.onPrimary,
+                            label: S.of(context).lblReturn,
+                            icon: Icons.check,
+                            onPressed: (context) {},
+                          ),
+                        ],
+                      ),
+                      child: RentedAssetListTile(
+                        e,
+                        relativeTime: rental.status != RentalStatus.canceled,
+                      ),
                     );
                   }).toList(),
                 ],

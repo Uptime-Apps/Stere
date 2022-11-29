@@ -8,6 +8,7 @@ import '../../../../../backend/models/status/rental_status.dart';
 import '../../../../../core/components/inputs/dropdowns.dart';
 import '../../../../../core/components/others/utilities.dart';
 import '../../../../../core/constants/radius_values.dart';
+import '../../../../../core/constants/spacing_values.dart';
 import '../../../../../l10n/generated/l10n.dart';
 import '../../rental_form_controller.dart';
 import 'rental_asset_form.dart';
@@ -37,7 +38,7 @@ class StepAvailableAssets extends ConsumerWidget {
               key: ValueKey<String>(obj.id),
               startActionPane: ActionPane(
                 motion: const ScrollMotion(),
-                extentRatio: 0.5,
+                extentRatio: kSmallSwipeActionExtent,
                 children: [
                   SlidableAction(
                     backgroundColor: colorScheme.surfaceVariant,
