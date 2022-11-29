@@ -52,7 +52,7 @@ class RentalCard extends ConsumerWidget {
                   SlidableAction(
                     backgroundColor: colorScheme.primary,
                     foregroundColor: colorScheme.onPrimary,
-                    label: S.of(context).lblClose,
+                    label: S.of(context).lblFinish,
                     icon: Icons.archive,
                     onPressed: (context) {},
                   ),

@@ -5,7 +5,7 @@ import '../../../l10n/generated/l10n.dart';
 
 enum RentalStatus {
   active,
-  closed,
+  finished,
   canceled,
   overdue,
 }
@@ -15,8 +15,8 @@ extension RentalStatusExtension on RentalStatus {
     switch (this) {
       case RentalStatus.active:
         return S.current.ttActive;
-      case RentalStatus.closed:
-        return S.current.ttClosed;
+      case RentalStatus.finished:
+        return S.current.ttFinished;
       case RentalStatus.canceled:
         return S.current.ttCanceled;
       case RentalStatus.overdue:
@@ -34,8 +34,8 @@ extension RentalStatusExtension on RentalStatus {
         return clOverdue;
       case RentalStatus.canceled:
         return clCanceled;
-      case RentalStatus.closed:
-        return clClosed;
+      case RentalStatus.finished:
+        return clFinished;
       default:
         return null;
     }

@@ -103,7 +103,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Identification number"),
         "lblClientName": MessageLookupByLibrary.simpleMessage("Name"),
         "lblClientPhone": MessageLookupByLibrary.simpleMessage("Phone"),
-        "lblClose": MessageLookupByLibrary.simpleMessage("Close"),
         "lblConfirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "lblCreateNew": MessageLookupByLibrary.simpleMessage("Create one!"),
         "lblCreateObject": m5,
@@ -114,6 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblEdit": MessageLookupByLibrary.simpleMessage("Edit"),
         "lblFinalMileage":
             MessageLookupByLibrary.simpleMessage("Final Mileage"),
+        "lblFinish": MessageLookupByLibrary.simpleMessage("Finish"),
         "lblHistory": MessageLookupByLibrary.simpleMessage("History"),
         "lblHome": MessageLookupByLibrary.simpleMessage("Home"),
         "lblHours": m6,
@@ -132,6 +132,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblRentalHistory":
             MessageLookupByLibrary.simpleMessage("Rental History"),
         "lblRentals": m7,
+        "lblReturn": MessageLookupByLibrary.simpleMessage("Return"),
         "lblSave": MessageLookupByLibrary.simpleMessage("Save"),
         "lblSelectedAssets":
             MessageLookupByLibrary.simpleMessage("Selected Assets"),
@@ -195,8 +196,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ttActive": MessageLookupByLibrary.simpleMessage("Active"),
         "ttAvailable": MessageLookupByLibrary.simpleMessage("Available"),
         "ttCanceled": MessageLookupByLibrary.simpleMessage("Canceled"),
-        "ttClosed": MessageLookupByLibrary.simpleMessage("Closed"),
         "ttDiscarded": MessageLookupByLibrary.simpleMessage("Discarded"),
+        "ttFinished": MessageLookupByLibrary.simpleMessage("Finished"),
         "ttIncomplete": MessageLookupByLibrary.simpleMessage("Incomplete"),
         "ttMaintenance": MessageLookupByLibrary.simpleMessage("Maintenance"),
         "ttOverdue": MessageLookupByLibrary.simpleMessage("Overdue"),

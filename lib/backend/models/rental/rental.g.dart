@@ -48,7 +48,7 @@ Map<String, dynamic> _$$_RentalToJson(_$_Rental instance) => <String, dynamic>{
 
 const _$RentalStatusEnumMap = {
   RentalStatus.active: 'active',
-  RentalStatus.closed: 'closed',
+  RentalStatus.finished: 'finished',
   RentalStatus.canceled: 'canceled',
   RentalStatus.overdue: 'overdue',
 };

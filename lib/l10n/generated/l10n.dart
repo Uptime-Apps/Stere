@@ -284,11 +284,11 @@ class S {
     );
   }
 
-  /// `Close`
-  String get lblClose {
+  /// `Finish`
+  String get lblFinish {
     return Intl.message(
-      'Close',
-      name: 'lblClose',
+      'Finish',
+      name: 'lblFinish',
       desc: '',
       args: [],
     );
@@ -501,6 +501,16 @@ class S {
     return Intl.message(
       'Rental History',
       name: 'lblRentalHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return`
+  String get lblReturn {
+    return Intl.message(
+      'Return',
+      name: 'lblReturn',
       desc: '',
       args: [],
     );
@@ -946,11 +956,11 @@ class S {
     );
   }
 
-  /// `Closed`
-  String get ttClosed {
+  /// `Finished`
+  String get ttFinished {
     return Intl.message(
-      'Closed',
-      name: 'ttClosed',
+      'Finished',
+      name: 'ttFinished',
       desc: '',
       args: [],
     );
