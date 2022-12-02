@@ -5,6 +5,7 @@ import '../../backend/models/status/rental_status.dart';
 import '../../backend/services/rental_service.dart';
 import '../../core/components/list_tiles/rental.dart';
 import '../../core/components/lists/rentals_list_view.dart';
+import '../../l10n/generated/l10n.dart';
 
 class RentalScreen extends ConsumerWidget {
   static const route = 'rentals';
@@ -18,6 +19,9 @@ class RentalScreen extends ConsumerWidget {
           .map((e) => RentalCard(e))
           .toList(),
       stream: ref.read(rentalServiceProvider).getOrderedByDate(),
+      noContentMessage: S
+          .of(context)
+          .msgNothingAvailable(S.of(context).lblRentals(2).toLowerCase()),
     );
   }
 }

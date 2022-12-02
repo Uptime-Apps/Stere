@@ -37,6 +37,7 @@ class HomeScreen extends ConsumerWidget {
                 .map((e) => RentalCard(e))
                 .toList(),
             stream: ref.read(rentalServiceProvider).getOrderedByDate(),
+            noContentMessage: S.of(context).msgNoRentalsActive,
           ),
         ],
       ),
