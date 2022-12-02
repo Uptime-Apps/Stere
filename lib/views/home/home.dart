@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../backend/models/status/rental_status.dart';
 import '../../backend/services/rental_service.dart';
-import '../../core/components/list_tiles/rental.dart';
+import '../../core/components/cards/rental.dart';
 import '../../core/components/lists/rentals_list_view.dart';
 import '../../core/constants/icons.dart';
 import '../../l10n/generated/l10n.dart';
