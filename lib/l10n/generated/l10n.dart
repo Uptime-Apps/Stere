@@ -284,16 +284,6 @@ class S {
     );
   }
 
-  /// `Finish`
-  String get lblFinish {
-    return Intl.message(
-      'Finish',
-      name: 'lblFinish',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Confirm`
   String get lblConfirm {
     return Intl.message(
@@ -369,6 +359,16 @@ class S {
     return Intl.message(
       'Final Mileage',
       name: 'lblFinalMileage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Finish`
+  String get lblFinish {
+    return Intl.message(
+      'Finish',
+      name: 'lblFinish',
       desc: '',
       args: [],
     );
@@ -506,16 +506,6 @@ class S {
     );
   }
 
-  /// `Return`
-  String get lblReturn {
-    return Intl.message(
-      'Return',
-      name: 'lblReturn',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `{isPlural, plural, one{Rental} other{Rentals}}`
   String lblRentals(num isPlural) {
     return Intl.plural(
@@ -525,6 +515,16 @@ class S {
       name: 'lblRentals',
       desc: '',
       args: [isPlural],
+    );
+  }
+
+  /// `Return`
+  String get lblReturn {
+    return Intl.message(
+      'Return',
+      name: 'lblReturn',
+      desc: '',
+      args: [],
     );
   }
 
@@ -737,6 +737,16 @@ class S {
     return Intl.message(
       'Registered successfully',
       name: 'msgRegisteredSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update any extra information you want before marking the asset as returned`
+  String get msgReturnRentalAsset {
+    return Intl.message(
+      'Update any extra information you want before marking the asset as returned',
+      name: 'msgReturnRentalAsset',
       desc: '',
       args: [],
     );
@@ -956,11 +966,11 @@ class S {
     );
   }
 
-  /// `Finished`
-  String get ttFinished {
+  /// `Available`
+  String get ttAvailable {
     return Intl.message(
-      'Finished',
-      name: 'ttFinished',
+      'Available',
+      name: 'ttAvailable',
       desc: '',
       args: [],
     );
@@ -976,21 +986,21 @@ class S {
     );
   }
 
-  /// `Available`
-  String get ttAvailable {
-    return Intl.message(
-      'Available',
-      name: 'ttAvailable',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Discarded`
   String get ttDiscarded {
     return Intl.message(
       'Discarded',
       name: 'ttDiscarded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Finished`
+  String get ttFinished {
+    return Intl.message(
+      'Finished',
+      name: 'ttFinished',
       desc: '',
       args: [],
     );
@@ -1046,6 +1056,16 @@ class S {
     );
   }
 
+  /// `Time remaining`
+  String get ttTimeRemaining {
+    return Intl.message(
+      'Time remaining',
+      name: 'ttTimeRemaining',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Unavailable`
   String get ttUnavailable {
     return Intl.message(
@@ -1061,16 +1081,6 @@ class S {
     return Intl.message(
       'Undefined',
       name: 'ttUndefined',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Time remaining`
-  String get ttTimeRemaining {
-    return Intl.message(
-      'Time remaining',
-      name: 'ttTimeRemaining',
       desc: '',
       args: [],
     );

@@ -22,7 +22,6 @@
   "lblClientId": "Identification number",
   "lblClientName": "Name",
   "lblClientPhone": "Phone",
-  "lblFinish": "Finish",
   "lblConfirm": "Confirm",
   "lblCreateNew": "Create one!",
   "lblCreateObject": "New {object}",
@@ -31,6 +30,7 @@
   "lblDone": "Done",
   "lblEdit": "Edit",
   "lblFinalMileage": "Final Mileage",
+  "lblFinish": "Finish",
   "lblHistory": "History",
   "lblHome": "Home",
   "lblHours": "{hours, plural, one{1 hour} other{{hours} hours}}",
@@ -44,8 +44,8 @@
   "lblNotifications": "Notifications",
   "lblPrice": "Price",
   "lblRentalHistory": "Rental History",
-  "lblReturn": "Return",
   "lblRentals": "{isPlural, plural, one{Rental} other{Rentals}}",
+  "lblReturn": "Return",
   "lblSave": "Save",
   "lblSave": "Save",
   "lblSelectedAssets": "Selected Assets",
@@ -69,6 +69,7 @@
   "msgNothingToSee": "Nothing to see here",
   "msgPageNotFound": "Page not found",
   "msgRegisteredSuccessfully": "Registered successfully",
+  "msgReturnRentalAsset": "Update any extra information you want before marking the asset as returned",
   "msgSuccessCreateObject": "Created \"{object}\" successfully",
   "msgSuccessDeleteObject": "Deleted \"{object}\" successfully",
   "msgSuccessUpdateObject": "Updated \"{object}\" successfully",
@@ -80,15 +81,7 @@
   "optPassport": "Passport",
   "pfxRentedFor": "Rented for {time}",
   "priceFormat": "{price}",
-  "@priceFormat": {
-    "placeholders": {
-      "price": {
-        "type": "double",
-        "format": "currency",
-        "optionalParameters": { "symbol": "₡", "decimalDigits": 2 }
-      }
-    }
-  },
+  "@priceFormat": { "placeholders": { "price": { "type": "double", "format": "currency", "optionalParameters": { "symbol": "₡", "decimalDigits": 2 } } } },
   "stActiveRentals": "Active Rentals",
   "stInformationDialogNewRental": "What to do with selected assets?",
   "stInformationDialogNewRentalDelete": "Delete them by swiping one of your selected assets to the left",
@@ -99,16 +92,16 @@
   "stepFinalReview": "Final Review",
   "stepRentalInformation": "Rental Information",
   "ttActive": "Active",
-  "ttFinished": "Finished",
-  "ttCanceled": "Canceled",
   "ttAvailable": "Available",
+  "ttCanceled": "Canceled",
   "ttDiscarded": "Discarded",
+  "ttFinished": "Finished",
   "ttIncomplete": "Incomplete",
   "ttMaintenance": "Maintenance",
   "ttOverdue": "Overdue",
   "ttReady": "Ready",
   "ttRented": "Rented",
+  "ttTimeRemaining": "Time remaining",
   "ttUnavailable": "Unavailable",
-  "ttUndefined": "Undefined",
-  "ttTimeRemaining": "Time remaining"
+  "ttUndefined": "Undefined"
 }

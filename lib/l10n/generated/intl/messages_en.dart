@@ -162,6 +162,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Page not found"),
         "msgRegisteredSuccessfully":
             MessageLookupByLibrary.simpleMessage("Registered successfully"),
+        "msgReturnRentalAsset": MessageLookupByLibrary.simpleMessage(
+            "Update any extra information you want before marking the asset as returned"),
         "msgSuccessCreateObject": m14,
         "msgSuccessDeleteObject": m15,
         "msgSuccessUpdateObject": m16,

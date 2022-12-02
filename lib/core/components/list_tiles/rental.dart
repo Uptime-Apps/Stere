@@ -77,8 +77,7 @@ class _DialogReturnAssetState extends State<DialogReturnAsset> {
       contentPadding: const EdgeInsets.all(kSpacing * 1.5),
       title: Text(widget.rAsset.name),
       children: [
-        const Text(
-            'Here you can update the following details before marking the object as returned'),
+        Text(S.of(context).msgReturnRentalAsset),
         const DefaultSpacer(),
         if (widget.rAsset.isAutomotive) ...automotiveInputs,
         TextInputField(
