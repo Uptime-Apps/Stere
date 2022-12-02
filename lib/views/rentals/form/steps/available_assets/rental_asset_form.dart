@@ -10,9 +10,8 @@ import '../../../../../l10n/generated/l10n.dart';
 import '../../../../../utils/validators.dart';
 
 class RentalAssetForm extends StatefulWidget {
-  const RentalAssetForm(this.rAsset, {this.isClosing = false, super.key});
+  const RentalAssetForm(this.rAsset, {super.key});
   final RentalAsset rAsset;
-  final bool isClosing;
 
   @override
   State<RentalAssetForm> createState() => _RentalAssetFormState();
@@ -41,25 +40,6 @@ class _RentalAssetFormState extends State<RentalAssetForm> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> automotiveInputs = [
-      if (widget.isClosing)
-        NumericInputField(
-          initialValue: widget.rAsset.initialMileage.toString(),
-          onChanged: (value) => setState(() {
-            try {
-              if (value != null) {
-                finalMileage = double.parse(value);
-              }
-            } on FormatException {
-              finalMileage = 0.0;
-            }
-          }),
-          icon: Icons.error,
-          label: '${S.of(context).lblInitialMileage}*',
-          textInputAction: TextInputAction.next,
-          validator: requiredFieldValidation,
-        ),
-    ];
     List<Widget> formItems = [
       Text(widget.rAsset.name,
           style: Theme.of(context).textTheme.headlineSmall),
@@ -88,7 +68,6 @@ class _RentalAssetFormState extends State<RentalAssetForm> {
         textInputAction: TextInputAction.next,
         validator: requiredFieldValidation,
       ),
-      ...automotiveInputs,
       TextInputField(
         initialValue: notes,
         textInputAction: TextInputAction.newline,

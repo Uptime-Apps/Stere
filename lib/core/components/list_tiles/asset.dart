@@ -73,8 +73,10 @@ class RentedAssetFormat {
     color = isOverdue ? clOverdue : null;
     if (rAsset.status == RentalAssetStatus.available) {
       // If it's been returned
-      label = S.current.lblHours(rAsset.hoursRented);
-      icon = Icons.lock_clock;
+      label = !relativeTime
+          ? S.current.lblHours(rAsset.hoursRented)
+          : S.current.lblDone;
+      icon = !relativeTime ? Icons.lock_clock : Icons.check;
       tooltip = S.current.pfxRentedFor(
         prettyDuration(
           Duration(hours: rAsset.hoursRented),
