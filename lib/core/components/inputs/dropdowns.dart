@@ -31,7 +31,8 @@ class AvailableAssetsDropdown extends ConsumerWidget {
                         -1)
                     .toList();
             var menuItems = unselectedMenuItems
-                .where((asset) => asset.status == AssetStatus.available.name)
+                .where(
+                    (asset) => asset.status.name == AssetStatus.available.name)
                 .map(
                   (e) => DropdownMenuItem(
                     value: e,
@@ -64,9 +65,12 @@ class AvailableAssetsDropdown extends ConsumerWidget {
               hint: S.of(context).lblAvailableCount(
                   S.of(context).lblAssets(2), menuItems.length.toString()),
               selectedItemBuilder: (context) => snapshot.data!
-                  .map((e) => SizedBox(
+                  .map(
+                    (e) => SizedBox(
                       width: MediaQuery.of(context).size.width / 3,
-                      child: Text(e.name, overflow: TextOverflow.ellipsis)))
+                      child: Text(e.name, overflow: TextOverflow.ellipsis),
+                    ),
+                  )
                   .toList(),
             );
           } else {

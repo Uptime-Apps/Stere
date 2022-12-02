@@ -168,10 +168,11 @@ class RentalFormController extends StateNotifier<RentalFormState> {
       name: asset.name,
       categoryId: asset.categoryId,
       categoryName: asset.categoryName,
-      image: asset.imagePath,
-      initialMileage: asset.mileage,
       hoursRented: 0,
+      image: asset.imagePath,
       rentalPrice: 0,
+      isAutomotive: asset.isAutomotive,
+      initialMileage: asset.mileage,
       status: RentalAssetStatus.incomplete,
     ));
     state = state.copyWith(selectedAssets: currentAssets);

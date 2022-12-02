@@ -54,8 +54,8 @@ class _RentalAssetFormState extends State<RentalAssetForm> {
               finalMileage = 0.0;
             }
           }),
-          icon: Icons.money,
-          label: '${S.of(context).lblPrice}*',
+          icon: Icons.error,
+          label: '${S.of(context).lblInitialMileage}*',
           textInputAction: TextInputAction.next,
           validator: requiredFieldValidation,
         ),
@@ -138,6 +138,7 @@ class _RentalAssetFormState extends State<RentalAssetForm> {
 
   void submit() {
     RentalAsset ra = RentalAsset(
+      isAutomotive: widget.rAsset.isAutomotive,
       categoryId: widget.rAsset.categoryId,
       categoryName: widget.rAsset.categoryName,
       damageReport: damageReport,

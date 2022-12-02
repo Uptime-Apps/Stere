@@ -38,7 +38,7 @@ class StepAvailableAssets extends ConsumerWidget {
               key: ValueKey<String>(obj.id),
               startActionPane: ActionPane(
                 motion: const ScrollMotion(),
-                extentRatio: kSmallSwipeActionExtent,
+                extentRatio: kSwipeActionExtent,
                 children: [
                   SlidableAction(
                     backgroundColor: colorScheme.surfaceVariant,

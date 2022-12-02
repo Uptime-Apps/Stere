@@ -18,8 +18,10 @@ class NumericInputField extends StatelessWidget {
     this.initialValue,
     this.icon,
     this.textInputAction,
+    this.enabled,
   }) : super(key: key);
 
+  final bool? enabled;
   final String? errorText;
   final String? label;
   final String? helperText;
@@ -35,6 +37,7 @@ class NumericInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       onChanged: onChanged,
+      enabled: enabled,
       controller: controller,
       textInputAction: textInputAction,
       maxLines: 1,

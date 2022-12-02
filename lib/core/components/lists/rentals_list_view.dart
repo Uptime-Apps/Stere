@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../backend/models/rental/rental.dart';
-import '../../../l10n/generated/l10n.dart';
 import '../../../views/rentals/form/rental_form.dart';
 import '../../constants/icons.dart';
 import '../../constants/spacing_values.dart';
@@ -13,9 +12,11 @@ class RentalsListView extends ConsumerWidget {
   const RentalsListView({
     required this.stream,
     required this.onData,
+    required this.noContentMessage,
     Key? key,
   }) : super(key: key);
   final Stream<List<Rental>>? stream;
+  final String noContentMessage;
   final List<Widget> Function(List<Rental>) onData;
 
   @override
@@ -25,10 +26,12 @@ class RentalsListView extends ConsumerWidget {
         if (snapshot.data?.isNotEmpty ?? false) {
           final res = onData(snapshot.data!);
           if (res.isEmpty) {
-            return EmptyListScreen(
-              message: S.of(context).msgNoRentalsActive,
-              icon: icRentals,
-              actionRoute: RentalForm.route,
+            return Center(
+              child: EmptyListScreen(
+                message: noContentMessage,
+                icon: icRentals,
+                actionRoute: RentalForm.route,
+              ),
             );
           }
           return Padding(
@@ -42,22 +45,11 @@ class RentalsListView extends ConsumerWidget {
             ),
           );
         }
-        return SizedBox(
-          width: double.infinity,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(kSpacing),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  EmptyListScreen(
-                    message: S.of(context).lblRentals(2),
-                    icon: icRentals,
-                    actionRoute: RentalForm.route,
-                  )
-                ],
-              ),
-            ),
+        return Center(
+          child: EmptyListScreen(
+            message: noContentMessage,
+            icon: icRentals,
+            actionRoute: RentalForm.route,
           ),
         );
       }),

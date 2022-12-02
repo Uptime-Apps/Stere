@@ -37,16 +37,6 @@ class AssetListTile extends ConsumerWidget {
       loading: () => const CircularLoadingSkeleton(),
     );
 
-    Color statusColor = Colors.amber;
-    if (asset.status == AssetStatus.available.name) {
-      statusColor = clAvailable;
-    }
-    if (asset.status == AssetStatus.maintenance.name) {
-      statusColor = clMaintenance;
-    }
-    if (asset.status == AssetStatus.rented.name) {
-      statusColor = clRented;
-    }
     return ListTile(
         title: Text(asset.name),
         subtitle: Row(
@@ -59,13 +49,13 @@ class AssetListTile extends ConsumerWidget {
         trailing: RawChip(
           avatar: CircleAvatar(
               backgroundColor: Colors.white.withAlpha(180),
-              foregroundColor: statusColor.withAlpha(230),
+              foregroundColor: asset.status.color?.withAlpha(230),
               child: Icon(
                 (!asset.isAutomotive) ? icCategories : icCategoriesAutomotive,
                 size: 20,
               )),
-          label: Text(asset.status.capitalize()),
-          backgroundColor: statusColor,
+          label: Text(asset.status.local.capitalize()),
+          backgroundColor: asset.status.color,
         ));
   }
 }
@@ -81,8 +71,8 @@ class RentedAssetFormat {
         rAsset.status == RentalAssetStatus.rented &&
         rAsset.returnTime!.difference(DateTime.now()).isNegative);
     color = isOverdue ? clOverdue : null;
-    if (isOverdue && !relativeTime) {
-      color = null;
+    if (rAsset.status == RentalAssetStatus.available) {
+      // If it's been returned
       label = S.current.lblHours(rAsset.hoursRented);
       icon = Icons.lock_clock;
       tooltip = S.current.pfxRentedFor(
@@ -92,7 +82,7 @@ class RentedAssetFormat {
         ),
       );
     } else if (isOverdue) {
-      // String? prefix = (isOverdue) ? S.of(context).msgIsOverdue : null;
+      // If it's overdue
       label = prettyDuration(
         DateTime.now().difference(rAsset.returnTime!),
         tersity: DurationTersity.minute,
@@ -100,12 +90,15 @@ class RentedAssetFormat {
       icon = Icons.warning;
       tooltip = S.current.ttOverdue;
     } else if (rAsset.returnTime != null) {
+      // If it's not overdue and relative time is available
       label = prettyDuration(
         rAsset.returnTime!.difference(DateTime.now()),
         tersity: DurationTersity.minute,
       );
       icon = Icons.timelapse;
+      tooltip = S.current.ttTimeRemaining;
     } else {
+      // Not overdue and relative time not defined
       label = S.current.lblHours(rAsset.hoursRented);
       icon = Icons.lock_clock;
       tooltip = S.current.pfxRentedFor(
@@ -160,7 +153,7 @@ class RentedAssetListTile extends ConsumerWidget {
           children: [
             WidgetSpan(
                 child: Tooltip(
-                  message: rAsset.status.name.capitalize(),
+                  message: raf.tooltip,
                   child: Icon(
                     color: raf.color,
                     raf.icon,
@@ -201,7 +194,7 @@ class RentedAssetListTile extends ConsumerWidget {
                         ),
                         const DefaultSpacer(dim: kSpacing / 3),
                         Text(rAsset.notes!),
-                        if (rAsset.initialMileage != null) ...[
+                        if (rAsset.isAutomotive) ...[
                           const Divider(),
                           Text(
                             S.of(context).lblInitialMileage,
