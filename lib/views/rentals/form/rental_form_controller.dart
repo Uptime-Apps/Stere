@@ -10,17 +10,19 @@ import '../../../backend/services/asset_service.dart';
 import '../../../backend/services/rental_service.dart';
 import '../../../core/components/others/filled_button.dart';
 import '../../../l10n/generated/l10n.dart';
+import '../../../routes/navigation_controller.dart';
 import '../../../utils/snackbar.dart';
 import 'rental_form_state.dart';
 
 class RentalFormController extends StateNotifier<RentalFormState> {
   static const logName = 'rental-form-controller';
   RentalFormController(RentalFormState state,
-      {required this.service, required this.assetService})
+      {required this.service, required this.assetService, required this.ref})
       : super(state) {
     load();
   }
 
+  final Ref ref;
   final RentalService service;
   final AssetService assetService;
 
@@ -70,6 +72,7 @@ class RentalFormController extends StateNotifier<RentalFormState> {
             S.of(context).msgSuccessCreateObject(S.current.lblRentals(1)));
       }
       Navigator.of(context).pop();
+      ref.read(navigationControllerProvider.notifier).setCurrentIndex(0);
       showSimpleSnackbar(
           S.current.msgSuccessCreateObject(S.current.lblRentals(1)));
     }
@@ -92,6 +95,9 @@ class RentalFormController extends StateNotifier<RentalFormState> {
               onPressed: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
+                ref
+                    .read(navigationControllerProvider.notifier)
+                    .setCurrentIndex(0);
               },
               child: Text(S.of(context).lblYes),
             ),
@@ -199,20 +205,23 @@ final rentalFormControllerProvider =
     StateNotifierProvider.autoDispose<RentalFormController, RentalFormState>(
         (ref) {
   return RentalFormController(
-      RentalFormState(
-          formKey: GlobalKey<FormState>(),
-          assets: const AsyncValue.data(null),
-          clientDeposit: const AsyncValue.loading(),
-          clientEmailController: TextEditingController(),
-          clientHousingController: TextEditingController(),
-          clientIdController: TextEditingController(),
-          clientNameController: TextEditingController(),
-          clientPhoneController: TextEditingController(),
-          backupPhoneController: TextEditingController(),
-          referralType: const AsyncValue.loading(),
-          result: AsyncValue.data(S.current.lblSave),
-          status: RentalStatus.active,
-          currentStep: 0),
-      assetService: ref.watch(assetServiceProvider),
-      service: ref.watch(rentalServiceProvider));
+    RentalFormState(
+      formKey: GlobalKey<FormState>(),
+      assets: const AsyncValue.data(null),
+      clientDeposit: const AsyncValue.loading(),
+      clientEmailController: TextEditingController(),
+      clientHousingController: TextEditingController(),
+      clientIdController: TextEditingController(),
+      clientNameController: TextEditingController(),
+      clientPhoneController: TextEditingController(),
+      backupPhoneController: TextEditingController(),
+      referralType: const AsyncValue.loading(),
+      result: AsyncValue.data(S.current.lblSave),
+      status: RentalStatus.active,
+      currentStep: 0,
+    ),
+    assetService: ref.watch(assetServiceProvider),
+    service: ref.watch(rentalServiceProvider),
+    ref: ref,
+  );
 });
