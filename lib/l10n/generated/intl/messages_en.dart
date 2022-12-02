@@ -154,7 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No information"),
         "msgNoRegisters": m12,
         "msgNoRentalsActive": MessageLookupByLibrary.simpleMessage(
-            "No rentals active at the moment"),
+            "No active rentals at the moment"),
         "msgNothingAvailable": m13,
         "msgNothingToSee":
             MessageLookupByLibrary.simpleMessage("Nothing to see here"),
@@ -203,6 +203,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ttOverdue": MessageLookupByLibrary.simpleMessage("Overdue"),
         "ttReady": MessageLookupByLibrary.simpleMessage("Ready"),
         "ttRented": MessageLookupByLibrary.simpleMessage("Rented"),
+        "ttTimeRemaining":
+            MessageLookupByLibrary.simpleMessage("Time remaining"),
         "ttUnavailable": MessageLookupByLibrary.simpleMessage("Unavailable"),
         "ttUndefined": MessageLookupByLibrary.simpleMessage("Undefined")
       };

@@ -692,10 +692,10 @@ class S {
     );
   }
 
-  /// `No rentals active at the moment`
+  /// `No active rentals at the moment`
   String get msgNoRentalsActive {
     return Intl.message(
-      'No rentals active at the moment',
+      'No active rentals at the moment',
       name: 'msgNoRentalsActive',
       desc: '',
       args: [],
@@ -1061,6 +1061,16 @@ class S {
     return Intl.message(
       'Undefined',
       name: 'ttUndefined',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time remaining`
+  String get ttTimeRemaining {
+    return Intl.message(
+      'Time remaining',
+      name: 'ttTimeRemaining',
       desc: '',
       args: [],
     );

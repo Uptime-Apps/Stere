@@ -64,7 +64,7 @@
   "msgMissingCategory": "To select a tag, pick a category",
   "msgNoInformation": "No information",
   "msgNoRegisters": "You have no {itemLabel} registered",
-  "msgNoRentalsActive": "No rentals active at the moment",
+  "msgNoRentalsActive": "No active rentals at the moment",
   "msgNothingAvailable": "No {objects} available",
   "msgNothingToSee": "Nothing to see here",
   "msgPageNotFound": "Page not found",
@@ -109,5 +109,6 @@
   "ttReady": "Ready",
   "ttRented": "Rented",
   "ttUnavailable": "Unavailable",
-  "ttUndefined": "Undefined"
+  "ttUndefined": "Undefined",
+  "ttTimeRemaining": "Time remaining"
 }
