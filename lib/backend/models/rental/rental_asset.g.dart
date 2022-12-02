@@ -17,6 +17,7 @@ _$_RentalAsset _$$_RentalAssetFromJson(Map<String, dynamic> json) =>
       returnTime: json['returnTime'] == null
           ? null
           : DateTime.parse(json['returnTime'] as String),
+      isAutomotive: json['isAutomotive'] as bool,
       categoryId: json['categoryId'] as String,
       categoryName: json['categoryName'] as String,
       name: json['name'] as String,
@@ -34,6 +35,7 @@ Map<String, dynamic> _$$_RentalAssetToJson(_$_RentalAsset instance) =>
       'finalMileage': instance.finalMileage,
       'initialMileage': instance.initialMileage,
       'returnTime': instance.returnTime?.toIso8601String(),
+      'isAutomotive': instance.isAutomotive,
       'categoryId': instance.categoryId,
       'categoryName': instance.categoryName,
       'name': instance.name,

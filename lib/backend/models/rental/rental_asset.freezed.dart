@@ -27,6 +27,7 @@ mixin _$RentalAsset {
   double? get finalMileage => throw _privateConstructorUsedError;
   double? get initialMileage => throw _privateConstructorUsedError;
   DateTime? get returnTime => throw _privateConstructorUsedError;
+  bool get isAutomotive => throw _privateConstructorUsedError;
   String get categoryId => throw _privateConstructorUsedError;
   String get categoryName => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -54,6 +55,7 @@ abstract class $RentalAssetCopyWith<$Res> {
       double? finalMileage,
       double? initialMileage,
       DateTime? returnTime,
+      bool isAutomotive,
       String categoryId,
       String categoryName,
       String name,
@@ -82,6 +84,7 @@ class _$RentalAssetCopyWithImpl<$Res, $Val extends RentalAsset>
     Object? finalMileage = freezed,
     Object? initialMileage = freezed,
     Object? returnTime = freezed,
+    Object? isAutomotive = null,
     Object? categoryId = null,
     Object? categoryName = null,
     Object? name = null,
@@ -118,6 +121,10 @@ class _$RentalAssetCopyWithImpl<$Res, $Val extends RentalAsset>
           ? _value.returnTime
           : returnTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      isAutomotive: null == isAutomotive
+          ? _value.isAutomotive
+          : isAutomotive // ignore: cast_nullable_to_non_nullable
+              as bool,
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -162,6 +169,7 @@ abstract class _$$_RentalAssetCopyWith<$Res>
       double? finalMileage,
       double? initialMileage,
       DateTime? returnTime,
+      bool isAutomotive,
       String categoryId,
       String categoryName,
       String name,
@@ -188,6 +196,7 @@ class __$$_RentalAssetCopyWithImpl<$Res>
     Object? finalMileage = freezed,
     Object? initialMileage = freezed,
     Object? returnTime = freezed,
+    Object? isAutomotive = null,
     Object? categoryId = null,
     Object? categoryName = null,
     Object? name = null,
@@ -224,6 +233,10 @@ class __$$_RentalAssetCopyWithImpl<$Res>
           ? _value.returnTime
           : returnTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      isAutomotive: null == isAutomotive
+          ? _value.isAutomotive
+          : isAutomotive // ignore: cast_nullable_to_non_nullable
+              as bool,
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -263,6 +276,7 @@ class _$_RentalAsset implements _RentalAsset {
       this.finalMileage,
       this.initialMileage,
       this.returnTime,
+      required this.isAutomotive,
       required this.categoryId,
       required this.categoryName,
       required this.name,
@@ -288,6 +302,8 @@ class _$_RentalAsset implements _RentalAsset {
   @override
   final DateTime? returnTime;
   @override
+  final bool isAutomotive;
+  @override
   final String categoryId;
   @override
   final String categoryName;
@@ -302,7 +318,7 @@ class _$_RentalAsset implements _RentalAsset {
 
   @override
   String toString() {
-    return 'RentalAsset(id: $id, damageReport: $damageReport, image: $image, notes: $notes, finalMileage: $finalMileage, initialMileage: $initialMileage, returnTime: $returnTime, categoryId: $categoryId, categoryName: $categoryName, name: $name, rentalPrice: $rentalPrice, hoursRented: $hoursRented, status: $status)';
+    return 'RentalAsset(id: $id, damageReport: $damageReport, image: $image, notes: $notes, finalMileage: $finalMileage, initialMileage: $initialMileage, returnTime: $returnTime, isAutomotive: $isAutomotive, categoryId: $categoryId, categoryName: $categoryName, name: $name, rentalPrice: $rentalPrice, hoursRented: $hoursRented, status: $status)';
   }
 
   @override
@@ -321,6 +337,8 @@ class _$_RentalAsset implements _RentalAsset {
                 other.initialMileage == initialMileage) &&
             (identical(other.returnTime, returnTime) ||
                 other.returnTime == returnTime) &&
+            (identical(other.isAutomotive, isAutomotive) ||
+                other.isAutomotive == isAutomotive) &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId) &&
             (identical(other.categoryName, categoryName) ||
@@ -344,6 +362,7 @@ class _$_RentalAsset implements _RentalAsset {
       finalMileage,
       initialMileage,
       returnTime,
+      isAutomotive,
       categoryId,
       categoryName,
       name,
@@ -374,6 +393,7 @@ abstract class _RentalAsset implements RentalAsset {
       final double? finalMileage,
       final double? initialMileage,
       final DateTime? returnTime,
+      required final bool isAutomotive,
       required final String categoryId,
       required final String categoryName,
       required final String name,
@@ -398,6 +418,8 @@ abstract class _RentalAsset implements RentalAsset {
   double? get initialMileage;
   @override
   DateTime? get returnTime;
+  @override
+  bool get isAutomotive;
   @override
   String get categoryId;
   @override

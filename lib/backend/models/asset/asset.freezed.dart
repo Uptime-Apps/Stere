@@ -27,7 +27,7 @@ mixin _$Asset {
   String get name => throw _privateConstructorUsedError;
   DateTime get creationDate => throw _privateConstructorUsedError;
   num get price => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
+  AssetStatus get status => throw _privateConstructorUsedError;
   String get categoryId => throw _privateConstructorUsedError;
   String get categoryName =>
       throw _privateConstructorUsedError; // All of this are required but for testing they will be optional
@@ -51,7 +51,7 @@ abstract class $AssetCopyWith<$Res> {
       String name,
       DateTime creationDate,
       num price,
-      String status,
+      AssetStatus status,
       String categoryId,
       String categoryName,
       List<String>? tags});
@@ -114,7 +114,7 @@ class _$AssetCopyWithImpl<$Res, $Val extends Asset>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as AssetStatus,
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -145,7 +145,7 @@ abstract class _$$_AssetCopyWith<$Res> implements $AssetCopyWith<$Res> {
       String name,
       DateTime creationDate,
       num price,
-      String status,
+      AssetStatus status,
       String categoryId,
       String categoryName,
       List<String>? tags});
@@ -204,7 +204,7 @@ class __$$_AssetCopyWithImpl<$Res> extends _$AssetCopyWithImpl<$Res, _$_Asset>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as AssetStatus,
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -258,7 +258,7 @@ class _$_Asset implements _Asset {
   @override
   final num price;
   @override
-  final String status;
+  final AssetStatus status;
   @override
   final String categoryId;
   @override
@@ -341,7 +341,7 @@ abstract class _Asset implements Asset {
       required final String name,
       required final DateTime creationDate,
       required final num price,
-      required final String status,
+      required final AssetStatus status,
       required final String categoryId,
       required final String categoryName,
       final List<String>? tags}) = _$_Asset;
@@ -363,7 +363,7 @@ abstract class _Asset implements Asset {
   @override
   num get price;
   @override
-  String get status;
+  AssetStatus get status;
   @override
   String get categoryId;
   @override

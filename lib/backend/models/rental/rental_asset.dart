@@ -15,6 +15,7 @@ class RentalAsset with _$RentalAsset {
     double? finalMileage,
     double? initialMileage,
     DateTime? returnTime,
+    required bool isAutomotive,
     required String categoryId,
     required String categoryName,
     required String name,

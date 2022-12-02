@@ -14,7 +14,7 @@ _$_Asset _$$_AssetFromJson(Map<String, dynamic> json) => _$_Asset(
       name: json['name'] as String,
       creationDate: DateTime.parse(json['creationDate'] as String),
       price: json['price'] as num,
-      status: json['status'] as String,
+      status: $enumDecode(_$AssetStatusEnumMap, json['status']),
       categoryId: json['categoryId'] as String,
       categoryName: json['categoryName'] as String,
       tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -28,8 +28,16 @@ Map<String, dynamic> _$$_AssetToJson(_$_Asset instance) => <String, dynamic>{
       'name': instance.name,
       'creationDate': instance.creationDate.toIso8601String(),
       'price': instance.price,
-      'status': instance.status,
+      'status': _$AssetStatusEnumMap[instance.status]!,
       'categoryId': instance.categoryId,
       'categoryName': instance.categoryName,
       'tags': instance.tags,
     };
+
+const _$AssetStatusEnumMap = {
+  AssetStatus.available: 'available',
+  AssetStatus.unavailable: 'unavailable',
+  AssetStatus.maintenance: 'maintenance',
+  AssetStatus.discarded: 'discarded',
+  AssetStatus.rented: 'rented',
+};

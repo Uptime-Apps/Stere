@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../status/rental_status.dart';
+
 part 'asset.freezed.dart';
 part 'asset.g.dart';
 
@@ -13,7 +15,7 @@ class Asset with _$Asset {
     required String name,
     required DateTime creationDate,
     required num price,
-    required String status,
+    required AssetStatus status,
     required String categoryId,
     required String categoryName,
     // All of this are required but for testing they will be optional

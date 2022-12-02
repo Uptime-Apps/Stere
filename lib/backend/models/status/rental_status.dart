@@ -53,7 +53,7 @@ enum RentalAssetStatus {
 }
 
 extension RentalAssetExtension on RentalAssetStatus {
-  String get name {
+  String get local {
     switch (this) {
       case RentalAssetStatus.ready:
         return S.current.ttReady;
@@ -88,6 +88,23 @@ extension AssetExtension on AssetStatus {
         return S.current.ttRented;
       default:
         return S.current.ttUndefined;
+    }
+  }
+
+  Color? get color {
+    switch (this) {
+      case AssetStatus.available:
+        return clAvailable;
+      case AssetStatus.maintenance:
+        return clMaintenance;
+      case AssetStatus.discarded:
+        return clDiscarded;
+      case AssetStatus.rented:
+        return clRented;
+      case AssetStatus.unavailable:
+        return clUnavailable;
+      default:
+        return null;
     }
   }
 }
