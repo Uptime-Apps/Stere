@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/failure.dart';
 import '../firebase_references.dart';
 import '../models/asset/asset.dart';
+import '../models/rental/rental_asset.dart';
 import '../models/status/rental_status.dart';
 import '../repositories/asset_repository.dart';
 
@@ -19,6 +20,7 @@ abstract class AssetService {
   Future<String?> create(Asset asset, File? image);
   void setStatus(String id, AssetStatus status);
   Future<void> delete(Asset asset);
+  void returnAsset(RentalAsset object);
 }
 
 class FirebaseAssetService implements AssetService {
@@ -127,6 +129,15 @@ class FirebaseAssetService implements AssetService {
       log(e.message, name: logName);
     }
     return null;
+  }
+
+  @override
+  void returnAsset(RentalAsset object) {
+    try {
+      _assetRepository.returnAsset(object);
+    } on Failure catch (e) {
+      log(e.message, name: logName);
+    }
   }
 }
 

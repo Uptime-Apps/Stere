@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,6 +9,7 @@ import '../../core/failure.dart';
 import '../../l10n/generated/l10n.dart';
 import '../firebase_references.dart';
 import '../models/asset/asset.dart';
+import '../models/rental/rental_asset.dart';
 import '../models/status/rental_status.dart';
 
 abstract class AssetRepository {
@@ -21,6 +23,7 @@ abstract class AssetRepository {
   Future<String> uploadImage(String name, File image);
   Future<void> deleteImage(String imagePath);
   Future<void> setStatus(String id, AssetStatus status);
+  void returnAsset(RentalAsset object);
 }
 
 class FirebaseAssetRepository implements AssetRepository {
@@ -141,6 +144,33 @@ class FirebaseAssetRepository implements AssetRepository {
     } on Exception catch (e) {
       log('Failed to Updated status of $id', name: logName);
       throw Failure(message: 'Could get assets', exception: e);
+    }
+  }
+
+  @override
+  void returnAsset(RentalAsset object) {
+    // update the status and final mileage
+    try {
+      assetsRF
+          .doc(object.id)
+          .set({
+            'status': AssetStatus.available.name,
+            'mileage': object.finalMileage
+          }, SetOptions(merge: true))
+          .then((_) => log(
+              S.current.msgSuccessUpdateObject(
+                  '[${object.id}:\t${AssetStatus.available}]'),
+              name: logName))
+          .onError((error, stackTrace) => log(
+                S.current.msgFailedUpdateObject(
+                    '[${object.id}:\t${AssetStatus.available}]'),
+                name: logName,
+                error: error,
+                stackTrace: stackTrace,
+              ));
+    } on Exception catch (e) {
+      throw Failure(
+          message: S.current.msgFailedUpdateObject(object.id), exception: e);
     }
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/failure.dart';
 import '../firebase_references.dart';
 import '../models/rental/rental.dart';
+import '../models/rental/rental_asset.dart';
 import '../models/status/rental_status.dart';
 import '../repositories/rental_repository.dart';
 import 'asset_service.dart';
@@ -13,6 +14,7 @@ abstract class RentalService {
   Future<String?> create(Rental object);
   void update(Rental object);
   void delete(Rental object);
+  void returnAssetFromActiveRental(Rental rental, RentalAsset object);
   Future<List<Rental>?> getAll();
   Future<List<Rental>?> getActive();
   Stream<List<Rental>>? getOrderedByDate();
@@ -97,6 +99,25 @@ class FirebaseRentalService implements RentalService {
       log(e.message, name: logName);
     }
     return null;
+  }
+
+  @override
+  void returnAssetFromActiveRental(Rental rental, RentalAsset object) {
+    List<RentalAsset> assetList = rental.assets.toList();
+    // Set status to available in assets collection
+    _assetService.returnAsset(object);
+    assetList.removeWhere((element) => element.id == object.id);
+    // Change the status of the rental asset inside the rental itself
+    assetList.add(object.copyWith(status: RentalAssetStatus.available));
+    bool allAssetsAvailable = assetList
+        .map((e) => e.status == RentalAssetStatus.available)
+        .reduce((value, element) => value == element);
+    // Update the rental and set it to finished if all assets are already available
+    _repository.update(rental.copyWith(
+      assets: assetList,
+      status:
+          (allAssetsAvailable) ? RentalStatus.finished : RentalStatus.active,
+    ));
   }
 }
 
