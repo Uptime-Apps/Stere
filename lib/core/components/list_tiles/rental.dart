@@ -156,8 +156,6 @@ class RentalListTile extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     return ListTile(
-      visualDensity: VisualDensity.compact,
-      dense: true,
       title: Text(rental.clientName),
       subtitle: Text(DateFormat.MMMEd().format(rental.creationDate).toString()),
       leading: Column(

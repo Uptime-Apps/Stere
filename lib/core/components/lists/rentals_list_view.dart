@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../backend/models/rental/rental.dart';
 import '../../../views/rentals/form/rental_form.dart';
 import '../../constants/icons.dart';
-import '../../constants/spacing_values.dart';
 import 'empty_list.dart';
 
 class RentalsListView extends ConsumerWidget {
@@ -33,16 +32,12 @@ class RentalsListView extends ConsumerWidget {
               ),
             );
           }
-          return Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: kHorizontalSpacing, vertical: kVerticalSpacing),
-            child: ListView.builder(
-              itemBuilder: (_, i) => res[i],
-              // separatorBuilder: (_, __) => const Divider(),
-              itemCount: res.length,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-            ),
+          return ListView.builder(
+            itemBuilder: (_, i) => res[i],
+            // separatorBuilder: (_, __) => const Divider(),
+            itemCount: res.length,
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
           );
         }
         return Center(

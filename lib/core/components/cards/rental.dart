@@ -49,49 +49,44 @@ class RentalCard extends ConsumerWidget {
               )
           : null,
     );
-    return Card(
-      clipBehavior: Clip.hardEdge,
-      color: colorScheme.surface,
-      elevation: 0,
-      child: (rental.status == RentalStatus.active)
-          ? Slidable(
-              key: ValueKey<String>(rental.id!),
-              startActionPane: ActionPane(
-                motion: const ScrollMotion(),
-                extentRatio: kSmallSwipeActionExtent,
-                children: [
-                  SlidableAction(
-                    backgroundColor: colorScheme.error,
-                    foregroundColor: colorScheme.onError,
-                    label: S.of(context).lblCancel,
-                    icon: Icons.cancel,
-                    onPressed: (context) {
-                      ref.watch(rentalServiceProvider).cancel(rental);
-                    },
-                  ),
-                ],
-              ),
-              child: child,
-            )
-          : Slidable(
-              key: ValueKey<String>(rental.id!),
-              startActionPane: ActionPane(
-                motion: const ScrollMotion(),
-                extentRatio: kSmallSwipeActionExtent,
-                children: [
-                  SlidableAction(
-                    backgroundColor: colorScheme.error,
-                    foregroundColor: colorScheme.onError,
-                    label: S.of(context).lblDelete,
-                    icon: Icons.delete_forever,
-                    onPressed: (context) =>
-                        ref.watch(rentalServiceProvider).delete(rental),
-                  ),
-                ],
-              ),
-              child: child,
+    return (rental.status == RentalStatus.active)
+        ? Slidable(
+            key: ValueKey<String>(rental.id!),
+            startActionPane: ActionPane(
+              motion: const ScrollMotion(),
+              extentRatio: kSmallSwipeActionExtent,
+              children: [
+                SlidableAction(
+                  backgroundColor: colorScheme.error,
+                  foregroundColor: colorScheme.onError,
+                  label: S.of(context).lblCancel,
+                  icon: Icons.cancel,
+                  onPressed: (context) {
+                    ref.watch(rentalServiceProvider).cancel(rental);
+                  },
+                ),
+              ],
             ),
-    );
+            child: child,
+          )
+        : Slidable(
+            key: ValueKey<String>(rental.id!),
+            startActionPane: ActionPane(
+              motion: const ScrollMotion(),
+              extentRatio: kSmallSwipeActionExtent,
+              children: [
+                SlidableAction(
+                  backgroundColor: colorScheme.error,
+                  foregroundColor: colorScheme.onError,
+                  label: S.of(context).lblDelete,
+                  icon: Icons.delete_forever,
+                  onPressed: (context) =>
+                      ref.watch(rentalServiceProvider).delete(rental),
+                ),
+              ],
+            ),
+            child: child,
+          );
   }
 
   TableRow buildRow(String label, String value, TextTheme theme) =>

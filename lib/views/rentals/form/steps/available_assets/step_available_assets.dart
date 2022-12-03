@@ -34,57 +34,61 @@ class StepAvailableAssets extends ConsumerWidget {
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             final obj = prov.selectedAssets[index];
-            return Slidable(
-              key: ValueKey<String>(obj.id),
-              startActionPane: ActionPane(
-                motion: const ScrollMotion(),
-                extentRatio: kSwipeActionExtent,
-                children: [
-                  SlidableAction(
-                    backgroundColor: colorScheme.surfaceVariant,
-                    foregroundColor: colorScheme.onSurfaceVariant,
-                    icon: Icons.edit,
-                    onPressed: (context) async {
-                      var res = await showModalBottomSheet<RentalAsset>(
-                          isScrollControlled: true,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(kCardRadius)),
-                          context: context,
-                          builder: (context) => RentalAssetForm(obj));
-                      if (res != null) {
-                        notifier.editSelection(index, res);
-                        // log(res.toString(), name: logName);
-                      }
-                    },
-                  ),
-                  SlidableAction(
-                    backgroundColor: colorScheme.error,
-                    foregroundColor: colorScheme.onError,
-                    icon: Icons.delete,
-                    onPressed: (context) {
-                      notifier.removeSelection(obj.id);
-                    },
-                  ),
-                ],
-              ),
-              child: ListTile(
-                title: Text(obj.name),
-                subtitle: Text(obj.categoryName),
-                trailing: (obj.status == RentalAssetStatus.incomplete)
-                    ? Tooltip(
-                        message: S.of(context).ttIncomplete,
-                        child: Icon(
-                          Icons.pending,
-                          color: colorScheme.secondary,
+            return ClipRRect(
+              borderRadius: BorderRadius.circular(kListTileRadius),
+              child: Slidable(
+                key: ValueKey<String>(obj.id),
+                startActionPane: ActionPane(
+                  motion: const ScrollMotion(),
+                  extentRatio: kSwipeActionExtent,
+                  children: [
+                    SlidableAction(
+                      backgroundColor: colorScheme.surfaceVariant,
+                      foregroundColor: colorScheme.onSurfaceVariant,
+                      icon: Icons.edit,
+                      onPressed: (context) async {
+                        var res = await showModalBottomSheet<RentalAsset>(
+                            isScrollControlled: true,
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(kCardRadius)),
+                            context: context,
+                            builder: (context) => RentalAssetForm(obj));
+                        if (res != null) {
+                          notifier.editSelection(index, res);
+                          // log(res.toString(), name: logName);
+                        }
+                      },
+                    ),
+                    SlidableAction(
+                      backgroundColor: colorScheme.error,
+                      foregroundColor: colorScheme.onError,
+                      icon: Icons.delete,
+                      onPressed: (context) {
+                        notifier.removeSelection(obj.id);
+                      },
+                    ),
+                  ],
+                ),
+                child: ListTile(
+                  title: Text(obj.name),
+                  subtitle: Text(obj.categoryName),
+                  trailing: (obj.status == RentalAssetStatus.incomplete)
+                      ? Tooltip(
+                          message: S.of(context).ttIncomplete,
+                          child: Icon(
+                            Icons.pending,
+                            color: colorScheme.secondary,
+                          ),
+                        )
+                      : Tooltip(
+                          message: S.of(context).ttReady,
+                          child: Icon(
+                            Icons.check,
+                            color: colorScheme.primary,
+                          ),
                         ),
-                      )
-                    : Tooltip(
-                        message: S.of(context).ttReady,
-                        child: Icon(
-                          Icons.check,
-                          color: colorScheme.primary,
-                        ),
-                      ),
+                ),
               ),
             );
           },
