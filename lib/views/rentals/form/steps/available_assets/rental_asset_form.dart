@@ -41,8 +41,6 @@ class _RentalAssetFormState extends State<RentalAssetForm> {
   @override
   Widget build(BuildContext context) {
     List<Widget> formItems = [
-      Text(widget.rAsset.name,
-          style: Theme.of(context).textTheme.headlineSmall),
       SelectFormField(
         icon: Icons.watch_later_outlined,
         items: getHourOptions(context),
@@ -86,8 +84,8 @@ class _RentalAssetFormState extends State<RentalAssetForm> {
       ),
     ];
     return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
-      padding: const EdgeInsets.all(kCardSpacing * 3),
+      height: MediaQuery.of(context).size.height * 0.6,
+      padding: const EdgeInsets.only(bottom: kCardSpacing * 3),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [

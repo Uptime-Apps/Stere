@@ -9,11 +9,11 @@ import '../../../backend/models/status/rental_status.dart';
 import '../../../l10n/generated/l10n.dart';
 import '../../../utils/validators.dart';
 import '../../constants/icons.dart';
-import '../../constants/radius_values.dart';
 import '../../constants/spacing_values.dart';
 import '../chips/numeric_chips.dart';
 import '../inputs/form_fields.dart';
 import '../others/filled_button.dart';
+import '../others/modal_bottom_sheet.dart';
 import 'asset.dart';
 import '../others/tables.dart';
 import '../others/utilities.dart';
@@ -195,59 +195,39 @@ class RentalListTile extends StatelessWidget {
                 .reduce((a, b) => a + b)),
         const DefaultSpacer(),
         InkWell(
-          onTap: () => showModalBottomSheet(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(kCardRadius),
-            ),
+          onTap: () => showStereModalBottomSheet(
+            title: S.of(context).stepRentalInformation,
+            subtitle: rental.status.local,
             context: context,
-            builder: (context) => SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(
-                        kSpacing, kSpacing, kSpacing, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          S.of(context).stepRentalInformation,
-                          style: textTheme.headlineSmall,
-                        ),
-                        Text(rental.status.local, style: textTheme.subtitle1),
-                      ],
+            body: Column(
+              children: [
+                CustomerInformationTable(
+                  name: rental.clientName,
+                  deposit: rental.clientDeposit,
+                  identification: rental.clientId,
+                  housing: rental.clientHousing,
+                  phone: rental.clientPhone,
+                  backupPhone: rental.backupPhone,
+                ),
+                ListTile(
+                  title: Text(S.of(context).lblSelectedAssets),
+                  horizontalTitleGap: 0,
+                  leading: const Icon(icAssets),
+                ),
+                ...rental.assets.map((e) {
+                  return Slidable(
+                    key: ValueKey<String>(e.id),
+                    endActionPane:
+                        (endActionPane != null) ? endActionPane!(e) : null,
+                    startActionPane:
+                        (startActionPane != null) ? startActionPane!(e) : null,
+                    child: RentedAssetListTile(
+                      e,
+                      relativeTime: rental.status == RentalStatus.active,
                     ),
-                  ),
-                  CustomerInformationTable(
-                    name: rental.clientName,
-                    deposit: rental.clientDeposit,
-                    identification: rental.clientId,
-                    housing: rental.clientHousing,
-                    phone: rental.clientPhone,
-                    backupPhone: rental.backupPhone,
-                  ),
-                  ListTile(
-                    title: Text(S.of(context).lblSelectedAssets),
-                    horizontalTitleGap: 0,
-                    leading: const Icon(icAssets),
-                  ),
-                  ...rental.assets.map((e) {
-                    return Slidable(
-                      key: ValueKey<String>(e.id),
-                      endActionPane:
-                          (endActionPane != null) ? endActionPane!(e) : null,
-                      startActionPane: (startActionPane != null)
-                          ? startActionPane!(e)
-                          : null,
-                      child: RentedAssetListTile(
-                        e,
-                        relativeTime: rental.status == RentalStatus.active,
-                      ),
-                    );
-                  }).toList(),
-                ],
-              ),
+                  );
+                }).toList(),
+              ],
             ),
           ),
           child: Tooltip(
