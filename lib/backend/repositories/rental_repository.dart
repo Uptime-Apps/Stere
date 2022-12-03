@@ -75,8 +75,16 @@ class FirebaseRentalRepository implements RentalRepository {
 
   @override
   void delete(String id) {
-    // TODO: implement deleteAsset
-    throw UnimplementedError();
+    rentalRF
+        .doc(id)
+        .delete()
+        .then((_) => log(S.current.msgSuccessDeleteObject(id), name: logName))
+        .onError((error, stackTrace) => log(
+              S.current.msgFailedDeleteObject(id),
+              name: logName,
+              error: error,
+              stackTrace: stackTrace,
+            ));
   }
 
   @override

@@ -34,10 +34,6 @@ class FirebaseRentalService implements RentalService {
         _assetService.setStatus(asset.id, AssetStatus.rented);
       }
       return rentalId;
-    }).onError((error, stackTrace) {
-      log('failed to create',
-          error: error, stackTrace: stackTrace, name: logName);
-      return null;
     });
     return newId;
   }
@@ -49,8 +45,7 @@ class FirebaseRentalService implements RentalService {
 
   @override
   void delete(Rental asset) {
-    // TODO: implement deleteAsset
-    throw UnimplementedError();
+    _repository.delete(asset.id!);
   }
 
   Future<List<Rental>> mapRentals(
@@ -67,11 +62,7 @@ class FirebaseRentalService implements RentalService {
 
   @override
   Future<List<Rental>?> getAll() {
-    return mapRentals(_repository.getAll()).onError((error, stackTrace) {
-      log('failed to get rentals',
-          stackTrace: stackTrace, error: error, name: logName);
-      return [];
-    });
+    return mapRentals(_repository.getAll());
   }
 
   @override
