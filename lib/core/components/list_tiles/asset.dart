@@ -1,7 +1,6 @@
 import 'package:duration/duration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../backend/models/asset/asset.dart';
 import '../../../backend/models/rental/rental_asset.dart';
@@ -14,8 +13,7 @@ import '../../constants/image_assets.dart';
 import '../../constants/radius_values.dart';
 import '../../constants/spacing_values.dart';
 import '../chips/numeric_chips.dart';
-import '../modal_bottom_sheets/change_asset_status.dart';
-import '../others/modal_bottom_sheet.dart';
+import '../modal_bottom_sheets/buttons.dart';
 import '../others/shimmers.dart';
 import '../others/utilities.dart';
 
@@ -50,30 +48,7 @@ class AssetListTile extends ConsumerWidget {
         ],
       ),
       leading: img,
-      trailing: IconButton(
-        tooltip: asset.status.local,
-        icon: FaIcon(asset.status.icon),
-        color: asset.status.color,
-        onPressed: () {
-          if (asset.status != AssetStatus.rented) {
-            showStereModalBottomSheet(
-              context: context,
-              body: ChangeAssetStatusModalBottomSheet(asset),
-              subtitle: S.of(context).msgCurrentStatus(asset.status.local),
-              title: S.of(context).stChangeStatus,
-            );
-          } else {
-            showDialog(
-              context: context,
-              builder: (context) => SimpleDialog(
-                contentPadding: kDialogContentPadding,
-                title: Text(S.of(context).msgNotAllowed),
-                children: [Text(S.of(context).msgUnableToChangeStatus)],
-              ),
-            );
-          }
-        },
-      ),
+      trailing: AssetStatusIconButton(asset: asset),
     );
   }
 }

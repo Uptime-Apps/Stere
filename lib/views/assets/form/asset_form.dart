@@ -13,6 +13,7 @@ import '../../../core/components/others/utilities.dart';
 import '../../../core/constants/spacing_values.dart';
 import '../../../l10n/generated/l10n.dart';
 import '../../../utils/validators.dart';
+import '../providers.dart';
 import 'asset_form_controller.dart';
 import 'asset_form_state.dart';
 

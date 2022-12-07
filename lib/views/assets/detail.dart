@@ -12,7 +12,7 @@ import '../../core/components/others/utilities.dart';
 import '../../core/constants/image_assets.dart';
 import '../../core/constants/radius_values.dart';
 import '../../core/constants/spacing_values.dart';
-import 'form/asset_form_controller.dart';
+import 'providers.dart';
 
 class AssetDetailScreen extends ConsumerWidget {
   static const route = 'asset-detail-screen';
@@ -27,6 +27,11 @@ class AssetDetailScreen extends ConsumerWidget {
       fit: BoxFit.cover,
     );
     return StereBasicScaffold(
+      trailing: [
+        IconButton(
+            onPressed: () => Navigator.of(context).pushNamed(''),
+            icon: const Icon(Icons.edit))
+      ],
       body: Flex(
         mainAxisSize: MainAxisSize.max,
         direction: Axis.vertical,
@@ -72,8 +77,10 @@ class AssetDetailScreen extends ConsumerWidget {
                     dense: false,
                     visualDensity: VisualDensity.comfortable,
                     subtitle: Text(asset.categoryName),
-                    trailing:
-                        Icon(asset.status.icon, color: asset.status.color)),
+                    trailing: Tooltip(
+                        message: asset.status.local,
+                        child: Icon(asset.status.icon,
+                            color: asset.status.color))),
                 if (asset.tags?.isNotEmpty ?? false) tagsSection(),
               ],
             ),
