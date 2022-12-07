@@ -7,7 +7,7 @@ const clOverdue = Colors.deepOrange;
 const clCanceled = Colors.grey;
 final clFinished = Colors.indigo.shade400;
 
-final clRented = Colors.red.shade300;
-final clMaintenance = Colors.blueGrey.shade200;
-final clUnavailable = Colors.grey.shade400;
-final clDiscarded = Colors.brown.shade200;
+final clRented = Colors.amber.shade700;
+final clMaintenance = Colors.blueGrey.shade400;
+const clUnavailable = Colors.grey;
+final clDiscarded = Colors.red.shade300;
