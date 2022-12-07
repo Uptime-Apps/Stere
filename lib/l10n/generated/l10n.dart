@@ -852,6 +852,26 @@ class S {
     );
   }
 
+  /// `From {status} to:`
+  String msgCurrentStatus(Object status) {
+    return Intl.message(
+      'From $status to:',
+      name: 'msgCurrentStatus',
+      desc: '',
+      args: [status],
+    );
+  }
+
+  /// `Rented assets can't be changed because their status is fixed until the object is returned`
+  String get msgUnableToChangeStatus {
+    return Intl.message(
+      'Rented assets can\'t be changed because their status is fixed until the object is returned',
+      name: 'msgUnableToChangeStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{price}`
   String priceFormat(double price) {
     final NumberFormat priceNumberFormat = NumberFormat.currency(
@@ -911,6 +931,16 @@ class S {
     return Intl.message(
       'Verify Email',
       name: 'stVerifyEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Status`
+  String get stChangeStatus {
+    return Intl.message(
+      'Change Status',
+      name: 'stChangeStatus',
       desc: '',
       args: [],
     );
@@ -1021,6 +1051,16 @@ class S {
     return Intl.message(
       'Maintenance',
       name: 'ttMaintenance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are not allowed to do that!`
+  String get msgNotAllowed {
+    return Intl.message(
+      'You are not allowed to do that!',
+      name: 'msgNotAllowed',
       desc: '',
       args: [],
     );

@@ -88,20 +88,4 @@ class RentalCard extends ConsumerWidget {
             child: child,
           );
   }
-
-  TableRow buildRow(String label, String value, TextTheme theme) =>
-      TableRow(children: [
-        Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: kSpacing / 2, vertical: kSpacing / 4),
-            child: Text(label,
-                textAlign: TextAlign.start,
-                style: theme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ))),
-        Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: kSpacing / 2, vertical: kSpacing / 4),
-            child: Text(value, textAlign: TextAlign.end)),
-      ]);
 }

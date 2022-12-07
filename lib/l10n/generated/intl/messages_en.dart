@@ -40,33 +40,35 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m7(isPlural) =>
       "${Intl.plural(isPlural, one: 'Rental', other: 'Rentals')}";
 
-  static String m8(object) => "Failed to create \"${object}\"";
+  static String m8(status) => "From ${status} to:";
 
-  static String m9(object) => "Failed to delete \"${object}\"";
+  static String m9(object) => "Failed to create \"${object}\"";
 
-  static String m10(object) => "Failed to update \"${object}\"";
+  static String m10(object) => "Failed to delete \"${object}\"";
 
-  static String m11(status) => "${Intl.select(status, {
+  static String m11(object) => "Failed to update \"${object}\"";
+
+  static String m12(status) => "${Intl.select(status, {
             'false': 'The form is missing information or has invalid data',
             'other': 'The form\'s information is valid',
           })}";
 
-  static String m12(itemLabel) => "You have no ${itemLabel} registered";
+  static String m13(itemLabel) => "You have no ${itemLabel} registered";
 
-  static String m13(objects) => "No ${objects} available";
+  static String m14(objects) => "No ${objects} available";
 
-  static String m14(object) => "Created \"${object}\" successfully";
+  static String m15(object) => "Created \"${object}\" successfully";
 
-  static String m15(object) => "Deleted \"${object}\" successfully";
+  static String m16(object) => "Deleted \"${object}\" successfully";
 
-  static String m16(object) => "Updated \"${object}\" successfully";
+  static String m17(object) => "Updated \"${object}\" successfully";
 
-  static String m17(email) =>
+  static String m18(email) =>
       "Before you begin, please verify your account. Send verification email to ${email}";
 
-  static String m18(time) => "Rented for ${time}";
+  static String m19(time) => "Rented for ${time}";
 
-  static String m19(price) => "${price}";
+  static String m20(price) => "${price}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -144,18 +146,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "msgAreYouSure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "msgAutomotive": MessageLookupByLibrary.simpleMessage(
             "Click if the category contains automotive items"),
-        "msgFailedCreateObject": m8,
-        "msgFailedDeleteObject": m9,
-        "msgFailedUpdateObject": m10,
-        "msgFormStatus": m11,
+        "msgCurrentStatus": m8,
+        "msgFailedCreateObject": m9,
+        "msgFailedDeleteObject": m10,
+        "msgFailedUpdateObject": m11,
+        "msgFormStatus": m12,
         "msgMissingCategory": MessageLookupByLibrary.simpleMessage(
             "To select a tag, pick a category"),
         "msgNoInformation":
             MessageLookupByLibrary.simpleMessage("No information"),
-        "msgNoRegisters": m12,
+        "msgNoRegisters": m13,
         "msgNoRentalsActive": MessageLookupByLibrary.simpleMessage(
             "No active rentals at the moment"),
-        "msgNothingAvailable": m13,
+        "msgNotAllowed": MessageLookupByLibrary.simpleMessage(
+            "You are not allowed to do that!"),
+        "msgNothingAvailable": m14,
         "msgNothingToSee":
             MessageLookupByLibrary.simpleMessage("Nothing to see here"),
         "msgPageNotFound":
@@ -164,10 +169,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Registered successfully"),
         "msgReturnRentalAsset": MessageLookupByLibrary.simpleMessage(
             "Update any extra information you want before marking the asset as returned"),
-        "msgSuccessCreateObject": m14,
-        "msgSuccessDeleteObject": m15,
-        "msgSuccessUpdateObject": m16,
-        "msgVerifyEmail": m17,
+        "msgSuccessCreateObject": m15,
+        "msgSuccessDeleteObject": m16,
+        "msgSuccessUpdateObject": m17,
+        "msgUnableToChangeStatus": MessageLookupByLibrary.simpleMessage(
+            "Rented assets can\'t be changed because their status is fixed until the object is returned"),
+        "msgVerifyEmail": m18,
         "msgWarningDeleteCategory": MessageLookupByLibrary.simpleMessage(
             "This will delete the category and all its assets. You won\'t be able to undo this action."),
         "msgWelcome": MessageLookupByLibrary.simpleMessage("Welcome to Stere"),
@@ -176,10 +183,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "optIdentification":
             MessageLookupByLibrary.simpleMessage("Identification"),
         "optPassport": MessageLookupByLibrary.simpleMessage("Passport"),
-        "pfxRentedFor": m18,
-        "priceFormat": m19,
+        "pfxRentedFor": m19,
+        "priceFormat": m20,
         "stActiveRentals":
             MessageLookupByLibrary.simpleMessage("Active Rentals"),
+        "stChangeStatus": MessageLookupByLibrary.simpleMessage("Change Status"),
         "stInformationDialogNewRental": MessageLookupByLibrary.simpleMessage(
             "What to do with selected assets?"),
         "stInformationDialogNewRentalDelete":

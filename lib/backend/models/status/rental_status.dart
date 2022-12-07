@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/colors.dart';
+import '../../../core/constants/icons.dart';
 import '../../../l10n/generated/l10n.dart';
 
 enum RentalStatus {
@@ -66,11 +67,11 @@ extension RentalAssetExtension on RentalAssetStatus {
 }
 
 enum AssetStatus {
+  rented,
   available,
   unavailable,
-  maintenance,
   discarded,
-  rented,
+  maintenance,
 }
 
 extension AssetExtension on AssetStatus {
@@ -88,6 +89,23 @@ extension AssetExtension on AssetStatus {
         return S.current.ttRented;
       default:
         return S.current.ttUndefined;
+    }
+  }
+
+  IconData? get icon {
+    switch (this) {
+      case AssetStatus.available:
+        return icAssetStatusAvailable;
+      case AssetStatus.maintenance:
+        return icAssetStatusMaintenance;
+      case AssetStatus.discarded:
+        return icAssetStatusDiscarded;
+      case AssetStatus.rented:
+        return icAssetStatusRented;
+      case AssetStatus.unavailable:
+        return icAssetStatusUnavailable;
+      default:
+        return null;
     }
   }
 

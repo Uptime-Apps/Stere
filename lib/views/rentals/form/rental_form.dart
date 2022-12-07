@@ -36,7 +36,7 @@ class RentalForm extends ConsumerWidget {
                 context: context,
                 builder: (context) => SimpleDialog(
                       title: Text(S.of(context).stInformationDialogNewRental),
-                      contentPadding: const EdgeInsets.all(kSpacing * 1.5),
+                      contentPadding: kDialogContentPadding,
                       children: [
                         Text(S.of(context).stInformationDialogNewRentalDelete),
                         const Divider(),

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'core/constants/radius_values.dart';
 import 'firebase_options.dart';
 import 'l10n/generated/l10n.dart';
 import 'routes/routes.dart';
@@ -60,6 +61,15 @@ class AppTheme {
     return theme.copyWith(
       useMaterial3: true,
       colorScheme: scheme,
+      chipTheme: theme.chipTheme.copyWith(
+        backgroundColor: scheme.surface,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(kChipRadius),
+          side: BorderSide(color: scheme.outline),
+        ),
+        labelStyle:
+            TextStyle(color: scheme.onSurface, fontWeight: FontWeight.w500),
+      ),
       tabBarTheme: TabBarTheme(
         labelColor: scheme.primary,
         unselectedLabelColor: scheme.onSurfaceVariant,
