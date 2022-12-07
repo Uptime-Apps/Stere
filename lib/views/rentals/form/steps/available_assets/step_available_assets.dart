@@ -6,6 +6,7 @@ import '../../../../../backend/models/asset/asset.dart';
 import '../../../../../backend/models/rental/rental_asset.dart';
 import '../../../../../backend/models/status/rental_status.dart';
 import '../../../../../core/components/inputs/dropdowns.dart';
+import '../../../../../core/components/others/modal_bottom_sheet.dart';
 import '../../../../../core/components/others/utilities.dart';
 import '../../../../../core/constants/radius_values.dart';
 import '../../../../../core/constants/spacing_values.dart';
@@ -47,13 +48,11 @@ class StepAvailableAssets extends ConsumerWidget {
                       foregroundColor: colorScheme.onSurfaceVariant,
                       icon: Icons.edit,
                       onPressed: (context) async {
-                        var res = await showModalBottomSheet<RentalAsset>(
+                        var res = await showStereModalBottomSheet<RentalAsset>(
                             isScrollControlled: true,
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.circular(kCardRadius)),
                             context: context,
-                            builder: (context) => RentalAssetForm(obj));
+                            title: obj.name,
+                            body: RentalAssetForm(obj));
                         if (res != null) {
                           notifier.editSelection(index, res);
                           // log(res.toString(), name: logName);

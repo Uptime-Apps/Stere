@@ -72,7 +72,7 @@ class _DialogReturnAssetState extends State<DialogReturnAsset> {
     ];
 
     return SimpleDialog(
-      contentPadding: const EdgeInsets.all(kSpacing * 1.5),
+      contentPadding: kDialogContentPadding,
       title: Text(widget.rAsset.name),
       children: [
         Text(S.of(context).msgReturnRentalAsset),
