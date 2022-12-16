@@ -5,8 +5,6 @@ import '../../../l10n/generated/l10n.dart';
 import '../../../routes/navigation_controller.dart';
 import '../../../views/assets/asset.dart';
 import '../../../views/assets/form/asset_form.dart';
-import '../../../views/categories/category.dart';
-import '../../../views/categories/form/category_form.dart';
 import '../../../views/home/home.dart';
 import '../../../views/rentals/form/rental_form.dart';
 import '../../../views/rentals/rental.dart';
@@ -56,12 +54,6 @@ class StereMainScreenScaffold extends ConsumerWidget {
 
   FloatingActionButton? getFab(BuildContext context, Widget view) {
     switch (view.runtimeType) {
-      case CategoryScreen:
-        return FloatingActionButton.extended(
-          label: Text(S.current.lblCreateObject(S.current.lblCategories(1))),
-          onPressed: () => Navigator.of(context).pushNamed(CategoryForm.route),
-          icon: const Icon(Icons.add),
-        );
       case AssetScreen:
         return FloatingActionButton.extended(
           label: Text(S.current.lblCreateObject(S.current.lblAssets(1))),

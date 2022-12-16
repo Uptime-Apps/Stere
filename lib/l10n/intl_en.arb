@@ -107,5 +107,6 @@
   "ttRented": "Rented",
   "ttTimeRemaining": "Time remaining",
   "ttUnavailable": "Unavailable",
-  "ttUndefined": "Undefined"
+  "ttUndefined": "Undefined",
+  "lblReports": "Reports"
 }

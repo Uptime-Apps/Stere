@@ -6,6 +6,7 @@ const IconData icAssets = Icons.now_widgets_rounded;
 const IconData icClientInformation = Icons.contact_page;
 const IconData icInfo = Icons.info_outline;
 const IconData icHistory = Icons.history;
+const IconData icReports = Icons.bar_chart;
 const IconData icCategories = Icons.category;
 const IconData icCategoriesAutomotive = Icons.local_gas_station;
 const IconData icHome = Icons.home;

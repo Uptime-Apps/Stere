@@ -134,6 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblRentalHistory":
             MessageLookupByLibrary.simpleMessage("Rental History"),
         "lblRentals": m7,
+        "lblReports": MessageLookupByLibrary.simpleMessage("Reports"),
         "lblReturn": MessageLookupByLibrary.simpleMessage("Return"),
         "lblSave": MessageLookupByLibrary.simpleMessage("Save"),
         "lblSelectedAssets":

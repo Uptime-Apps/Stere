@@ -8,6 +8,7 @@ import '../../core/components/cards/rental.dart';
 import '../../core/components/lists/stream_list_view.dart';
 import '../../core/constants/icons.dart';
 import '../../l10n/generated/l10n.dart';
+import '../categories/form/category_form.dart';
 import '../rentals/form/rental_form.dart';
 import 'category_carousel/carousel.dart';
 
@@ -22,9 +23,16 @@ class HomeScreen extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           ListTile(
-            title: Text(S.of(context).lblCategories(2)),
-            leading: const Icon(icCategories),
-          ),
+              title: Text(S.of(context).lblCategories(2)),
+              leading: const Icon(icCategories),
+              trailing: IconButton(
+                  icon: const Icon(Icons.add),
+                  tooltip: S
+                      .of(context)
+                      .lblCreateObject(S.of(context).lblCategories(1)),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(CategoryForm.route);
+                  })),
           SizedBox(
             height: MediaQuery.of(context).size.height / 6,
             child: const CategoryCarousel(),
