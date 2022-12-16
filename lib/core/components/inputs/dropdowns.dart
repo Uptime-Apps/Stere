@@ -5,6 +5,7 @@ import '../../../backend/models/asset/asset.dart';
 import '../../../backend/models/status/rental_status.dart';
 import '../../../l10n/generated/l10n.dart';
 import '../../../views/rentals/form/rental_form_controller.dart';
+import '../../../views/rentals/form/steps/available_assets/utils.dart';
 import '../others/shimmers.dart';
 import 'form_fields.dart';
 
@@ -41,8 +42,14 @@ class AvailableAssetsDropdown extends ConsumerWidget {
                       width: MediaQuery.of(context).size.width / 2,
                       child: ListTile(
                         onTap: () {
-                          notifier.addSelection(e);
+                          var obj = notifier.addSelection(e);
                           Navigator.of(context).pop();
+                          showEditSelectionModal(
+                            context,
+                            obj,
+                            prov.selectedAssets.length,
+                            (i, ra) => notifier.editSelection(i, ra),
+                          );
                         },
                         visualDensity: VisualDensity.compact,
                         title: Tooltip(

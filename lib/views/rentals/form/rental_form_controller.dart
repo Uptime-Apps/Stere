@@ -167,9 +167,9 @@ class RentalFormController extends StateNotifier<RentalFormState> {
     validateForm();
   }
 
-  void addSelection(Asset asset) {
-    var currentAssets = state.selectedAssets.toList();
-    currentAssets.add(RentalAsset(
+  RentalAsset addSelection(Asset asset) {
+    List<RentalAsset> currentAssets = state.selectedAssets.toList();
+    RentalAsset obj = RentalAsset(
       id: asset.id!,
       name: asset.name,
       categoryId: asset.categoryId,
@@ -180,9 +180,11 @@ class RentalFormController extends StateNotifier<RentalFormState> {
       isAutomotive: asset.isAutomotive,
       initialMileage: asset.mileage,
       status: RentalAssetStatus.incomplete,
-    ));
+    );
+    currentAssets.add(obj);
     state = state.copyWith(selectedAssets: currentAssets);
     validateForm();
+    return obj;
   }
 
   void editSelection(int index, RentalAsset rAsset) {

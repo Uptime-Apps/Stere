@@ -3,16 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../../../../../backend/models/asset/asset.dart';
-import '../../../../../backend/models/rental/rental_asset.dart';
 import '../../../../../backend/models/status/rental_status.dart';
 import '../../../../../core/components/inputs/dropdowns.dart';
-import '../../../../../core/components/others/modal_bottom_sheet.dart';
 import '../../../../../core/components/others/utilities.dart';
 import '../../../../../core/constants/radius_values.dart';
 import '../../../../../core/constants/spacing_values.dart';
 import '../../../../../l10n/generated/l10n.dart';
 import '../../rental_form_controller.dart';
-import 'rental_asset_form.dart';
+import 'utils.dart';
 
 class StepAvailableAssets extends ConsumerWidget {
   final logName = 'step-available-assets';
@@ -47,17 +45,12 @@ class StepAvailableAssets extends ConsumerWidget {
                       backgroundColor: colorScheme.surfaceVariant,
                       foregroundColor: colorScheme.onSurfaceVariant,
                       icon: Icons.edit,
-                      onPressed: (context) async {
-                        var res = await showStereModalBottomSheet<RentalAsset>(
-                            isScrollControlled: true,
-                            context: context,
-                            title: obj.name,
-                            body: RentalAssetForm(obj));
-                        if (res != null) {
-                          notifier.editSelection(index, res);
-                          // log(res.toString(), name: logName);
-                        }
-                      },
+                      onPressed: (context) => showEditSelectionModal(
+                        context,
+                        obj,
+                        index,
+                        (i, ra) => notifier.editSelection(i, ra),
+                      ),
                     ),
                     SlidableAction(
                       backgroundColor: colorScheme.error,
