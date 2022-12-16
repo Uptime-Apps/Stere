@@ -10,13 +10,13 @@ import '../models/rental/rental.dart';
 import '../models/status/rental_status.dart';
 
 abstract class RentalRepository {
-  Future<List<Map<String, dynamic>>> getAll();
   Future<List<Map<String, dynamic>>> getActive();
-  void delete(String id);
-  Stream<List<Map<String, dynamic>>> getOrderedByDate(bool descending);
+  Future<List<Map<String, dynamic>>> getAll();
   Future<String?> create(Rental object);
-  void update(Rental object);
+  Stream<List<Map<String, dynamic>>> getOrderedByDate(bool descending);
+  void delete(String id);
   void setStatus(String id, RentalStatus status);
+  void update(Rental object);
 }
 
 class FirebaseRentalRepository implements RentalRepository {

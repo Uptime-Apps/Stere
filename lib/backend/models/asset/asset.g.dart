@@ -35,9 +35,9 @@ Map<String, dynamic> _$$_AssetToJson(_$_Asset instance) => <String, dynamic>{
     };
 
 const _$AssetStatusEnumMap = {
+  AssetStatus.rented: 'rented',
   AssetStatus.available: 'available',
   AssetStatus.unavailable: 'unavailable',
-  AssetStatus.maintenance: 'maintenance',
   AssetStatus.discarded: 'discarded',
-  AssetStatus.rented: 'rented',
+  AssetStatus.maintenance: 'maintenance',
 };
