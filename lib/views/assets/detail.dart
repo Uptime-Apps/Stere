@@ -5,13 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../backend/models/asset/asset.dart';
+import '../../backend/models/rental/rental.dart';
+import '../../backend/models/rental/rental_asset.dart';
 import '../../backend/models/status/rental_status.dart';
+import '../../backend/services/rental_service.dart';
+import '../../core/components/cards/rental.dart';
+import '../../core/components/lists/stream_list_view.dart';
 import '../../core/components/others/basic_scaffold.dart';
 import '../../core/components/others/shimmers.dart';
 import '../../core/components/others/utilities.dart';
+import '../../core/constants/icons.dart';
 import '../../core/constants/image_assets.dart';
 import '../../core/constants/radius_values.dart';
 import '../../core/constants/spacing_values.dart';
+import '../../l10n/generated/l10n.dart';
+import '../rentals/form/rental_form.dart';
 import 'providers.dart';
 
 class AssetDetailScreen extends ConsumerWidget {
@@ -36,7 +44,8 @@ class AssetDetailScreen extends ConsumerWidget {
         mainAxisSize: MainAxisSize.max,
         direction: Axis.vertical,
         children: [
-          Flexible(
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 4.5,
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(kCardRadius),
@@ -64,25 +73,55 @@ class AssetDetailScreen extends ConsumerWidget {
                   : defaultImage,
             ),
           ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              ListTile(
+                  title: Text(
+                    asset.status.local,
+                  ),
+                  dense: false,
+                  visualDensity: VisualDensity.comfortable,
+                  subtitle: Text(asset.categoryName),
+                  trailing: Tooltip(
+                      message: asset.status.local,
+                      child:
+                          Icon(asset.status.icon, color: asset.status.color))),
+              if (asset.tags?.isNotEmpty ?? false) tagsSection(),
+            ],
+          ),
           Expanded(
-            flex: 3,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                ListTile(
-                    title: Text(
-                      asset.status.local,
-                    ),
-                    dense: false,
-                    visualDensity: VisualDensity.comfortable,
-                    subtitle: Text(asset.categoryName),
-                    trailing: Tooltip(
-                        message: asset.status.local,
-                        child: Icon(asset.status.icon,
-                            color: asset.status.color))),
-                if (asset.tags?.isNotEmpty ?? false) tagsSection(),
-              ],
+            child: StreamListView<Rental>(
+              filterData: (data) {
+                return data.where((element) =>
+                    element.assets.map((a) => a.id).contains(asset.id));
+              },
+              onData: (documents) => (documents?.isNotEmpty ?? false)
+                  ? documents!.map((e) => RentalCard(e)).toList()
+                  : null,
+              stream: ref.read(rentalServiceProvider).getOrderedByDate(),
+              headerBuilder: ((context, snapshot) {
+                final data = snapshot.value;
+                double total = 0;
+                List<RentalAsset> prices = [];
+                if (data != null && data.isNotEmpty && data.length > 1) {
+                  snapshot.value?.forEach((r) => prices.addAll(r.assets));
+                  total =
+                      prices.map((r) => r.rentalPrice).reduce((a, b) => a + b);
+                }
+                return Column(
+                  children: [
+                    if (total > 0) ...[
+                      TotalAmountListTile(total: total),
+                      const Divider(height: 1),
+                    ]
+                  ],
+                );
+              }),
+              noContentMessage: S.of(context).msgNoRentalsActive,
+              noContentIcon: icRentals,
+              noContentActionRoute: RentalForm.route,
             ),
           ),
         ],

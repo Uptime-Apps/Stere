@@ -20,3 +20,5 @@ const IconData icAssetStatusRented = FontAwesomeIcons.squareCheck;
 const IconData icAssetStatusDiscarded = FontAwesomeIcons.squareXmark;
 const IconData icAssetStatusMaintenance = FontAwesomeIcons.screwdriverWrench;
 // const IconData icAssetStatusRented = Icons.alarm_on;
+
+const IconData icMoney = FontAwesomeIcons.moneyBill;

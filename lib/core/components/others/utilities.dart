@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../l10n/generated/l10n.dart';
+import '../../constants/icons.dart';
 import '../../constants/spacing_values.dart';
+import '../chips/numeric_chips.dart';
 
 class DefaultSpacer extends StatelessWidget {
   const DefaultSpacer({this.dim = kSpacing, super.key});
@@ -63,6 +66,24 @@ class ConfirmationDialog extends StatelessWidget {
           child: Text(S.of(context).lblConfirm),
         ),
       ],
+    );
+  }
+}
+
+class TotalAmountListTile extends StatelessWidget {
+  const TotalAmountListTile({
+    Key? key,
+    required this.total,
+  }) : super(key: key);
+
+  final double total;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: const FaIcon(icMoney),
+      title: Text(S.of(context).lblTotal),
+      trailing: PriceChip(price: total),
     );
   }
 }

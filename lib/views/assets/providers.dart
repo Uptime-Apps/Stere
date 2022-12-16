@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../backend/services/asset_service.dart';
 import '../../backend/services/category_service.dart';
 import '../../l10n/generated/l10n.dart';
+import 'edit_form/asset_edit_form_controller.dart';
+import 'edit_form/asset_edit_form_state.dart';
 import 'form/asset_form_controller.dart';
 import 'form/asset_form_state.dart';
 
@@ -24,6 +26,23 @@ final assetFormControllerProvider =
       nameController: TextEditingController(),
       categories: const AsyncValue.loading(),
       chosenCategory: const AsyncValue.loading(),
+    ),
+    categoryService: ref.watch(categoryServiceProvider),
+    assetService: ref.watch(assetServiceProvider),
+  );
+});
+
+final assetEditFormControllerProvider = StateNotifierProvider.autoDispose<
+    AssetEditFormController, AssetEditFormState>((ref) {
+  return AssetEditFormController(
+    AssetEditFormState(
+      formKey: GlobalKey<FormState>(),
+      result: AsyncValue.data(S.current.lblSave),
+      priceController: TextEditingController(),
+      nameController: TextEditingController(),
+      categories: const AsyncValue.loading(),
+      chosenCategory: const AsyncValue.loading(),
+      asset: const AsyncValue.loading(),
     ),
     categoryService: ref.watch(categoryServiceProvider),
     assetService: ref.watch(assetServiceProvider),

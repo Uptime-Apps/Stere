@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class StreamListView<T> extends StatefulWidget {
   const StreamListView({
     this.headerBuilder,
     this.footerBuilder,
+    this.filterData,
     required this.stream,
     required this.onData,
     required this.noContentMessage,
@@ -19,6 +21,7 @@ class StreamListView<T> extends StatefulWidget {
 
   final IconData noContentIcon;
   final List<Widget>? Function(List<T>?) onData;
+  final Iterable<T> Function(List<T>)? filterData;
   final Stream<List<T>>? stream;
   final String noContentActionRoute;
   final String noContentMessage;
@@ -32,83 +35,85 @@ class StreamListView<T> extends StatefulWidget {
 }
 
 class _StreamListViewState<T> extends State<StreamListView<T>> {
+  final String logName = 'StreamListViewState';
   late AsyncValue<List<T>?> data;
+
   @override
   void initState() {
     super.initState();
     data = const AsyncValue.loading();
+    widget.stream?.listen(
+      (event) => setState(() => data = AsyncValue.data(
+          (widget.filterData != null)
+              ? widget.filterData!(event).toList()
+              : event)),
+      onDone: () => log('Stream Listener: DONE', name: logName),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      builder: ((context, snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.active:
-          case ConnectionState.waiting:
-            data = const AsyncValue.loading();
-            break;
-          case ConnectionState.none:
-            data = const AsyncValue.data(null);
-            break;
-          case ConnectionState.done:
-            data = AsyncValue.data(snapshot.data);
-            break;
-        }
-        return Column(
-          children: [
-            if (widget.headerBuilder != null)
-              widget.headerBuilder!(context, data),
-            data.when<Widget>(
-              data: (data) {
-                final listViewItems = widget.onData(data);
-                if (listViewItems?.isEmpty ?? true) {
-                  // if no items
-                  return Center(
-                    child: EmptyListScreen(
-                      message: widget.noContentMessage,
-                      icon: widget.noContentIcon,
-                      actionRoute: widget.noContentActionRoute,
-                    ),
-                  );
-                }
-                return Column(
-                  children: [
-                    // headerBuilder,
-                    ListView.builder(
-                      itemBuilder: (_, i) => listViewItems[i],
-                      // separatorBuilder: (_, __) => const Divider(),
-                      itemCount: listViewItems!.length,
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                    ),
-                    // footerBuilder,
-                  ],
-                );
-              },
-              error: (error, stackTrace) {
-                log(
-                  'Something went wrong',
-                  error: error,
-                  stackTrace: stackTrace,
-                  name: 'StreamListView<${T.toString()}>',
-                );
-                return Center(
-                  child: EmptyListScreen(
-                    message: widget.noContentMessage,
-                    icon: widget.noContentIcon,
-                    actionRoute: widget.noContentActionRoute,
-                  ),
-                );
-              },
-              loading: () => const Text('loading'),
+    Widget child = data.when<Widget>(
+      data: (data) {
+        final listViewItems = widget.onData(data);
+        if (listViewItems?.isEmpty ?? true) {
+          // if no items
+          return Center(
+            child: EmptyListScreen(
+              message: widget.noContentMessage,
+              icon: widget.noContentIcon,
+              actionRoute: widget.noContentActionRoute,
             ),
-            if (widget.footerBuilder != null)
-              widget.footerBuilder!(context, data),
-          ],
+          );
+        }
+        return ListView.builder(
+          itemBuilder: (_, i) => listViewItems[i],
+          itemCount: listViewItems!.length,
+          shrinkWrap: true,
         );
-      }),
-      stream: widget.stream,
+      },
+      error: (error, stackTrace) {
+        log(
+          'Something went wrong',
+          error: error,
+          stackTrace: stackTrace,
+          name: 'StreamListView<${T.toString()}>',
+        );
+        return Center(
+          child: EmptyListScreen(
+            message: widget.noContentMessage,
+            icon: widget.noContentIcon,
+            actionRoute: widget.noContentActionRoute,
+          ),
+        );
+      },
+      loading: () => const Center(child: CircularProgressIndicator()),
     );
+
+    final colorScheme = Theme.of(context).colorScheme;
+    return (widget.headerBuilder == null && widget.footerBuilder == null)
+        ? child
+        : Column(
+            children: [
+              if (widget.headerBuilder != null) ...[
+                widget.headerBuilder!(context, data),
+              ],
+              Expanded(child: child),
+              if (widget.footerBuilder != null) ...[
+                const Divider(height: 1),
+                SafeArea(
+                  child: Container(
+                    // color: colorScheme.surfaceVariant,
+                    child: widget.footerBuilder!(context, data),
+                  ),
+                ),
+              ]
+            ],
+          );
   }
 }
