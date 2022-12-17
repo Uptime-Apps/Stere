@@ -11,3 +11,6 @@ final clRented = Colors.amber.shade700;
 final clMaintenance = Colors.blueGrey.shade400;
 const clUnavailable = Colors.grey;
 final clDiscarded = Colors.red.shade300;
+
+const clIncome = Colors.green;
+final clExpense = clDiscarded;

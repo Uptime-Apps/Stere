@@ -822,6 +822,26 @@ class S {
     );
   }
 
+  /// `Asset Price`
+  String get lblAssetPrice {
+    return Intl.message(
+      'Asset Price',
+      name: 'lblAssetPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profit (Asset price - total)`
+  String get lblProfit {
+    return Intl.message(
+      'Profit (Asset price - total)',
+      name: 'lblProfit',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Identification`
   String get optIdentification {
     return Intl.message(
@@ -875,7 +895,7 @@ class S {
   /// `{price}`
   String priceFormat(double price) {
     final NumberFormat priceNumberFormat = NumberFormat.currency(
-        locale: Intl.getCurrentLocale(), symbol: '₡', decimalDigits: 2);
+        locale: Intl.getCurrentLocale(), symbol: '₡', decimalDigits: 0);
     final String priceString = priceNumberFormat.format(price);
 
     return Intl.message(

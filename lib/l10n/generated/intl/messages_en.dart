@@ -88,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "exClientBackupPhone": MessageLookupByLibrary.simpleMessage(
             "Hotel, AirBnB, family member..."),
         "ilPrice": MessageLookupByLibrary.simpleMessage("Price"),
+        "lblAssetPrice": MessageLookupByLibrary.simpleMessage("Asset Price"),
         "lblAssets": m2,
         "lblAvailableCount": m3,
         "lblCancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -131,6 +132,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblNotifications":
             MessageLookupByLibrary.simpleMessage("Notifications"),
         "lblPrice": MessageLookupByLibrary.simpleMessage("Price"),
+        "lblProfit": MessageLookupByLibrary.simpleMessage(
+            "Profit (Asset price - total)"),
         "lblRentalHistory":
             MessageLookupByLibrary.simpleMessage("Rental History"),
         "lblRentals": m7,
