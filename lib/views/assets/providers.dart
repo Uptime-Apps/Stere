@@ -15,7 +15,7 @@ final categoryImageProvider =
 });
 
 final assetImageProvider =
-    FutureProvider.autoDispose.family<String?, String>((ref, imagePath) async {
+    FutureProvider.autoDispose.family<String?, String?>((ref, imagePath) async {
   final result = await ref.watch(assetServiceProvider).getImageUrl(imagePath);
   return result;
 });

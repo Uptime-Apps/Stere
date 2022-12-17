@@ -24,7 +24,7 @@ class AssetDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final img = ref.watch(assetImageProvider(asset.imagePath!));
+    final img = ref.watch(assetImageProvider(asset.imagePath));
     return StereBasicScaffold(
       body: Flex(
         mainAxisSize: MainAxisSize.max,
@@ -171,15 +171,13 @@ TableRow buildTableRow({
 }) {
   return TableRow(
     children: [
-      TableCell(child: label),
-      TableCell(
-        child: Text(
-          S.current.priceFormat(value),
-          textAlign: TextAlign.end,
-          style: TextStyle(
-            color: valueColor,
-            fontWeight: (valueColor != null) ? FontWeight.bold : null,
-          ),
+      label,
+      Text(
+        S.current.priceFormat(value),
+        textAlign: TextAlign.end,
+        style: TextStyle(
+          color: valueColor,
+          fontWeight: (valueColor != null) ? FontWeight.bold : null,
         ),
       )
     ]
