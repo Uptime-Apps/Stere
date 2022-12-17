@@ -34,6 +34,7 @@ final categoryListControllerProvider =
 
 final categoryListImageProvider =
     FutureProvider.autoDispose.family<String?, Category>((ref, category) async {
-  final result = await ref.watch(categoryServiceProvider).getImageUrl(category);
+  final result =
+      await ref.watch(categoryServiceProvider).getImageUrl(category.imagePath);
   return result;
 });

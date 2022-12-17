@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../backend/models/asset/asset.dart';
+import '../backend/models/category/category.dart';
 import '../core/components/navigation/main_scaffold.dart';
 import '../core/components/others/basic_scaffold.dart';
 import '../core/components/others/filled_button.dart';
@@ -10,6 +11,7 @@ import '../l10n/generated/l10n.dart';
 import '../views/assets/detail.dart';
 import '../views/assets/form/asset_form.dart';
 import '../views/authentication.dart';
+import '../views/categories/detail/detail.dart';
 import '../views/categories/form/category_form.dart';
 import '../views/error.dart';
 import '../views/rentals/form/rental_form.dart';
@@ -46,6 +48,10 @@ class RouteGenerator {
         final asset = settings.arguments as Asset;
         return MaterialPageRoute(
             builder: (context) => AssetDetailScreen(asset));
+      case CategoryDetailScreen.route:
+        final obj = settings.arguments as Category;
+        return MaterialPageRoute(
+            builder: (context) => CategoryDetailScreen(obj));
       default:
         return MaterialPageRoute(
             builder: (context) =>

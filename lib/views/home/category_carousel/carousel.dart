@@ -10,6 +10,7 @@ import '../../../core/components/others/utilities.dart';
 import '../../../core/constants/spacing_values.dart';
 import '../../../l10n/generated/l10n.dart';
 import '../../../utils/snackbar.dart';
+import '../../categories/detail/detail.dart';
 import '../../categories/form/category_form.dart';
 import '../home_controller.dart';
 
@@ -74,6 +75,12 @@ class _ClickableCategoryCard extends State<ClickableCategoryCard> {
     overlay = (Overlay.of(context)!.context.findRenderObject() as RenderBox?)!;
     return GestureDetector(
       onTapDown: getPosition,
+      onTap: () {
+        Navigator.of(context).pushNamed(
+          CategoryDetailScreen.route,
+          arguments: widget.category,
+        );
+      },
       onLongPress: () {
         HapticFeedback.mediumImpact();
         showMenu(

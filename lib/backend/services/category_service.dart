@@ -14,7 +14,7 @@ import 'asset_service.dart';
 abstract class CategoryService {
   Stream<List<Category>>? getCategories();
   Stream<List<Category>>? getCategoriesOrderedByName();
-  Future<String?> getImageUrl(Category category);
+  Future<String?> getImageUrl(String? imagePath);
   Future<String?> createCategory(Category category, File? image);
   Future<String?> deleteCategory(Category category);
 }
@@ -115,16 +115,17 @@ class FirebaseCategoryService implements CategoryService {
   }
 
   @override
-  Future<String?> getImageUrl(Category category) async {
+  Future<String?> getImageUrl(String? imagePath) async {
     try {
-      if (category.imagePath == null) return null;
-      final downloadUrl =
-          await _categoryRepository.getImageUrl(category.imagePath!);
-      return downloadUrl;
+      return (imagePath?.isNotEmpty ?? false)
+          ? await _categoryRepository.getImageUrl(imagePath!)
+          : null;
     } on Failure catch (e) {
       log(e.message, name: logName);
-      return null;
+    } on FirebaseException catch (e) {
+      log('Failed to load image\n${e.message}', name: logName);
     }
+    return null;
   }
 }
 

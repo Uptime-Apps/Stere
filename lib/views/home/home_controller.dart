@@ -32,6 +32,7 @@ final homeControllerProvider = StateNotifierProvider<HomeController, HomeState>(
 
 final homeCategoryImageProvider =
     FutureProvider.autoDispose.family<String?, Category>((ref, category) async {
-  final result = await ref.watch(categoryServiceProvider).getImageUrl(category);
+  final result =
+      await ref.watch(categoryServiceProvider).getImageUrl(category.imagePath);
   return result;
 });
