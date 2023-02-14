@@ -5,6 +5,7 @@ import '../../../backend/models/asset/asset.dart';
 import '../../../backend/models/category/category.dart';
 import '../../../backend/services/asset_service.dart';
 import '../../../core/components/list_tiles/asset.dart';
+import '../../../core/components/lists/chips.dart';
 import '../../../core/components/lists/stream_list_view.dart';
 import '../../../core/components/others/basic_scaffold.dart';
 import '../../../core/components/others/images.dart';
@@ -39,14 +40,18 @@ class _CategoryDetailScreenState extends ConsumerState<CategoryDetailScreen> {
     return StereBasicScaffold(
       body: StreamListView<Asset>(
         stream: assets?.asStream() ?? const Stream.empty(),
-        onData: (data) => data?.map((e) => AssetListTile(e)).toList(),
+        onData: (data) =>
+            data?.map((e) => AssetListTile(e, showTags: true)).toList(),
         noContentMessage: S.of(context).msgNoRegisters(widget.category.name),
         noContentIcon: icAssets,
         noContentActionRoute: AssetForm.route,
-        headerBuilder: (context, snapshot) => Flex(
-          direction: Axis.vertical,
+        headerBuilder: (context, snapshot) => Column(
           mainAxisSize: MainAxisSize.max,
-          children: [DetailScreenImage(img)],
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            DetailScreenImage(img),
+            ChipsOverflowBar(widget.category.tags)
+          ],
         ),
       ),
       title: widget.category.name,

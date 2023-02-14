@@ -70,6 +70,7 @@ class AppTheme {
         labelStyle:
             TextStyle(color: scheme.onSurface, fontWeight: FontWeight.w500),
       ),
+      dividerTheme: const DividerThemeData(thickness: 1, space: 0),
       tabBarTheme: TabBarTheme(
         labelColor: scheme.primary,
         unselectedLabelColor: scheme.onSurfaceVariant,

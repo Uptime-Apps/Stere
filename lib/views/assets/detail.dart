@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../core/components/lists/chips.dart';
 import '../../core/components/others/images.dart';
 import '../../core/constants/colors.dart';
 import 'providers.dart';
@@ -37,6 +38,8 @@ class AssetDetailScreen extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
+              if (asset.tags?.isNotEmpty ?? false)
+                ChipsOverflowBar(asset.tags!),
               ListTile(
                   title: Text(
                     asset.status.local,
@@ -48,7 +51,7 @@ class AssetDetailScreen extends ConsumerWidget {
                       message: asset.status.local,
                       child:
                           Icon(asset.status.icon, color: asset.status.color))),
-              if (asset.tags?.isNotEmpty ?? false) tagsSection(),
+              // TODO table for automotive attributes and stats
               if (asset.isAutomotive) Table()
             ],
           ),
@@ -84,28 +87,6 @@ class AssetDetailScreen extends ConsumerWidget {
       title: asset.name,
     );
   }
-
-  Widget tagsSection() {
-    var tags = asset.tags!
-        .map((e) => Chip(
-              label: Text(e),
-            ))
-        .toList();
-    return SizedBox(
-      width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: kHorizontalSpacing),
-        child: Wrap(
-          spacing: kSpacing / 2,
-          alignment: WrapAlignment.start,
-          runAlignment: WrapAlignment.start,
-          crossAxisAlignment: WrapCrossAlignment.start,
-          clipBehavior: Clip.hardEdge,
-          children: tags,
-        ),
-      ),
-    );
-  }
 }
 
 class _DetailListViewHeader extends StatelessWidget {
@@ -123,14 +104,11 @@ class _DetailListViewHeader extends StatelessWidget {
     double profit = total - asset.price.toDouble();
     return Column(
       children: [
+        const Divider(),
         Padding(
           padding: const EdgeInsets.symmetric(
               horizontal: kHorizontalSpacing, vertical: kVerticalSpacing),
           child: Table(
-            // border: TableBorder(
-            //   horizontalInside:
-            //       BorderSide(width: .5, color: colorScheme.shadow),
-            // ),
             columnWidths: const {0: FlexColumnWidth(2), 1: FlexColumnWidth(1)},
             children: [
               buildTableRow(
@@ -156,9 +134,7 @@ class _DetailListViewHeader extends StatelessWidget {
             ],
           ),
         ),
-        const Divider(
-          height: 0,
-        ),
+        const Divider(),
       ],
     );
   }

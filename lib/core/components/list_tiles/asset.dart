@@ -18,8 +18,9 @@ import '../others/shimmers.dart';
 import '../others/utilities.dart';
 
 class AssetListTile extends ConsumerWidget {
-  const AssetListTile(this.asset, {super.key});
+  const AssetListTile(this.asset, {this.showTags = false, super.key});
   final Asset asset;
+  final bool showTags;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,12 +42,8 @@ class AssetListTile extends ConsumerWidget {
       onTap: () => Navigator.of(context)
           .pushNamed(AssetDetailScreen.route, arguments: asset),
       title: Text(asset.name),
-      subtitle: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(asset.categoryName),
-        ],
-      ),
+      subtitle:
+          showTags ? Text(asset.tags!.join(', ')) : Text(asset.categoryName),
       leading: img,
       trailing: AssetStatusIconButton(asset: asset),
     );

@@ -95,7 +95,6 @@ class _StreamListViewState<T> extends State<StreamListView<T>> {
       loading: () => const Center(child: CircularProgressIndicator()),
     );
 
-    final colorScheme = Theme.of(context).colorScheme;
     return (widget.headerBuilder == null && widget.footerBuilder == null)
         ? child
         : Column(
@@ -107,10 +106,7 @@ class _StreamListViewState<T> extends State<StreamListView<T>> {
               if (widget.footerBuilder != null) ...[
                 const Divider(height: 1),
                 SafeArea(
-                  child: Container(
-                    // color: colorScheme.surfaceVariant,
-                    child: widget.footerBuilder!(context, data),
-                  ),
+                  child: widget.footerBuilder!(context, data),
                 ),
               ]
             ],
