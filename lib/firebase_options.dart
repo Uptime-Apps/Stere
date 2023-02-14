@@ -65,6 +65,6 @@ class DefaultFirebaseOptions {
     storageBucket: 'stere-cbe81.appspot.com',
     iosClientId:
         '702498511279-aootl4lfeeg2uchgi4fm4er1rsebs580.apps.googleusercontent.com',
-    iosBundleId: 'com.com.uptime.apps.stere',
+    iosBundleId: 'com.uptime.apps.stere',
   );
 }
