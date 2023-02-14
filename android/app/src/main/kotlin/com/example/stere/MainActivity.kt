@@ -1,4 +1,4 @@
-package com.example.stere
+package com.com.uptime.apps.stere
 
 import io.flutter.embedding.android.FlutterActivity
 

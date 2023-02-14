@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:702498511279:android:010f373be62b21157cb75a",
         "android_client_info": {
-          "package_name": "com.example.stere"
+          "package_name": "com.uptime.apps.stere"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "702498511279-aootl4lfeeg2uchgi4fm4er1rsebs580.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.stere"
+                "bundle_id": "com.uptime.apps.stere"
               }
             }
           ]

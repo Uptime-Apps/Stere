@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '702498511279',
     projectId: 'stere-cbe81',
     storageBucket: 'stere-cbe81.appspot.com',
-    iosClientId: '702498511279-aootl4lfeeg2uchgi4fm4er1rsebs580.apps.googleusercontent.com',
-    iosBundleId: 'com.example.stere',
+    iosClientId:
+        '702498511279-aootl4lfeeg2uchgi4fm4er1rsebs580.apps.googleusercontent.com',
+    iosBundleId: 'com.com.uptime.apps.stere',
   );
 }
